@@ -1,0 +1,41 @@
+.carousel.gallery {
+  max-height: 650px;
+  .gallery-arrow{
+    color: $landspot-theme-color !important;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: white;
+    i{
+      font-size: 17px;
+    }
+  }
+  .gallery-carousel-buttons{
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow-x: auto;
+    button{
+      margin-right: 10px;
+      width: 160px;
+      height: 100px;
+      border: none;
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
+      background-repeat: no-repeat;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+  }
+  .title{
+    background-color: rgba(0,0,0,0.6);
+    padding: 14px 18px;
+    margin: 0;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,34 @@
+.landspot-modal.add-new-estate {
+  width: 600px;
+  .form-rows .form-row .right-item {
+    max-width: 350px;
+  }
+  .logo-wrapper {
+    width: 350px;
+    margin: 0 auto 50px auto;
+
+    .estate-logo {
+      position: relative;
+      @include card-image;
+      outline: 1px solid $app-border-color;
+
+      &.has-error {
+        outline-color: $validation-error-color;
+      }
+
+      .upload-image {
+        cursor: pointer;
+        appearance: none;
+        padding: 0;
+        border: none;
+        outline: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent center center/contain no-repeat;
+      }
+    }
+  }
+}

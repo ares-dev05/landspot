@@ -1,0 +1,55 @@
+@import "components/pagination";
+@import "components/spinner";
+@import "components/filterbar";
+@import "components/multi-checkbox-list";
+@import "components/nice-checkbox";
+@import "components/nice-dropdown";
+@import "components/nice-radio";
+@import "components/header";
+@import "components/table";
+@import "components/table-header";
+@import "components/link";
+@import "components/button";
+@import "components/btn-group";
+@import "components/input";
+@import "components/price-slider";
+@import "components/modals";
+@import "components/back-navigation-link";
+@import "components/alert-popup";
+@import "components/tooltip";
+@import "components/toggle-switch";
+@import "components/user-notifications";
+@import "components/read-tos";
+@import "components/form-items/form-rows";
+@import "components/menu-list";
+@import "components/ellipsis";
+@import "components/clearfix";
+@import "components/utilities";
+@import "components/my-clients";
+@import "components/lot-drawer";
+@import "components/kaspa-engine";
+@import "components/plus-minus";
+@import "components/pdf-file";
+
+.responsive-container {
+  display: flex;
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+    overflow: visible;
+
+    & > .responsive {
+      margin-right: 0 !important;
+    }
+
+    .hidden-tablet {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    .hidden-desktop {
+      display: none;
+    }
+  }
+}

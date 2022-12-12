@@ -1,0 +1,64 @@
+.search-bar {
+  font-size: $landspot-text-size;
+  font-weight: 300;
+
+  padding: 48px 0 23px;
+
+  display: flex;
+  justify-content: space-between;
+
+  .select-wrapper {
+    margin-left: auto;
+
+    & > select {
+      border: none;
+      color: $landspot-text-color;
+      font-size: $landspot-text-size;
+      font-weight: 300;
+
+      &.select-filter {
+        padding: 0 40px 0 10px;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .search-autocomplete {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    max-width: 480px;
+    flex-grow: 1;
+
+    label {
+      margin: 0;
+      flex-grow: 0;
+      line-height: 2;
+      font-weight: normal;
+    }
+
+    & > .autocomplete-dropdown {
+      @extend %autocomplete-dropdown;
+      width: 100%;
+      margin-bottom: 0;
+
+      & > input[type="text"] {
+        @extend %landspot-dialog-input;
+
+        padding: 0 0 0 35px;
+      }
+
+      &::after {
+        content: '\f002';
+        font: normal normal normal 14px/1 "Font Awesome 5 Pro";
+        position: absolute;
+        left: 10px;
+        bottom: 50%;
+        transform: translateY(50%);
+        color: $landspot-text-color;
+      }
+    }
+  }
+}

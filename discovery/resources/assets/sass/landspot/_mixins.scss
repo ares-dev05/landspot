@@ -1,0 +1,181 @@
+@mixin brand-color {
+  color: $landspot-theme-color;
+}
+
+@mixin background-brand-color {
+  background-color: $landspot-theme-color;
+}
+
+@mixin app-border-radius {
+  border-radius: $app-border-radius;
+}
+
+@mixin awesome-icon($content, $font-weight: 600) {
+  content: $content;
+  position: absolute;
+  font-weight: $font-weight;
+  font-family: "Font Awesome 5 Pro";
+}
+
+@mixin awesome-icon-before($content, $left, $right: null) {
+  position: relative;
+  &:before {
+    @include awesome-icon($content);
+    left: $left;
+    right: $right;
+    bottom: 50%;
+    transform: translateY(50%);
+    display: block;
+  }
+}
+
+@mixin awesome-icon-after($content, $left, $right: null) {
+  position: relative;
+  &:after {
+    @include awesome-icon($content);
+    left: $left;
+    right: $right;
+    bottom: 50%;
+    transform: translateY(50%);
+    display: block;
+  }
+}
+
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin landspot-scrollbar {
+  &::-webkit-scrollbar {
+    background: #eee;
+    border-radius: 5px;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+    width: 10px;
+  }
+}
+
+@mixin text-overflow-ellipsis($display: "block") {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: unquote($display);
+  white-space: nowrap;
+}
+
+@mixin user-avatar($size: $avatar-size) {
+  background: $app-border-color center center/contain no-repeat;
+  width: $size;
+  height: $size;
+  float: left;
+  border-radius: 50%;
+}
+
+@mixin landspot-round-button($hoverBgColor: $landspot-theme-color, $hoverTextColor: #fff, $textColor: $landspot-theme-color, $padding: null) {
+  border-radius: 60px;
+  text-align: center;
+  background: #fff;
+  padding: $padding;
+  color: $textColor;
+  cursor: pointer;
+
+  & > .landspot-icon {
+    &:before {
+      background-color: $textColor;
+    }
+  }
+
+  &:hover,
+  &.active {
+    color: $hoverTextColor;
+    background: $hoverBgColor;
+
+    & > .landspot-icon {
+      &:before {
+        background-color: $hoverTextColor;
+      }
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin validation-error-input {
+  &.has-error {
+    & > input {
+      background-color: $validation-error-color;
+    }
+  }
+}
+
+@mixin validation-error-button {
+  &.has-error {
+    & > button {
+      background-color: $validation-error-color;
+    }
+  }
+}
+
+@mixin card-image($scale: $landspot-image-scale) {
+  width: 100%;
+  height: 0;
+  padding-top: $scale;
+}
+
+@mixin menu-angle-top {
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #FFFFFF;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+}
+
+@mixin menu-angle-left {
+  &:after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -10px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-right: solid 10px #FFFFFF;
+    border-bottom: solid 10px transparent;
+    border-top: solid 10px transparent;
+  }
+}
+
+@mixin landspot-input($border, $padding:null, $font-size: inherit) {
+  width: 100%;
+  appearance: none;
+  display: block;
+  border: $border;
+  padding: $padding;
+  font-size: $font-size;
+  &:focus {
+    outline: 1px $landspot-theme-color;
+  }
+
+  &:disabled {
+    background: #fff;
+  }
+
+  &.password {
+    -webkit-text-security: disc;
+  }
+}

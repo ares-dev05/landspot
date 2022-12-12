@@ -1,0 +1,33 @@
+.nice-checkbox {
+  display: none;
+  & + label {
+    font-weight: bold;
+    margin: 0;
+    color: $item-text-color;
+    & > span {
+      vertical-align: text-top;
+    }
+    & > i {
+      font-size: 16px;
+    }
+    & i.fa {
+      color: $default-text-color;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      user-select: none;
+      &:before {
+        font-family: "Font Awesome 5 Pro";
+        content: '\f0c8';
+        font-weight: 300;
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+.nice-checkbox:checked + label i.fa:before {
+  content: '\f14a';
+  font-weight: 300;
+  margin-right: 0.3571em;
+}

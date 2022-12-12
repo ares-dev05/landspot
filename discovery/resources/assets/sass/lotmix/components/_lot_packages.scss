@@ -1,0 +1,67 @@
+@media (max-width: 760px) {
+  .primary-container{
+    .estate-packages{
+
+      .back-nav-wrap{
+        display: flex;
+        height:94px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+
+        .back-nav{
+          margin-left: 10px;
+        }
+        .estate-image{
+          height: 80px;
+          margin-right: 22px;
+        }
+      }
+
+      header{
+        font-size: 16px;
+        line-height: 22px;
+        border: none !important;
+        margin-bottom: 5px !important;
+      }
+
+      .packages{
+
+        .left-panel{
+          display: none;
+        }
+        .right-panel{
+          .cards{
+            padding: 0 10px;
+            margin-bottom: 0 !important;
+
+            .cards-list{
+              margin-right: -10px !important;
+
+              .card{
+                padding: 5px 10px !important;
+
+                .eye-overlay{
+                  top:5px !important;
+                  bottom:89px !important;
+                }
+
+                .package-enquire-wrap{
+                  height: 89px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  .button{
+                    width:110px;
+                    height: 42px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

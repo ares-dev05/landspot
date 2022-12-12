@@ -1,0 +1,9 @@
+.landspot-icon {
+  padding: 10px;
+
+  @supports (-ms-ime-align: auto) {
+    display: inline-block;
+  }
+
+  @include landspot-icon-before('', 100%, 0);
+}

@@ -1,0 +1,33 @@
+{
+    "name": "landconnect/blog",
+    "description": "Package for blog",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "Dmytro Stepanenko",
+            "email": "dmytro.stepanenko.dev@gmail.com"
+        },
+        {
+            "name": "Vlad Zhdanov",
+            "email": "vladzhdanovv@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Landconnect\\Blog\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Landconnect\\Blog\\BlogServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.2.3",
+        "drewm/mailchimp-api": "^2.5"
+    },
+    "minimum-stability": "dev"
+}

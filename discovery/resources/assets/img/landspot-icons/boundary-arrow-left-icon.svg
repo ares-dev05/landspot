@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>mdpi/ic_launcher_APP@2x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="mdpi/ic_launcher_APP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3"
+           transform="translate(8, 9) rotate(-90.000000) translate(-24.303454, -24.462993) translate(18.840461, 18.159539)"
+           stroke="#323337" stroke-width="2.5">
+            <path d="M5.46299342,12.1566612 L5.46299342,0.900493421" id="Stroke-3"/>
+            <polyline id="Stroke-5"
+                      points="0 5.40296053 5.46326518 0 10.9259868 5.40296053"/>
+        </g>
+    </g>
+</svg>

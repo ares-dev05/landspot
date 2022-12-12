@@ -1,0 +1,29 @@
+a {
+  &.active,
+  &.selected,
+  &:hover {
+    @include brand-color;
+    .landconnect-icon:before {
+      background-color: $landconnect-theme-color;
+    }
+  }
+  &.trash-link {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    display: inline-flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+
+    & > .landconnect-icon {
+      padding: 8px;
+    }
+  }
+
+  &.link {
+    text-decoration: underline;
+  }
+}

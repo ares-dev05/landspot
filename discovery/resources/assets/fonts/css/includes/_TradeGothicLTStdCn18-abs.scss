@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'TradeGothic LT CondEighteen';
+  src: local('Trade Gothic LT Condensed No. 18'), local('TradeGothicLT-CondEighteen'),
+  url('#{$APP_URL}/fonts/TradeGothicLT-CondEighteen.eot?#iefix') format('embedded-opentype'),
+  url('#{$APP_URL}/fonts/TradeGothicLT-CondEighteen.woff') format('woff'),
+  url('#{$APP_URL}/fonts/TradeGothicLT-CondEighteen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

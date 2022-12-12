@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'CenturyGothic Bold';
+  src: local('CenturyGothic Bold'), url('#{$APP_URL}/fonts/CenturyGothic-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CenturyGothic Regular';
+  src: local('CenturyGothic Regular'), url('#{$APP_URL}/fonts/CenturyGothic.woff') format('woff');
+}

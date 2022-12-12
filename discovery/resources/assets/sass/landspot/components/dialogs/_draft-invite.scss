@@ -1,0 +1,78 @@
+.landspot-modal.draft-invite {
+  max-width: 900px;
+
+  .popupmodal-header {
+    padding: 0;
+  }
+
+  .popupmodal-footer .button {
+    margin-right: auto;
+    padding: 12px 56px 12px 58px;
+    font-size: 14px;
+  }
+
+  .draft-invite_body {
+    max-width: 533px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .radio-item {
+      flex-basis: 71%;
+
+      label {
+        align-items: start;
+      }
+    }
+
+    .form-rows .form-row .left-item {
+      flex: 32%;
+    }
+  }
+
+  .draft-invite_plane-icon {
+    width: 70px;
+    height: 70px;
+    mask-image: url("../../../../img/lotmix/icons/plane.svg");
+    background-color: $landspot-theme-color;
+    mask-position: left center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    margin-bottom: 30px;
+  }
+
+  .draft-invite_title {
+    color: #323337;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0 0 15px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .draft-invite_heading {
+    margin: 20px 0 10px;
+    color: #323337;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .draft-invite_text {
+    color: #7C8289;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 24px;
+    text-align: center;
+
+    span {
+      color: $landspot-theme-color;
+    }
+  }
+}

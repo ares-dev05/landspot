@@ -1,0 +1,25 @@
+&.discovery-manager {
+  padding-top: 30px;
+  flex-flow: column;
+
+  & > .table-header {
+    flex: 0 0 auto;
+
+    &:not(:first-of-type) {
+      padding-top: 0;
+    }
+
+    .file-upload {
+      display: inline-flex !important;
+    }
+
+    .button > .landspot-icon.upload {
+      padding: 10px;
+    }
+  }
+
+  td.title {
+    max-width: 33vw;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "presets": [
+    ["react"],
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": "> 2%, ie 11",
+        "uglify": true
+      }
+    ]
+  ],
+  "plugins": [
+    "syntax-jsx",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "es6-promise",
+    "transform-es2015-arrow-functions",
+    "transform-es2015-modules-commonjs",
+    [
+      "transform-runtime",
+      {
+        "polyfill": true,
+        "helpers": false
+      }
+    ]
+  ]
+}

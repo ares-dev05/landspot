@@ -1,0 +1,118 @@
+body.modal-opened {
+  overflow-y: hidden;
+}
+
+.popupmodal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-popup-modal-backdrop;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.landspot-modal {
+  width: 400px;
+  background-color: #FFFFFF;
+  box-shadow: $app-box-shadow;
+  padding: 35px;
+  z-index: $z-index-popup-modal;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top:calc(var(--vh, 1vh) * 50);
+  transform: translateY(-50%);
+  max-height: calc(var(--vh, 1vh) * 85);
+  overflow: hidden;
+
+  @include app-border-radius;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  & > .popupmodal-header {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: $font-weight-bold;
+    flex-grow: 0;
+    padding: 5px 0 20px;
+    flex-shrink: 0;
+
+    @include text-overflow-ellipsis;
+
+    & > span {
+      @include text-overflow-ellipsis;
+    }
+  }
+
+  & > .popupmodal-body {
+    flex: 1 100%;
+    overflow: {
+      x: hidden;
+      y: auto;
+    };
+    margin: 0 -35px;
+    padding: 0 35px;
+
+    @import "dialogs/modal-form";
+    @import "dialogs/modal-table";
+
+    .annotation {
+      background: $input-background-color;
+      border-radius: $app-border-radius;
+      border: $app-border;
+      padding: 1ch;
+      font-weight: $font-weight-bold;
+    }
+
+    .siting-image-modal-wrap{
+      width:100%;
+      height: calc(85vh - 176px);
+      border:1px solid #EFF3F4;
+      box-sizing: border-box;
+      background-image: url("../../../img/grid-rect.svg");
+      background-repeat: repeat;
+
+      .siting-svg{
+        padding: 10px;
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  & > .popupmodal-footer {
+    @extend %landspot-popupmodal-footer;
+  }
+}
+
+@import "dialogs/company-logo-dialog";
+@import "dialogs/add-new-estate";
+@import "dialogs/top-action-buttons";
+@import "dialogs/wide-popup";
+@import "dialogs/manager-permissions";
+@import "dialogs/sales-locations";
+@import "dialogs/overflow-unset";
+@import "dialogs/house-details";
+@import "dialogs/file-upload-modal";
+@import "dialogs/pdf-template-editor";
+@import "dialogs/estate-docs";
+@import "dialogs/export-pdf-price-list";
+@import "dialogs/edit-lot-visibility";
+@import "dialogs/upload-lot-packages";
+@import "dialogs/import-price-list";
+@import "dialogs/facade-bulk-uploader";
+@import "dialogs/upload_documents";
+@import "dialogs/details-popup";
+@import "dialogs/brief-popup";
+@import "dialogs/sign-up-popup";
+@import "dialogs/invite-user";
+@import "dialogs/filters-popup";
+@import "dialogs/lot-drawer-popup";
+@import "dialogs/draft-invite";
+@import "dialogs/add-my-estates";

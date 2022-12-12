@@ -1,0 +1,39 @@
+.tooltip {
+  position: relative;
+  & > .tooltip-trigger {
+    display: inline-block;
+  }
+
+  & > .tooltip-bubble {
+    min-width: 200px;
+    max-width: 250px;
+    position: absolute;
+    z-index: $z-index-nice-dropdown-list;
+
+    & > .tooltip-message {
+      border-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: $item-box-shadow;
+      position: absolute;
+      font-size: .75rem;
+      line-height: 1.4;
+      padding: .75em;
+      text-align: center;
+      margin-top: 27px;
+    }
+
+    &.tooltip-top {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      & > .tooltip-message {
+        @include menu-angle-top;
+      }
+    }
+  }
+}
+
+
+
+
+

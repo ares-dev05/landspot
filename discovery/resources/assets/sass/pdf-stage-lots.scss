@@ -1,0 +1,115 @@
+@import "./pdf-brochure/a4-page";
+$text-size: 8pt;
+
+@media print {
+  body {
+    padding: 0 0; //phantom bug fix
+    margin: 0;
+    height: auto;
+    width: auto;
+    .container {
+      padding: 0;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: $a4-page-width;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: $a4-page-width;
+    }
+  }
+}
+
+header {
+  position: absolute;
+  height: $print-header-height;
+  left: $print-page-margin;
+  right: $print-page-margin;
+  top: $print-page-margin;
+}
+
+footer {
+  position: absolute;
+  height: $print-header-height;
+  left: $print-page-margin;
+  right: $print-page-margin;;
+  bottom: $print-page-margin;
+}
+
+.no-image {
+  background: #929497 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDMuMDEgMTc5LjU2Ij4KICAgIDxkZWZzPgogICAgICAgIDxzdHlsZT4KICAgICAgICAgICAgLmNscy0xe2ZpbGw6IzkyOTQ5Nzt9CiAgICAgICAgICAgIC5jbHMtMntmb250LXNpemU6MTUuNzRweDtmaWxsOiNlZWU7Zm9udC1mYW1pbHk6Um9ib3RvLCBWZXJkYW5hO2xldHRlci1zcGFjaW5nOjAuMDNlbTt9CiAgICAgICAgPC9zdHlsZT4KICAgIDwvZGVmcz4KICAgIDx0aXRsZT5Bc3NldCAxNzwvdGl0bGU+CiAgICA8Zz4KICAgICAgICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTgwIi8+CiAgICAgICAgPHRleHQgY2xhc3M9ImNscy0yIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NiA5NS41KSBzY2FsZSgwLjkgMSkiPlVQTE9BRCBJTUFHRTwvdGV4dD4KICAgIDwvZz4KPC9zdmc+") center center/cover no-repeat;
+};
+
+.container {
+  padding: $print-header-height+$print-page-margin $print-page-margin;
+  font-size: $text-size;
+}
+
+h1 {
+  font-size: 16pt;
+  margin: 0;
+  padding: 8pt 0;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 0;
+  padding: 8pt 0;
+}
+
+h5 {
+  margin: 0;
+  padding: 0 0 12pt 0;
+}
+
+table.stages-table {
+  border-bottom: 2px solid #2A2A2A;
+  margin-bottom: 10mm;
+
+  thead {
+    color: #fff;
+    background: #717171;
+    & > tr > th {
+      border-top: 2px solid #2A2A2A;
+      border-bottom: 2px solid #2A2A2A;
+      border-left: 0;
+      border-right: 0;
+      text-align: left;
+      line-height: 2;
+      padding: 0 4pt;
+      &:not(:first-child) {
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(2n+1) {
+        background: #DFDFDF;
+      }
+
+      td {
+        border: 0;
+        text-align: left;
+        line-height: 1.5;
+        padding: 0 4pt;
+        &:not(:first-child) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.first-page-text, .disclaimer {
+  white-space: pre-line;
+  margin-bottom: 5mm;
+  line-height: 2;
+}

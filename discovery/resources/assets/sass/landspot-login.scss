@@ -1,0 +1,725 @@
+@import "variables";
+@import "../fonts/roboto.css";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans');
+@import "./bootstrap-custom-grid/bootstrap-custom-grid";
+@import "navbar";
+@import "components";
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $text-size;
+}
+
+@media (max-width: 1680px) {
+  body {
+    font-size: $text-size - 1px;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+
+  &:after {
+    transform: translateY(50%);
+    bottom: 50%;
+    content: '\F0D7';
+    display: block;
+    position: absolute;
+    right: 15px;
+    font: normal normal normal 18px/1 FontAwesome;
+    z-index: 2;
+    color: #e9e9e9;
+  }
+
+  & > select {
+    appearance: none;
+    text-indent: -1px;
+    border: 1px solid $select-border-color;
+    user-select: none;
+    outline: 0;
+
+    &:focus {
+      border-color: $landspot-blue-color;
+      box-shadow: none;
+    }
+  }
+
+  & > select::-ms-expand {
+    display: none;
+  }
+
+  & > select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+}
+
+.flex-left {
+  align-items: left;
+  display: flex;
+  justify-content: left;
+}
+
+.flex-right {
+  align-items: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landspot-container.login {
+  background: $landspot-blue-color;
+  min-height: 100vh;
+}
+
+#wrapper {
+  background: $landspot-blue-color;
+
+  .container {
+    padding-top: 100px;
+
+    .get-started {
+      font-size: 14px;
+      line-height: 30px;
+      text-align: center;
+
+      color: #fff;
+      letter-spacing: 0px;
+      margin-top: 51px;
+
+      .btn-link {
+        font-size: 14px;
+        padding: 0;
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
+
+    .panel-default {
+      border: none;
+      box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+
+      & > .panel-heading {
+        padding: 64px 0 68px;
+        max-width: 463px;
+        margin: 0 auto;
+        text-align: center;
+        color: #484bcc;
+        font-size: 28px;
+        font-family: 'Montserrat', sans-serif;
+        background: transparent;
+        border: none;
+      }
+
+      .panel-body {
+        padding: 0 0 81px;
+
+        .form-horizontal {
+          max-width: 463px;
+          margin: 0 auto;
+          position: relative;
+
+          .form-group {
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+
+        .form-control {
+          border: none;
+          border-radius: inherit;
+          box-shadow: none;
+          padding: 0 0 6px;
+          border-bottom: 1px solid #D9D9D9;
+
+          height: 38px;
+          font-size: 14px;
+          line-height: 38px;
+          color: #BDBDBD;
+        }
+
+        .btn-link {
+          padding: 0;
+          text-decoration: none;
+          color: $landspot-blue-color;
+          font-size: 13px;
+          line-height: 30px;
+          margin-top: -16px;
+          border: none;
+        }
+
+        .form-group {
+          margin-bottom: 24px;
+        }
+
+        label.otp-text {
+          color: $landspot-blue-color;
+        }
+
+        .form-group:last-child {
+          padding-top: 37px;
+          margin-bottom: 0;
+
+          .btn-primary {
+            display: block;
+            margin-right: 5%;
+            margin-left: 5%;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            background: $landspot-blue-color;
+            height: 58px;
+            width: 90%;
+            border-radius: 60px;
+            font-size: 12px;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.reset-password {
+  text-align: center;
+}
+
+.landspot-container.register {
+  background: #fff;
+
+  #wrapper {
+    background: transparent;
+
+    .container {
+      padding-top: 120px;
+      height: 100%;
+
+      .panel-default {
+        border: none;
+        box-shadow: none;
+
+        & > .panel-heading {
+          font-size: 34px;
+          line-height: 46px;
+          padding: 0 0 21px;
+          max-width: 100%;
+
+          & > div {
+            &:first-child {
+              padding-left: 0;
+            }
+
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+
+          .nav-tabs {
+            border-bottom: none;
+
+            & > li {
+              width: 50%;
+
+              &:first-child a {
+                margin-right: 8px;
+              }
+
+              &:last-child a {
+                margin-left: 8px;
+              }
+
+              & > a {
+                border: none;
+                border-bottom: 1px solid #e9e9e9;
+                color: #9B9B9B;
+                font-size: 18px;
+                line-height: 32px;
+                opacity: 0.8;
+                font-family: 'Open Sans', sans-serif;
+
+                &:hover {
+                  background: transparent;
+                  color: $landspot-blue-color;
+                }
+              }
+
+              &.active {
+                & > a {
+                  color: $landspot-blue-color;
+                  font-weight: bold;
+                  border-bottom: 2px solid $landspot-blue-color;
+                }
+              }
+            }
+          }
+        }
+
+        .panel-body {
+          padding: 0 0 285px;
+
+          .builder,
+          .developer {
+            & > div {
+              &:first-child {
+                padding-left: 0;
+              }
+
+              &:last-child {
+                padding-right: 0;
+              }
+            }
+          }
+
+          .builder {
+            .btn-register {
+              height: 55px;
+              width: 203px;
+              border-radius: 60px;
+            }
+          }
+
+          .developer {
+            .btn-register {
+              max-width: 310px;
+            }
+
+            h5 {
+              opacity: 0.8;
+              color: $landspot-text-color;
+              font-family: "Open Sans", sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 30px;
+              margin-top: 4px;
+              margin-bottom: 30px;
+            }
+
+            .form-group {
+              &:last-child {
+                padding-top: 20px;
+              }
+            }
+          }
+
+          .form-horizontal {
+            max-width: 100%;
+            padding-top: 42px;
+          }
+
+          .auth-sidebar {
+            opacity: 0.8;
+            color: $landspot-text-color;
+            font-size: 16px;
+            line-height: 30px;
+
+            & > p {
+              margin-bottom: 24px;
+            }
+
+            a {
+              color: $landspot-blue-color;
+            }
+
+            hr {
+              margin: 35px 0 40px;
+            }
+
+            .floorplan {
+              margin-right: 32px;
+              background: url('../img/Icon-Industry-Catalogue.png') no-repeat center left;
+              background-size: contain;
+              padding: 26px 33px;
+            }
+          }
+
+          .form-group {
+            margin-bottom: 36px;
+
+            &:last-child {
+              padding-top: 10px;
+            }
+
+            .checkbox {
+              padding-top: 30px;
+
+              .checkmark {
+                position: absolute;
+                top: 33px;
+                left: 0;
+                height: 16px;
+                width: 16px;
+                box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+
+                &:after {
+                  content: "";
+                  position: absolute;
+                  display: none;
+                }
+              }
+
+              label {
+                user-select: none;
+                font-size: 14px;
+                color: $landspot-text-color;
+                opacity: 0.8;
+                padding-left: 30px;
+
+                a {
+                  color: $landspot-text-color;
+                  opacity: 0.8;
+                  text-decoration: underline;
+                }
+
+                &:hover input ~ .checkmark {
+                  background-color: #ccc;
+                }
+
+                input:checked ~ .checkmark {
+                  background-color: $default-text-color;
+
+                  &:after {
+                    display: inline-block;
+                  }
+                }
+
+                .checkmark:after {
+                  left: 6px;
+                  top: 2px;
+                  width: 5px;
+                  height: 10px;
+                  border: solid white;
+                  border-width: 0 3px 3px 0;
+                  -webkit-transform: rotate(45deg);
+                  -ms-transform: rotate(45deg);
+                  transform: rotate(45deg);
+                }
+              }
+
+              input[type=checkbox] {
+                opacity: 0;
+                cursor: pointer;
+              }
+            }
+          }
+
+          select.form-control {
+            padding: 0;
+          }
+
+          .form-control {
+            border-bottom: 1px solid #e9e9e9;
+
+            option:first-child {
+              color: #d8d8d8;
+            }
+          }
+        }
+
+        &.sidebar {
+          & > .panel-heading {
+            height: 73px;
+            padding-bottom: 13px;
+          }
+
+          .panel-body {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  #wrapper {
+    .container {
+      padding-top: 60px;
+
+      .get-started {
+        margin-top: 41px;
+      }
+
+      .panel-default {
+        & > .panel-heading {
+          padding: 53px 0 34px;
+          max-width: 303px;
+        }
+
+        .panel-body {
+          padding: 0 0 66px;
+
+          .form-horizontal {
+            max-width: 303px;
+          }
+
+          .form-group:last-child {
+            padding-top: 17px;
+          }
+        }
+
+      }
+    }
+  }
+
+  .landspot-container.register {
+
+    #wrapper {
+      .container {
+        .panel-default {
+          &.sidebar {
+            & > .panel-heading {
+              font-size: 28px
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  #wrapper {
+    .container {
+      padding-top: 200px;
+
+      .panel-default {
+        & > .panel-heading {
+          padding: 70px 0 58px;
+          max-width: 342px;
+        }
+
+        .panel-body {
+          .form-horizontal {
+            max-width: 342px;
+          }
+        }
+
+      }
+    }
+  }
+
+  .landspot-container.register {
+    #wrapper {
+      .container {
+        padding-top: 60px;
+
+        .panel-default {
+          &.sidebar {
+            .panel-body {
+              padding-bottom: 26px;
+            }
+          }
+
+          .panel-body {
+            padding: 0 0 85px;
+
+            .auth-sidebar {
+              font-size: 14px;
+              line-height: 27px;
+
+              hr {
+                margin: 6px 0 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  #wrapper {
+    .container {
+      padding-top: 75px;
+
+      .get-started {
+        margin-bottom: 80px;
+      }
+
+      .auth-form {
+        float: none;
+        max-width: 298px;
+        margin: 0 auto;
+      }
+
+      .panel-default {
+        & > .panel-heading {
+          padding: 47px 0 40px;
+          max-width: 223px;
+          font-size: 24px;
+        }
+
+        .panel-body {
+          padding: 0 0 89px;
+          position: relative;
+
+          .form-horizontal {
+            max-width: 223px;
+          }
+
+          .btn-link {
+            position: absolute;
+            bottom: 45px;
+            width: 100%;
+            left: 0;
+          }
+
+          .form-control {
+            padding: 0 0 2px;
+            height: 34px;
+            line-height: 34px;
+          }
+
+          .form-group {
+            margin-bottom: 17px;
+
+            &:last-child {
+              padding-top: 4px;
+
+              .btn-primary {
+                height: 45px;
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  .landspot-container.register {
+    #wrapper {
+      .container {
+        padding-top: 34px;
+
+        .panel-default {
+          &.sidebar {
+            .panel-body {
+              padding-bottom: 13px;
+            }
+
+            & > .panel-heading {
+              height: 55px;
+              font-size: 26px;
+
+              & > div {
+                text-align: center;
+              }
+            }
+          }
+
+          .panel-body {
+            padding: 0 0 20px;
+
+            .form-horizontal {
+              .row > .col-xs-6 {
+                padding: 0;
+
+                &:first-child {
+                  margin-bottom: 36px;
+                }
+              }
+            }
+
+            .form-group {
+              .checkbox {
+                padding-top: 15px;
+
+                .checkmark {
+                  top: 18px;
+                }
+              }
+
+              .btn-register {
+                margin: 0 auto;
+              }
+            }
+
+            .auth-sidebar {
+              hr {
+                margin: 30px 0 26px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.landspot-container.invitation {
+  .navbar-default {
+    .navbar-brand {
+      background: url('../img/landconnect-logo.png') no-repeat center center/contain;
+    }
+  }
+
+  #wrapper {
+    background: #fff;
+
+    .container {
+      .panel-default {
+        & > .panel-heading {
+          color: $landspot-green-color;
+        }
+
+        .panel-body {
+          .form-group:last-child {
+            .btn-primary {
+              background: $landspot-green-color;
+              border-color: $landspot-green-color;
+            }
+          }
+        }
+      }
+    }
+
+    .navbar-brand {
+      background: url('../img/landconnect-logo.png') no-repeat center center/contain;
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  .landspot-container.register {
+    #wrapper {
+      .container {
+        .panel-default {
+          .panel-body {
+            .form-horizontal {
+              .row > div {
+                &:first-child {
+                  padding-right: 8px;
+                }
+
+                &:last-child {
+                  padding-left: 8px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "footer";

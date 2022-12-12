@@ -1,0 +1,73 @@
+.dots {
+  &-top-left {
+    position: relative;
+
+    &:before {
+      width: 99px;
+      opacity: .2;
+      content: " ";
+      background: url("../../img/lotmix/dots-top-left.svg") no-repeat center;
+      background-size: contain;
+      position: absolute;
+      left: -40px;
+      top: -24px;
+      height: 68px;
+    }
+  }
+
+  &-top-right {
+    position: relative;
+
+    &:after {
+      width: 99px;
+      opacity: .2;
+      content: " ";
+      background: url("../../img/lotmix/dots-top-right.svg") no-repeat center;
+      background-size: contain;
+      position: absolute;
+      right: -46px;
+      top: -28px;
+      height: 68px;
+    }
+  }
+
+  &-bottom-left {
+    position: relative;
+
+    &:before {
+      width: 99px;
+      opacity: .2;
+      content: " ";
+      background: url("../../img/lotmix/dots-bottom-left.svg") no-repeat center;
+      background-size: contain;
+      position: absolute;
+      left: -45px;
+      bottom: -37px;
+      height: 68px;
+    }
+  }
+
+  &-bottom-right {
+    position: relative;
+
+    &:before {
+      width: 99px;
+      opacity: .2;
+      content: " ";
+      background: url("../../img/lotmix/dots-bottom-right.svg") no-repeat center;
+      background-size: contain;
+      position: absolute;
+      right: -8px;
+      bottom: -32px;
+      height: 68px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .dots-top-left, .dots-top-right, .dots-bottom-right, .dots-bottom-left {
+    &:before, &:after {
+      content: none;
+    }
+  }
+}

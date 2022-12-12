@@ -1,0 +1,87 @@
+.angle-down {
+  @include landconnect-mask-image('angle-down');
+}
+
+.user {
+  @include landconnect-mask-image('user');
+}
+
+.arrow-left {
+  @include landconnect-mask-image('arrow-left');
+}
+
+.arrow-right {
+  @include landconnect-mask-image('arrow-right');
+}
+
+.plus {
+  @include landconnect-mask-image('plus');
+}
+
+.times {
+  @include landconnect-mask-image('times');
+}
+
+.minus {
+  @include landconnect-mask-image('minus');
+}
+
+.curve {
+  @include landconnect-mask-image('curve');
+}
+
+.straight {
+  @include landconnect-mask-image('straight');
+}
+
+.curve-direction-right {
+  @include landconnect-mask-image('curve-direction-right');
+}
+
+.curve-direction-left {
+  @include landconnect-mask-image('curve-direction-left');
+}
+
+.boundary-arrow-left {
+  @include landconnect-mask-image('boundary-arrow-left');
+}
+
+.boundary-arrow-right {
+  @include landconnect-mask-image('boundary-arrow-right');
+}
+
+.boundary-arrow-up {
+  @include landconnect-mask-image('boundary-arrow-up');
+}
+
+.boundary-arrow-down {
+  @include landconnect-mask-image('boundary-arrow-down');
+}
+
+.cloud-upload {
+  @include landconnect-mask-image('cloud-upload');
+}
+
+.search {
+  @include landconnect-mask-image('search');
+}
+
+.trash {
+  @include landconnect-mask-image('trash');
+}
+
+.eye {
+  @include landconnect-mask-image('eye');
+}
+
+.eye-slash {
+  @include landconnect-mask-image('eye-slash');
+}
+
+.svg {
+  @include landconnect-mask-image('svg');
+}
+
+.rotation {
+  @include landconnect-mask-image('rotation');
+}

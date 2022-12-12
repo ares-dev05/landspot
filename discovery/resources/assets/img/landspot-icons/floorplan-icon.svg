@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Icon---Floorplan" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page-1" transform="translate(1.000000, 1.000000)" stroke="#323337">
+            <polyline id="Stroke-8" points="20 10.7940401 20 15.895508 0 15.895508 0 0.510892616 20 0.510892616 20 7.48857516 14.4550689 7.48857516 14.4550689 3.3616212"></polyline>
+            <polyline id="Stroke-9" points="10.7692308 15.3846154 10.7692308 9.23076923 3.84615385 9.23076923"></polyline>
+            <path d="M5.57692308,3.26923077 L10.5769231,3.26923077" id="Stroke-12" transform="translate(8.076923, 3.269231) rotate(-270.000000) translate(-8.076923, -3.269231) "></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,67 @@
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes {
+  .container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+}
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but with 100% width for
+// fluid, full width layouts.
+
+@if $enable-grid-classes {
+  .container-fluid {
+    @include make-container();
+  }
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@if $enable-grid-classes {
+  .row {
+    @include make-row();
+
+    @media (max-width: 768px) {
+      @include make-row-phone;
+    }
+  }
+
+  // Remove the negative margin from default .row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+  @media (max-width: 768px) {
+    @include make-grid-columns($grid-columns-mobile, $grid-gutter-width-mobile, $grid-breakpoints-xs);
+  }
+  @media (min-width: 768px) {
+    @include make-grid-columns($grid-columns-tablet-portrait, $grid-gutter-width, $grid-breakpoints-sm);
+  }
+  @media (min-width: 992px) {
+    @include make-grid-columns($grid-columns, $grid-gutter-width, $grid-breakpoints-md);
+  }
+  @media (min-width: 1200px) {
+    @include make-grid-columns($grid-columns, $grid-gutter-width, $grid-breakpoints-lg);
+  }
+}

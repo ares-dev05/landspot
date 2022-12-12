@@ -1,0 +1,74 @@
+.lotmix-footer {
+  border-top: 1px solid #DCE4EA;
+  padding: 40px;
+
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 452px;
+  }
+
+  .footer-logo {
+    display: block;
+    max-width: 100%;
+    width: 110px;
+    height: 26px;
+    max-height: 100%;
+    background-color: $landspot-theme-color;
+    mask: url("../../../img/Lmix_logo.svg") left center/contain no-repeat;
+  }
+
+  .footer-text {
+    color: #7E7F94;
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 21px;
+    margin-top: 30px;
+    margin-bottom: 17px;
+  }
+
+  .footer-links {
+    width: 100%;
+    padding: 14px;
+    display: flex;
+    margin-bottom: 29px;
+    justify-content: space-between;
+
+    a {
+      color: #232456;
+      font-family: Montserrat, serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+
+  .footer-copyright {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #5A6885;
+  }
+
+  @media (max-width: 760px) {
+    padding: 37px;
+    .footer-text {
+      margin-bottom: 0;
+    }
+    .footer-links {
+      margin: 0;
+      flex-direction: column;
+
+      a {
+        line-height: 45px;
+      }
+    }
+  }
+}

@@ -1,0 +1,503 @@
+$window-wrapper-padding: 20px;
+$chat-padding: 30px;
+
+/*chat*/
+.fullpage-messenger {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: $z-index-chat;
+  width: 100%;
+  height: calc(100% - #{$app-navbar-height});
+}
+
+#landspot-chat {
+  background: #fff;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  width: 100%;
+
+  .primary-container {
+    padding-top: 0;
+
+    .left-panel {
+      overflow: hidden;
+    }
+  }
+
+  .chat-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .navigate-buttons {
+      display: flex;
+
+      & > .contact-button {
+        font-size: 21px;
+        &:not(:last-child) {
+          margin: {
+            left: auto;
+            right: 0;
+          }
+        }
+        margin: {
+          left: 17px;
+          right: 2px;
+        }
+      }
+    }
+  }
+
+  .recent-messages-wrapper {
+    margin: 0 #{-$content-padding};
+    height: 100%;
+    padding: 0 0 70px 0;
+
+    & > .no-results {
+      padding: 0 15px;
+    }
+
+    .chat-recent-dialogs {
+      @include landspot-scrollbar;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      & > .recent-dialog {
+        cursor: pointer;
+
+        height: 130px;
+        position: relative;
+        padding-top: 25px;
+
+        border: {
+          top: $app-border;
+        }
+
+        &:last-of-type {
+          border-bottom: $app-border;
+        }
+
+        &:not(.active) {
+          margin: 0 $content-padding;
+        }
+
+        & > .user-avatar {
+          @include user-avatar;
+        }
+
+        & > .message-box {
+          height: 100%;
+          display: flex;
+          padding-left: 20px;
+          flex-flow: column nowrap;
+          position: relative;
+
+          .title {
+            @include text-overflow-ellipsis;
+            font-weight: $font-weight-bold;
+            line-height: 19px;
+            float: left;
+
+            display: flex;
+            align-items: center;
+          }
+
+          .message-preview {
+            @include text-overflow-ellipsis;
+            line-height: 19px;
+            padding-top: 3px;
+
+            opacity: 0.7;
+            font-size: $small-text-size;
+            font-weight: $font-weight-medium;
+          }
+
+          .time {
+            @include text-overflow-ellipsis;
+            line-height: 19px;
+            float: right;
+
+            opacity: 0.42;
+            font-size: 10px;
+            font-weight: $font-weight-medium;
+
+            position: absolute;
+            bottom: 18px;
+            left: 20px;
+          }
+        }
+
+        & > .is-unread {
+          position: absolute;
+          top: 30px;
+          right: 0;
+          color: #FF000C;
+          font-size: 7px;
+          margin-left: 10px;
+        }
+
+        & > .has-new-message {
+          position: absolute;
+          top: 28px;
+          right: 0;
+          color: grey;
+          font-size: $small-text-size;
+          margin-left: 10px;
+        }
+
+        &.active {
+          padding: 25px $content-padding 0 25px;
+          &:after {
+            content: "";
+            width: 100%;
+            height: 1pt;
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            background-color: $app-border-color;
+          }
+          &:before {
+            content: "";
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            @include background-brand-color;
+          }
+
+          & > .is-unread,
+          & > .has-new-message {
+            right: $content-padding;
+          }
+        }
+      }
+    }
+  }
+
+  .chat-body {
+    height: 100%;
+    flex-flow: row nowrap;
+    display: flex;
+
+    blockquote {
+      font-size: inherit;
+    }
+
+    $max-message-width: 480px;
+
+    header {
+      border-bottom: $app-border;
+      margin-bottom: 25px;
+
+      font-size: $large-font-size;
+      font-weight: $font-weight-bold;
+      line-height: 44px;
+      padding: 0 0 5px;
+    }
+
+    .chat-dialog {
+      display: flex;
+      flex-flow: column nowrap;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+
+      & > * {
+        padding: 0 15px;
+      }
+
+      & > .chat-history {
+        @include landspot-scrollbar;
+        overflow-y: auto;
+        flex: 3 3 100%;
+
+        & > .loading-history {
+          height: 40px;
+          text-align: center;
+        }
+
+        & > [class$='-message'] {
+          position: relative;
+          margin-bottom: $chat-padding;
+          min-height: 45px;
+
+          font-size: $small-text-size;
+          font-weight: 300;
+          line-height: 19px;
+          clear: both;
+
+          & > .user-avatar {
+            @include user-avatar;
+            margin-right: 10px;
+          }
+
+          & > .text {
+            min-width: 120px;
+            border-radius: 30px;
+            word-break: break-all;
+            white-space: pre-line;
+            padding: 13px 25px;
+
+            strong {
+              font-weight: $font-weight-bold;
+            }
+          }
+
+          & > .time {
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+            color: $landspot-text-color;
+
+            opacity: 0.42;
+            font-size: 10px;
+            font-weight: 300;
+            line-height: 19px;
+          }
+        }
+
+        & > .my-message {
+          max-width: $max-message-width;
+          margin-left: auto;
+
+          float: right;
+          & > .text {
+            background: $landspot-theme-color;
+            color: #fff;
+          }
+
+          & > .time {
+            left: 25px;
+          }
+        }
+
+        & > .other-message {
+          display: flex;
+          align-items: center;
+          & > .text {
+            max-width: $max-message-width;
+            background: $input-background-color;
+          }
+
+          & > .time {
+            left: 75px;
+          }
+        }
+
+        .jump-to-unread-messages {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          margin: {
+            top: 5px;
+            bottom: 10px;
+          }
+          z-index: $z-index-estate-google-map;
+          &.up {
+            position: fixed;
+            left: calc(26% + 80px);
+            top: $window-wrapper-padding+$app-navbar-height;
+            right: $window-wrapper-padding+$chat-padding*2;
+          }
+          &.down {
+            @extend .up;
+            top: auto;
+            bottom: $window-wrapper-padding+70px;
+          }
+
+          & > .line-start {
+            width: 60px;
+            border-radius: 2px;
+            height: 2px;
+            background: $highlighted-text-color;
+          }
+
+          & > .unread-messages {
+            color: $highlighted-text-color;
+            font-size: $small-text-size;
+            margin-left: 10px;
+          }
+
+          & > .line-end {
+            @extend .line-start;
+            flex: 1;
+            margin-left: 10px;
+          }
+        }
+      }
+
+      & > .new-message-form {
+        flex: 1 1 auto;
+        padding: 50px $chat-padding 20px $chat-padding;
+        position: relative;
+
+        & > i {
+          font-size: 17px;
+          position: absolute;
+          right: 63px;
+          bottom: 36px;
+
+          cursor: pointer;
+        }
+
+        & > .send-btn {
+          margin-left: auto;
+          border-radius: 5px;
+          background: #979797;
+          border: 0;
+          padding: 7px 29px;
+          color: #fff;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+
+        & > .quill {
+          align-items: stretch;
+          display: flex;
+          flex-flow: column nowrap;
+
+          & > .ql-toolbar {
+            order: 0;
+            border: none;
+            padding: 0 0 0 25px;
+            display: none;
+
+            .ql-formats {
+              display: flex;
+              flex-flow: row nowrap;
+              padding: 0;
+            }
+
+            button {
+              width: 20px;
+              height: 20px;
+            }
+          }
+          & > .ql-container {
+            border: none;
+            border-radius: 25px;
+            box-shadow: $app-box-shadow;
+
+            .ql-editor {
+              height: 50px;
+              overflow-x: hidden;
+              overflow-y: auto;
+              padding: 6px $chat-padding 4px $chat-padding;
+              margin-right: -15px;
+
+              font-size: $small-text-size;
+              font-weight: 300;
+              line-height: 19px;
+
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+
+              & > * {
+                flex: 1 1 100%;
+              }
+
+              &.ql-blank:before {
+                opacity: 0.3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .objects-directory {
+      padding-top: $chat-padding;
+
+      display: flex;
+      flex-flow: column nowrap;
+      flex: 1 100%;
+
+      .scroll-wrapper {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 0 100%;
+        margin-bottom: $chat-padding;
+        padding: 0 10px;
+
+        .cards {
+          .cards-list {
+            .card {
+              padding: 13px;
+            }
+          }
+        }
+      }
+
+      header {
+        &.users {
+          margin-top: 25px;
+          margin-bottom: 5px;
+        }
+      }
+
+      & > .search-bar {
+        margin-bottom: 20px;
+        &:before {
+          content: 'To:';
+          position: absolute;
+          left: 1ch;
+          top: 0;
+          transform: translateY(50%);
+        }
+      }
+
+      & .contact-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > .contact-user {
+          @include text-overflow-ellipsis;
+
+          flex: 0 0 33%;
+          max-width: 33%;
+          padding: $card-margin;
+
+          cursor: pointer;
+          position: relative;
+
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+
+          & > .user-avatar {
+            @include user-avatar;
+            background-size: 75%;
+          }
+
+          & > .user-name {
+            height: 100%;
+            display: flex;
+            padding-left: 10px;
+            flex-flow: column nowrap;
+            justify-content: space-evenly;
+
+            & > .subtitle {
+              font-size: $smaller-text-size;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    & > input[type=text] {
+      padding-left: 4ch;
+      line-height: 30px;
+    }
+
+    @include awesome-icon-after('\f002', null, 7px);
+  }
+}

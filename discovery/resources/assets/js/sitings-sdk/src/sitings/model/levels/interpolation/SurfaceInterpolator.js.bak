@@ -1,0 +1,216 @@
+import AbstractInterpolator from './polygons/AbstractInterpolator';
+import PointInterpolator from './polygons/PointInterpolator';
+import SegmentInterpolator from './polygons/SegmentInterpolator';
+import TriangleInterpolator from './polygons/TriangleInterpolator';
+import QuadInterpolator from './polygons/QuadInterpolator';
+import Geom from '../../../../utils/Geom';
+import Polygon from '../../../../geom/Polygon';
+import NullInterpolator from './polygons/NulInterpolator';
+
+export default class SurfaceInterpolator extends AbstractInterpolator {
+
+	/**
+	 * @param points {LevelPointModel[]}
+	 * @param lotModel {LotPathModel}
+	 * @param segmentation {SegmentationModel}
+	 */
+	constructor (points, lotModel, segmentation) {
+		super(points);
+
+		/**
+		 * Individual slices used in the interpolation, because we currently only have
+		 * interpolations implemented up to quad size
+		 *
+		 * @type {AbstractInterpolator[]}
+		 * @private
+		 */
+		this._slices = [];
+
+		/**
+		 * @type {LotPathModel}
+		 * @private
+		 */
+		this._lotModel = lotModel;
+
+		/**
+		 * @type {SegmentationModel}
+		 * @private
+		 */
+		this._segmentation = segmentation;
+
+		/**
+		 * Array of LevelPointModel Arrays, each representing an independently interpolated surface.
+		 *
+		 * @type {LevelPointModel[][]}
+		 * @private
+		 */
+		this._segmentedAreas = [];
+
+		// we have to apply the segmentation first to the lot and then sort the points for each slice.
+		this.slicePolygon();
+	}
+
+	/**
+	 * @return {AbstractInterpolator[]}
+	 * @public
+	 */
+	get slices() {
+		return this._slices;
+	}
+
+	/**
+	 * @returns {LevelPointModel[][]}
+	 * @public
+	 */
+	get segmentedAreas() {
+		return this._segmentedAreas;
+	}
+
+	/**
+	 * @private
+	 */
+	slicePolygon() {
+		// if we don't have any height points, we don't need to do any interpolation
+		if (!this.points.length) {
+			return;
+		}
+
+		// Apply the segmentation lines to the lot boundaries, obtaining a set of non-overlapping areas
+		const lotAreas = this._segmentation.applyOn(this._lotModel.vertices);
+
+		// Create the independent, non-overlapping segmented areas that will be interpolated on
+		if (lotAreas.length <= 1) {
+			// If no segmentation was done, create a single area
+			this._segmentedAreas = [Geom.sortPoints(this._pointLevels)];
+		}	else {
+			// We map the lot areas to the level points that are contained within those areas in 3 steps:
+			// 1: Transform the point areas to polygons
+			// 2: Filter the entire list of level points to see which are contained in each polygon
+			// 3: Sort the filtered level points in a CW order
+			this._segmentedAreas = lotAreas
+				.map(points => Polygon.from(points))
+				.map(polygon => Geom.sortPoints(
+					this.points.filter(
+						point => polygon.containsOrClose(point.position)
+					)
+				)
+			);
+		}
+
+		this.areas = lotAreas;
+
+		let interpolations = [
+			NullInterpolator,
+			PointInterpolator,
+			SegmentInterpolator,
+			TriangleInterpolator,
+			QuadInterpolator
+		];
+
+		// Assign interpolations for each segmented area. Areas that have less than or up to 4 vertices
+		// have direct interpolations, those with more than 4 vertices need to be sliced further (for now)
+		this._segmentedAreas.forEach(
+			points => {
+				if (points.length < interpolations.length) {
+					this.slices.push((new interpolations[points.length](points)));
+				}	else {
+					let corners, index, count;
+
+					// start slicing the polygon into more parts, by first creating a quad for points (0,1,2,3)
+					corners = [points[0], points[1], points[2], points[3]];
+
+					// add the first quad
+					this.slices.push(new QuadInterpolator(corners));
+
+					// add the remaining slices
+					for (index = 3; index + 1 < points.length; --index) {
+						// create the next primitive
+						corners = [];
+
+						for (count = 1; index < points.length && count <= 3; ++index, ++count) {
+							corners.push(points[index]);
+						}
+
+						// end the slice
+						corners.push(points[0]);
+
+						// add the primitive
+						this.slices.push(
+							(new interpolations[corners.length](corners))
+						);
+					}
+				}
+			}
+		);
+	}
+
+	/**
+	 * Detects if a point is contained in the current polygon
+	 * @param x {number} X coordinate of the point
+	 * @param y {number} Y coordinate of the point
+	 * @returns Boolean true if the point is a part of this polygon.
+	 * @public
+	 */
+	contains(x, y) {
+		return this.slices.some(slice => slice.contains(x, y));
+	}
+
+	/**
+	 * Interpolates from the existing points and returns the value at position (x,y)
+	 * @param x {number} X coordinate of the point to interpolate
+	 * @param y {number} Y coordinate of the point to interpolate
+	 * @return Number the interpolated value at the indicated position
+	 * @public
+	 */
+	interpolate(x, y) {
+		// if we have no interpolation data, we just return a 0=ground level height
+		if (!this.slices.length) {
+			return 0;
+		}
+
+		// if we have a single interpolator, use it to determine the height
+		if (this.slices.length === 1) {
+			return this.slices[0].interpolate(x, y);
+		}
+
+		let sIndex;
+		let pointIndex;
+		let nextIndex;
+		let cIndex;
+		let close = Infinity;
+		let dist;
+
+		// analyze all the slices to see which one this point falls in (if any)
+		for (sIndex = 0; sIndex < this.slices.length; ++sIndex) {
+			// analyze the point within the current slice
+			const result = this.slices[sIndex].analyze(x, y);
+
+			// if the point is contained within this slice, return it
+			if (result && result.contained) {
+				return result.value;
+			}
+		}
+
+		// if the point is outside the surface, search for the closest slice and interpolate from it.
+		for (pointIndex = 0; pointIndex<this.points.length; ++pointIndex) {
+			nextIndex = (pointIndex+1) % this.points.length;
+
+			dist = Geom.pointToSegmentDistance(x, y, this.points[pointIndex].x, this.points[pointIndex].y, this.points[nextIndex].x, this.points[nextIndex].y);
+			if (dist < close) {
+				close  = dist;
+				cIndex = pointIndex;
+			}
+		}
+
+		// interpolate in the slice that contains both cindx & next(cindx)
+		nextIndex = (cIndex + 1) % this.points.length;
+
+		for (sIndex = 0; sIndex < this.slices.length; ++sIndex) {
+			if (this.slices[sIndex].hasPoint(this.points[cIndex]) && this.slices[sIndex].hasPoint( this.points[nextIndex]))
+				return this.slices[sIndex].interpolate(x, y);
+		}
+
+		// @TODO: if we still get to this point (we shouldn't), return the ground level (base level)
+		return 0;
+	}
+}

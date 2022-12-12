@@ -1,0 +1,43 @@
+.alert-container {
+  background-color: #fff;
+  padding: 10px;
+  text-Transform: uppercase;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 7px 4px;
+  width: 300px;
+  z-index: $z-index-alert;
+
+  & > .alert-popup {
+    flex: 2;
+    margin-left: 10px;
+  }
+
+  & > button {
+    appearance: none;
+    outline: none;
+    margin-left: 20px;
+    font-size: 14px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  & > .fa {
+    font-size: 14px;
+  }
+
+  & > .fa-info-circle {
+    color: #e2e235;
+  }
+
+  & > .fa-exclamation-circle {
+    color: #ff5454;
+  }
+
+  & > .fa-check-circle {
+    color: #44c544;
+  }
+}

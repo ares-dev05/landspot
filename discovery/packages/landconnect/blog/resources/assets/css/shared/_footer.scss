@@ -1,0 +1,119 @@
+
+footer {
+  border-top: 1px solid #BDBDBD;
+  .container {
+    padding-top: 37px;
+    height: inherit;
+    padding-bottom: 115px;
+    font-size: 14px;
+    line-height: 30px;
+    color: $item-text-color;
+
+    .footer-logo {
+      height: 28px;
+      width: 113px;
+      background: url('../../img/LC_Logo_Landspot_Icon-Blue.svg') no-repeat center left/contain;
+    }
+
+    .footer-flex-box {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .copyright {
+      margin-right: 44px;
+    }
+
+    .footer-links {
+      & > a {
+        color: $item-text-color;
+        text-decoration: underline;
+        padding: 0 3px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+    .notes {
+      margin-top: 31px;
+      color: $item-text-color;
+      p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: $item-text-color;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  footer {
+    .container {
+      padding-bottom: 50px;
+      .footer-flex-box {
+        justify-content: space-between;
+      }
+      .footer-logo {
+        height: 28px;
+        width: 113px;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  footer {
+    .container {
+      padding-bottom: 60px;
+      .footer-flex-box {
+        margin-top: 23px;
+      }
+      .copyright {
+        margin-right: 0;
+      }
+      .footer-logo {
+        background-position: center center;
+        margin-top: 5px;
+        margin-bottom: -12px;
+      }
+      .notes {
+        margin-top: 26px;
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  footer {
+    .container {
+      padding-bottom: 35px;
+      font-size: $smaller-text-size;
+      .footer-flex-box {
+        margin-top: 24px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-logo {
+        margin-top: 19px;
+        width: 100%;
+        margin-bottom: -5px;
+      }
+      .copyright {
+        text-align: center;
+      }
+      .notes {
+        text-align: center;
+        margin-top: 49px;
+        p {
+          font-size: $smaller-text-size;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}

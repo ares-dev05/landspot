@@ -1,0 +1,38 @@
+@import "~codemirror/lib/codemirror.css";
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// Base
+@import "admin/base/base";
+//
+//// Font-awesome
+//@import "~font-awesome/scss/font-awesome";
+
+// Modules
+@import "admin/modules/form";
+@import "admin/modules/panels";
+@import "admin/modules/buttons";
+
+// Shared
+@import "admin/shared/sidebar";
+@import "admin/shared/footer";
+
+// Layouts
+@import "admin/layouts/administration";
+
+.admin-body {
+  padding-top: 56px;
+  word-break: break-word;
+}
+
+#content {
+  display: block !important;
+  padding: 0;
+  border: none;
+  height: 50px;
+  position: absolute;
+  color: transparent;
+  background: transparent;
+}

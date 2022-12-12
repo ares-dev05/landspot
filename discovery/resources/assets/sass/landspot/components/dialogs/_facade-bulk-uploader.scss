@@ -1,0 +1,65 @@
+.landspot-modal.facade-bulk-uploader {
+  height: 100vh;
+  width: calc(100vw - #{$app-navbar-height});
+
+  .bulk-uploader-dialogue {
+    & > .content {
+      display: flex;
+      height: 100%;
+      overflow: hidden;
+
+      &.hidden {
+        display: none;
+      }
+
+      header {
+        margin-bottom: 1em;
+      }
+
+      & > .left-panel {
+        flex: 1 1 100%;
+        overflow-x: hidden;
+        margin-right: $content-padding;
+        padding: 0 15px;
+
+        & > .facades-container {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+
+          & > li {
+            position: relative;
+            margin-bottom: $content-padding;
+
+            & > .title {
+              position: absolute;
+              z-index: $z-index-nice-dropdown-list;
+              background: rgba(0, 0, 0, 0.25);
+              color: #fff;
+              padding: 0.5em;
+              left: 0.5em;
+              border-radius: 0.25em;
+              top: 0.5em;
+              box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 5px 0px;
+            }
+          }
+        }
+      }
+
+      & > .right-panel {
+        overflow-x: hidden;
+        flex: 0 0 300px;
+        padding-right: 10px;
+
+        & > .landspot-input {
+          margin-bottom: 1em;
+          display: flex;
+
+          & > button {
+            margin-left: 1em;
+          }
+        }
+      }
+    }
+  }
+}

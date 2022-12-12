@@ -1,0 +1,107 @@
+.search-bar {
+  font-size: $app-menu-font-size;
+  font-weight: 300;
+
+  padding: 48px 0 23px;
+
+  display: flex;
+  justify-content: space-between;
+
+  .select-wrapper {
+    margin-left: auto;
+
+    & > select {
+      border: none;
+      color: $text-color;
+      font-size: $app-menu-font-size;
+      font-weight: 300;
+
+      &.select-filter {
+        padding: 0 40px 0 10px;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .search-autocomplete {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    max-width: 480px;
+    flex-grow: 1;
+
+    label {
+      margin: 0;
+      flex-grow: 0;
+      line-height: 2;
+      font-weight: normal;
+    }
+
+    & > .autocomplete-dropdown {
+      @extend %autocomplete-dropdown;
+      width: 100%;
+      margin-bottom: 0;
+
+      & > input[type="text"] {
+        @extend %kaspa-dialog-input;
+
+        //font-size: $app-menu-font-size;
+        padding: 0 0 5px;
+      }
+
+      &::after {
+        content: '\f002';
+        font: normal normal normal 14px/1 "Font Awesome 5 Pro";
+        position: absolute;
+        right: 0;
+        bottom: 50%;
+        transform: translateY(50%);
+        color: $icon-color;
+      }
+
+    }
+      /*position: relative;
+      width: 100%;
+
+      &::after {
+        content: '\f002';
+        font: normal normal normal 14px/1 "Font Awesome 5 Pro";
+        position: absolute;
+        right: 0;
+        bottom: 50%;
+        transform: translateY(50%);
+        color: $icon-color;
+      }
+
+
+      & > .menu {
+        padding-top: 5px;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        background: #fff;
+        box-shadow: 0px 3px 6px 0 rgba(0, 0, 0, 0.14);
+
+        border: {
+          left: 1px solid $select-border-color;
+          bottom: 1px solid $select-border-color;
+          right: 1px solid $select-border-color;
+        }
+
+        & > .item {
+          line-height: 25px;
+          padding: 0 1em;
+          font-size: $larger-text-size;
+
+          &.item-highlighted {
+            background: $kaspa-brand-color;
+            cursor: pointer;
+          }
+        }
+      }
+    }*/
+  }
+}

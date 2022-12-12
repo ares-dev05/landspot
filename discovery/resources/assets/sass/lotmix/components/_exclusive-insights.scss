@@ -1,0 +1,135 @@
+.exclusive-insights {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px 13%;
+
+  .ex-blck {
+    padding: 0 20px;
+    flex-basis: 50%;
+  }
+
+  .ex-header {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    .home-h1, .description-text {
+      flex-basis: 50%;
+    }
+  }
+
+  .ex-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 200px;
+    max-height: 100%;
+    max-width: 100%;
+    padding-top: 61%;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    width: 100%;
+  }
+
+  .ex-title {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 45px;
+    color: #232456;
+  }
+
+  .ex-description {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #7E7F94;
+  }
+
+  .learn-more {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 28px;
+    color: $landspot-theme-color;
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 1.7em;
+      margin-right: 11px;
+    }
+  }
+
+  .description-text {
+    text-align: left;
+  }
+
+  .description-text {
+    margin-bottom: 80px;
+  }
+
+  .home-h1 {
+    max-width: 337px;
+    margin-bottom: 71px;
+
+    @media (max-width: 760px) {
+      max-width: unset;
+    }
+
+    &:before {
+      right: -2px;
+      bottom: 17px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .exclusive-insights {
+    flex-direction: column;
+
+    .ex-header {
+      flex-direction: column;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .ex-blck {
+      max-width: 550px;
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .exclusive-insights {
+    margin: 50px 25px;
+
+    .ex-header {
+      padding: 0;
+
+      .home-h1, .description-text {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    .ex-blck {
+      padding: 0;
+
+      .ex-title {
+        line-height: 25px;
+      }
+
+      .home-h1 {
+        margin-bottom: 50px;
+        text-align: center;
+      }
+    }
+  }
+}

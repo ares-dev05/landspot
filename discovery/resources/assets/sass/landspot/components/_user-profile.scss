@@ -1,0 +1,69 @@
+&.user-profile {
+  flex-flow: column;
+  padding-top: 30px;
+
+  .otp-input {
+    letter-spacing: 1ch;
+    font-weight: bold!important;
+  }
+
+  .notice {
+    color: red;
+    margin-bottom: 15px;
+  }
+
+  .otp-secret {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: flex;
+
+    .qr {
+      display: inline-block;
+      width: 250px;
+      height: 250px;
+      margin-right: 15px;
+      border: $app-border;
+      position: relative;
+
+      &::before {
+        border: $app-border-width solid #fff;
+        border-radius: 10%;
+        content: '';
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        left: -1pt;
+        top: -1pt;
+
+        box-sizing: content-box;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .secret {
+      border: $app-border;
+      border-radius: 2px;
+      width: 250px;
+      height: 250px;
+      text-align: center;
+      padding: 25px;
+
+      .note {
+        color: #8d8d8d;
+        margin-bottom: 50px;
+      }
+
+      .key {
+        font-size: large;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@import "collapse-section";

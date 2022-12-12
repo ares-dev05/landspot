@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans');
+
+.text-wrapper {
+  margin: 0 0 85px 0;
+  padding: 0;
+
+  h1 {
+    text-align: center;
+    color: #4A4A4A;
+    font-family: Montserrat, sans-serif;
+    font-size: 42px;
+    line-height: 58px;
+  }
+  .terms-p {
+    padding: 0 5px;
+    color: #111;
+  }
+  .header {
+    padding: 0 0 5px 0;
+    margin: 7px 0 7px 5px;
+    border-bottom: 1px solid #999;
+  }
+
+  .ol-list {
+    list-style-type: none;
+    counter-reset: item;
+
+    & > li {
+      counter-increment: item;
+      &:before {
+        content: counters(item, ".") ". ";
+      }
+    }
+
+    .top-list {
+      padding: 0 0 5px 0;
+      margin: 7px 0 7px 5px;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 30px;
+      border-bottom: 1px solid #999;
+    }
+    .nested-list {
+      list-style-type: none;
+      counter-reset: i;
+      line-height: 25px;
+      padding: 0 0 0 5px;
+
+      & > li {
+        counter-increment: i;
+        &:before {
+          content: counter(item) "." counters(i, ".") " ";
+        }
+        font-size: 14px;
+        line-height: 1.9;
+        text-align: justify;
+      }
+
+      .second-nested-list {
+        list-style-type: lower-alpha;
+        padding-left: 30px;
+        font-size: 14px;
+        line-height: 1.9;
+
+        .third-nested-list {
+          list-style-type: upper-alpha;
+          padding-left: 30px;
+          font-size: 14px;
+          line-height: 1.9;
+        }
+      }
+    }
+  }
+}

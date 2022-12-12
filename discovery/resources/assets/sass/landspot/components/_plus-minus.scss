@@ -1,0 +1,23 @@
+.plus-minus {
+  display: inline-flex;
+
+  .rounded {
+    border-radius: 50%;
+    padding: 6px;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .landspot-icon {
+      margin-right: 0;
+
+      &:before {
+        width: 13px;
+        left: 1px;
+      }
+    }
+
+  }
+}

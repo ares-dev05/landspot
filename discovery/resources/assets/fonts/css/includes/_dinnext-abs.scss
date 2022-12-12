@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'DINNextRoundedLTPro-Medium';
+  src: local('DINNextRoundedLTPro-Medium'), url('#{$APP_URL}/fonts/DINNextRoundedLTPro-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'DINNextRoundedLTPro-Light';
+  src: local('DINNextRoundedLTPro-Light'), url('#{$APP_URL}/fonts/DINNextRoundedLTPro-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'DINNextRoundedLTPro-Bold';
+  src: local('DINNextRoundedLTPro-Bold'), url('#{$APP_URL}/fonts/DINNextRoundedLTPro-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'DINNextRoundedLTPro-Regular';
+  src: local('DINNextRoundedLTPro-Regular'), url('#{$APP_URL}/fonts/DINNextRoundedLTPro-Regular.woff') format('woff');
+}
+
+

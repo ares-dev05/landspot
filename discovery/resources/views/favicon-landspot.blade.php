@@ -1,0 +1,1 @@
+<link rel="icon" href={{Route::is('reset.invitation.password') ? "/favicon_landconnect.ico" : "/favicon_landspot.ico"}} type="image/x-icon" />

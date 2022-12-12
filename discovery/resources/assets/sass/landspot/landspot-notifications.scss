@@ -1,0 +1,143 @@
+.notifications {
+  flex-direction: column;
+
+  .media-item {
+    width: 100px;
+  }
+
+  .notification-header {
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+
+    @extend %landspot-section-heading;
+
+    & > div {
+      & > .button.default {
+        display: inline;
+      }
+    }
+
+    .note {
+      font-size: $landspot-text-size;
+      font-weight: $font-weight-bold;
+      line-height: 20px;
+      color: $color-available;
+
+      .danger {
+        color: $color-status-unpublished;
+      }
+    }
+  }
+
+  & > .table {
+    & > tbody {
+      & > tr {
+        & > td:first-child {
+          word-break: break-all;
+        }
+      }
+    }
+  }
+
+  & > .table-media {
+    & > tbody {
+      & > tr {
+        & > .actions {
+          & > .button:not(:first-child) {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .notification-companies {
+    margin-top: 0;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  .notification-form {
+    .form-row {
+      position: relative;
+
+      & > label {
+        margin-bottom: 10px;
+      }
+
+      .landspot-input {
+        width: 100%;
+
+        & > select {
+          border: $app-border;
+          background-color: $input-background-color;
+        }
+
+        & > select.required-select {
+          background-color: #f5efef;
+          border: 1pt solid #fe8d7c;
+        }
+
+        & > .companies {
+          border: $app-border;
+          background-color: $input-background-color;
+        }
+
+        & > .quill {
+          & > .ql-toolbar {
+            border: $app-border;
+            background-color: $input-background-color;
+          }
+
+          & > .ql-container {
+            border: $app-border;
+            background-color: $input-background-color;
+
+            & > .ql-editor {
+              & > iframe {
+                min-width: 560px;
+                min-height: 315px;
+              }
+            }
+
+            & > .ql-editor,
+            .code-viewer {
+              max-height: 500px;
+              min-height: 300px;
+              height: 100%;
+            }
+
+            .code-viewer {
+              width: 100%;
+              margin: 0px;
+              background: rgb(29, 29, 29);
+              box-sizing: border-box;
+              color: rgb(204, 204, 204);
+              outline: none;
+              padding: 10px 15px;
+              line-height: 24px;
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              border: none;
+              display: none;
+              resize: none;
+            }
+          }
+        }
+
+        & > .quill.required-quill {
+          & > .ql-container {
+            background-color: #f5efef;
+            border: 1pt solid #fe8d7c;
+          }
+        }
+
+        & > select {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.company-logo-dialog {
+  .company-logos {
+    width: 100%;
+    .logo {
+      & > button {
+        background: white left center/contain no-repeat;
+        width: 100%;
+        height: 100%;
+      }
+      box-sizing: border-box;
+
+      &.company_small_logo {
+        height: 20px;
+        width: 20px;
+      }
+
+      &.company_expanded_logo {
+        height: 20px;
+        width: 50px - (50px - 20px)/2;
+      }
+    }
+  }
+}

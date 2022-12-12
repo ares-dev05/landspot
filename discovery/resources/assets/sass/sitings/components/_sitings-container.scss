@@ -1,0 +1,1116 @@
+.sitings-container {
+  .button > .landconnect-icon {
+    padding: 7px;
+    margin-right: 10px;
+
+    &:before {
+      background-color: #888;
+    }
+  }
+
+  .sidebar {
+    .cloud-upload {
+      padding: 10px;
+    }
+
+    .step-note {
+      .doc-name {
+        & > a {
+          display: flex;
+          align-items: center;
+
+          & > i {
+            margin-right: 10px;
+          }
+        }
+
+        padding-top: 25px;
+      }
+
+      border-bottom: $app-border;
+      padding-bottom: 15px;
+    }
+
+    .form-upload {
+      margin-bottom: 30px;
+
+      .form-upload-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .form-upload-label {
+          color: $landconnect-theme-color;
+          margin-bottom: 7px;
+        }
+
+        .form-upload-button {
+          border-radius: 5px;
+          width: 220px;
+        }
+
+        .disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .label {
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 13px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    .toggle-mirror {
+      & > .toggle-switch {
+        padding-right: 60px;
+
+        & > i {
+          min-width: 55px;
+        }
+      }
+    }
+
+    .toggle-metric {
+      & > .toggle-switch {
+        padding-left: 0;
+        width: 105px;
+        height: 24px !important;
+
+        & > i {
+          border-radius: 12px !important;
+        }
+      }
+    }
+
+    .fall-levels {
+      justify-content: flex-start !important;
+
+      .fall-levels-checkbox {
+        & > .toggle-switch {
+          width: 85px;
+        }
+      }
+    }
+
+    @import "cards";
+
+    .cards {
+      .cards-list {
+        margin-bottom: 30px;
+
+        .card {
+          margin-bottom: 10px;
+
+          &.selected {
+            .content {
+              border: $app-border-width solid $landconnect-theme-color;
+            }
+          }
+
+          .content {
+            border-radius: 0;
+          }
+
+          .page-num {
+            position: absolute;
+            bottom: 0;
+            left: 12px;
+            font-size: $text-size;
+          }
+        }
+      }
+    }
+
+    .step-nav {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      background-color: $landconnect-theme-color;
+      box-shadow: $app-box-shadow;
+
+      height: 30px;
+      border-top: $app-border;
+
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 26%;
+      padding: 20px $content-padding 30px;
+      color: #fff;
+
+      & > .button {
+        color: #fff;
+
+        &.next {
+          margin-left: auto;
+        }
+
+        .landconnect-icon {
+          padding: 7px 13px;
+          margin: 0;
+
+          &:before {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+
+    .lot-settings {
+      margin: 30px 0 40px;
+
+      &.disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+
+      & > .header {
+        font-size: $large-font-size;
+        font-weight: $font-weight-bold;
+        margin: 10px 0 0;
+
+        &:not(:first-child) {
+          margin-top: 30px;
+        }
+
+        &.break {
+          margin-top: 80px;
+        }
+      }
+
+      & > .sub-header {
+        font-size: $large-font-size;
+        font-weight: $font-weight-medium;
+        margin: 10px 0 0;
+      }
+
+      &.edges-list {
+        .edge {
+          margin-bottom: 20px;
+          min-height: 30px;
+          position: relative;
+
+          .delete-btn {
+            position: absolute;
+            right: -20px;
+            top: 30px;
+
+            & > .landconnect-icon {
+              padding: 6px;
+              margin: 0;
+            }
+          }
+
+          .edge-shape,
+          .edge-dimension {
+            display: flex;
+            justify-content: stretch;
+            align-items: center;
+            min-height: 30px;
+          }
+
+          .edge-shape {
+            .edge-type {
+              i {
+                margin-right: 10px;
+              }
+            }
+
+            .edge-type,
+            .direction {
+              margin-left: 15px;
+            }
+
+            .landconnect-input {
+              /*max-width: 75px;*/
+              margin-left: auto;
+            }
+          }
+
+          .edge-dimension {
+            margin-top: 10px;
+
+            & > .landconnect-input {
+              margin-left: 15px;
+
+              & > input:not(:first-child) {
+                margin-top: 10px;
+              }
+            }
+
+            @media (min-width: 1025px) and (max-width: 1200px) {
+              flex-wrap: wrap;
+
+              & > .landconnect-input {
+                flex: 0 43%;
+
+                &:nth-child(-n + 2) {
+                  margin-bottom: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.add-house,
+      &.export {
+        .form-rows {
+          .form-row {
+            .right-item {
+              &.nice-dropdown {
+                max-width: 100%;
+              }
+            }
+          }
+        }
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+      }
+
+      .easements .btn-group {
+        &.column {
+          flex-direction: column;
+        }
+
+        & > .button-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          min-height: 3rem;
+          margin: 5px 0;
+
+          &.one-third-basis {
+            div:first-child {
+              min-width: 30%;
+              flex-basis: 30%;
+            }
+          }
+
+          &.compact {
+            margin: 10px 0 0;
+            min-height: auto;
+          }
+
+          & > .nice-dropdown {
+            min-width: 150px;
+          }
+
+          & > .btn-group-input {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            & > .landconnect-input {
+              margin: 8px 6px 8px 0;
+            }
+
+            & > .height-times {
+              width: max-content;
+              padding: 5px 8px;
+
+              i {
+                margin-right: 0;
+              }
+            }
+          }
+
+
+          & > .button-label {
+            font-size: 16px;
+            font-weight: 300;
+            margin-right: 10px;
+            min-width: 125px;
+          }
+        }
+
+        & > .button {
+          padding: 0 1em;
+          height: 30px;
+          align-self: flex-start;
+          margin-top: 10px;
+        }
+
+        &.transformations {
+          .button {
+            padding: 0;
+          }
+
+          @media (min-width: 1025px) and (max-width: 1200px) {
+            flex-direction: row;
+          }
+        }
+      }
+
+      .btn-group {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      @media (min-width: 1025px) and (max-width: 1200px) {
+        flex-direction: column;
+        & > .button:not(:first-child) {
+          margin-left: 0;
+        }
+      }
+
+      .note {
+        flex: 1 1 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        background: #d5d5e6;
+
+        & > i {
+          margin-right: 10px;
+        }
+      }
+
+      .easements {
+        .easement {
+          display: flex;
+          margin-bottom: 10px;
+
+          & > .blocks {
+            width: 100%;
+            margin-top: 15px;
+
+            & > .block {
+              margin-bottom: 10px;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+
+              &.street-names {
+                justify-content: flex-start;
+
+                .street-names-number {
+                  width: 10px;
+                  margin-right: 8px;
+                }
+
+                .street-names-input {
+                  width: max-content;
+                }
+              }
+
+              .easement-number,
+              .easement-type {
+                line-height: 30px;
+              }
+
+              .easement-type {
+                margin: 0 15px;
+                width: 70px;
+              }
+
+              .easement-dimension {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 200px;
+
+                &.double-inputs {
+                  flex-direction: row;
+                  flex-wrap: wrap;
+
+                  & > .landconnect-input {
+
+                    &.width {
+                      position: relative;
+                      margin-top: 0 !important;
+                      flex: 0 0 50%;
+                      padding-right: 5px;
+
+                      &:after {
+                        content: 'W';
+                        position: absolute;
+                        right: 25px;
+                        top: 0;
+                        line-height: 30px;
+                      }
+                    }
+
+                    &.height {
+                      position: relative;
+                      margin-top: 0 !important;
+                      padding-left: 5px;
+                      flex: 0 0 50%;
+
+                      &:before {
+                        content: 'H';
+                        position: absolute;
+                        right: 25px;
+                        top: 0;
+                        line-height: 30px;
+                      }
+                    }
+                  }
+
+                  @media (min-width: 1025px) and (max-width: 1200px) {
+                    flex-direction: column;
+
+                    & > .landconnect-input {
+                      padding: 0 !important;
+
+                      &:not(:first-child) {
+                        margin-top: 10px !important;
+                      }
+                    }
+                  }
+                }
+
+                .button {
+                  padding-left: 0;
+
+                  & > .landconnect-icon {
+                    margin: 0;
+                  }
+                }
+
+                & > .landconnect-input {
+                  &.input-group {
+                    & > .input-group-addon {
+                      &:not(:first-child) {
+                        margin-left: 10px;
+                      }
+                    }
+                  }
+
+                  &:not(:first-child) {
+                    margin-top: 15px;
+                  }
+
+                  &.slider {
+                    width: 100%;
+                    margin-top: 0;
+
+                    & > .price-slider {
+                      margin: 15px 0;
+                      padding-right: 1ch;
+                    }
+                  }
+
+                  &.checkbox {
+                    span {
+                      vertical-align: middle;
+                    }
+                  }
+                }
+
+                .easement-angle {
+                  display: flex;
+                  margin: 10px 0;
+
+                  &.top {
+                    margin: 0;
+                  }
+
+                  & > .landconnect-input {
+                    &:not(:first-child) {
+                      margin-left: 10px;
+                    }
+                  }
+
+                  @media (min-width: 1025px) and (max-width: 1200px) {
+                    flex-wrap: wrap;
+
+                    & > .landconnect-input {
+                      &:not(:first-child) {
+                        margin-left: 0;
+                        margin-top: 10px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              & > .button {
+                height: 30px;
+                margin-left: 15px;
+              }
+            }
+
+            &.engineering-street-names {
+              display: flex;
+
+              & > .engineering-street-name {
+                margin-right: 10px;
+                flex: 1;
+
+                & > .landconnect-input {
+                  width: 100%;
+                }
+
+                &:last-child {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .form-rows .form-row .right-item {
+        max-width: 80px;
+
+        &.wide {
+          max-width: 175px;
+        }
+      }
+
+      .nice-radio {
+        & > .radio-item {
+
+          & > label > input[type="radio"]:checked + i.fa:before {
+            content: '\f192';
+            font-weight: 500;
+            color: $landconnect-theme-color;
+          }
+        }
+      }
+
+      .nice-checkbox + label {
+        margin-left: 10px;
+        color: $table-text-color;
+        font-weight: normal;
+
+        & > span {
+          color: inherit;
+          font-size: 12px;
+          user-select: none;
+        }
+      }
+
+      .toggle-switch {
+        width: 100%;
+      }
+    }
+
+    .direction {
+      & > .landconnect-icon {
+        &:first-child {
+          margin-right: 0;
+        }
+
+        &.active {
+          &:before {
+            background-color: $landconnect-theme-color;
+          }
+        }
+      }
+    }
+
+    .document-details {
+      .landconnect-input {
+        width: 100%;
+      }
+    }
+  }
+
+  .drawer {
+    padding: 0 !important;
+    flex-flow: row !important;
+    align-items: center;
+    overflow: hidden;
+
+    .page-preview {
+      max-width: calc(100% - 30px) !important;
+      height: 100% !important;
+      box-shadow: $app-box-shadow;
+      position: absolute;
+      flex-shrink: 0;
+      background: #fff;
+      z-index: $z-index-left-panel - 1;
+
+      .sitings-sliders {
+        position: absolute;
+        width: 420px;
+        bottom: 23px;
+
+        .price-slider {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          align-items: center;
+          margin: 15px 0;
+
+          & > .slider-prices {
+            padding-top: 0;
+            font-size: 12px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            .slider-value {
+              width: 60px;
+              height: 25px;
+              display: inline-flex;
+              align-items: center;
+              padding-left: 10px;
+              margin-left: auto;
+              box-shadow: $app-box-shadow;
+              border: none;
+            }
+
+            input {
+              -moz-appearance: textfield;
+            }
+
+            & > .landconnect-icon {
+              margin: 0 5px 0 15px;
+            }
+          }
+
+          & > .slider-container {
+            width: 560px;
+            margin-top: -3px;
+
+            & > .rail {
+              height: 4px;
+            }
+
+            & > .slider-handles {
+              & > .handle {
+                top: -1px;
+              }
+            }
+          }
+        }
+      }
+
+      /** endof testing **/
+
+      .react-resizable-handle {
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        top: 0;
+        right: -40px;
+        cursor: col-resize;
+        z-index: -1;
+      }
+
+      .page-preview-tabs {
+        position: absolute;
+        display: block;
+        content: '';
+        top: 0;
+        left: 100%;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        & > :nth-child(1) {
+          position: absolute;
+          display: block;
+          top: calc(0% + 30px * 2);
+          left: calc(100% - 150px / 2 + 30px / 2);
+          width: 150px;
+          height: 30px;
+          background: $button-background-color;
+          box-sizing: border-box;
+          border-top-right-radius: 10px;
+          transform: rotate(90deg);
+        }
+
+        & > :nth-child(2) {
+          position: absolute;
+          display: block;
+          top: 200px;
+          left: calc(100% - 150px / 2 + 30px / 2);
+          width: 150px;
+          height: 30px;
+          background: $button-background-color;
+          box-sizing: border-box;
+          border-top-right-radius: 10px;
+          transform: rotate(90deg);
+        }
+        & > :nth-child(3) {
+          position: absolute;
+          display: block;
+          top: 340px;
+          left: calc(100% - 150px / 2 + 30px / 2);
+          width: 150px;
+          height: 30px;
+          background: $button-background-color;
+          box-sizing: border-box;
+          border-top-right-radius: 10px;
+          transform: rotate(90deg);
+        }
+
+        .page-preview-tab {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: $larger-text-size;
+          border: none;
+        }
+
+        .page-preview-tab-active {
+          background: $button-background-color-active;
+          z-index: 1;
+        }
+
+        .page-preview-tab-hide {
+          display: none;
+        }
+      }
+
+      & > .image {
+        &.cross {
+          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>") no-repeat center center;
+          background-size: 100% 100%, auto;
+          cursor: default;
+        }
+
+        &.disabled {
+          display: none;
+        }
+
+        cursor: grabbing;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .zoom-buttons {
+      display: flex;
+      flex-direction: column;
+
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      box-shadow: $app-box-shadow;
+
+      background: $landconnect-theme-color;
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      & > button {
+        padding: 10px;
+
+        & > .landconnect-icon {
+          margin: 0;
+
+          &:before {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+
+    .nearmap-copyright {
+      display: flex;
+      flex-direction: column;
+
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      box-shadow: $app-box-shadow;
+
+      & > .attribution {
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+      }
+    }
+
+    .nearmap-block {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      & > .nearmap-placeholder {
+        /*
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+         */
+
+        position: relative;
+        left: -50%;
+        top: -120px;
+
+        text-align: center;
+        color: black;
+
+        & > span {
+          display: block;
+        }
+
+        & > .text {
+          margin-top: 40px;
+          font-size: 22px;
+        }
+
+        & > img {
+          width: 300px;
+        }
+
+        & > .attribution {
+          font-weight: bold;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .lot-view, .trace-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      &.export {
+        justify-content: center;
+        align-items: center;
+
+        & > canvas {
+          box-shadow: $app-box-shadow;
+        }
+      }
+
+      & > .threed-canvas {
+        background: #f9f9f9;
+        background: -moz-linear-gradient(top,  #f9f9f9 0%, #f1f2f8 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #f9f9f9 0%,#f1f2f8 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #f9f9f9 0%,#f1f2f8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#f1f2f8',GradientType=0 ); /* IE6-9 */
+      }
+
+      &.disabled {
+        display: none;
+      }
+    }
+
+    .export-preview {
+      width: 595px;
+      height: 842px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 0;
+
+      & > svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      &.hidden {
+        z-index: -1000;
+      }
+
+      &.solid {
+        background-color: white;
+      }
+    }
+
+    .page-toggle {
+      position: absolute;
+      left: 30px;
+      bottom: 30px;
+      width: 200px;
+      height: 55px;
+      background: #f0f0f0;
+      padding: 15px 0 0 15px;
+    }
+
+    .site-coverage {
+      font-size: 13px;
+      color: black;
+      position: absolute;
+      top: 25px;
+      right: 35px;
+
+      th {
+        td:first-child {
+          text-align: left;
+        }
+
+        td:last-child {
+          text-align: right;
+        }
+      }
+
+      td:last-child {
+        text-align: right;
+      }
+
+      & > svg {
+        margin-left: 5px;
+      }
+    }
+
+    .align-to-page {
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+
+      & > button {
+        box-shadow: $app-box-shadow;
+        background: $landconnect-theme-color;
+
+        padding: 10px;
+
+        & > .landconnect-icon {
+          margin: 0;
+
+          &:before {
+            background-color: #fff;
+          }
+        }
+      }
+
+      & > .left {
+        position: absolute;
+        left: 30px;
+        bottom: 50%;
+      }
+
+      & > .right {
+        position: absolute;
+        right: 30px;
+        bottom: 50%;
+      }
+
+      & > .top {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+
+      & > .bottom {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+    }
+
+    .lot-controls {
+      .north-indicator {
+        position: absolute;
+        right: 26px;
+        bottom: 120px;
+
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+
+        circle {
+          fill: $landconnect-theme-color;
+        }
+      }
+
+      .sitings-sliders {
+        position: absolute;
+        width: 420px;
+        bottom: 23px;
+
+        .price-slider {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          align-items: center;
+          margin: 15px 0;
+
+          & > .slider-prices {
+            padding-top: 0;
+            font-size: 12px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            .slider-value {
+              width: 50px;
+              height: 25px;
+              display: inline-flex;
+              align-items: center;
+              padding-left: 10px;
+              margin-left: auto;
+              box-shadow: $app-box-shadow;
+              border: none;
+            }
+
+            input {
+              -moz-appearance: textfield;
+            }
+
+            & > .landconnect-icon {
+              margin: 0 5px 0 15px;
+            }
+          }
+
+          & > .slider-container {
+            width: 200px;
+            margin-top: -3px;
+
+            & > .rail {
+              height: 4px;
+            }
+
+            & > .slider-handles {
+              & > .handle {
+                top: -1px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .summary {
+    padding-top: 40px !important;
+
+    .lot-view {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+  }
+
+  .exit-button {
+    position: absolute;
+    right: 50px;
+    top: calc(#{$app-navbar-height} + 10px);
+    color: $landconnect-theme-color;
+    padding: 5px;
+    background: #fff;
+  }
+}

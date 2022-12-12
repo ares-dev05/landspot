@@ -1,0 +1,21 @@
+.btn-group {
+  display: flex;
+
+  & > .button:not(:first-child) {
+    margin-left: 10px;
+
+    &.trash {
+      margin-left: auto;
+    }
+  }
+}
+
+.btn-group-dual-occ {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > .button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}

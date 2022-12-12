@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "proxima_nova_altblack";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Black-webfont.woff2") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Black-webfont.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Black-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova_altbold";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Bold-webfont.eot") format("eot");
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Bold-webfont.woff2") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Bold-webfont.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Regular-webfont.eot") format("eot");
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Regular-webfont.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Alt Regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova_scosfthin";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova ScOsf Thin-webfont.eot") format("eot");
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova ScOsf Thin-webfont.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova ScOsf Thin-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova_ltsemibold";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Semibold-webfont.eot") format("eot");
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Semibold-webfont.woff2") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Semibold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: "proxima_nova_ltthin";
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Thin-webfont.eot") format("eot");
+  src: url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Thin-webfont.woff2") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Thin-webfont.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Mark Simonson - Proxima Nova Thin-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Bold";
+  font-weight: bold;
+  src: url("#{$APP_URL}/fonts/ProximaNova-Bold.eot") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/ProximaNova-Bold.woff") format("woff"),
+  url("#{$APP_URL}/fonts/ProximaNova-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Proxima Nova Light";
+  src: url("#{$APP_URL}/fonts/ProximaNova-Light.eot") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/ProximaNova-Light.woff") format("woff"),
+  url("#{$APP_URL}/fonts/ProximaNova-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

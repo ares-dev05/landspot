@@ -1,0 +1,138 @@
+@import "variables";
+
+%landspot-select {
+  cursor: pointer;
+  font-size: $text-size;
+  font-weight: bold;
+  color: $item-text-color;
+  padding: 0 30px 0 10px;
+  height: $filter-input-height;
+  line-height: $filter-input-height;
+  background-color: white;
+  width: 100%;
+  margin-bottom: $filter-input-margin-bottom;
+  display: block;
+}
+
+%fullpage-messenger {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  width: calc(100% - 50px);
+  height: 100%;
+}
+
+@mixin text-overflow-ellipsis($display: "block") {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: unquote($display);
+  white-space: nowrap;
+}
+
+@mixin landspot-input($border: 1px solid #e4e4e4, $padding:null, $font-size: inherit) {
+  width: 100%;
+  appearance: none;
+  display: block;
+  border: $border;
+  padding: $padding;
+  font-size: $font-size;
+  &:focus {
+    outline: 1px $landspot-blue-color;
+  }
+}
+
+@mixin placeholder-color {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@mixin landspot-scrollbar {
+  &::-webkit-scrollbar {
+    background: #eee;
+    border-radius: 5px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+    width: 10px;
+  }
+}
+
+%landspot-button {
+  outline: none;
+  appearance: none;
+  line-height: normal;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: .5;
+  }
+
+  &.transparent {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    &:hover {
+      //color: $anchor-hover-color;
+      opacity: .7;
+    }
+  }
+
+  & > i.fa.end-icon {
+    margin-left: 1ch;
+  }
+
+  & > i.fa.beg-icon {
+    margin-right: 1ch;
+  }
+}
+
+
+@keyframes animation-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($landspot-blue-color, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba($landspot-blue-color, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($landspot-blue-color, 0);
+  }
+}
+
+.spinner {
+  z-index: 10000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+
+  & > img {
+    width: 20px;
+    height: 20px;
+    margin: 5px auto;
+    display: block;
+    box-shadow: 0 0 0 rgba($landspot-blue-color, 0.4);
+    animation: animation-pulse 2s infinite;
+  }
+  &.static {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+
+  &.blocker {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+  }
+}

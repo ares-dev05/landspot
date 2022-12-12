@@ -1,0 +1,22 @@
+.table-header {
+  justify-content: space-between;
+  padding-top: 25px;
+
+  & > .title {
+    font-size: $large-font-size;
+    line-height: 44px;
+    font-weight: $font-weight-bold;
+  }
+
+  & > .actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    & > * {
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
+}

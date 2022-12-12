@@ -1,0 +1,166 @@
+.svg-manager-container {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-flow: column;
+  font-size: $text-size;
+
+  .open-editor {
+    position: absolute;
+    right: 0;
+  }
+
+  h5 {
+    @extend %landconnect-h5;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  label {
+    @extend %dialog-label;
+  }
+
+  & > .area-editor {
+    color: $table-text-color;
+    font-size: $larger-text-size;
+    font-weight: $font-weight-medium;
+    line-height: 25px;
+
+    & > .tab-list {
+      & > .editable-list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        flex-wrap: wrap;
+        margin: {
+          left: -20px;
+          right: -20px;
+        };
+
+        & > li {
+          margin: 20px;
+          outline: none;
+          flex: 0 0 20%;
+          padding: 0 15px 15px 15px;
+
+          @media screen and (max-width: 1280px) {
+            flex-basis: 33%;
+          }
+
+          @media screen and (max-width: 960px) {
+            flex-basis: 50%;
+          }
+
+          @media screen and (max-width: 768px) {
+            flex-basis: 100%;
+          }
+
+          &.active {
+            box-shadow: $app-box-shadow;
+          }
+
+          & > .landconnect-input {
+            padding-top: 15px;
+            font-size: $text-size;
+            position: relative;
+
+            &.facade {
+              & > input {
+                padding-left: 80px;
+              }
+
+              &:before {
+                position: absolute;
+                left: 0;
+                bottom: 3px;
+                content: attr(data-item-type);
+              }
+            }
+
+            &.option {
+              & > input {
+                padding-left: 0;
+              }
+            }
+
+            & > input {
+              border-radius: 0;
+              background: white;
+              border-bottom: 1px solid $table-thead-border-color;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-buttons {
+    display: flex;
+
+    & > .default {
+      margin-left: auto;
+    }
+  }
+
+  & > .floorplan-viewer {
+    flex: 1 1 100%;
+    height: 100%;
+    color: $table-text-color;
+    font-weight: $font-weight-medium;
+    line-height: 25px;
+    display: flex;
+    flex-flow: column nowrap;
+
+
+    & > .item-options {
+      flex-shrink: 0;
+      margin-bottom: 2em;
+      padding-top: 0.5em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      & > .items-list {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > .item {
+          border-bottom: 1px solid transparent;
+          display: flex;
+          align-items: stretch;
+
+          & > .static-item {
+            font-weight: 500;
+          }
+
+          &.facade:hover {
+            border-bottom-color: $landconnect-theme-color;
+          }
+
+          & > button {
+            vertical-align: middle;
+            white-space: nowrap;
+
+            & > .beg-icon {
+              font-size: smaller;
+            }
+          }
+
+          margin-right: 2em;
+          margin-bottom: 2em;
+        }
+      }
+    }
+
+    & > .renderer {
+      flex: 1 1 100%;
+    }
+
+    position: relative;
+    max-width: 85vw;
+  }
+}
+

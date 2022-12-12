@@ -1,0 +1,118 @@
+<ul class="breadcrumb">
+  <li><a class="aList1" href="index.html">Home</a></li>
+  <li><a class="aList" href="pages/builderLotmix.html">Land Developer</a></li>
+  <li>Land Developers Manager</li>
+  <li><a class="aList" href="pages/docPages/landDeveloper/landDeveloperManagerPage.html">My clients page (D.1)</a></li>
+  <li><a class="aList" href="pages/docPages/landDeveloper/popups/manageLanDevShortList.html">Manage Short List Pop up(D.2)</a></li>
+</ul>
+<div>
+  <div style="border-style: solid; background-color: lightgreen; ">
+    <b>User stories</b>
+    <ul>
+      <li>As a Land Developers Manager I want to manage(add new/ delete existed) what lots should be displayed for corresponding clients short list </li>
+      <li>As a builder Manager I want to see all added Lots for corresponding client in the table</li>
+      <li>As a Land Developers Manager I want to abort changes if I don't click on submit button</li>
+      <li>As a Land Developers Manager I want to close pop up without any changes apply</li>
+    </ul>
+  </div>
+
+  <ul>
+    <li>
+      <b>Title</b>
+    </li>
+    <li>
+      <b>Select Estates section</b>
+      <ul>
+        <li>
+          <b>Seclect estate</b>
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for this manager Estates that have &#34;Published&#34; status
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Add lot Section</b>
+      <ul>
+        <li>
+          Select Stage
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for selected earlier Estate
+            </li>
+            <li>
+              Disabled - if there is no Stages with &#34;Available&#34; status
+            </li>
+          </ul>
+        </li>
+        <li>
+          Select lot
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for selected earlier Stage
+            </li>
+            <li>
+              Disabled - if there is no available lots for selected Stage
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Lots table section</b>
+      Displays added Lots to display for this client
+    </li>
+    <li>
+      <b>Save changes</b> - submit button
+      <ul>
+        On Click
+        <li>
+          Calls PUT request with edited data
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <b>Cancel</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>X icon</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+  </li>
+  </ul>
+</div>

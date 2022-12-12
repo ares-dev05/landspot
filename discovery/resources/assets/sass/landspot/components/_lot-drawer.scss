@@ -1,0 +1,440 @@
+.lot-drawer {
+  .sidebar {
+    .step-note {
+      .doc-name {
+        & > a {
+          display: flex;
+          align-items: center;
+          & > i {
+            margin-right: 10px;
+          }
+        }
+
+        padding-top: 25px;
+      }
+      border-bottom: $app-border;
+      padding-bottom: 15px;
+    }
+
+    @import "cards";
+
+    .cards {
+      .cards-list {
+        margin-bottom: 30px;
+        .card {
+          margin-bottom: 10px;
+          &.selected {
+            .content {
+              border: $app-border-width solid $landspot-theme-color;
+            }
+          }
+          .content {
+            border-radius: 0;
+          }
+          .page-num {
+            position: absolute;
+            bottom: 0;
+            left: 12px;
+            font-size: $smaller-text-size;
+          }
+        }
+      }
+    }
+
+    .step-nav {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      background-color: $landspot-theme-color;
+      box-shadow: $app-box-shadow;
+
+      height: 30px;
+      border-top: $app-border;
+
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 26%;
+      padding: 20px $content-padding 30px;
+      color: #fff;
+
+      & > .button {
+        color: #fff;
+
+        .landspot-icon {
+          padding: 7px 13px;
+          margin: 0;
+          &:before {
+            background-color: #fff;
+          }
+        }
+      }
+    }
+
+    .lot-settings {
+      & > .header {
+        font-size: $large-font-size;
+        font-weight: $font-weight-bold;
+        margin: 10px 0;
+
+        &:not(:first-child) {
+          margin-top: 30px;
+        }
+      }
+
+      .easements .btn-group,
+      .lot-background .image-cropper {
+        & > .button {
+          margin-right: 10px;
+          padding: 0 0.75em;
+          height: 30px;
+          align-self: flex-start;
+          flex: 1 1 130px;
+        }
+      }
+
+      .easements {
+        .btn-group {
+          & > .button {
+            max-width: 130px;
+          }
+        }
+        .easement {
+          display: flex;
+          margin-bottom: 10px;
+
+          & > .blocks {
+            width: 100%;
+            margin-top: 15px;
+            & > .block {
+              margin-bottom: 10px;
+              display: flex;
+              align-items: flex-start;
+
+              .easement-type {
+                line-height: 30px;
+                margin-right: 15px;
+                width: 85px;
+                padding: 0 1ch;
+                background-color: $input-background-color;
+                border-radius: 5px;
+                font-size: $small-text-size;
+              }
+
+              .easement-dimension {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                max-width: 85px;
+
+                & > .landspot-input {
+                  &:not(:first-child) {
+                    margin-top: 10px;
+                  }
+                }
+              }
+
+              .button {
+                height: 30px;
+                margin-left: auto;
+              }
+            }
+          }
+        }
+      }
+
+      .form-rows .form-row .right-item {
+        max-width: 80px;
+        &.wide {
+          max-width: 175px;
+        }
+      }
+
+      .color-picker {
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: space-between;
+        .picker {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          border: 1px solid black;
+          background: transparent;
+          margin: 0 10px 0 auto;
+          flex-shrink: 0;
+        }
+
+        .landspot-input {
+          max-width: 80px;
+        }
+
+        .landspot-input > input,
+        .picker {
+          cursor: pointer;
+        }
+
+        .colorpicker-wrapper {
+          position: absolute;
+          right: 0;
+          top: 40px;
+          z-index: $z-index-chat;
+          .close {
+            right: 0;
+            top: 0;
+          }
+          .sketch-picker {
+            padding: 15px 15px 5px 15px !important;
+          }
+        }
+      }
+
+      .lot-background {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+
+        & > span {
+          margin-right: 15px;
+        }
+
+        .image-cropper {
+          margin-right: 10px;
+
+          & > .button {
+            width: 140px;
+          }
+        }
+      }
+    }
+
+    .direction {
+      & > .landspot-icon {
+        &:first-child {
+          margin-right: 0;
+        }
+        &.active {
+          &:before {
+            background-color: $landspot-theme-color;
+          }
+        }
+      }
+    }
+
+    .edges-list {
+      margin: 30px 0;
+      .edge {
+        margin-bottom: 20px;
+        min-height: 30px;
+        position: relative;
+
+        .delete-btn {
+          position: absolute;
+          right: -20px;
+          top: 30px;
+
+          & > .landspot-icon {
+            padding: 6px;
+            margin: 0;
+          }
+        }
+
+        .edge-shape,
+        .edge-dimension {
+          display: flex;
+          justify-content: stretch;
+          align-items: center;
+          min-height: 30px;
+        }
+
+        .edge-shape {
+          .edge-type {
+            i {
+              margin-right: 10px;
+            }
+          }
+
+          .edge-type,
+          .direction {
+            margin-left: 15px;
+          }
+
+          .landspot-input {
+            max-width: 75px;
+            margin-left: auto;
+          }
+        }
+
+        .edge-dimension {
+          margin-top: 10px;
+          & > .landspot-input {
+            margin-left: 15px;
+          }
+        }
+      }
+    }
+
+    .edges-list,
+    .lot-settings {
+      margin: 30px 0 40px;
+    }
+  }
+
+  .drawer {
+    padding: 0 !important;
+    flex-flow: row !important;
+    align-items: center;
+    overflow: hidden;
+
+    .page-preview {
+      height: 100% !important;
+      box-shadow: $app-box-shadow;
+      position: absolute;
+      flex-shrink: 0;
+      background: #fff;
+
+      .react-resizable-handle {
+        position: absolute;
+        width: 150px;
+        height: 30px;
+        top: 60px;
+        right: -90px;
+        background: $button-background-color;
+        padding: 0 3px 3px 0;
+        background-origin: content-box;
+        box-sizing: border-box;
+        cursor: col-resize;
+        border-top-right-radius: 10px;
+        transform: rotate(90deg);
+
+        &:after {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          content: 'REFERENCE PLAN';
+          color: #fff;
+          height: 100%;
+          font-size: $small-text-size;
+        }
+      }
+
+      & > .image {
+        &.cross {
+          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>") no-repeat center center;
+          background-size: 100% 100%, auto;
+        }
+
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .lot-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .zoom-buttons {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    box-shadow: $app-box-shadow;
+
+    background: $landspot-theme-color;
+
+    & > button {
+      padding: 10px;
+      & > .landspot-icon {
+        margin: 0;
+        &:before {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  .lot-controls {
+    .sitings-sliders {
+      position: absolute;
+      width: 420px;
+      bottom: 23px;
+
+      .price-slider {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px 0;
+
+        & > .slider-prices {
+          padding-top: 0;
+          font-size: 12px;
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+
+          .slider-value {
+            width: 50px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            padding-left: 10px;
+            margin-left: auto;
+            box-shadow: $app-box-shadow;
+          }
+
+          & > .landspot-icon {
+            margin: 0 5px 0 15px;
+          }
+        }
+
+        & > .slider-container {
+          width: 200px;
+          margin-top: -3px;
+
+          & > .rail {
+            height: 4px;
+          }
+
+          & > .slider-handles {
+            & > .handle {
+              top: -1px;
+            }
+          }
+        }
+      }
+    }
+
+    &.export {
+      .zoom-buttons {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .summary {
+    padding-top: 40px !important;
+    .lot-view {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+  }
+
+  .exit-button {
+    position: absolute;
+    right: 50px;
+    top: calc(#{$app-navbar-height} + 10px);
+    color: $landspot-theme-color;
+    padding: 5px;
+    background: #fff;
+  }
+}

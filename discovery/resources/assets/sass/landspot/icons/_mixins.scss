@@ -1,0 +1,37 @@
+@function background-icon($icon-name) {
+  //$url: $icon-name;
+  //@if $icon-name != '' {
+    $url: '#{$icons-folder}#{$icon-name}-icon.svg';
+  //}
+
+  @return url($url);
+}
+
+@mixin landspot-mask-image($icon-name) {
+  &:before {
+    mask-image: background-icon($icon-name);
+  }
+}
+
+@mixin landspot-icon-before($icon-name, $width: 100%, $left: null, $right: null) {
+  position: relative;
+  &:before {
+    content: "";
+
+    background-color: $landspot-text-color;
+    mask-position: left center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+    @if $icon-name != '' {
+      mask-image: background-icon($icon-name);
+    }
+    width: $width;
+    left: $left;
+    right: $right;
+  }
+}

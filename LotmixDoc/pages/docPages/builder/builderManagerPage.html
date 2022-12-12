@@ -1,0 +1,130 @@
+<ul class="breadcrumb">
+    <li><a class="aList1" href="index.html">Home</a></li>
+    <li><a class="aList" href="pages/builderLotmix.html">Builder</a></li>
+    <li>Builders Manager</li>
+    <li><a class="aList" href="pages/docPages/builder/builderManagerPage.html">My clients page (E.1)</a></li>
+</ul>
+<div>
+    <div style="border-style: solid; background-color: lightgreen; ">
+        <b>User stories</b>
+        <ul>
+            <li>As a builders manager I want to invite new client that will be assign to me as its manager</li>
+            <li>As a builders manager I want to invite already invited clients by another builders or land developers manager</li>
+            <li>As a builders manager I want to see in table all of the clients that I invited</li>
+            <li>As a builders manager I want to edit clients info before it register</li>
+            <li>As a builders manager I want to remove client from the DB</li>
+            <li>As a builders manager I want to manage clients short lists</li>
+            <li>As a builders manager I want to upload documents for clients</li>
+            <li>Sitings stories - WIP</li>
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            <li>
+                <b>Actions</b>
+                <ul>
+                    <li>
+                        <b>Draft Sitings</b> - button - opens <a href="#"> Manage Draft Sitings pop up</a>
+                    </li>
+                    <li>
+                        <b>Add Client</b> - button - opens <a href="#"> Builders Client Invite pop up</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Filters</b>
+                <ul>
+                    <li>
+                        Input fields
+                        <ul>
+                            <li>
+                                <b>First name</b> - text - min length 1 - max length 50 - case sensitive ?
+                            </li>
+                            <li>
+                                <b>Last name</b> - text - min length 1 - max length 50 - case sensitive ?
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Buttons
+                        <ul>
+                            <li>
+                                <b>Clear all</b> - clears entered params in input fields and refresh the client lis
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Submitting
+                        <ul>
+                            <li>
+                                There is no submit button. Params applying automatically
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Clients list</b>
+                Shows only those clients that this manager invites personally<br>
+                Applied filter params info panel<br>
+                <ul>
+                    <li>
+                        String above the client list
+                    </li>
+                    <li>
+                        Displays in a single row filter params
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Main List</b>
+                <ul>
+                    <li>
+                        <b>First name</b> - displays data from database
+                    </li>
+                    <li>
+                        <b>Last name</b> - displays data from database
+                    </li>
+                    <li>
+                        <b>Short list</b> - icon - opens <a class="aList"  href="pages/docPages/builder/popups/manageBuilderShortList.html">Short list pop up</a>
+                    </li>
+                    <li>
+                        <b>Sitings</b> - icon - opens <a href="#">Sitings pop up</a>
+                    </li>
+                    <li>
+                        <b>Share documents</b> - icon - opens <a class="aList"  href="pages/docPages/builder/popups/shareBuildersDocuments.html" >Upload documents pop up</a>
+                    </li>
+                    <li>
+                        <b>Invite status</b> - displays what status has corresponding to this client invite
+                        <ul>
+                            <li>
+                                <b>Claimed</b> - green circle - corresponding client accepted received invitation
+                            </li>
+                            <li>
+                                <b>Pending</b> - red circle - client received invitation but still doesn&#39;t accept it
+                            </li>
+                        </ul>
+                    <li>
+                        <b>Action</b>
+                        <ul>
+                            <li>
+                                <b>Delete client</b> - icon - Calls delete client API call
+                            </li>
+                            <li>
+                                <b>Edit client details</b> - icon - opens <a class="aList" href="pages/docPages/builder/popups/editBuilderClient.html" >Edit Client Details pop up</a>
+                                <ul>
+                                    <li>
+                                        Visible only if Client status is <b>Pending</b>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

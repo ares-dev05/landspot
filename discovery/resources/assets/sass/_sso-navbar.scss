@@ -1,0 +1,53 @@
+.navbar > .container .navbar-brand,
+.navbar > .container-fluid .navbar-brand {
+  margin-left: 0;
+}
+
+.sso-container {
+  .navbar-default {
+    background: transparent;
+    border: none;
+
+    margin: 0;
+    .navbar-header {
+      float: none;
+    }
+
+    .navbar-brand {
+      padding: 0;
+      display: inline-block;
+      width: 120px;
+      height: 34px;
+    }
+
+    .navbar-nav > li > a {
+      opacity: 0.8;
+      font-size: 14px;
+      padding: 6px 18px;
+
+      &.active {
+        font-weight: 600;
+        color: var(--main-color);
+      }
+    }
+
+    .container {
+      padding-top: 40px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .sso-container.login {
+    .navbar-default {
+      .navbar-header {
+        border-bottom: none;
+      }
+    }
+  }
+}
+@media (min-width: 767px) {
+  .navbar-right {
+    margin-right: 0;
+  }
+}

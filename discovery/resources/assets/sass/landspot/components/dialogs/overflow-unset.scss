@@ -1,0 +1,6 @@
+.overflow-unset {
+  overflow: unset;
+  & > .popupmodal-body {
+    overflow: unset;
+  }
+}

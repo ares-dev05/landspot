@@ -1,0 +1,163 @@
+@import "a4-page";
+
+$eight-homes-color: #7AC142;
+$dark-color: #191919;
+
+.page {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .header {
+    margin-top: -1px;
+    height: 31.25mm;
+    background: url("#{$APP_URL}/images/pdf_public/8homes-header.svg") center center/cover no-repeat;
+  }
+
+  .facade {
+    margin-top: -1px;
+    height: 131mm;
+    position: relative;
+    background: transparent center center/cover no-repeat;
+
+    .advertising {
+      position: absolute;
+      color: white;
+      font-size: 7pt;
+      font-family: "TradeGothic LT CondEighteen";
+      bottom: 15mm;
+      left: 10mm;
+    }
+
+    .facade-name {
+      position: absolute;
+      right: 0;
+      left: 0;
+      text-align: center;
+      color: #fff;
+      font-family: "Helvetica Neue LT Bold";
+      font-size: 23pt;
+      bottom: 0;
+      padding: 5pt 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .house-data {
+    padding: 6mm 9mm 0 9mm;
+    color: $dark-color;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .attributes {
+      flex: 0 0 50%;
+      width: 50%;
+      overflow: hidden;
+
+      .title {
+        font-family: "Helvetica Neue LT Bold";
+        font-size: 36pt;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .range {
+        font-size: 13pt;
+        font-family: "Helvetica Neue LT";
+        padding-left: 3pt;
+      }
+
+      .house-options {
+        margin: 8pt 0 0 0;
+        padding: 0 0 0 3pt;
+        list-style-type: none;
+        display: inline-flex;
+        height: 21pt;
+
+        & > li {
+          position: relative;
+
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            background: #fff url('#{$APP_URL}/images/pdf_public/8homes-option-icons.svg') left top/cover no-repeat;
+          }
+
+
+          line-height: 20pt;
+          font-family: "Helvetica Neue LT Bold";
+          font-size: 20pt;
+          width: 43pt;
+          padding-left: 24pt;
+          color: $eight-homes-color;
+
+          &.beds:before {
+            background-position: 0 0;
+          }
+          &.baths:before {
+            background-position: -48px 0;
+          }
+          &.cars:before {
+            background-position: -96px 0;
+          }
+        }
+      }
+
+      .area-size {
+        border-left: 1px solid $eight-homes-color;
+        padding-left: 8pt;
+        color: $eight-homes-color;
+        font-family: "Helvetica Neue LT Bold";
+        font-size: 18pt;
+      }
+
+      .house-description {
+        font-size: 10pt;
+        height: 50mm;
+        font-family: "Helvetica Neue LT";
+        margin-top: 16pt;
+        padding-left: 3pt;
+        overflow: hidden;
+      }
+
+      .lot-size-title {
+        color: $eight-homes-color;
+        font-size: 17pt;
+        margin-top: 2pt;
+        padding-left: 3pt;
+        font-family: "Helvetica Neue LT Bold";
+      }
+
+      .lot-size {
+        color: $eight-homes-color;
+        font-size: 13pt;
+        //margin-top: 16pt;
+        padding-left: 3pt;
+        font-family: "Helvetica Neue LT Bold";
+      }
+    }
+
+    .floorplans {
+      flex: 1 0 50%;
+      display: flex;
+      flex-flow: row nowrap;
+
+      & > div {
+        flex: 1 50%;
+        background: center center / contain no-repeat scroll transparent;
+      }
+    }
+  }
+
+  .disclaimer {
+    border-top: 1px solid $dark-color;
+    font-size: 7pt;
+    font-family: "TradeGothic LT CondEighteen";
+    margin: 12mm 9mm 0 9mm;
+  }
+}

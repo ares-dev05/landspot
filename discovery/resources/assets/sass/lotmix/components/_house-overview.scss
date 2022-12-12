@@ -1,0 +1,146 @@
+.primary-container > section.content.house-overview {
+  .short-list-button.primary:hover{
+    background: $landspot-theme-color;
+    color: white;
+    border-color: transparent;
+  }
+  .short-list-button.default:hover{
+    background: white;
+    color: $landspot-theme-color;
+    border-color: $landspot-theme-color;
+  }
+  & > .house {
+    direction: ltr;
+    .left-panel {
+      .header {
+        display: flex;
+        justify-content: space-between;
+        & > header{
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 3;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  .primary-container > section.content.house-overview {
+    &.short-list {
+      padding-left: 40px;
+      padding-right: 40px;
+
+      & > .house {
+        .left-panel {
+          padding-top: 90px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .primary-container > section.content.house-overview {
+    position: relative;
+
+    .house-header {
+      display: flex;
+      margin: 10px 0 25px;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 70px;
+
+      .back-nav {
+        margin-left: 10px;
+      }
+
+      .image {
+        margin-right: 20px;
+        height: 100%;
+      }
+    }
+
+    & > .house {
+      padding: 0 10px;
+
+      & > .left-panel {
+        & > .house-description {
+          border-top: none;
+          padding-top: 0;
+          font-size: 12px;
+          line-height: 19px;
+        }
+
+        & > .dimensions {
+          margin-top: 22px;
+          margin-bottom: 10px;
+
+          & > span:last-child{
+            margin-right: 0;
+          }
+        }
+      .header{
+        margin-bottom: 20px;
+        & > header {
+          font-size: 16px;
+          font-weight: $font-weight-bold;
+          line-height: 22px;
+        }
+      }
+
+        & > .house-attributes {
+          height: auto;
+          margin-bottom: 25px;
+
+          & > li.price {
+          }
+        }
+      }
+
+      & > .right-panel {
+        padding-top: 0;
+
+        .heading {
+          font-size: 14px;
+          color: $landspot-theme-color;
+          font-weight: $font-weight-bold;
+          padding: 10px 0;
+          line-height: 35px;
+          border-top: $app-border;
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .select-facade {
+          padding-bottom: 20px;
+          padding-top: 10px;
+        }
+
+        .vertical-btn-group {
+          padding: 40px 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+
+          .button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 170px;
+            height: 42px;
+            margin-bottom: 10px;
+          }
+        }
+
+        & > .carousel.gallery .carousel__back-button,
+        & > .carousel.gallery .carousel__next-button{
+          bottom: calc(50% - 37px);
+        }
+      }
+    }
+  }
+}
+

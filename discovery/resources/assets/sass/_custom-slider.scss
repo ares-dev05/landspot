@@ -1,0 +1,47 @@
+.custom-slider {
+  $slider-width: 320px;
+  $slider-height: 320px;
+  position: relative;
+
+  .slider-window {
+    overflow: hidden;
+    position: relative;
+    max-width: 375px;
+    height: $slider-height;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .slides {
+    display: flex;
+    position: relative;
+    top: 0;
+    left: -$slider-width;
+    width: 10000px;
+  }
+
+  .slides.shifting {
+    transition: left .2s ease-out;
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, calc(100% + 20px));
+    z-index: 2;
+    display: flex;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    background: #E8EAEE;
+    border-radius: 50%;
+    margin: 0 10px;
+
+    &.active {
+      background: $landspot-theme-color;
+    }
+  }
+}

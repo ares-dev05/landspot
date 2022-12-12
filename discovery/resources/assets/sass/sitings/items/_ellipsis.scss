@@ -1,0 +1,8 @@
+.ellipsis {
+  @include text-overflow-ellipsis;
+
+  &.flex-centered {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,33 @@
+.invite-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form-rows {
+        .form-row {
+            margin-bottom: 30px;
+        }
+    }
+
+    .landspot-input {
+        flex: 1 1 100%;
+        margin-left: auto;
+    }
+
+    & > .button {
+        max-width: 160px;
+        width: 100%;
+        margin-top: 30px;
+    }
+}
+.invite-form .form-rows .form-row .invite-client-dropdown {
+    max-width: 320px;
+    .list {
+        max-height: 25vh;
+    }
+}
+.invite-popup{
+    width: auto;
+    max-width: 570px;
+}

@@ -1,0 +1,113 @@
+.estates-map {
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: $z-index-estate-google-map;
+  background: #fff;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+
+  & > .map-wrapper {
+    height: 100%;
+  }
+
+
+  & > .map-location-search-wrapper {
+    z-index: $z-index-estate-google-map;
+    position: fixed;
+    right: 60px;
+    top: 10px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    direction: ltr;
+    min-width: 38px;
+    border-radius: 3px;
+    background: white;
+
+    .map-location-search {
+      right: 0;
+      top: 0;
+      appearance: none;
+      border: 0;
+      outline: 0;
+      line-height: 2.5rem;
+      padding: 0 3em 0 0;
+      width: 2.5rem;
+      opacity: 0;
+      z-index: $z-index-input-location-google-map;
+      display: block;
+      transition: all .175s cubic-bezier(.4, 0, .2, 1);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+      border-radius: 3px;
+
+      &:focus {
+        opacity: 1;
+        width: 250px;
+        cursor: text;
+        padding-left: 12px;
+      }
+
+    }
+
+    &:after {
+      content: '\f002';
+      display: inline-block;
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font: normal normal normal 10px/1 'Font Awesome 5 Pro';
+    }
+  }
+}
+
+.estate-marker {
+  height: 136px;
+  width: 165px;
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: $item-box-shadow;
+  color: $landspot-text-color;
+  cursor: pointer;
+
+  & > .image {
+    @include card-image;
+    background: transparent center center/cover no-repeat;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  & > .title {
+    font-size: $small-text-size;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    line-height: 1.5;
+    @include ellipsis-overflow;
+  }
+
+  & > .lots {
+    font-size: $smaller-text-size - 1px;
+    text-align: center;
+  }
+
+  &:after {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #ffffff transparent transparent transparent;
+    transform: translate3d(50%, 100%, 0);
+    right: 50%;
+  }
+}
+
+.map-cluster-icon {
+  mask: url('../../../img/cluster.svg') center center/contain no-repeat;
+  color: #fff!important;
+  background: $landspot-theme-color;
+}

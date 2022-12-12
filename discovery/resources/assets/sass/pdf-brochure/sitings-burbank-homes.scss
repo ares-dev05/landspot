@@ -1,0 +1,189 @@
+@import "a4-page";
+
+.page {
+  font-size: 8pt;
+  padding: 0 13mm;
+  font-family: "Proxima Nova";
+
+
+  .important {
+    font-family: proxima_nova_ltsemibold;
+  }
+
+  .lists {
+    display: flex;
+    & > .list {
+      margin: 0;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+
+      .item {
+        padding: 1mm 0;
+        .name {
+          display: inline-block;
+          min-width: 25mm;
+
+          .sup {
+            position: relative;
+            &:after {
+              display: block;
+              content: '2';
+              position: absolute;
+              font-size: 5pt;
+              top: 0;
+              right: -1mm;
+            }
+          }
+        }
+        .area {
+          font-size: 7pt;
+        }
+        border-bottom: 1pt solid #eee;
+      }
+
+      &:not(:first-child) {
+        padding-left: 5mm;
+      }
+    }
+  }
+
+  .header {
+    height: 41mm;
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+    align-items: flex-end;
+    position: relative;
+    z-index: 999;
+
+    padding-top: 11mm;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &:before {
+      background: #f6890f;
+      width: 44mm;
+      height: 5mm;
+      z-index: 3;
+    }
+
+    &:after {
+      width: 50mm;
+      height: 20mm;
+      z-index: 2;
+    }
+
+    .lists {
+      width: 100%;
+      justify-content: stretch;
+      align-items: flex-end;
+      & > .list {
+        &:first-child {
+          width: 117mm;
+        }
+        &:last-child {
+          width: 66mm;
+          padding-left: 3mm;
+        }
+      }
+    }
+  }
+
+  .siting {
+    height: 211mm;
+    background: transparent;
+    position: relative;
+
+    .siting-info {
+      position: absolute;
+      right: -3mm;
+      top: 3mm;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .north-indicator {
+      margin-top: -3mm;
+    }
+  }
+
+  .footer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    position: relative;
+    width: 100%;
+
+    height: 45mm;
+
+    .contacts {
+      font-family: "proxima_nova_ltthin";
+      position: absolute;
+      left: 0;
+      top: 13mm;
+      & > div {
+        font-size: 13pt;
+        span {
+          font-size: 12pt;
+        }
+      }
+    }
+
+    .site-coverage {
+      .heading {
+        font-family: proxima_nova_ltsemibold;
+        margin-bottom: 1mm;
+        text-transform: uppercase;
+      }
+      .lists {
+        & > .list {
+          width: 47mm;
+          & > .item {
+            &:first-child {
+              border-top: 1pt solid #eee;
+            }
+
+            .area {
+              font-size: 8pt;
+            }
+          }
+
+          &:first-child {
+            width: 42mm;
+            & > .item {
+              .name {
+                min-width: 16mm;
+              }
+            }
+          }
+
+          &:nth-child(2) {
+            & > .item {
+              .name {
+                min-width: 14mm;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .note {
+      font-family: "proxima_nova_ltthin";
+      flex-basis: 100%;
+      width: 100%;
+      margin-top: 5mm;
+      font-size: 6pt;
+    }
+  }
+}

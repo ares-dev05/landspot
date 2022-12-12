@@ -1,0 +1,11 @@
+.main {
+    width: 80%;
+    float: right;
+    position: relative;
+    font-size: 20px; /* Increased text to enable scrolling */
+    text-decoration: none;
+}
+
+.aList {
+    text-decoration: #111111;
+}

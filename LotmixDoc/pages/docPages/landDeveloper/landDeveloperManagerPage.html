@@ -1,0 +1,133 @@
+<ul class="breadcrumb">
+    <li><a class="aList1" href="index.html">Home</a></li>
+    <li><a class="aList" href="pages/builderLotmix.html">Land Developer</a></li>
+    <li>Land Developers Manager</li>
+    <li><a class="aList" href="pages/docPages/landDeveloper/landDeveloperManagerPage.html">My clients page (D.1)</a></li>
+</ul>
+<div>
+    <div style="border-style: solid; background-color: lightgreen; ">
+        <b>User stories</b>
+        <ul>
+            <li>As a Land Developers manager I want to invite new client that will be assign to me as its manager</li>
+            <li>As a Land Developers I want to invite already invited clients by another builders or land developers manager</li>
+            <li>As a Land Developers I want to see in table all of the clients that I invited</li>
+            <li>As a Land Developers I want to edit clients info before it register</li>
+            <li>As a Land Developers I want to remove client from the DB</li>
+            <li>As a Land Developers I want to manage clients short lists</li>
+            <li>As a Land Developers I want to upload documents for clients</li>
+        </ul>
+    </div>
+
+    <div>
+        <ul>
+            <li>
+                <b>Invites</b>
+                <ul>
+                    <li>
+                        <b>Add Buyer</b> - button - opens <a href="#"> Client Invite pop up</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Filters</b>
+                <ul>
+                    <li>
+                        Input fields
+                        <ul>
+                            <li>
+                                <b>First name</b> - text - min length 1 - max length 50 - case sensitive ?
+                            </li>
+                            <li>
+                                <b>Last name</b> - text - min length 1 - max length 50 - case sensitive ?
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Buttons
+                        <ul>
+                            <li>
+                                <b>Clear all</b> - clears entered params in input fields and refresh the client lis
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Submitting
+                        <ul>
+                            <li>
+                                There is no submit button. Params applying automatically
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Clients list</b>
+                Shows only those clients that this manager invites personally<br>
+                Applied filter params info panel<br>
+                <ul>
+                    <li>
+                        String above the client list
+                    </li>
+                    <li>
+                        Displays in a single row filter params
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Main List</b>
+                <ul>
+                    <li>
+                        <b>First name</b> - displays data from database
+                    </li>
+                    <li>
+                        <b>Last name</b> - displays data from database
+                    </li>
+                    <li>
+                        <b>Estates</b>
+                        <ul>
+                            <li>
+                                Displays estates that was selected in all of invites from land developers managers to this client
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>Short list</b> - icon - opens <a class="aList" href="pages/docPages/landDeveloper/popups/manageLanDevShortList.html">Short list pop up</a>
+                    </li>
+                    <li>
+                        <b>Upload documents</b> - icon - opens <a class="aList" href="pages/docPages/landDeveloper/popups/shareLandDevDocuments.html">Upload documents pop up</a>
+                    </li>
+                    <li>
+                        <b>Invite status</b> - displays what status has corresponding to this client invite
+                        <ul>
+                            <li>
+                                <b>Claimed</b> - green circle - corresponding client accepted received invitation
+                            </li>
+                            <li>
+                                <b>Pending</b> - red circle - client received invitation but still doesn&#39;t accept it
+                            </li>
+                        </ul>
+                    <li>
+                        <b>Action</b>
+                        <ul>
+                            <li>
+                                <b>Delete client</b> - icon - Calls delete client API call
+                            </li>
+                            <li>
+                                <b>Edit client details</b> - icon - opens  <a class="aList" href="pages/docPages/landDeveloper/popups/editLandDevClient.html">Edit Client Details pop up</a>
+                                <ul>
+                                    <li>
+                                        Visible only if Client status is <b>Pending</b>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

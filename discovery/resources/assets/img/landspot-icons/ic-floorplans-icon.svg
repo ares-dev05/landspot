@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>ic-floorplans</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="menu" transform="translate(-20.000000, -166.000000)" stroke="#7F7F7F">
+            <g id="ic-floorplans" transform="translate(21.000000, 167.000000)">
+                <polyline id="Stroke-8" points="18 9.35766423 18 14 0 14 0 0 18 0 18 6.34969111 13.009562 6.34969111 13.009562 2.59416301"></polyline>
+                <polyline id="Stroke-9" points="11 14 11 9 4 9"></polyline>
+                <line x1="6.5" y1="2" x2="10.5" y2="2" id="Stroke-12" transform="translate(8.500000, 2.000000) rotate(-270.000000) translate(-8.500000, -2.000000) "></line>
+            </g>
+        </g>
+    </g>
+</svg>

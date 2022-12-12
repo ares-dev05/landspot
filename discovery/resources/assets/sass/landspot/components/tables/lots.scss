@@ -1,0 +1,183 @@
+&.lots {
+  position: relative;
+  min-width: 1024px;
+
+  & > thead {
+    & > tr > th {
+      vertical-align: middle;
+      position: relative;
+      text-transform: uppercase;
+      font-weight: $font-weight-bold;
+
+      &.movable {
+        @extend %movable-header-cell;
+      }
+
+      & > a {
+        & > [class*="fa-sort"] {
+          float: right;
+        }
+
+        & > .column-name {
+          margin-right: 1em;
+        }
+
+        max-width: 100%;
+        display: inline-block;
+      }
+
+      & > .landspot-input {
+        & > .column-name {
+          min-width: 10ch;
+        }
+      }
+
+      & > .menu-list {
+        & > .right {
+          right: -100px;
+          top: -7px;
+        }
+      }
+
+      & > .edit-icon {
+        i {
+          padding: 7px 6px 8px 6px;
+          margin-left: 1em;
+        }
+      }
+
+      & > .bulk-overlay {
+        width: 999999px;
+        height: 999999px;
+        position: absolute;
+        top: -10000px;
+        left: -10000px;
+        z-index: 1;
+        display: block;
+      }
+
+      & > .bulk-tooltip {
+
+        & > .right {
+          right: unset;
+          top: -46px;
+          width: unset;
+          left: 90px;
+        }
+
+        & > .dropdown {
+          .title-date-bulk-update {
+            display: flex;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            align-items: center;
+            margin: 0 0 6px;
+            justify-content: space-between;
+
+            span {
+              margin-right: 1.5em;
+              text-transform: capitalize;
+              font-size: 12px;
+            }
+
+            a {
+              i {
+                font-size: 16px;
+              }
+            }
+          }
+
+          .input-row {
+            display: flex;
+            align-items: center;
+
+            .landspot-input {
+              min-width: 110px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > tbody {
+    //&.movable,
+    &.saving-data {
+      & > tr {
+        visibility: hidden;
+      }
+    }
+
+    //&.movable {
+    //  &:before {
+    //    content: 'Please drag and drop the column';
+    //    position: absolute;
+    //    display: block;
+    //    left: 50%;
+    //    top: 50%;
+    //  }
+    //}
+    &.saving-data {
+      &:before {
+        content: 'Updating lots. Please wait';
+        position: absolute;
+        display: block;
+        left: 50%;
+        top: 50%;
+      }
+    }
+
+    & > tr {
+      & > td {
+        vertical-align: middle;
+
+        & > canvas {
+          vertical-align: middle;
+        }
+
+        & > .nice-dropdown.status {
+          width: 12ch;
+          color: inherit;
+
+          & > button {
+            color: inherit;
+            background: transparent;
+          }
+
+          & > .list {
+            color: $landspot-text-color;
+          }
+        }
+
+        &.visibility {
+          div {
+            text-align: left;
+          }
+        }
+
+        & > button.available {
+          & > .landspot-icon:before {
+            background-color: $color-available;
+          }
+        }
+      }
+    }
+  }
+
+  .available {
+    color: $color-available !important;
+  }
+
+  .hold {
+    color: $color-on-hold;
+  }
+
+  .sold {
+    color: $color-sold;
+  }
+
+  .deposit {
+    color: $landspot-blue-color;
+  }
+}

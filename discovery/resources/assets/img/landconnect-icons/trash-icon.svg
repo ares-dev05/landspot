@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="21px" viewBox="0 0 16 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Trash" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="basic_trashcan" stroke="#323337">
+            <g id="Trash-Icon">
+                <g id="Group" transform="translate(0.000000, 1.235294)">
+                    <polyline id="Shape" stroke-width="0.75" points="5.71428571 2.47058824 5.71428571 0 10.2857143 0 10.2857143 2.47058824"></polyline>
+                    <polyline id="Shape" stroke-width="0.75" points="2.28571429 2.47058824 2.28571429 18.5294118 13.7142857 18.5294118 13.7142857 2.47058824"></polyline>
+                    <path d="M5.71428571,5.64431503 L5.71428571,15.1371984" id="Shape" stroke-width="0.75"></path>
+                    <path d="M10.2857143,5.64431503 L10.2857143,15.1371984" id="Shape" stroke-width="0.75"></path>
+                    <path d="M0.560384872,2.47058824 L15.3494772,2.47058824" id="Shape" stroke-width="0.75"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

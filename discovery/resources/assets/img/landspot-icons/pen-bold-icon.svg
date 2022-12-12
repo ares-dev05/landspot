@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Edit---Small" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group-7" transform="translate(6.363961, 6.363961) scale(-1, 1) rotate(135.000000) translate(-6.363961, -6.363961) translate(4.863961, -1.136039)" stroke-width="0.75">
+            <path d="M2.31720424,2.54211881 L1.15860212,0 L0,2.54211881 L6.66133815e-16,13.5170247 C7.44496304e-16,14.156903 0.518723838,14.6756268 1.15860212,14.6756268 L1.15860212,14.6756268 C1.7984804,14.6756268 2.31720424,14.156903 2.31720424,13.5170247 L2.31720424,2.54211881 Z" id="Stroke-1" stroke="#323337"></path>
+            <path d="M0,2.70340495 L2.31720424,2.70340495" id="Stroke-3" stroke="#323337"></path>
+            <path d="M0,12.7446233 L2.31720424,12.7446233" id="Stroke-5" stroke="#4A4A4A"></path>
+        </g>
+    </g>
+</svg>

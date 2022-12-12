@@ -1,0 +1,186 @@
+<ul class="breadcrumb">
+  <li><a class="aList1" href="index.html">Home</a></li>
+  <li><a class="aList" href="pages/builderLotmix.html">Land Developer</a></li>
+  <li>Land Developers Manager</li>
+  <li><a class="aList" href="pages/docPages/landDeveloper/landDeveloperManagerPage.html">My clients page (D.1)</a></li>
+  <li><a class="aList" href="pages/docPages/landDeveloper/popups/editLandDevClient.html">Edit Clients details Pop up(D.1.1)</a></li>
+</ul>
+<div>
+  <div style="border-style: solid; background-color: lightgreen; ">
+    <b>User stories</b>
+    <ul>
+      <li>As a assigned manager I want to see all data that was entered in invite form</li>
+      <li>As a assigned manager I want to Edit client First name, Last name and Phone number</li>
+      <li>As a assigned manager I want to abort changes if I don't click on submit button</li>
+      <li>As a assigned manager I want to close pop up without any changes apply</li>
+    </ul>
+  </div>
+  <ul>
+    <li>
+      <b>Title</b>
+      <ul>
+        <li>
+          String - contains First name + Last Name + &#34;Details&#34;
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>User parameters list</b>
+      If these params hasn't been edited yet they must be same as manager entered in <a href="#"> Client Invite pop up</a>
+      <ul>
+        <li>
+          Email
+          <ul>
+            <li>
+              Span
+            </li>
+            <li>
+              Not editable
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Phone</b>
+
+          <ul>
+            <li>
+              Span/Input field (Number - min 6 chars,  max length 20 chars)
+            </li>
+            <li>
+              Editable
+            </li>
+            <li>
+              <b>Pencil icon</b><br>
+              On Click
+              <ul>
+                <li>
+                  Change span field into input field (Number - min 6 chars,  max length 20 chars)
+                </li>
+                <li>
+                  <b>Change Pencil</b> icon into <b>Disk icon</b>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <b>Disk icon</b> - submit button <br>
+              On click
+              <ul>
+                <li>
+                  Change corresponding element value on Front End
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>First name</b>
+          <ul>
+            <li>
+              Span/Input field (Text - max length 50 chars)
+            </li>
+            <li>
+              Editable
+            </li>
+            <li>
+              <b>Pencil icon</b><br>
+              On Click
+              <ul>
+                <li>
+                  Change span field into input field (Text - max length 50 chars)
+                </li>
+                <li>
+                  <b>Change Pencil</b> icon into <b>Disk icon</b>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <b>Disk icon</b> - submit button <br>
+              On click
+              <ul>
+                <li>
+                  Change corresponding element value on Front End
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <b>Last name</b>
+          <ul>
+            <li>
+              Span/Input field (Text - max length 50 chars)
+            </li>
+            <li>
+              Editable
+            </li>
+            <li>
+              Text - max length 50 chars
+            </li>
+            <li>
+              <b>Pencil icon</b><br>
+              On Click
+              <ul>
+                <li>
+                  Change span field into input field (Text - max length 50 chars)
+                </li>
+                <li>
+                  <b>Change Pencil</b> icon into <b>Disk icon</b>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <b>Disk icon</b> - submit button <br>
+              On click
+              <ul>
+                <li>
+                  Change corresponding element value on Front End
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Save changes</b> - submit button
+          <ul>
+            On Click
+            <li>
+                Calls PUT request with edited data
+            </li>
+
+          </ul>
+        </li>
+        <li>
+          <b>Cancel</b>
+          <ul>
+            <li>
+              Button<br>
+              On Click
+              <ul>
+                <li>
+                  Close pop up without updating edited values in DB
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>X icon</b>
+          <ul>
+            <li>
+              Button<br>
+              On Click
+              <ul>
+                <li>
+                  Close pop up without updating edited values in DB
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+

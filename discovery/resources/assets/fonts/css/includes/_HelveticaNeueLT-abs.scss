@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Helvetica Neue LT';
+  src: url('#{$APP_URL}/fonts/HelveticaNeueRegular.eot?#iefix') format('embedded-opentype'),
+  url('#{$APP_URL}/fonts/HelveticaNeueRegular.woff') format('woff'),
+  url('#{$APP_URL}/fonts/HelveticaNeueRegular.ttf') format('truetype'),
+  url('#{$APP_URL}/fonts/HelveticaNeueRegular.svg#HelveticaNeueRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/**
+*
+* helvetica-neue-bold
+*
+**/
+
+@font-face {
+  font-family: 'Helvetica Neue LT Bold';
+  src: url('#{$APP_URL}/fonts/HelveticaNeueBold.eot?#iefix') format('embedded-opentype'),
+  url('#{$APP_URL}/fonts/HelveticaNeueBold.woff') format('woff'),
+  url('#{$APP_URL}/fonts/HelveticaNeueBold.ttf') format('truetype'),
+  url('#{$APP_URL}/fonts/HelveticaNeueBold.svg#HelveticaNeueBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,171 @@
+﻿/**
+ 1. Easement label suffix -> Right now it's ' E' for everyone, but it can be changed on a per-builder basis.
+ [X] E can be for everyone no need for customisation here.
+
+ 2. OMP label suffix -> Right now it's ' OMP' for everyone, but it can be changed on a per-builder basis.
+ [x] OMP for everyone no need to change heree.
+
+ 3. OMP states -> in which states will the builder have OMP available. A list of states for each builder
+ [ ] This must remain.
+
+ 4. Manual trace states -> A list of states for each builder. We don't have the tracing feature implemented in HTML5 - is it still needed in NSW / SA for some builders?
+ [ ]  This is 100% needed wherever it is currently applied.
+
+ 5. POS states -> A list of states for each builder.
+ [x] POS - private open space, this can be given to everyone.
+
+ 6. Enable Extend/Reduce -> changed on a per-builder basis.
+ [ ]  This must remain
+
+ 7. Enable Structures -> changed on a per-builder basis.
+ [x]  This can be added in as standard.
+
+ 8. Custom PDF disclaimer text per state. Only Burbank has this as far as I can see.
+ [ ] This must remain
+ */
+
+/*
+Id	Name							Abbreviation
+-==============================================-
+1 	New South Wales 				NSW
+2 	Australian Capital Territory 	ACT
+3 	Northern Territory 				NT
+4 	Queensland 						QLD
+5 	South Australia 				SA
+6 	Tasmania 						TAS
+7 	Victoria 						VIC
+8 	Western Australia 				WA
+9 	Dual Occ 						DOC
+-==============================================-
+*/
+
+import AccountMgr from './AccountMgr';
+
+// define & setup all the builders here
+const DEFAULT		= new Builder('Default',[],[]);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Live Builders
+const SIMONDS		= new Builder('Simonds',[4,5],[1]);
+const PORTER_DAVIS	= new Builder('PorterDavis',[],[]);
+const SHERRIDON		= new Builder('SherridonHomes',[4], []);
+const ORBIT			= new Builder('OrbitHomes' ,[4], []);
+const BOLD			= new Builder('BoldProperties',[4],[]);
+const MEGA_HOMES	= new Builder('MegaHomes',[4],[7]);
+const MIMOSA_HOMES	= new Builder('MimosaHomes',[4],[]);
+const EIGHT_HOMES	= new Builder('EightHomes',[],[]);
+const BEECHWOOD		= new Builder('BeechwoodHomes',[4],[1,2,3,4,5,6,7,8]);
+const HOMEBUYERS	= new Builder('Homebuyers',[4],[], [], false);
+const BOUTIQUE		= new Builder('BoutiqueHomes',[7],[]);
+const KINGSBRIDGE	= new Builder('Kingsbridge',[7],[]);
+const CLARENDON		= new Builder('ClarendonHomes',[4],[1,2,3,4,5,6,7,8]);
+const INVISION		= new Builder('InvisionHomes',[4],[]);
+const BURBANK		= new Builder('Burbank',[4],[1,5],
+	[
+		// 0	N/A
+		'',
+		// 1 	New South Wales 				NSW
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia (NSW) Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 2 	Australian Capital Territory 	ACT
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia (NSW) Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 3 	Northern Territory 				NT
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 4 	Queensland 						QLD
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia (Qld) Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 5 	South Australia 				SA
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia (SA) Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 6 	Tasmania 						TAS
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 7 	Victoria 						VIC
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.',
+		// 8 	Western Australia 				WA
+		'This siting plan is to be used solely to determine whether a particular Burbank Australia Pty Ltd house will fit on a lot of land.  It is an indication only and should not be relied upon for any other purpose. Burbank takes no responsibility for the accuracy of this siting plan as it has not fully reviewed all necessary and ancillary documents in relation to the particular lot. All parties relying upon this plan should seek expert advice in order to accurately determine the suitability of the proposed dwelling on the particular lot.'
+	]
+);
+
+const liveBuilders = [
+	DEFAULT, SIMONDS, PORTER_DAVIS, SHERRIDON, ORBIT, BOLD, MEGA_HOMES, MIMOSA_HOMES, EIGHT_HOMES, BEECHWOOD,
+	HOMEBUYERS, BOUTIQUE, KINGSBRIDGE, CLARENDON, INVISION, BURBANK
+];
+
+export default class Builder {
+
+	get name() { return this._name; }
+
+	/**
+	 * @returns {boolean} True if measurements to the OMP (outer-most-projection) are enabled for the current session
+	 */
+	get ompEnabled() { return this._ompStates.indexOf( AccountMgr.i.userRegion ) !== -1; }
+
+	/**
+	 * @returns {boolean} True if manual tracing is enabled for the current session
+	 */
+	get hasManualTracing() { return this._traceStates.indexOf(AccountMgr.i.userRegion) !== -1; }
+
+	/**
+	 * @returns {String}
+	 */
+	get customDisclaimerText() {
+		if ( this._customDisclaimerText && AccountMgr.i.userRegion < this._customDisclaimerText.length ) {
+			return this._customDisclaimerText[AccountMgr.i.userRegion];
+		}
+		return null;
+	}
+
+	/**
+	 * @returns {boolean}
+	 */
+	get hasExtendReduce() { return this._hasExtendReduce; }
+
+	/**
+	 * @param name {String}
+	 * @param ompStates {number[]}
+	 * @param traceStates {number[]}
+	 * @param disclaimerText {String[]|null}
+	 * @param hasExtendReduce {boolean}
+	 */
+	constructor(name, ompStates, traceStates, disclaimerText=null, hasExtendReduce=true) {
+		/**
+		 * @type {string} Unique Builder Name
+		 * @private
+		 */
+		this._name				= name.toUpperCase();
+
+		/**
+		 * @type {number[]} States in which OMP measurements are enabled for the current builder
+		 * @private
+		 */
+		this._ompStates			= ompStates;
+
+		/**
+		 * @type {number[]} States in which manual tracing is enabled for the current builder
+		 * @private
+		 */
+		this._traceStates		= traceStates;
+
+		/**
+		 * @type {String[]} Custom PDF disclaimer text for certain builders, by state
+		 * @private
+		 */
+		this._customDisclaimerText= disclaimerText;
+
+		/**
+		 * @type {boolean}  indicates if house extension/reductions are enabled for this builder
+		 * @private
+		 */
+		this._hasExtendReduce	= hasExtendReduce;
+	}
+
+	/**
+	 * @param name {String}
+	 * @returns {Builder}
+	 */
+	static fromName(name)
+	{
+		name = name.toUpperCase();
+		const builder = liveBuilders.find(
+			(element) => {return element.name === name;}
+		);
+		return builder || DEFAULT;
+	}
+}

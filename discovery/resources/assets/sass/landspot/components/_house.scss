@@ -1,0 +1,350 @@
+&.house-overview {
+  padding-top: 0;
+  padding-left: 30px;
+  padding-right: 0;
+  flex-flow: column;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+& > .house {
+  flex-grow: 1;
+
+  .back-nav {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+
+    .fa-angle-left {
+      transform: translateY(2px);
+      font-size: 22px;
+      margin-right: 6px;
+    }
+  }
+
+  & > .left-panel {
+    flex: 0 0 33%;
+    padding-top: 30px;
+    padding-right: 40px;
+    position: relative;
+    border-right: 1pt solid #E4E7EA;
+    overflow: hidden;
+
+    & > header {
+      @extend %landspot-section-heading;
+    }
+
+    & > .house-attributes {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      height: 44px;
+
+      & > li {
+        margin-right: 14px;
+        display: flex;
+        align-items: flex-start;
+
+        & > i {
+          margin-right: 9px;
+          width: 27px;
+          height: 27px;
+        }
+
+        & > span {
+          margin-top: 10px;
+        }
+
+        &.price {
+          display: none;
+        }
+      }
+    }
+
+    & > .house-description {
+      font-weight: $font-weight-medium;
+      line-height: 25px;
+      border-bottom: $app-border;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      max-height: 44ch;
+      overflow: hidden;
+    }
+
+    & > ul.house-description {
+      margin: 0;
+
+      & > li {
+        padding-left: 1em;
+      }
+    }
+
+    & > .dimensions {
+      font-size: $smaller-text-size;
+      font-weight: $font-weight-bold;
+      margin-bottom: 30px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      .dimension-title {
+        color: $landspot-theme-color;
+        font-weight: bold;
+      }
+
+      .dimension {
+        font-size: 14px;
+      }
+    }
+  }
+
+  & > .right-panel {
+    flex: 1 100%;
+    display: flex;
+    flex-flow: column;
+    padding-top: 15px;
+
+    & > .nav-panel-layout {
+      padding: 0 20px 10px 20px;
+
+      & > a > i {
+        margin-right: 5px;
+      }
+    }
+
+    & > .nav-panel {
+      display: flex;
+      align-items: baseline;
+      padding-right: 20px;
+      flex-shrink: 0;
+      border-bottom: 1pt solid #E4E7EA;
+
+      & > .select-facade {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+
+        & > .nice-dropdown {
+          display: inline-block;
+          margin-left: 1.5em;
+          margin-right: 1.5em;
+          min-width: 15ch;
+          max-width: 30ch;
+        }
+
+        & > .button {
+          margin-left: auto;
+        }
+      }
+
+      & > .flyer {
+        margin-left: 1em;
+      }
+    }
+
+    .floorplan-nav {
+      @extend %navigation-menu;
+      margin: 0;
+      border: none;
+      flex-shrink: 0;
+      padding-left: 25px;
+      text-transform: uppercase;
+
+      & {
+        color: #B9BFC9;
+      }
+
+      i {
+        margin-right: 13px !important;
+      }
+
+      .landspot-icon:before {
+        background-color: #B9BFC9;
+      }
+
+      a {
+        &:hover, &.active {
+          .landspot-icon:before {
+            background-color: $landspot-theme-color;
+          }
+        }
+      }
+    }
+
+    & > .image-overview {
+      flex: 1 1 100%;
+      background: left top/contain no-repeat scroll;
+      outline: 1px solid $app-border-color;
+      outline-offset: 10px;
+      margin: 10px 10px 30px 10px;
+    }
+
+    .tablet-image-overview {
+      display: none;
+      max-width: 100%;
+      margin: auto;
+    }
+
+
+    & > .floorplans {
+      display: flex;
+      flex: 1 1 100%;
+      margin-top: 15px;
+
+      & > div {
+        flex: 1 100%;
+        background: center / contain no-repeat scroll transparent;
+      }
+
+      & > img {
+        max-width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      .tablet-image-overview {
+        display: block;
+      }
+      .floorplans {
+        display: block;
+      }
+    }
+
+    & > .overview-3d {
+      width: 100%;
+      flex-grow: 1;
+    }
+
+    & > .carousel.gallery {
+      flex: 1 1 100%;
+      padding: 24px;
+      position: relative;
+
+      .gallery-carousel,
+      .carousel__slider-tray-wrapper,
+      .carousel__slider-tray,
+      .carousel__slide,
+      .slide-item {
+        height: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .slide-item {
+        background: transparent center center/cover no-repeat scroll;
+      }
+
+      .carousel__back-button {
+        color: $app-border-color;
+        font-size: 28px;
+        left: 1em;
+        position: absolute;
+        bottom: 50%;
+        transform: translateY(50%);
+      }
+
+      .carousel__next-button {
+        @extend .carousel__back-button;
+        right: 1em;
+        left: auto;
+      }
+    }
+  }
+
+  .mobile-buttons {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .buttons-group {
+      margin-bottom: 27px;
+
+      .button {
+        font-size: 16px;
+        border-radius: 56px;
+        padding: 13px 33px;
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  &.house-overview {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  & > .house {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+
+    & > .left-panel {
+      order: 2;
+      border: none;
+      align-items: center;
+      text-align: center;
+      padding: 35px;
+
+      .header, .house-attributes {
+        justify-content: center !important;
+
+        li {
+          margin-right: 0;
+          margin-left: 35px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+
+      & > .button {
+        max-width: 305px;
+        width: 100%;
+        padding-top: 13px;
+        font-size: 16px;
+        border-radius: 56px;
+        padding-bottom: 15px;
+      }
+    }
+
+    & > .right-panel {
+      order: 1;
+
+      & > .nav-panel {
+        padding-right: 0;
+
+        & > .floorplan-nav {
+          padding-left: 0;
+          justify-content: center;
+          font-size: 15px;
+        }
+
+        & > .button {
+          display: none;
+        }
+      }
+
+      & > .carousel.gallery {
+        padding: 0;
+        height: 337px;
+
+        .button, .gallery-carousel-buttons {
+          display: none;
+        }
+
+        .gallery-carousel,
+        .carousel__slider-tray-wrapper,
+        .carousel__slider-tray,
+        .carousel__slide,
+        .slide-item {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

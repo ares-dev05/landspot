@@ -1,0 +1,22 @@
+.sales-locations {
+  width: 560px;
+  ul {
+    padding: 0;
+    list-style: none;
+    & > li {
+      display: flex;
+      margin: 5px 0;
+
+      & > .landspot-icon {
+        cursor: pointer;
+        padding: 6px;
+        margin-left: 10px;
+      }
+
+      &.button {
+        margin-top: 15px;
+        max-width: 175px;
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+.lotmix-company-block {
+  @import "./text-styles";
+  @import "./word-dots";
+  @import "./components/floorplans";
+  @import "./components/my-sitings";
+  @import '../landspot/components/cards';
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+
+  .border-bottom-wrapper {
+    width: 100%;
+    border-bottom: 1px solid #DCDCDC;
+  }
+
+  .lotmix-company {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .company-info {
+    margin: 10% 13% 8%;
+    max-width: 1100px;
+    display: flex;
+
+    .company-logo {
+      flex-basis: 41%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      max-width: 255px;
+      min-height: 184px;
+      margin: 0 auto;
+    }
+  }
+
+  .company-description {
+    flex-basis: 59%;
+
+    .description {
+      font-family: Montserrat, serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 27px;
+      color: #53546C;
+
+      .read-more-link {
+        cursor: pointer;
+        color: $landspot-theme-color;
+        font-weight: 600;
+
+        i {
+          font-size: 21px;
+          margin-left: 5px;
+          transform: translateY(5px);
+        }
+      }
+    }
+  }
+
+  .floorplan-block, .my-sitings, .my-documents-block {
+    max-width: 1100px;
+    margin: 5% auto;
+  }
+
+
+  @media (max-width: 760px) {
+    .company-info {
+      flex-direction: column-reverse;
+      text-align: center;
+      margin-right: 25px;
+      margin-left: 25px;
+
+      .company-logo {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+    .floorplan-block, .my-sitings, .my-documents-block {
+      margin-top: 50px;
+
+      .home-h1 {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.header {
+  font-weight: $font-weight-medium;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  & > .options-header {
+    padding: 0 0.5em;
+    background: $input-background-color;
+    line-height: 1.5;
+    font-weight: $font-weight-bold;
+    border-radius: 0.25em;
+    margin: 0 1em;
+
+    &:not(:first-child) {
+      margin: 0 0.5em;
+    }
+  }
+
+  & > .filter-enabled {
+    margin: 0;
+    padding: 0 10px 0 0;
+    background: transparent;
+  }
+
+  & > .nice-dropdown {
+    min-width: 16ch;
+    margin: {
+      left: auto;
+      right: $card-margin;
+    }
+  }
+
+  & > .results {
+    margin-right: 1em;
+  }
+
+  & > .back-nav {
+    & > .landspot-icon {
+      margin-right: 10px;
+    }
+
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,80 @@
+#user-notification {
+  position: fixed;
+  z-index: $z-index-user-notification;
+  bottom: 15px;
+  left: 15px;
+  width: 230px;
+  text-align: center;
+
+  .notification-content {
+    box-shadow: $app-box-shadow;
+    padding: 15px;
+    background: #fff;
+    @include app-border-radius;
+
+    p {
+      font-weight: $font-weight-bold;
+      margin-bottom: 15px;
+    }
+
+    .notification-btn-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  }
+}
+
+
+.fullpage-notification {
+  @extend %fullpage-messenger;
+
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  overflow: auto;
+
+  .content {
+    word-wrap: break-word;
+    width: calc(100% - 40px);
+    min-height: calc(100% - 40px);
+    background: #fff;
+    padding: 15px;
+    @include app-border-radius;
+
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+
+    position: absolute;
+    left: 0;
+    margin: 20px;
+    top: 0;
+    bottom: 0;
+
+    .notification-text {
+      margin-right: -15px;
+      padding-right: 15px;
+
+      overflow-y: auto;
+      flex-grow: 1;
+      margin-bottom: 2em;
+      iframe{
+        width: 50%;
+        height: 50%;
+      }
+    }
+
+    button {
+      align-self: flex-end;
+      flex-shrink: 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}

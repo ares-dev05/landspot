@@ -1,0 +1,122 @@
+.card {
+  flex: 0 0 33%;
+  max-width: 33%;
+  padding: $card-margin;
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  &:hover > .content {
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  & > .content {
+    box-shadow: $app-box-shadow;
+    border-radius: 10px;
+    overflow: hidden;
+
+    & > .image {
+      @include card-image;
+      background: transparent center center no-repeat scroll;
+      position: relative;
+
+      & > .image-in{
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    & > .image-card-default{
+      background-image: url("../../../img/lot_drawer_default.png");
+      background-size: contain !important;
+    }
+
+    & > .builder-board {
+      height: 90px;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 30px;
+      align-items: center;
+
+      .logo {
+        flex: 33%;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 20px;
+        height: 100%;
+      }
+
+      .title {
+        flex: 67%;
+        flex-direction: row;
+        display: block;
+
+        & > .name {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .title {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      color: $highlighted-text-color;
+
+      & > .name {
+        flex: 1 1 0;
+        font-weight: $font-weight-medium;
+        @include ellipsis-overflow;
+      }
+
+      & > .item-options {
+        white-space: nowrap;
+        margin-left: auto;
+        list-style: none;
+        padding: 0;
+        display: flex;
+
+        & > li {
+          display: flex;
+          align-items: center;
+
+          & > i {
+            margin-right: .5em;
+          }
+          margin-left: .5em;
+        }
+      }
+    }
+  }
+
+  &.a4 > .content > .image {
+    padding-top: $a4-image-scale;
+  }
+
+  &.pending:after {
+    content: 'PENDING APPROVAL';
+    color: $landspot-theme-color;
+    font-size: 2em;
+    font-weight: bold;
+    right: 0;
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    transform: translateY(50%);
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    flex: 0 0 100%;
+    max-width: initial;
+  }
+}

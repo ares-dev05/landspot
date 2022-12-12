@@ -1,0 +1,363 @@
+.enquire-modal {
+  width: auto;
+  max-width: 505px;
+  height: 100%;
+  max-height: 625px;
+  border-radius: 15px;
+  box-shadow: 8px 10px 24px rgba(0, 0, 0, 0.07);
+
+  //modal top green line
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--main-color);
+  }
+
+  .popupmodal-header {
+    text-align: center;
+    font-size: 30px;
+    line-height: 34px;
+    color: #232456;
+    margin: 0 auto;
+
+    .logo {
+      background-color: $landspot-theme-color;
+      mask: url("../../../../img/Lmix_logo.svg") left center/contain no-repeat;
+      width: 113px;
+      height: 24px;
+      margin: 0 auto 25px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 40px;
+    }
+  }
+
+  .enquire-form {
+    max-width: 305px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .form-body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+
+      .form-item {
+        padding: 25px 0 0 0;
+
+        .states-select button {
+          background-color: white;
+          border: 1px solid #e2e9ef;
+          border-radius: 25px;
+          padding: 12px 14px;
+          line-height: 14px;
+
+          &:focus {
+            outline: none;
+            border-color: $landspot-theme-color;
+          }
+        }
+      }
+
+      h4 {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 18px 0;
+      }
+
+      .sms-title {
+        align-self: center;
+        margin: 0 0 25px 0;
+      }
+
+      .sms-description {
+        font-size: 15px;
+        line-height: 27px;
+        align-self: center;
+      }
+
+      .phone-input {
+        padding: 35px 0;
+        align-self: center;
+        display: flex;
+
+        .PhoneInputInput {
+          border: none;
+          outline: none;
+          padding: 5px 3px;
+          border-bottom: 2px solid #cccccc;;
+          max-width: 30px;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 14px;
+          height: 30px;
+          color: #232456;
+          transition: all .2s ease-in-out;
+          opacity: 1;
+          margin-right: 18px;
+
+          &:focus::-webkit-input-placeholder {
+            text-indent: -100%;
+          }
+
+          &:focus {
+            border-bottom: 2px solid $landspot-theme-color;
+          }
+
+          &:disabled {
+            background-color: transparent;
+          }
+
+          @media (max-width: 600px) {
+            margin-right: 8px;
+          }
+
+          @media (max-width: 460px) {
+            padding: 0;
+            margin-right: 6px;
+          }
+        }
+      }
+
+      .phone-send {
+        position: relative;
+        display: flex;
+        align-self: center;
+        width: max-content;
+      }
+    }
+
+    .enquire-input {
+      position: relative;
+      padding: 12px;
+      border-radius: 31px;
+      border: 1px solid #D0DBE6;
+      width: 100%;
+      margin: 0 0 18px 0;
+      color: #323337;
+      font-size: 14px;
+      line-height: 20px;
+      resize: none;
+
+      &:disabled {
+        opacity: .5;
+      }
+
+      &:focus {
+        outline: none;
+        border: 1px solid #232456;
+        border-radius: 31px;
+      }
+    }
+
+    .enquire-button {
+      align-self: center;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 14px;
+      text-align: center;
+      cursor: pointer;
+      padding: 16px 44px;
+      color: white;
+      border-radius: 30px;
+      background-color: var(--main-color);
+      border: none;
+      outline: none;
+      width: 100%;
+      max-width: 190px;
+
+      &:disabled {
+        background-color: #f3f3f6;
+        color: #ababbe;
+      }
+    }
+
+    .active {
+      background: rgba(41, 201, 124, 0.1);
+      color: $landspot-theme-color;
+    }
+
+    .sms-send {
+      width: max-content;
+      padding: 12px 25px;
+
+      @media (max-width: 950px) {
+        width: 100%;
+        margin-top: 35px;
+      }
+    }
+
+    .send-again-wrapper {
+      width: 111px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 19px;
+      font-weight: 600;
+      color: #bdbecd;
+      min-height: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & > div {
+        width: max-content;
+        color: $landspot-theme-color;
+      }
+
+      .send-again {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .disabled {
+        color: #bdbecd;
+        &:hover {
+          cursor: initial;
+        }
+      }
+    }
+
+    .wrapper-code {
+      align-self: center;
+      margin-top: 44px;
+
+      @media (max-width: 600px) {
+        margin-top: 22px;
+      }
+    }
+
+    .code-spinner {
+      height: 30px
+    }
+
+    .sms-info {
+      font-size: 14px;
+      line-height: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .form-verification {
+      margin: auto;
+      width: max-content;
+
+      .form-verification-inputs {
+        width: max-content !important;
+      }
+
+      .form-verification-wait {
+        text-align: center;
+        font-size: 13px;
+        line-height: 30px;
+        font-weight: 600;
+        color: #bdbecd;
+      }
+
+      input[type="tel"] {
+        width: 15px !important;
+        height: 30px !important;
+        margin: 0 5px;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 14px;
+        transition: all .2s ease-in-out;
+        outline: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0;
+        border-width: 0 0 2px;
+        border-color: #cccccc;
+        background-color: white;
+        color: #232456 !important;
+        opacity: 1;
+        font-family: inherit;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          appearance: none;
+          margin: 0;
+        }
+
+        &:focus {
+          border-color: $landspot-theme-color;
+        }
+
+        &:disabled {
+          opacity: .6;
+        }
+
+        @media (max-width: 460px) {
+          width: 13px !important;
+          margin-left: 3px;
+        }
+      }
+
+      input[type="tel"]:nth-of-type(4) {
+        margin-left: 18px;
+        @media (max-width: 600px) {
+          margin-left: 8px;
+        }
+      }
+
+      input[type="tel"]:nth-of-type(7) {
+        margin-left: 18px;
+        @media (max-width: 600px) {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .gdpr {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      input[type="checkbox"] {
+        outline: none;
+      }
+
+      span {
+        font-size: 13px;
+        line-height: 21px;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .sms-form {
+    max-width: 385px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 0 20px;
+    .popupmodal-body {
+      padding: 0 30px;
+    }
+    .popupmodal-header {
+      font-size: 24px;
+    }
+    .enquire-form {
+      .form-body {
+        .enquire-button {
+          margin-top: 20px;
+        }
+
+        .enquire-input {
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

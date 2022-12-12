@@ -1,0 +1,175 @@
+&.users {
+
+  th {
+    border-top: none;
+  }
+
+  tbody {
+    tr {
+      td {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        line-height: 12px;
+        @include text-overflow-ellipsis('table-cell');
+
+        &:not(.actions) {
+          opacity: 0.7;
+        }
+
+        & > button.fa {
+          margin: {
+            left: .5em;
+            right: .5em;
+          };
+        }
+
+        & > p {
+          margin: 0;
+          display: flex;
+          align-items: center;
+
+          &.estate-manager > i {
+            margin-left: 10px;
+            cursor: pointer;
+          }
+
+          &.manage-users {
+            @include brand-color;
+            cursor: pointer;
+
+            & > i {
+              margin-right: 10px;
+            }
+          }
+        }
+
+        &.main-column {
+          font-weight: $font-weight-bold;
+        }
+
+        &.permissions {
+          font-size: $large-font-size;
+          overflow: visible;
+
+          & > .fa-check-square,
+          .selected .fa {
+            @include brand-color;
+          }
+        }
+
+        &.contact-details {
+          position: relative;
+          overflow: visible;
+          opacity: 1;
+
+          & > * {
+            &:not(:first-child) {
+              margin-top: 10px;
+            }
+          }
+        }
+
+        &.support {
+          .round-btn {
+            @include landspot-round-button($landspot-theme-color, #fff, $textColor: $landspot-text-color);
+            border: $app-border;
+            width: 11ch;
+            line-height: 20px;
+            display: block;
+            padding: 1px 6px;
+            margin-top: -5px;
+
+            &:not(:first-child) {
+              margin-top: 5px;
+            }
+          }
+        }
+
+        .color-checkbox {
+          display: block;
+          position: relative;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+          & > input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+          }
+
+          .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 16px;
+            width: 16px;
+            border-radius: 2px;
+            transition: all 0.2s;
+
+            &:after {
+              content: "";
+              position: absolute;
+              display: none;
+            }
+          }
+
+          & > input:hover:not([disabled]) ~ .checkmark {
+            background-color: #ccc;
+          }
+
+          & > input:disabled ~ .checkmark {
+            cursor: initial;
+          }
+
+          & > input ~ .checkmark {
+            background-color: $color-status-unpublished;
+          }
+
+          & > input:checked ~ .checkmark {
+            background-color: $color-available;
+          }
+
+          & > input ~ .checkmark:after {
+            content: '\00d7';
+            display: block;
+            left: 50%;
+            top: 50%;
+            font-size: 26px;
+            color: white;
+            transform: translate(-50%, -50%);
+          }
+
+          & > input:checked ~ .checkmark:after {
+            content: '';
+            display: block;
+            left: 5px;
+            top: 3px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+
+    .inactive {
+      display: inline-block;
+      width: max-content;
+      padding: 5px;
+      margin-left: 8px;
+      border-radius: 5px;
+      background: #F2F3F6;
+      font-weight: bolder;
+    }
+  }
+}

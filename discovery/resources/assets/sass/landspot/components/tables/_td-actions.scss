@@ -1,0 +1,38 @@
+&.actions {
+  min-width: 75px;
+
+  & > * {
+    & > .landspot-icon {
+      margin-right: 10px;
+
+      &.trash {
+        padding: 6px;
+
+        @supports (-ms-ime-align: auto) {
+          padding-right: 4px;
+          vertical-align: middle;
+        }
+      }
+
+      &.pen {
+        padding: 7px;
+      }
+    }
+
+    & > .fa-save {
+      font-size: $icon-font-size;
+    }
+
+    & > .trash-restore {
+      padding: 6px;
+      opacity: 0.5;
+
+      &:before {
+        width: 16px;
+        height: 16px;
+        top: 5px;
+        left: 0;
+      }
+    }
+  }
+}

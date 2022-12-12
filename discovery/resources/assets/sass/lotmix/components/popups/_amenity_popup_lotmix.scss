@@ -1,0 +1,31 @@
+
+
+& > .lotmix-estate-container{
+  background-color: transparent !important;
+  padding: 0 !important;
+  & > .lotmix-estate{
+    box-shadow: none !important;
+    height: 100%;
+
+    & > .amenity-section{
+      padding: 10px;
+      height: 100%;
+
+      .estate-header{
+        display: none;
+      }
+
+      .amenity-wrapper{
+        height: 100%;
+        margin: 0;
+        @media (min-width: 1001px) {
+          .estate-map-section {
+            position: relative;
+            flex: 0 0 65%;
+            height: calc(12vw + 330px);
+          }
+        }
+      }
+    }
+  }
+}

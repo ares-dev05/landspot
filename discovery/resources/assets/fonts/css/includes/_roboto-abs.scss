@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Roboto-Italic';
+  src: local('Roboto-Italic'), url('#{$APP_URL}/fonts/Roboto-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: local('Roboto-Bold'), url('#{$APP_URL}/fonts/Roboto-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: local('Roboto-Regular'), url('#{$APP_URL}/fonts/Roboto.woff') format('woff');
+}

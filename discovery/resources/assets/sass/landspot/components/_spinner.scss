@@ -1,0 +1,45 @@
+@keyframes animation-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($input-background-color, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba($input-background-color, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($input-background-color, 0);
+  }
+}
+
+.spinner {
+  z-index: $z-index-spinner;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  &.static {
+    position: static;
+    left: auto;
+    top: auto;
+    right: auto;
+    transform: none;
+  }
+  &.overlay {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.spinner:before {
+  content: "";
+  -webkit-mask-image: url("../../../../../resources/assets/img/Spinner-1s-200px.svg");
+  background-color: $landspot-theme-color;
+  width: 100px;
+  height: 100px;
+  margin: 5px auto;
+  display: block;
+  box-shadow: 0 0 0 rgba($input-background-color, 0.4);
+  animation: animation-pulse 2s infinite;
+}

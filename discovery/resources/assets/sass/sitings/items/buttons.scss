@@ -1,0 +1,19 @@
+a {
+  &.button {
+    @extend %landconnect-dialog-round-button;
+    display: inline-block;
+
+    &.default {
+      min-width: 20ch;
+      border: 1px solid $landconnect-theme-color;
+      font-weight: 600;
+      color: $landconnect-theme-color;
+      letter-spacing: 1px;
+    }
+
+    &:hover {
+      background: $landconnect-theme-color;
+      color: #fff;
+    }
+  }
+}

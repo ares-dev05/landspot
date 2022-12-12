@@ -1,0 +1,145 @@
+.my-clients_content {
+  flex-direction: column;
+}
+
+.my-clients_title {
+  font-size: 30px;
+  line-height: 3;
+  font-weight: 400;
+}
+
+.filter-result_title {
+  font-size: 18px;
+  line-height: 3;
+  font-weight: 500;
+  margin-right: 12px;
+}
+
+.filter-result_text {
+  font-size: 18px;
+  line-height: 3;
+  font-weight: normal;
+}
+
+.my-clients_view-document i {
+  margin-right: 10px;
+}
+
+.my-clients_upload-document i {
+  margin-left: 20%;
+}
+
+.my-clients_status {
+  background-color: #f2f3f6;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status-dot {
+  display: inline-block;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+
+  &.siting {
+    background-color: #3D40C6;
+  }
+
+  &.pending {
+    background-color: rgb(255, 70, 50);
+  }
+
+  &.claimed {
+    background-color: #1de995;
+  }
+
+  &.brief {
+    background-color: $landspot-theme-color;
+  }
+}
+
+.status-text {
+  text-transform: capitalize;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.action-brief {
+  display: initial;
+  background-color: $landspot-theme-color;
+  color: white;
+  border-radius: 5px;
+  padding: 6px 10px 6px 10px;
+}
+
+.action-brief:hover {
+  opacity: 0.7;
+  color: $landspot-theme-color;
+  background-color: white;
+  border: 1px solid $landspot-theme-color;
+  cursor: pointer;
+}
+
+.my-clients-table {
+  .icon-lock {
+    font-size: 16px;
+    color: $landspot-theme-color;
+  }
+
+  tbody tr {
+    td.landspot-input {
+      white-space: normal;
+    }
+
+    &.animated-row {
+      animation-name: my-client-add;
+      animation-delay: 500ms;
+      animation-duration: 900ms;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  .tag-disabled {
+    opacity: .5;
+    cursor: default;
+
+    &:hover {
+      opacity: .5;
+      color: inherit;
+    }
+
+    &.transparent:hover {
+      opacity: .5;
+    }
+
+    i.landspot-icon:before {
+      background-color: #323337;
+    }
+  }
+}
+
+.my-clients-table_one-cell {
+  border: 0 !important;
+  overflow: unset !important;
+}
+
+.my-client-theme-text {
+  color: $landspot-theme-color;
+  font-weight: 500;
+}
+
+@keyframes my-client-add {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: tomato;
+  }
+  100% {
+    background-color: transparent;
+  }
+}

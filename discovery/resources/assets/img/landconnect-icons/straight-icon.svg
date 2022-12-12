@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>mdpi/ic_launcher_APP@2x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="mdpi/ic_launcher_APP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3-Copy-5" transform="translate(3.000000, 3.000000)"
+           fill-rule="nonzero">
+            <path d="M2.17068646,11.5909091 L12.3005566,2.04545455"
+                  id="Line-7" stroke="#3B4356" stroke-width="0.5"
+                  stroke-linecap="square"/>
+            <ellipse id="Oval-4" fill="#3B4356"
+                     cx="1.4471243" cy="12.2727273"
+                     rx="1.4471243" ry="1.36363636"/>
+            <ellipse id="Oval-4-Copy" fill="#3B4356"
+                     cx="13.0241187" cy="1.36363636"
+                     rx="1.4471243" ry="1.36363636"/>
+        </g>
+    </g>
+</svg>

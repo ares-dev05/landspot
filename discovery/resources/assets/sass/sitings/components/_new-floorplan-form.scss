@@ -1,0 +1,297 @@
+.new-floorplan-form {
+  position: relative;
+
+  & > h5 {
+    @extend %landconnect-h5;
+    margin-top: 0;
+
+    &:not(:first-of-type) {
+      margin-top: 44px;
+    }
+  }
+
+  & > h4 {
+    @extend h5;
+    font-size: 18px;
+    color: $kaspa-menu-color;
+    margin: {
+      top: 44px;
+      bottom: 44px;
+    }
+  }
+
+  & > label {
+    @extend %dialog-label;
+    margin-bottom: 14px;
+
+    &.additional-info {
+      margin-top: 45px;
+    }
+
+    &.live-date-label {
+      margin-top: 14px;
+    }
+  }
+
+  & > .autocomplete-dropdown {
+    @extend %autocomplete-dropdown;
+
+    & > .menu {
+      & > .item.new {
+        cursor: pointer;
+        padding: 0 1.5em;
+        display: inline-block;
+        font-style: italic;
+        border-radius: 17.5px;
+        background-color: rgba(216, 216, 216, 0.25);
+        line-height: 35px;
+        margin-bottom: 8px;
+
+        & > .fa-plus {
+          margin-left: 10px;
+          color: $landconnect-text-color;
+        }
+      }
+    }
+  }
+
+  .input-box {
+    @extend %kaspa-dialog-input;
+  }
+
+  &.is-saving:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  & > .order-row {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+
+    & > label {
+      @extend %dialog-label;
+      margin-bottom: 0;
+
+      &.large {
+        font-size: $app-menu-font-size;
+        font-weight: 300;
+        line-height: 25px;
+      }
+
+      &.medium {
+        font-size: $text-size+ 1px;
+      }
+
+      & > .details {
+        color: $icon-color;
+      }
+    }
+
+    .input-box {
+      max-width: 20ch;
+    }
+
+    & > textarea {
+      border: 1px solid $table-text-color;
+      height: 5em;
+      width: 100%;
+      resize: none;
+
+      &:disabled {
+        background: #fff;
+      }
+
+      &::placeholder {
+        opacity: 0.3;
+        color: $table-text-color;
+        font-family: Montserrat;
+        font-size: $larger-text-size;
+        font-weight: 300;
+        line-height: 25px;
+      }
+    }
+
+    &.upload-file {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      align-items: flex-start;
+      flex-flow: column;
+
+      & > label {
+        &:first-child {
+          margin-bottom: 10px;
+        }
+
+        &:last-child {
+          margin-top: 10px;
+        }
+      }
+
+      & > .upload-btn {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+    }
+
+    .nice-radio {
+      &.floorplan-date {
+        min-width: 22ch;
+      }
+
+      & > .radio-item {
+        & > label {
+          margin-bottom: 0;
+          color: $table-text-color;
+        }
+      }
+    }
+
+    .nice-checkbox + label {
+      color: $table-text-color;
+      font-size: $larger-text-size;
+      font-weight: 300;
+      display: flex;
+    }
+
+    .nice-checkbox + label i.fa {
+      font-size: 23px;
+      color: #979797;
+
+      &:before {
+        margin-right: 13px;
+      }
+    }
+
+    .nice-checkbox:checked + label i.fa {
+      font-size: 23px;
+      color: #979797;
+
+    }
+
+    & button[type='button'] {
+      @extend %landconnect-dialog-round-button
+    }
+
+    &.column {
+      flex-flow: column;
+    }
+
+    &.content-left {
+      justify-content: flex-start;
+
+      & > input[type='text'] {
+        margin-left: 4ch;
+      }
+    }
+
+    &.content-around {
+      justify-content: space-around;
+    }
+
+    &.disabled {
+      opacity: .5;
+    }
+  }
+
+  .ellipsis {
+    .fa {
+      margin-right: 8px;
+    }
+  }
+
+  .file-data {
+    display: flex;
+
+    & > span {
+      margin: 0 2em;
+    }
+
+    & > i {
+      font-size: larger;
+    }
+  }
+
+  .live-date {
+    @extend %landconnect-date;
+    margin-right: auto;
+    margin-left: 1em;
+  }
+
+  .floorplan-row {
+    display: flex;
+    align-items: center;
+
+    &.live-date-row {
+      & > .live-date-form {
+        margin-bottom: 0;
+        margin-left: 3em;
+      }
+    }
+
+    &.live-date-form {
+      margin-bottom: 2em;
+
+      & > .floorplan-date {
+        & > .radio-item:last-child {
+          margin-left: 2em;
+        }
+      }
+
+      & > .live-date {
+        display: flex;
+        align-items: center;
+        border-bottom: 0;
+
+        & > .nice-radio {
+          & > .radio-item:first-child {
+            margin-right: 1.5em;
+          }
+        }
+      }
+    }
+
+    &.error {
+      outline: 1px solid rgba(255, 0, 0, 0.5);
+    }
+
+    & > input[type=text] {
+      flex: 0 1 50%;
+      margin-right: 2em;
+    }
+
+    & > .file {
+      flex: 0 1 50%;
+      overflow: hidden;
+
+      & > .file-name {
+        .trash-file {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+
+  .bulk-header {
+    font-weight: $font-weight-bold;
+    margin-bottom: 2em;
+  }
+
+  .floorplan-status {
+    width: 14em;
+    margin-bottom: 14px;
+  }
+
+  label.status {
+    margin-top: 14px;
+  }
+}

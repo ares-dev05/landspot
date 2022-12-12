@@ -1,0 +1,69 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  font-size: $small-text-size;
+
+  caption {
+    text-align: left;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+  }
+
+  &.fixed {
+    table-layout: fixed;
+  }
+
+  th {
+    border-top: $app-border;
+  }
+
+  th, td {
+    vertical-align: top;
+    border-bottom: $app-border;
+    padding: 0.75rem 0.75rem 0.75rem 0;
+    text-align: left;
+  }
+
+  thead {
+    tr {
+      th {
+        vertical-align: bottom;
+        font-size: $extra-small-text-size;
+        font-weight: $font-weight-bold;
+        position: relative;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        line-height: 25px;
+        @import "tables/td-actions";
+      }
+    }
+  }
+
+  @import "tables/users";
+  @import "tables/lots";
+}
+
+.responsive-table {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+
+  & > .table {
+    &.users {
+      min-width: 1040px;
+    }
+  }
+
+  &.full-height {
+    flex-grow: 1;
+  }
+}

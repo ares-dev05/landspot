@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://www.lotmix.com.au/sitemap.xml

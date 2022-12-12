@@ -1,0 +1,43 @@
+.filter-bar {
+  .filter-form {
+    .first-row {
+      border-top: $app-border;
+      margin-top: 35px;
+      padding-top: 22px;
+      display: flex;
+      line-height: 44px;
+
+      &.has-nav {
+        margin-top: 0;
+        border-top: none;
+      }
+
+      .filters-header {
+        font-size: $large-font-size;
+        font-weight: $font-weight-bold;
+      }
+
+      .clear-filters {
+        opacity: 0.7;
+        font-size: $smaller-text-size;
+        font-weight: $font-weight-bold;
+        margin-left: auto;
+      }
+    }
+
+    & > .filter-nav {
+      @extend %navigation-menu;
+      font-size: $small-text-size;
+      flex-wrap: nowrap;
+
+      & > a {
+        &:last-of-type {
+          flex-grow: 1;
+        }
+        & > .landspot-icon {
+          padding: 8px;
+        }
+      }
+    }
+  }
+}

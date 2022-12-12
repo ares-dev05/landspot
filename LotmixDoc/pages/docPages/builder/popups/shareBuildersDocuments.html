@@ -1,0 +1,166 @@
+<ul class="breadcrumb">
+  <li><a class="aList1" href="index.html">Home</a></li>
+  <li><a class="aList" href="pages/builderLotmix.html">Builder</a></li>
+  <li>Builders Manager</li>
+  <li><a class="aList" href="pages/docPages/builder/builderManagerPage.html">My clients page (E.1)</a></li>
+  <li><a class="aList" href="pages/docPages/builder/popups/shareBuildersDocuments.html">Share Documents Pop up (E.3)</a></li>
+</ul>
+<div>
+  <div style="border-style: solid; background-color: lightgreen; ">
+    <b>User stories</b>
+    <ul>
+      <li>As a Builders manager I want to manage(add new/ delete existed) files that will be available for corresponding client</li>
+      <li>As a Builders manager I want to see views quantity for each file</li>
+      <li>As a Land Builders manager I want to have differentiation of files that I upload by content type(Quote, Drawings, Brochures, Other)</li>
+      <li>As an app owner I want to have white list for upload files format (PDF, JPEG, PNG, JPG)</li>
+      <li>As a Land Builders Manager I want to download already added documents</li>
+      <li>As a Land Builders Manager I want to abort changes if I don't click on submit button</li>
+      <li>As a Land Builders Manager I want to close pop up without any changes apply</li>
+    </ul>
+  </div>
+
+  <ul>
+    <li>
+      <b>Title</b>
+    </li>
+    <li>
+      <b>Select Estates section</b>
+      <ul>
+        <li>
+          <b>Seclect estate</b>
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for this manager Estates that have &#34;Published&#34; status
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Add Document Section</b>
+      <ul>
+        <li>
+          Select Type
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <ul>
+              <li>
+                Quote
+              </li>
+              <li>
+                Drawings
+              </li>
+              <li>
+                Brochures
+              </li>
+              <li>
+                Other
+              </li>
+          </ul>
+        </li>
+        <li>
+          Document Name
+          <ul>
+            <li>
+              Input - text - max length 240 chars - placeholder Name
+            </li>
+          </ul>
+        </li>
+        <li>
+          Choose file to upload
+          <ul>
+            <li>
+              File Format White list - PDF, JPEG, PNG, JPG
+            </li>
+            <li>
+              Icon<br>
+              On click
+              <ul>
+                <li>
+                  Opens OS file manager for selecting file to upload
+                </li>
+                <li>
+                  After validating selected file - starts file upload on server
+                </li>
+                <li>
+                  If Uplaod was successful - displays Info block about this - file info added to theDocuments table section
+                </li>
+                <li>
+                  If Uplaod wasn't successful - displays alert block about this
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Documents table section</b><br>
+      Displays Uploaded Documents to display for this client
+      <ul>
+        <li>
+          <b>Document type</b> - text
+        </li>
+        <li>
+          <b>Document name</b> - link - starts downloading of corresponding file
+        </li>
+        <li>
+          <b>Document open counter</b> - number of file  not unique openings
+        </li>
+        <li>
+          <b>Trash icon<b> - on click - remove row data fro the list
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Save changes</b> - submit button
+      <ul>
+        On Click
+        <li>
+          Calls PUT request with edited data
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <b>Cancel</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+            <li>
+              Removes from server uploaded and not saved files
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>X icon</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+  </li>
+  </ul>
+</div>
+

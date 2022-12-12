@@ -1,0 +1,107 @@
+@extends('layouts.pdf-a4-print')
+@section('styles')
+    <style type="text/css">
+        <?php echo file_get_contents(public_path('css/pdf-export-floorplan-fonts-inline.css'))?>
+        <?php echo file_get_contents(public_path('css/pdf-brochure/sitings-general.css'))?>
+
+        .page .header {
+            background: #fff;
+            position: relative;
+        }
+
+        .page .header::before {
+            display: block;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40mm;
+            background: #fff url("{{$company->company_expanded_logo}}") 10mm center/20mm no-repeat;
+        }
+
+        .page .header .client-details {
+            width: 160mm;
+        }
+
+        .page .footer .note {
+            margin-top: 2mm;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="page" style="background: #fff url('{{$sitingImage}}') center center/cover no-repeat;">
+        <div class="header">
+            @include('pdf.sitings.blocks.client-details')
+        </div>
+
+        <div class="siting">
+            <div class="siting-info">
+                @include('pdf.sitings.blocks.north-indicator')
+                <div class="scale">Scale 1:{{$siting->page_scale}}</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            @include('pdf.sitings.blocks.site-coverage')
+            <div class="note">
+				<span class="important">
+                Note: This is a preliminary siting only, subject to state building regulations, final survey, developer approval and council requirement if required.
+				</span>
+                
+				<span style="font-size: 14px;">
+					<br/><br/><br/>
+					Signature 1
+					<u>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+					</u>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					Signature 2
+					<u>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+					</u>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					Signature 3
+					<u>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+					</u>
+				</span>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('body-inline-scripts')
+    <script>
+        window.pdfPaperOptions = {
+            width: '210mm',
+            height: '297mm',
+            orientation: 'portrait',
+            format: 'A4',
+            margin: {
+                top: '0',
+                left: '0',
+                bottom: '0',
+                right: '0'
+            }
+        };
+    </script>
+@endsection

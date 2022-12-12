@@ -1,0 +1,11 @@
+.back-nav {
+  font-weight: $font-weight-medium;
+  font-size: $small-text-size;
+  & > i {
+    font-size: $icon-font-size;
+    margin-right: 1em;
+  }
+  & > * {
+    vertical-align: middle;
+  }
+}

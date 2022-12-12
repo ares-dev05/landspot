@@ -1,0 +1,99 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/landconnect/blog",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "aws/aws-php-sns-message-validator": "^1.6",
+        "aws/aws-sdk-php": "^3.93",
+        "chillerlan/php-qrcode": "^2.0",
+        "clicksend/clicksend-php": "^4.0",
+        "cviebrock/eloquent-sluggable": "4.8",
+        "doctrine/dbal": "^2.6",
+        "drewm/mailchimp-api": "^2.5",
+        "fideloper/proxy": "~4.0",
+        "greggilbert/recaptcha": "^2.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "iio/libmergepdf": "^4.0",
+        "landconnect/blog": ">=0.0.1",
+        "laravel/framework": "5.8.*",
+        "laravel/passport": "^7.2",
+        "laravel/socialite": "^4.2",
+        "laravel/tinker": "~1.0",
+        "lcobucci/jwt": "3.3.3",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "maatwebsite/excel": "~2.1.0",
+        "mcnetic/zipstreamer": "^1.0",
+        "pubnub/pubnub": "^4.0",
+        "pusher/pusher-php-server": "~3.0",
+        "spatie/laravel-sitemap": "^5.7",
+        "spatie/laravel-sluggable": "^2.2",
+        "spomky-labs/otphp": "^9.1",
+        "true/punycode": "^2.1"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
+        "barryvdh/laravel-ide-helper": "^2.4",
+        "beyondcode/laravel-dump-server": "^1.0",
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "nunomaduro/collision": "^2.0",
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "files": [
+            "app/Http/helpers.php"
+        ],
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

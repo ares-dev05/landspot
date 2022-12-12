@@ -1,0 +1,154 @@
+@import "a4-page";
+
+.page {
+  display: flex;
+
+  .left-side {
+    width: 60%;
+    background-color: white;
+
+    .facade {
+      position: relative;
+      padding-top: 72%;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-size: cover !important;
+    }
+
+    .facade-name {
+      bottom: 6%;
+      left: 5%;
+      font-size: 13px;
+      font-weight: 500;
+      position: absolute;
+      color: white;
+    }
+
+    .floorplan-wrapper {
+      padding: 20px;
+    }
+
+    .floorplan {
+      height: 155mm;
+      .image{
+        background: center center / contain no-repeat scroll transparent;
+      }
+    }
+
+    .footer-text {
+      color: #a5a5a5;
+      padding: 0 38px;
+      font-size: 12px;
+    }
+  }
+
+  .right-side {
+    width: 40%;
+    background-color: black;
+    color: white;
+
+    .empty-space {
+      height: 45mm;
+    }
+
+    .facade-title {
+      margin: 0;
+      padding: 16px 20px;
+      word-wrap: break-word;
+      background: url("#{$APP_URL}/images/pdf_public/first-place-header-background.jpg") no-repeat right;
+    }
+
+    .text {
+      padding-left: 20px;
+      font-size: 13px;
+    }
+
+    .list-title {
+      padding: 0px 30px;
+      font-size: 12px;
+      margin-bottom: 0;
+
+      &.bold {
+        font-weight: 600;
+      }
+    }
+
+    .house-options {
+      padding: 0 20px;
+      margin-top: 20%;
+      margin-bottom: 14%;
+
+      .option {
+        display: inline-block;
+        width: 49%;
+        .small {
+          font-size: 11px;
+          margin-left: 2px;
+        }
+      }
+
+      .beds, .rooms, .cars, .baths {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin-right: 3px;
+        transform: translateY(15px);
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+      }
+
+      .beds {
+        background: url("#{$APP_URL}/images/pdf_public/first-place-bedthooms-icon.jpg");
+      }
+
+      .rooms {
+        background: url("#{$APP_URL}/images/pdf_public/first-place-livingroom-icon.jpg");
+      }
+
+      .cars {
+        background: url("#{$APP_URL}/images/pdf_public/first-place-parkin-icon.jpg");
+      }
+
+      .baths {
+        background: url("#{$APP_URL}/images/pdf_public/first-place-bathroom-icon.jpg");
+      }
+    }
+
+    .includes-block {
+      min-height: 94mm;
+    }
+
+    .includes {
+      margin: 7px 0;
+
+      & li {
+        font-size: 12px;
+        margin-bottom: 7px;
+      }
+    }
+
+    .right-footer {
+      height: 60mm;
+      background: url("#{$APP_URL}/images/pdf_public/first-place-footer.jpg") no-repeat center;
+      background-size: cover;
+    }
+
+    .footer-text {
+      color: #f21a88;
+      font-weight: 600;
+      padding: 0 20px;
+      font-size: 12px;
+    }
+
+    .separator {
+      border-right: 1px solid white;
+      margin: 0 4px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #5a5a5a;
+    }
+  }
+}

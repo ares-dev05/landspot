@@ -1,0 +1,219 @@
+%landspot-input {
+  & > input[type=text],
+  & > input[type=number],
+  & > input[type=password],
+  & > input[type=email],
+  & > textarea {
+    appearance: none;
+    height: 30px;
+    border: none;
+    background-color: $input-background-color;
+    border-radius: 5px;
+    display: block;
+    padding: 0 1ch;
+    width: 100%;
+    font-size: $small-text-size;
+
+    &.required-field {
+      border: 1pt solid #fe8d7c;
+      background-color: #f5efef;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-moz-placeholder,
+    &:-ms-input-placeholder,
+    &::-webkit-input-placeholder {
+      font-size: inherit;
+      font-weight: $font-weight-medium;
+      opacity: 0.3;
+      color: $landspot-text-color;
+    }
+
+    &.disabled,
+    &[disabled] {
+      background-color: $app-border-color;
+      cursor: default;
+    }
+  }
+
+  & > textarea {
+    height: inherit;
+    padding: 1ch;
+  }
+
+  &.magnify {
+    & > input[type=text] {
+      padding-left: 40px;
+    }
+    @include landspot-icon-before('search', $landspot-text-size, 18px);
+  }
+}
+
+%fullpage-messenger {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: $z-index-fullpage-messenger;
+  width: 100%;
+  height: 100%;
+}
+
+%landspot-section-heading {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 3;
+}
+
+%landspot-dropdown {
+  appearance: none;
+  background-color: $app-border-color;
+  border-radius: 5px;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:after {
+    @include awesome-icon("\F0D7");
+  }
+}
+
+%landspot-round-button {
+  @include landspot-round-button();
+  line-height: 31px;
+  width: 18ch;
+  border: $app-border;
+}
+
+%landspot-popupmodal-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 0;
+  align-items: center;
+  margin-top: 25px;
+  flex-shrink: 0;
+
+  & > .cancel {
+    font-size: $small-text-size;
+  }
+
+  & button {
+    &.primary {
+      min-width: 146px;
+    }
+
+    &:first-of-type {
+      margin-right: 5px;
+    }
+
+    &:last-of-type {
+      margin-left: auto;
+    }
+  }
+
+  &.custom-buttons {
+    & > .button.primary {
+      &.push-right {
+        margin-left: auto;
+      }
+      &:last-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+%navigation-menu {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: $app-border;
+
+  & > a {
+    border-bottom: 2*$app-border-width solid transparent;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    line-height: 45px;
+    border-bottom: 2*$app-border-width solid transparent;
+    margin-bottom: -$app-border-width;
+    padding: 0 1.5em 10px 1em;
+
+    font-weight: $font-weight-bold;
+
+    & > i {
+      margin-right: 10px;
+
+      &.fa,
+      &.fas,
+      &.fal {
+        font-size: 18px;
+      }
+    }
+
+    &.active,
+    &:hover {
+      border-bottom-color: $landspot-theme-color;
+    }
+  }
+}
+
+%movable-header-cell {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .landspot-icon {
+      padding: 6px;
+      margin-bottom: 5px;
+      cursor: move;
+    }
+  }
+}
+
+%landspot-dialog-input {
+  @include landspot-input(0, 0 4px, $small-text-size);
+  opacity: 0.5;
+}
+
+%autocomplete-dropdown {
+  position: relative;
+  margin-bottom: 35px;
+  color: $landspot-text-color;
+
+  & > .menu {
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 0 40px 0 rgba(0,0,0,0.11);
+
+    & > .item {
+      color: $landspot-text-color;
+      line-height: 25px;
+      padding: 0 1em;
+      font-size: $small-text-size;
+      margin-bottom: 4px;
+
+      &.item-highlighted {
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      &.not-found {
+        font-style: italic;
+        color: #91959F;
+      }
+    }
+  }
+
+  & > input[type="text"] {
+    @extend %landspot-dialog-input;
+  }
+}

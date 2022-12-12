@@ -1,0 +1,41 @@
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:after {
+    transform: translateY(50%);
+    bottom: 50%;
+    content: '\f107';
+    display: block;
+    position: absolute;
+    right: 15px;
+    font: normal normal normal 16px/1 "Font Awesome 5 Pro";
+  }
+
+  & > select {
+    appearance: none;
+    border: 1px solid $select-border-color;
+    user-select: none;
+    outline: 0;
+    cursor: pointer;
+    &:focus {
+      border-color: $kaspa-brand-color;
+      box-shadow: none;
+    }
+  }
+
+
+  & > select::-ms-expand {
+    display: none;
+  }
+
+  & > select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+}
+
+select.select-filter {
+  @extend %landconnect-select;
+}

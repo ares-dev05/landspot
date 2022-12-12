@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Courier";
+    src: local("Courier"), url("../blob/CourierNew.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Helvetica";
+    src: local("Helvetica"),
+    url("../blob/HelveticaRegular/HelveticaRegular.eot") format("embedded-opentype"),
+    url("../blob/HelveticaRegular/HelveticaRegular.woff") format("woff"),
+    url("../blob/HelveticaRegular/HelveticaRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: local('Georgia'), url('../blob/Georgia/Georgia.eot') format('embedded-opentype'),
+    url('../blob/Georgia/Georgia.woff') format('woff'),
+    url('../blob/Georgia/Georgia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tahoma';
+    src: local('Tahoma'),
+    url('../blob/Tahoma/Tahoma.eot') format('embedded-opentype'),
+    url('../blob/Tahoma/Tahoma.woff') format('woff'),
+    url('../blob/Tahoma/Tahoma.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Times New Roman";
+    src: local('Times New Roman'),
+    url('../blob/TimesNewRomanRegular/TimesNewRomanRegular.eot') format('embedded-opentype'),
+    url('../blob/TimesNewRomanRegular/TimesNewRomanRegular.woff') format('woff'),
+    url('../blob/TimesNewRomanRegular/TimesNewRomanRegular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: local('Verdana'),
+    url('../blob/Verdana/Verdana.eot') format('embedded-opentype'),
+    url('../blob/Verdana/Verdana.woff') format('woff'),
+    url('../blob/Verdana/Verdana.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

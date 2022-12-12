@@ -1,0 +1,21 @@
+.export-pdf-price-list {
+  min-width: 33vw;
+  .popupmodal-body {
+    font-size: $small-text-size;
+
+    .label {
+      font-size: 10px;
+      font-weight: $font-weight-bold;
+      line-height: $landspot-text-size;
+      padding-bottom: 10px;
+    }
+
+    .multi-checkbox-list {
+      margin-bottom: 15px;
+    }
+
+    .nice-dropdown {
+      margin-bottom: 30px;
+    }
+  }
+}

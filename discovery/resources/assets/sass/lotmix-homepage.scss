@@ -1,0 +1,885 @@
+@import "landspot/variables";
+@import "landspot/z-indexes";
+@import "landspot/mixins";
+@import "landspot/nav";
+@import "./landspot/icons/main";
+@import "./lotmix/components/lotmix-footer";
+@import "./scotch-panel";
+@import "../fonts/css/fontawesome/main";
+@import "./custom-slider";
+
+$nav-height: 65px;
+
+body {
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  z-index: 1;
+}
+
+a.active, a.selected, a:hover {
+  color: var(--main-color, #3d40c6);
+}
+
+.app-nav-mobile {
+  display: none;
+}
+
+nav {
+  &.app-nav {
+    font-size: $small-text-size;
+    height: $nav-height;
+
+    &-mobile {
+      display: none;
+    }
+
+    & > .nav-header {
+      height: $nav-height;
+
+      .fa-bars {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .logo {
+        mask: url("../img/Lmix_logo.svg") left center/contain no-repeat;
+        width: 140px;
+      }
+    }
+  }
+}
+
+.home-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: $nav-height;
+
+  @import "./lotmix/welocme-block";
+  @import "./lotmix/word-dots";
+  @import "./lotmix/lotmix-button";
+  @import "./lotmix/text-styles";
+  @import "./lotmix/components/sunpath-block";
+  @import "./lotmix/components/exclusive-insights";
+
+  .welcome-block {
+    .lear-more {
+      position: absolute;
+      bottom: 10%;
+      left: 30%;
+      font-family: Montserrat, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 28px;
+      color: #8C8EA8;
+      cursor: pointer;
+      transition: .3s;
+
+      &:hover {
+        color: $landspot-theme-color;
+      }
+
+      i {
+        color: #8C8EA8;
+        margin-right: 9px;
+        padding: 6px 7px;
+        font-size: 12px;
+        border-radius: 50%;
+        background-color: #E7EDF2;
+      }
+    }
+
+    .greeting {
+      background: url('../img/lotmix/cubes.png') no-repeat left 20%;
+    }
+  }
+
+  .description-text, .description-text-mobile {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 0;
+    text-align: center;
+    color: #7E7F94;
+  }
+
+  .description-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+
+  .custom-slider {
+    display: none;
+  }
+
+  .third-step-block {
+    background: #F4F7FA;
+    border-radius: 89px 13px;
+    position: relative;
+    margin: 50px 6%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+
+    .video-block, .description-block {
+      flex-basis: 50%;
+    }
+
+    .description-block, .description {
+      align-items: flex-start;
+    }
+
+    .description {
+      max-width: 449px;
+    }
+
+    .description-text {
+      text-align: left;
+    }
+
+    .video-block {
+      video {
+        width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .developer-flooplans-block {
+    padding: 100px 13% 50px;
+
+    .home-h1 {
+      display: inline-block;
+      margin-bottom: 21px;
+    }
+
+    .lots {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      justify-content: center;
+
+      .lot {
+        flex: 0 0 350px;
+        max-width: 350px;
+        padding: 20px;
+        display: block;
+        position: relative;
+      }
+
+      .lot-content {
+        cursor: pointer;
+        overflow: hidden;
+        background: #FFFFFF;
+        border: 1px solid #E0E3EF;
+        box-sizing: border-box;
+        border-radius: 11px;
+        box-shadow: 9px 9px 0 #F4F7FA;
+      }
+
+      .lot-image {
+        width: 100%;
+        height: 0;
+        padding-top: 62.5%;
+        position: relative;
+        background-size: contain;
+        background-image: url('../img/lotmix/Bitmap.png');
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+
+      .company-logo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 13px 13px 0 0;
+        border-radius: 50%;
+        border: 1px solid #E0E3EF;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-color: white;
+        width: 54px;
+        height: 54px;
+      }
+
+      .lot-description {
+        padding: 10px 20px 20px;
+      }
+
+      .north-icon {
+        background-image: url("../img/lotmix/icons/north-icon.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 24px;
+        height: 24px;
+        z-index: 3;
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        color: black;
+        background-color: #fff;
+      }
+
+      .lot-title {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 12px;
+        font-weight: 600;
+        font-family: Montserrat, serif;
+        font-style: normal;
+        font-size: 13px;
+        line-height: 16px;
+        color: #23242A;
+      }
+
+      .lot-bold {
+        font-weight: 600;
+      }
+
+      .lot-date, .lot-sizes {
+        font-family: Montserrat, serif;
+        font-style: normal;
+        font-size: 12px;
+        line-height: 22px;
+        color: #323337;
+      }
+
+      .lot-sizes {
+        display: flex;
+
+        & > div:first-child {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .builder-houses-block {
+    padding: 50px 13%;
+
+    .home-h1 {
+      margin-bottom: 12px;
+    }
+
+    .floorplans {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      justify-content: center;
+
+      .floorplan {
+        flex: 0 0 350px;
+        max-width: 350px;
+        padding: 20px;
+        display: block;
+        position: relative;
+      }
+
+      .floorplan-content {
+        cursor: pointer;
+        overflow: hidden;
+        background: #FFFFFF;
+        border: 1px solid #E0E3EF;
+        box-sizing: border-box;
+        border-radius: 11px;
+        box-shadow: 9px 9px 0 #F4F7FA;
+      }
+
+      .floorplan-image {
+        width: 100%;
+        height: 0;
+        padding-top: 62.5%;
+        position: relative;
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+
+        .company-logo {
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin: 13px 13px 0 0;
+          border-radius: 50%;
+          border: 1px solid #E0E3EF;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          background-color: white;
+          width: 54px;
+          height: 54px;
+        }
+      }
+
+      .item-options {
+        white-space: nowrap;
+        margin-left: auto;
+        list-style: none;
+        padding: 0;
+        font-size: 11px;
+        display: flex;
+
+        & > li {
+          display: flex;
+          align-items: center;
+
+          & > i {
+            margin-right: .5em;
+          }
+
+          margin-left: .5em;
+        }
+      }
+
+      .floorplan-description {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        font-family: Montserrat, serif;
+        font-style: normal;
+        color: #23242A;
+      }
+
+      .floorplan-title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+  }
+
+
+  .steps-block {
+    margin: 100px 6%;
+
+    .lotmix-button {
+      margin: 0 auto;
+      display: block;
+      max-width: fit-content;
+    }
+
+    .steps-title {
+      font-weight: 600;
+      font-size: 35px;
+      text-align: center;
+      color: #232456;
+    }
+
+    .steps-description {
+      font-size: 17px;
+      line-height: 27px;
+      text-align: center;
+      color: #7E7F94;
+
+      span {
+        font-weight: 500;
+        color: black;
+      }
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 40px;
+      margin-bottom: 45px;
+    }
+
+    .step {
+      border: 1px solid #E0E3EF;
+      border-radius: 11px;
+      padding: 20px 53px 24px 57px;
+      box-shadow: 6px 6px 0 #F4F7FA;
+      max-width: 400px;
+
+      &:first-child {
+        justify-self: end;
+      }
+
+      .step-image {
+        padding-top: 75%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &.first-step {
+          background-image: url('../img/lotmix/first-step-image.png');
+        }
+
+        &.second-step {
+          background-image: url('../img/lotmix/second-step-image.png.png');
+        }
+
+      }
+
+      .step-title {
+        font-weight: 600;
+        font-size: 27px;
+        margin-bottom: 20px;
+        color: #232456;
+      }
+
+      .step-description {
+        font-weight: 500;
+        margin-bottom: 0;
+        font-size: 15px;
+        line-height: 23px;
+        color: #7E7F94;
+      }
+
+      .step-count {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 45px;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        color: $landspot-theme-color;
+      }
+    }
+  }
+
+  .journey-block {
+    display: flex;
+    margin: 0 6%;
+
+    .home-h1 {
+      margin-bottom: 25px;
+    }
+
+    .description-block, .possibilities {
+      flex-basis: 50%;
+    }
+
+    .description-block {
+      padding: 0 9%;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .description {
+      align-items: flex-start;
+    }
+
+    .description-text {
+      text-align: left;
+    }
+
+    .possibilities {
+      .possibility {
+        background: #FFFFFF;
+        border: 1px solid #E0E3EF;
+        box-sizing: border-box;
+        border-radius: 11px;
+        padding: 23px 38px 32px;
+        max-width: 446px;
+        margin-bottom: 29px;
+        box-shadow: 9px 9px 0 #F4F7FA;
+        display: flex;
+
+        .content {
+          width: 100%;
+        }
+
+        &:nth-child(even) {
+          margin-left: 71px;
+        }
+
+        .document-icon, .plans-icon, .building-icon {
+          flex-basis: 100px;
+          margin-right: 10px;
+          align-self: stretch;
+          background-repeat: no-repeat;
+          background-position: 0 center;
+          background-size: contain;
+        }
+
+        .document-icon {
+          background-image: url('../img/lotmix/icons/document-icon.png');
+        }
+
+        .plans-icon {
+          background-image: url('../img/lotmix/icons/plans-icon.png');
+        }
+
+        .building-icon {
+          background-image: url('../img/lotmix/icons/building-icon.png');
+        }
+
+        .title {
+          font-family: Montserrat, sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 19px;
+          line-height: 45px;
+          color: #232456;
+          margin: 0;
+        }
+
+        .pos-description {
+          font-family: Montserrat, sans-serif;
+          margin: 0;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 22px;
+          color: #7E7F94;
+        }
+      }
+    }
+  }
+
+  .companies-block {
+    background: #F4F7FA;
+    padding: 5%;
+
+    .home-h1 {
+      text-align: center;
+    }
+
+    .description-block {
+      margin: 0 auto;
+      max-width: 748px;
+    }
+
+    .companies {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 941px;
+      margin: 0 auto;
+    }
+
+    .company {
+      height: 64px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .porter-davis {
+      background-image: url('../img/lotmix/logos/porter-davis.png');
+      width: 150px;
+    }
+
+    .burbank {
+      background-image: url('../img/lotmix/logos/burbank.png');
+      width: 100px;
+    }
+
+    .firstplace {
+      width: 95px;
+      background-image: url('../img/lotmix/logos/firstplace-logo.png');
+    }
+
+    .orbit {
+      width: 60px;
+      background-image: url('../img/lotmix/logos/orbit.png');
+    }
+
+    .sherridon {
+      width: 100px;
+      background-image: url('../img/lotmix/logos/sherridon.png');
+
+      @media (max-width: 760px) {
+        margin: 2% auto;
+        margin-bottom: 3%;
+      }
+    }
+
+    .kingsbridge {
+      width: 120px;
+      background-image: url('../img/lotmix/logos/kingsbridge.png');
+    }
+  }
+
+  .feedback-block {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 20px 10%;
+
+    .feedback-image, .description-block {
+      flex-basis: 50%;
+    }
+
+    .description-block {
+      flex-basis: 256px;
+      max-width: 256px;
+      align-items: flex-start;
+      padding: 10% 0;
+    }
+
+    .description {
+      align-items: flex-start;
+    }
+
+    .description-text {
+      text-align: left;
+
+      &-mobile {
+        display: none;
+      }
+    }
+
+    .feedback-image {
+      background-image: url("../img/lotmix/feedback.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      align-self: stretch;
+      margin-left: 50px;
+    }
+
+    .feedback-image {
+      padding-top: 30%;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .home-container {
+    .welcome-block {
+      .lear-more {
+        position: initial;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 760px) {
+  nav {
+    &.app-nav {
+      display: none;
+
+      &-mobile {
+        display: flex;
+
+        .nav-header {
+          height: $nav-height;
+          padding: 10px 12px;
+        }
+
+        .lotmix-mobile-menu {
+          display: flex;
+          align-items: center;
+          position: relative;
+
+          .fa-caret-down {
+            color: $landspot-theme-color;
+            font-size: 15px;
+            transform: translateY(3px);
+          }
+        }
+
+        .nav-header .logo {
+          padding: 0;
+          margin: 0;
+          width: 120px;
+          mask-position: left !important;
+        }
+      }
+    }
+  }
+  .home-container {
+    .custom-slider {
+      display: block;
+    }
+
+    .custom-slider .slider-window {
+      height: 470px;
+      max-width: 100%;
+    }
+
+    .steps-block {
+      .custom-slider {
+        margin-bottom: 50px;
+      }
+
+      .steps {
+        display: none;
+      }
+
+      .steps-description {
+        margin-bottom: 70px;
+      }
+
+      $step-width: 356px;
+      $mright: 15px;
+
+      .slides {
+        left: calc((#{-$step-width} + #{-$mright}));
+      }
+
+      .step {
+        height: 460px;
+        flex: 0 0 $step-width;
+        max-width: $step-width;
+        margin-right: $mright;
+        padding: 10px 28px 27px;
+
+        .step-count {
+          margin-top: 0;
+        }
+
+        .step-title {
+          margin-top: 10px;
+        }
+      }
+    }
+
+
+    .home-h1 {
+      font-size: 30px;
+    }
+
+    .third-step-block {
+      flex-direction: column;
+      margin: 50px 0;
+      padding: 0 20px 60px;
+
+      .video-block video {
+        max-height: 500px;
+      }
+
+      .description-block {
+        align-items: center;
+
+        .home-h1 {
+          margin: 25px 0;
+        }
+
+        .home-h1, .description-text {
+          text-align: center;
+        }
+      }
+    }
+
+    .journey-block {
+      flex-direction: column;
+      margin: 0;
+
+      .description-block {
+        align-items: center;
+        margin-bottom: 60px;
+
+        .description {
+          align-items: center;
+        }
+      }
+
+      .home-h1, .description-text {
+        text-align: center;
+      }
+
+      .possibilities {
+        margin-left: 22px;
+
+        .possibility {
+          padding: 29px 21px 29px 29px;
+          border-right: none;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+
+          .document-icon, .plans-icon, .building-icon {
+            flex-basis: 100px;
+          }
+
+          .title {
+            line-height: 25px;
+            margin-bottom: 13px;
+          }
+        }
+      }
+    }
+
+    .companies-block {
+      padding: 23px;
+
+      .companies .company {
+        flex-basis: 46%;
+        margin: 2%;
+
+        @media (max-width: 760px) {
+          margin: 4% 2%;
+        }
+      }
+
+      .home-h1 {
+        margin-bottom: 25px;
+        @media (max-width: 760px) {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .feedback-block {
+      flex-direction: column-reverse;
+      margin: 20px 0;
+
+      .feedback-image {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 340px;
+        align-self: stretch;
+        margin: 0;
+        padding: 0;
+      }
+
+      .description-block {
+        display: block;
+
+        .lotmix-button {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      .description-block, .description {
+        align-items: center;
+
+        .home-h1 {
+          margin-bottom: 30px;
+
+          @media (max-width: 760px) {
+            margin-bottom: 15px;
+          }
+        }
+      }
+
+      .description-text {
+        text-align: center;
+        display: none;
+
+        &-mobile {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.landconnect-input {
+  @extend %landconnect-input;
+
+  &.input-group {
+    display: flex;
+    align-items: center;
+
+    & > .input-group-addon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 30px;
+      text-align: center;
+      background-color: $app-border-color;
+      border-radius: 5px;
+
+      .nice-dropdown > button[type=button] {
+        background-color: $app-border-color;
+      }
+
+      &:first-child {
+        min-width: 8ch;
+      }
+      &:last-child {
+        min-width: 7ch;
+      }
+    }
+
+    & > * {
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+      &:last-child,
+      &:last-child.nice-dropdown > button[type=button] {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        flex-grow: 1;
+      }
+      &:first-child,
+      &:first-child.nice-dropdown > button[type=button] {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  @include validation-error-input;
+}

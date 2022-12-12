@@ -1,0 +1,291 @@
+%landconnect-select {
+  cursor: pointer;
+  font-weight: bold;
+  color: $item-text-color;
+  padding: 0 30px 0 10px;
+  height: $filter-input-height;
+  line-height: $filter-input-height;
+  background-color: white;
+  display: block;
+  width: 100%;
+}
+
+%kaspa-dialog-input {
+  @include kaspa-input(0, 0 4px, $larger-text-size);
+  line-height: 30px;
+  opacity: 0.5;
+  border-bottom: 1px solid $table-text-color;
+}
+
+%kaspa-dialog-select {
+  outline: none;
+  appearance: none;
+  opacity: 0.5;
+  line-height: 25px;
+  background-color: white;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+
+  border: {
+    top: 0;
+    right: 0;
+    bottom: 1px solid $table-text-color;
+    left: 0;
+  }
+}
+
+%landconnect-date {
+  line-height: 25px;
+  background-color: white;
+
+  border: {
+    top: 0;
+    right: 0;
+    bottom: 1px solid $table-text-color;
+    left: 0;
+  }
+
+  & > input[type=date] {
+    appearance: none;
+    border: 0;
+    outline: none;
+    background: transparent;
+  }
+
+  &.disabled {
+    opacity: .25;
+  }
+}
+
+%kaspa-button {
+  outline: none;
+  appearance: none;
+  line-height: normal;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: .5;
+  }
+
+  &.transparent {
+    border: 0;
+    padding: 0;
+    background: transparent;
+
+    &:hover {
+      color: $kaspa-brand-color;
+      opacity: .7;
+    }
+  }
+
+  & > i.fa.end-icon {
+    margin-left: 1ch;
+  }
+
+  & > i.fa.beg-icon {
+    margin-right: 1ch;
+  }
+}
+
+%landconnect-dialog-round-button {
+  @include landconnect-round-button($kaspa-menu-color);
+  line-height: normal;
+  width: 22ch;
+  border: 1px solid $kaspa-menu-color;
+}
+
+%landconnect-h5 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 44px;
+  color: $landconnect-text-color;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+%autocomplete-dropdown {
+  position: relative;
+  margin-bottom: 35px;
+  color: $table-text-color;
+
+  &.wide {
+    width: 100%;
+  }
+
+  & > .menu {
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.11);
+
+    & > .item {
+      color: $table-text-color;
+      line-height: 25px;
+      padding: 0 1em;
+      font-size: $larger-text-size;
+      margin-bottom: 4px;
+
+      &.item-highlighted {
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      &.not-found {
+        font-style: italic;
+        color: #91959F;
+      }
+    }
+  }
+
+  & > input[type="text"] {
+    @extend %kaspa-dialog-input;
+  }
+}
+
+%dialog-label {
+  color: $landconnect-text-color;
+  font-weight: 500;
+  line-height: 14px;
+  display: block;
+}
+
+%landconnect-section-heading {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 3;
+}
+
+%navigation-menu {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: $app-border;
+
+  & > a {
+    border-bottom: 2*$app-border-width solid transparent;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    line-height: 45px;
+    border-bottom: 2*$app-border-width solid transparent;
+    margin-bottom: -$app-border-width;
+    padding: 0 1.5em 10px 1em;
+
+    font-weight: $font-weight-bold;
+
+    & > i {
+      margin-right: 10px;
+
+      &.fa,
+      &.fas,
+      &.fal {
+        font-size: 18px;
+      }
+    }
+
+    &.active,
+    &:hover {
+      border-bottom-color: $landconnect-theme-color;
+    }
+  }
+}
+
+%landconnect-input {
+  & > input[type=text],
+  & > input[type=number],
+  & > input[type=password],
+  & > .autocomplete-dropdown > input,
+  & > textarea {
+    appearance: none;
+    height: 30px;
+    border: none;
+    background-color: $input-background-color;
+    border-radius: 5px;
+    display: block;
+    padding: 0 1ch;
+    width: 100%;
+    font-size: $larger-text-size;
+
+    &.required-field {
+      border: 1pt solid #fe8d7c;
+      background-color: #f5efef;
+    }
+
+    &.highlight {
+      background-color: #fafafa;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-moz-placeholder,
+    &:-ms-input-placeholder,
+    &::-webkit-input-placeholder {
+      font-size: inherit;
+      font-weight: $font-weight-medium;
+      opacity: 0.3;
+      color: $landconnect-text-color;
+    }
+
+    &.disabled,
+    &[disabled] {
+      background-color: $app-border-color;
+      cursor: default;
+    }
+  }
+  & > .autocomplete-dropdown > input{
+    width: 150px;
+  }
+  & > .autocomplete-dropdown.wide > input {
+    width: 100%;
+  }
+  & > .autocomplete-dropdown > .menu {
+    font-weight: $font-weight-medium;
+    background-color: #F8F8F8FF;
+    z-index: 1;
+    margin-top: -5px;
+    position: relative;
+
+    .item {
+      padding: 7px;
+      width: 150px;
+
+      & > span.title {
+        display: block;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      & > span.subtitle {
+        line-height: 1.5;
+        display: block;
+      }
+    }
+
+    .item-highlighted {
+      background-color: #E8E8EAFF;
+    }
+  }
+  & > .autocomplete-dropdown.wide > .menu {
+    .item {
+      width: 100%;
+    }
+  }
+
+  & > textarea {
+    height: inherit;
+    padding: 1ch;
+  }
+
+  &.magnify {
+    & > input[type=text] {
+      padding-left: 40px;
+    }
+
+    @include landconnect-icon-before('search', $nav-text-size, 18px);
+  }
+}

@@ -1,0 +1,290 @@
+.find-land-page {
+  overflow: visible;
+
+  .gray-color {
+    color: #c0c7ce;
+  }
+
+  .lotmix-estate .header .filter-nav .landspot-icon {
+    margin-right: 6px;
+  }
+
+  .filter-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .left-panel {
+    box-shadow: none;
+    border-right: 1px solid #EAECEF;
+    flex-basis: 39%;
+
+    .filter {
+      .search-autocomplete {
+        max-width: 100%;
+      }
+
+      .search-autocomplete .autocomplete-dropdown {
+        &::after {
+          left: 17px;
+        }
+
+        input[type="text"] {
+          &::placeholder {
+            color: #323337;
+          }
+
+          border-radius: 7px;
+          opacity: 1;
+          background: #F2F4F6;
+          padding: 14px 12px 15px 44px;
+        }
+      }
+
+      .checkbox-input:first-child {
+        margin-right: 41px;
+        cursor: pointer;
+      }
+
+      .filter-mobile-button {
+        display: none;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .filter-form .first-row {
+        margin-top: 0 !important;
+        padding-top: 0;
+
+        .filters-header {
+          font-weight: 600;
+        }
+
+      }
+    }
+
+    .form-row {
+      .left-item {
+        font-weight: 600;
+      }
+
+      .right-item {
+        max-width: 312px;
+      }
+
+      .two-inputs > input[type=number] {
+        padding: 12px 17px 14px;
+      }
+    }
+
+    input {
+      border: 1px solid #D0DBE6;
+      background: white;
+      padding: 12px 17px 14px;
+      font-size: 13px;
+      border-radius: 25px;
+      height: auto;
+    }
+
+    .price-row {
+      label {
+        font-weight: 600;
+      }
+
+      .price-info {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        span {
+          color: $landspot-theme-color;
+          font-size: 17px;
+          font-weight: 600;
+        }
+      }
+
+      .rail, .track {
+        height: 2px;
+      }
+
+      .handle {
+        box-shadow: none;
+        border: 2px solid var(--main-color);
+        background-color: white;
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  .right-section .card > .content .button.default {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .right-panel {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    .back-nav-wrapper {
+      padding: 15px;
+
+      & > a {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .map-estate-wrapper {
+      height: 100%;
+      position: relative;
+
+      .estates-map {
+        z-index: 10;
+      }
+    }
+
+    .header {
+      padding: 19px 30px 18px;
+      border-bottom: 1px solid #EAECEF;
+
+      .results {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .filter-nav {
+        margin-left: auto;
+
+        a {
+          font-weight: 600;
+          color: #BDBECD;
+          font-size: 13px;
+          padding-bottom: 17px;
+
+          &:not(:last-child) {
+            margin-right: 27px;
+          }
+
+          i {
+            margin-right: 13px;
+
+            &:before {
+              background-color: #BDBECD;
+            }
+          }
+
+          &:hover, &.active {
+            color: $landspot-theme-color;
+            border-bottom: 2px solid $landspot-theme-color;
+
+            i:before {
+              background-color: $landspot-theme-color;
+            }
+          }
+        }
+
+        @media (max-width: 760px) {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .cards {
+      padding: 14px 20px;
+
+      .cards-list {
+        margin: 0;
+
+        .card > .content {
+          box-shadow: none !important;
+          border: 1px solid #E0E3EF;
+
+          & > .image {
+            padding-top: 74%;
+          }
+        }
+      }
+    }
+
+    .pagination {
+      padding: 0 30px;
+
+      @media (max-width: 760px) {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  @media (max-width: 760px) {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .right-panel {
+      overflow: visible;
+
+      .header {
+        align-items: flex-end;
+      }
+
+      .map-estate-wrapper {
+        height: 540px;
+      }
+    }
+    .left-panel {
+      flex-basis: auto;
+      overflow-x: inherit;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+
+      .filter-title {
+        padding: 0 15px;
+      }
+
+      .filter {
+        border-top: 1px solid #EAECEF;
+        margin-top: 30px;
+        padding-top: 0 !important;
+        border-bottom: 1px solid #EAECEF;
+
+        .filter-mobile-button {
+          display: block;
+          padding: 0 15px;
+        }
+
+        .filter-bar {
+          .filter-form .form-rows .form-row {
+            margin-bottom: 29px;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .left-item {
+              font-size: 13px;
+              margin-bottom: 15px;
+            }
+
+            .right-item {
+              margin: 0;
+            }
+
+            .landspot-input {
+              width: 100%;
+              max-width: 100%;
+            }
+
+            &.checkbox-row {
+              flex-direction: row;
+            }
+          }
+
+          &.open {
+            overflow-y: inherit;
+            position: inherit;
+          }
+        }
+      }
+    }
+  }
+}

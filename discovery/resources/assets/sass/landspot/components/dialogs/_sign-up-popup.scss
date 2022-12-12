@@ -1,0 +1,90 @@
+.sign-up-modal {
+  .landspot-modal {
+    overflow: visible;
+    width: 700px;
+
+    .auth-form {
+      max-width: 400px;
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+
+      .form-rows .form-row .landspot-input {
+        flex: 1 1 100%;
+        width: 100%;
+        height: 60px;
+
+        & > input {
+          height: 100%;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+
+  .logo {
+    width: 140px;
+    height: 20px;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, calc(-100% - 37px));
+    display: block;
+    position: absolute;
+    background-color: $landspot-theme-color;
+    mask: url("../../../../img/Lmix_logo.svg") left center/contain no-repeat;
+  }
+
+  .button {
+    font-weight: 600;
+    font-size: 14px;
+    height: 50px;
+    max-width: 160px;
+    width: 100%;
+    margin-top: 36px;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h1 {
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 44px;
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    .landspot-modal {
+      width: 87%;
+      border-radius: 0;
+      padding: 0;
+      top: 100px;
+      transform: none;
+    }
+
+    .lotmix-signup {
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+
+      padding: 0 20px 35px;
+
+      & > header, h1 {
+        font-size: 20px;
+        line-height: 34px;
+        margin: 36px 0 33px;
+        text-align: center;
+      }
+
+      .auth-form {
+        .button.primary {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+.button {
+  display: inline-block;
+  font-size: $text-size;
+  font-weight: $font-weight-bold;
+  color: #fff;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.75em 2.5em;
+  border-radius: 20px;
+  border: $app-border-width solid transparent;
+
+  & > .landconnect-icon {
+    padding: 7px;
+    margin-right: 10px;
+  }
+
+  &:not(.transparent) {
+    & > .landconnect-icon {
+      &:before {
+        @include background-brand-color;
+      }
+    }
+  }
+
+  &.primary {
+    background: $landconnect-theme-color;
+
+    & > .landconnect-icon::before {
+      background: white;
+    }
+
+    &:hover {
+      background: #fff;
+      @include brand-color;
+      border-color: $landconnect-theme-color;
+
+      & > .landconnect-icon::before {
+        @include background-brand-color;
+      }
+    }
+  }
+
+  &.transparent {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: $landconnect-text-color;
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+  &.small {
+    padding: 0.75em 1em;
+  }
+
+  &.batter-delete-btn {
+    height: 30px;
+    margin-left: 15px;
+  }
+
+  &.default {
+    background: #fff;
+    @include brand-color;
+    border-color: $landconnect-theme-color;
+
+    &:hover {
+      @include background-brand-color;
+      color: #fff;
+
+      & > .landconnect-icon::before {
+        background: white;
+      }
+    }
+  }
+
+  &.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 18px;
+
+    .landconnect-icon {
+      margin-right: 0;
+      padding: 8px;
+    }
+  }
+
+  &.add-company {
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  &.disabled,
+  &[disabled] {
+    opacity: .5;
+    cursor: default;
+  }
+
+  & > .beg-icon {
+    vertical-align: middle;
+    margin-right: .5em;
+  }
+
+  & > .end-icon {
+    vertical-align: middle;
+    margin-left: .5em;
+  }
+}

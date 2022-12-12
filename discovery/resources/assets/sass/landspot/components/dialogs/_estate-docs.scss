@@ -1,0 +1,76 @@
+.landspot-modal.estate-docs {
+  width: 40vw;
+  font-size: $small-text-size;
+
+
+  table.files-list {
+    table-layout: fixed;
+    td {
+      width: 50%;
+    }
+  }
+
+  .docs-container {
+    overflow: hidden;
+    display: flex;
+
+    label {
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-weight: $font-weight-bold;
+      font-size: $extra-small-text-size;
+    }
+
+    & > .stages {
+      overflow-x: hidden;
+      flex: 0 0 33%;
+      margin-right: 3em;
+
+      & > .nice-dropdown {
+        margin-top: 1em;
+      }
+    }
+
+    & > ul {
+      flex: 1;
+      margin: 0;
+      transform: translateY(-25px);
+
+      & > li {
+        display: flex;
+        flex-flow: column;
+        height: 100px;
+        justify-content: space-evenly;
+        padding: 10px 0;
+        &:not(:last-of-type) {
+          border-bottom: $app-border;
+        }
+
+        & > div {
+          display: flex;
+        }
+
+        .empty {
+          font-style: italic;
+        }
+
+        .trash-btn {
+          margin-left: 1em;
+          & > .times {
+            padding: 6px;
+          }
+        }
+
+        .upload {
+          padding: 9px;
+          margin-right: 1em;
+        }
+      }
+    }
+  }
+
+
+  @media screen and (max-width: 1024px) {
+    width: 60vw;
+  }
+}

@@ -1,0 +1,7 @@
+.invisible {
+  visibility: hidden;
+}
+
+.moving {
+  @extend %movable-header-cell;
+}

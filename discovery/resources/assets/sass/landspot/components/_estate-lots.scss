@@ -1,0 +1,331 @@
+&.landspot-estate {
+  align-content: flex-start;
+  @import './lotmix-profile';
+  .nice-dropdown {
+    &.published {
+      button {
+        background: $color-status-published;
+      }
+    }
+    &.unpublished {
+      button {
+        background: $color-status-unpublished;
+      }
+    }
+  }
+
+  & > .left-panel {
+    flex: 0 0 33%;
+    margin-right: 55px;
+    position: relative;
+
+    & > .logo {
+      margin: 35px 0;
+      @include card-image;
+      background: transparent center center/contain no-repeat scroll;
+      box-shadow: $app-box-shadow;
+    }
+  }
+
+  & > .right-panel {
+    margin-top: 50px;
+    flex: 1;
+
+    & > .details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 27px;
+
+      & > header {
+        @extend %landspot-section-heading;
+        line-height: normal;
+      }
+
+      & > .settings {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+
+        & > .status {
+          margin-left: 2em;
+          font-size: $extra-small-text-size;
+          font-weight: $font-weight-bold;
+        }
+
+        & > .nice-dropdown {
+          margin-left: 1em;
+          min-width: 15ch;
+        }
+      }
+    }
+    & > .attributes {
+
+      & > nav {
+        @extend %navigation-menu;
+        & > a {
+          padding: 0;
+          margin-right: 3em;
+        }
+      }
+
+      & > .tab {
+        font-size: $small-text-size;
+        min-height: 120px;
+        display: flex;
+
+        dl {
+          margin: 2em 2em 0 0;
+
+          & > dt {
+            line-height: 1.5;
+            font-size: $extra-small-text-size;
+            font-weight: $font-weight-bold;
+          }
+
+          & > dd {
+            margin: 7px 0 0 0;
+            max-width: 210px;
+            opacity: 0.8;
+            color: $landspot-text-color;
+            font-weight: 300;
+            line-height: 20px;
+          }
+        }
+
+        a:not(.lot-drawer) > .landspot-icon {
+          margin-right: 15px;
+          padding: 8px;
+        }
+
+        summary {
+          height: 120px;
+
+          & > a {
+            display: block;
+            line-height: 3;
+          }
+        }
+      }
+
+      .estate-documents-info {
+        list-style-type: none;
+        padding-left: 0;
+
+        .view-documents {
+          height: 18px;
+          max-width: 117px;
+          color: $landspot-text-color;
+          font-size: $small-text-size;
+          font-weight: 300;
+          line-height: 19px;
+        }
+
+        .upload-a-new-document {
+          height: 40px;
+          max-width: 174px;
+          color: #2C3E50;
+          font-size: $small-text-size;
+          font-weight: 300;
+          line-height: 19px;
+        }
+      }
+
+      .pdf-pricelist-info {
+        list-style-type: none;
+        padding-left: 0;
+
+        .format-pdf-price-list,
+        .export-pdf-price-list {
+          height: 18px;
+          max-width: 208px;
+          color: $landspot-text-color;
+          font-size: $small-text-size;
+          font-weight: 300;
+          line-height: 19px;
+        }
+      }
+    }
+
+    & > .last-update {
+      text-align: right;
+      color: $color-sold;
+    }
+
+    & > .estate-message {
+      .landspot-input {
+        width: 100%;
+        margin-top: 1em;
+
+        & > textarea {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+      }
+      label {
+        display: flex;
+        & > button {
+          margin-left: 10px;
+        }
+      }
+
+      pre {
+        font-family: inherit;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  & > .filter-bar {
+    .filter-form {
+      border-top: $app-border;
+      border-bottom: $app-border;
+    }
+
+    .form-rows {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-bottom: 25px;
+
+      & > .form-row {
+        width: 100%;
+        max-width: 340px;
+
+        &.price-row {
+          flex-direction: row;
+          margin: 9px 0 0;
+          .price-slider {
+            max-width: 200px;
+            margin: 0 0 0 auto;
+          }
+        }
+        .toggle-switch {
+          padding-left: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+          padding: 5px 0;
+          max-width: inherit;
+        }
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      .clearfix {
+        display: none;
+      }
+      .price-row {
+        padding-bottom: 5px;
+      }
+    }
+  }
+
+  & > .stages,
+  & > .filter-bar {
+    flex: 0 0 100%;
+  }
+
+  & > .stages {
+    width: 100%;
+    @import "../../lotmix/components/_lots-list.scss";
+    & > .sold-header {
+      background: $input-background-color;
+      border-radius: $app-border-radius;
+      border: $app-border;
+      padding: 1ch;
+      font-weight: $font-weight-bold;
+      margin-top: 25px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    & > .add-stage {
+      margin-top: 36px;
+      margin-bottom: 15px;
+    }
+
+    & > .table-header {
+      & > .grid-switcher {
+        display: flex;
+        align-items: center;
+        .default-grid {
+          margin: 0 20px;
+        }
+        .default-grid:not(.active), .list-grid:not(.active) {
+          cursor: pointer;
+          opacity: 0.5;
+        }
+        .landspot-icon{
+          margin-left: 10px;
+        }
+      }
+      &.stage {
+        border-bottom: $app-border;
+        margin-top: 30px;
+      }
+
+      &.stage-actions {
+        display: flex;
+
+        .edit-table {
+          margin-left: auto;
+          display: flex;
+
+          & > .button {
+            margin-right: 10px;
+            .fal {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      min-height: 55px;
+      padding: {
+        bottom: 10px;
+        top: 10px;
+      }
+
+      & > .title {
+        font-size: $header-text-size;
+        font-weight: $font-weight-bold;
+      }
+
+      & > .actions {
+        & > .toggle-switch,
+        & > .status {
+          font-size: $extra-small-text-size;
+          font-weight: $font-weight-bold;
+        }
+        & > .nice-dropdown {
+          min-width: 15ch;
+        }
+      }
+    }
+
+    .has-menu {
+      position: relative;
+
+      & > .menu-list {
+        right: 0;
+        position: absolute;
+        display: none;
+        & > .dropdown {
+          display: block;
+          transform: translateY(-50%);
+        }
+      }
+
+      &:hover {
+        & > .menu-list {
+          display: block;
+        }
+      }
+    }
+  }
+}

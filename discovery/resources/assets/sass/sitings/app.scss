@@ -1,0 +1,126 @@
+@import "../../../../node_modules/normalize.css";
+
+@import "variables";
+@import "z-indexes";
+@import "icons/main";
+@import "mixins";
+@import "placeholders";
+@import "../../fonts/css/fontawesome/sitings-main";
+
+@import "reboot";
+
+@import "tables";
+@import "icons";
+@import "scrollbars";
+@import "nav";
+@import "modals";
+@import "modals_extensions";
+
+
+
+@import 'components/new-floorplan-form';
+@import 'components/floorplan-details';
+@import 'components/floorplan-svg-viewer';
+@import 'components/floorplans-table';
+@import 'components/search-bar';
+@import 'components/nice-dropdown';
+@import 'components/toggle-switch';
+@import 'components/link';
+@import 'components/input';
+@import 'components/price-slider';
+@import 'components/progress-bar';
+@import "items/all";
+@import "responsive";
+@import "sitings-main";
+
+
+
+* {
+  color: $landconnect-text-color;
+  //font-family: Montserrat, "Open Sans", sans-serif;
+}
+
+body {
+  font-size: $text-size;
+}
+
+button {
+  cursor: pointer;
+  &[type="button"] {
+    @extend %kaspa-button;
+
+    &.deleting-bg {
+      background-color: $kaspa-brand-color;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.portal-content {
+
+  //&.fullpage {
+  //  padding-top: 130px;
+  //  display: flex;
+  //  height: 100vh;
+  //  overflow: hidden;
+  //  flex-flow: column nowrap;
+  //}
+
+  padding-top: 184px;
+
+  & > header {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 44px;
+    margin-bottom: 33px;
+    display: flex;
+    align-items: center;
+    & > .new-floorplan-btn {
+      margin-left: auto;
+      font-size: $larger-text-size;
+      text-transform: uppercase;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+    &:hover {
+      color: $anchor-hover-color;
+    }
+    & > i.fa.end-icon {
+      margin-left: 1ch;
+    }
+  }
+}
+
+.land-btn {
+  &.big {
+    min-width: 8.5em;
+    padding: 1em 0;
+  }
+  & > .fa {
+    margin-right: 4px;
+  }
+
+  &.active {
+    background: $kaspa-brand-color;
+    color: #fff;
+  }
+
+  font-size: $text-size;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  background: $default-bg-color;
+  border: 1px solid $default-border-color;
+
+  &:hover {
+    background: $kaspa-brand-color;
+    color: #fff;
+  }
+}
+
+

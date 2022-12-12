@@ -1,0 +1,230 @@
+.lotmix-public-nav-mobile{
+  display: none;
+}
+.lotmix-public {
+  display: flex;
+  flex-direction: row;
+
+  .map-toggler {
+    padding: 10px;
+    border: 1px solid $landspot-theme-color;
+    text-align: center;
+    color: $landspot-theme-color;
+    margin: 15px 0 0;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .estate-map-wrapper {
+    position: relative;
+    height: 460px;
+    @import "../../landspot/components/estates";
+  }
+
+  .left-panel {
+    flex: 0 0 50%;
+    padding: 40px 80px;
+
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 38px;
+      color: rgba(0, 0, 0, 0.3);
+
+      span {
+        display: block;
+        margin: 0;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 38px;
+        color: #000000;
+      }
+    }
+
+    .filter {
+      .landspot-input {
+        margin: 20px 0;
+
+        > input[type="text"] {
+          height: 40px;
+        }
+      }
+
+      .suburbs-search {
+        margin-top: 25px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 19px;
+        color: #323337;
+
+        .suburb-list {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin-top: 15px;
+
+          .show-more {
+            font-size: 12px;
+            text-align: center;
+            text-decoration: underline;
+            padding: 7px 14px;
+            display: block;
+          }
+
+          label {
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+          }
+
+          label span {
+            text-align: center;
+            padding: 9px 21px 11px;
+            display: block;
+            cursor: pointer;
+            border: 1px solid $landspot-theme-color;
+            color: $landspot-theme-color;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 16px;
+            border-radius: 18px;
+          }
+
+          label input[type="checkbox"] {
+            position: absolute;
+            top: -20px;
+          }
+
+          input[type="checkbox"]:checked + span {
+            background-color: $landspot-theme-color;
+            color: white;
+          }
+
+          input[type="checkbox"]:hover + span {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .estate-results {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid #eee;
+
+      .results-header {
+        display: flex;
+
+        .count {
+          font-size: 14px;
+          flex: 0 0 50%;
+        }
+
+        .sort {
+          font-size: 12px;
+          flex: 1 1 50%;
+          text-align: right;
+        }
+      }
+
+      .estate-cards {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        .estate-card {
+          border: 1px solid #E0E3EF;
+          border-radius: 11px;
+          height: 86px;
+          background-color: white;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          padding-left: 30px;
+          overflow: hidden;
+
+          .name {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: #323337;
+            flex: 0 0 70%;
+          }
+
+          .logo {
+            flex: 1 1 100%;
+            padding-bottom: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .lotmix-public-nav{
+    display: none;
+    &-mobile{
+      display: flex;
+    }
+  }
+  .lotmix-public {
+    flex-direction: column;
+
+    .left-panel {
+      overflow: unset;
+      padding-left: 0;
+      padding-right: 0;
+
+      .header {
+        padding: 0 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: black;
+
+        h2 {
+          font-weight: 500;
+          font-size: 23px;
+        }
+      }
+
+      .filter {
+        padding: 0 20px;
+      }
+
+      .estate-results {
+        padding: 25px 20px 0;
+
+        .estate-cards .estate-card {
+          padding: 0;
+          flex-direction: column-reverse;
+          min-height: 130px;
+          height: auto;
+          margin-bottom: 20px;
+
+          .name {
+            border-top: 1px solid #E7E7E7;
+            font-size: 16px;
+            display: block;
+            text-align: center;
+            padding: 24px 15px;
+            line-height: normal;
+          }
+
+          .logo {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

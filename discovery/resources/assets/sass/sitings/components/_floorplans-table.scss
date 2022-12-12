@@ -1,0 +1,36 @@
+.portal-table {
+  tr.unread {
+    & > td {
+      font-weight: 600;
+    }
+  }
+
+  td.floorplan-status {
+    white-space: nowrap;
+    padding: {
+      top: 0;
+      bottom: 0;
+    };
+
+    font-size: $larger-text-size;
+
+    span {
+      @include span-status;
+    }
+  }
+
+  button.set-live-status {
+    display: block;
+  }
+
+  .history-animation {
+    will-change: font-weight;
+    animation: font-weight-anim 1s steps(2) infinite;
+  }
+
+  @keyframes font-weight-anim {
+    to {
+      font-weight: 900;
+    }
+  }
+}

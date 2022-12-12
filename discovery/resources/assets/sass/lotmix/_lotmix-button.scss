@@ -1,0 +1,22 @@
+.lotmix-button {
+  background: $landspot-theme-color;
+  border-radius: 56px;
+  padding: 11px 22px 13px;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  border: 1pt solid transparent;
+  cursor: pointer;
+  transition: .3s;
+  outline: none;
+
+  &:hover {
+    background: #fff;
+    color: $landspot-theme-color;
+    border-color: $landspot-theme-color;
+  }
+}

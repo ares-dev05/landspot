@@ -1,0 +1,75 @@
+.menu-list {
+  position: relative;
+
+  & > .menu-title {
+    font-size: $small-text-size;
+    line-height: 2;
+    padding: 5px 20px 5px 0;
+    cursor: pointer;
+    position: relative;
+
+    & > .list {
+      padding: 7px;
+      margin-right: 10px;
+    }
+    & > .angle-down {
+      position: absolute;
+      padding: 5px;
+      right: 0;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  &:hover > ul.dropdown {
+    display: block;
+  }
+
+  & > ul.dropdown {
+    display: none;
+    margin: 0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: $item-box-shadow;
+    list-style: none;
+    padding: 15px;
+    position: absolute;
+    z-index: $z-index-nice-dropdown-list;
+
+    & > li {
+      text-transform: initial;
+      font-size: $small-text-size;
+      white-space: nowrap;
+      cursor: pointer;
+      line-height: 25px;
+      opacity: .7;
+
+      & > .landspot-icon {
+        padding: 6px;
+        margin-right: 10px;
+      }
+
+      &:hover {
+        color: $landspot-theme-color;
+      }
+    }
+
+    &.bottom {
+      left: 100%;
+      top: 30px;
+      margin-left: -4px;
+      transform: translateX(-50%);
+      @include menu-angle-top;
+    }
+
+    &.right {
+      @include menu-angle-left;
+    }
+  }
+}
+
+.show {
+  & > ul.dropdown {
+    display: block !important;
+  }
+}

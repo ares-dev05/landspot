@@ -1,0 +1,89 @@
+.nice-dropdown {
+  position: relative;
+  font-size: $larger-text-size;
+  height: 30px;
+  background: white;
+
+  & > button[type=button] {
+    background: $input-background-color;
+    user-select: none;
+    border-radius: 5px;
+    appearance: none;
+    border: 1px solid transparent;
+    line-height: 26px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: {
+      right: 2em;
+      left: 1ch;
+    }
+
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+    @include ellipsis-overflow;
+    @include awesome-icon-after('\F0D7', null, 10px);
+  }
+
+  &.transparent {
+    & > button[type=button] {
+      background: transparent;
+    }
+  }
+
+  & > .list {
+    display: none;
+    overflow-y: auto;
+    will-change: max-height;
+    transition: max-height .75s;
+    max-height: 50vh;
+    margin-top: 3px;
+    text-align: left;
+    background: #fff;
+    border: 1px solid $app-border-color;
+    border-radius: 5px;
+
+    &.top {
+      bottom: 3em;
+    }
+
+    & > .item {
+      display: block;
+      user-select: none;
+      width: 100%;
+      color: inherit;
+      line-height: 2.25;
+      padding: 0 1em;
+      text-align: inherit;
+      border: 0;
+
+      @include ellipsis-overflow;
+
+      &.selected {
+        font-weight: bold;
+      }
+
+      &:hover {
+        background: $input-background-color;
+      }
+    }
+  }
+
+  &.expanded {
+    z-index: $z-index-nice-dropdown-list;
+    & > button[type=button] {
+      background: #fff;
+      border: 1px solid $landconnect-theme-color;
+      @include awesome-icon-after('\F0D8', null, 10px);
+    }
+
+    & > .list {
+      display: block;
+    }
+  }
+
+  @include validation-error-button;
+}

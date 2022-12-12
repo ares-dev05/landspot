@@ -1,0 +1,77 @@
+.primary-container {
+  height: 100vh;
+  padding-top: $app-navbar-height;
+  overflow: hidden;
+
+  & > section {
+    &.left-panel {
+      z-index: $z-index-left-panel; //to keep shadow over map
+      flex: 0 0 26%;
+      overflow-x: hidden;
+      padding: $content-padding;
+      box-shadow: $app-box-shadow;
+
+      @import "components/left-panel";
+      @import "components/sidebar";
+    }
+
+    &.right-panel {
+      overflow-x: hidden;
+      flex: 1 1 100%;
+      padding: $content-padding;
+      position: relative;
+
+      &.flex-column {
+        display: flex;
+        flex-flow: column;
+      }
+
+      @import "components/right-panel";
+    }
+
+    &.content {
+      flex: 1 100%;
+      padding: {
+        right: 114px;
+        left: 80px;
+        top: 62px;
+        bottom: 30px;
+      }
+
+      overflow-y: auto;
+
+      display: flex;
+
+      & > header {
+        @extend %landconnect-section-heading;
+      }
+    }
+
+    &.wrap-items {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.responsive-container {
+  display: flex;
+
+  @media screen and (max-width: 1024px) {
+    display: block;
+    overflow: visible;
+
+    & > .responsive {
+      margin-right: 0 !important;
+    }
+
+    .hidden-tablet {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    .hidden-desktop {
+      display: none;
+    }
+  }
+}

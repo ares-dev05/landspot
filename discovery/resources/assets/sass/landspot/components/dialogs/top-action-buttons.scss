@@ -1,0 +1,17 @@
+.top-action-buttons {
+  & > .popupmodal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .popupmodal-footer {
+      margin-top: 0;
+
+      & > .cancel {
+        font-size: $small-text-size;
+        font-weight: $font-weight-medium;
+        margin: 0 20px;
+      }
+    }
+  }
+}

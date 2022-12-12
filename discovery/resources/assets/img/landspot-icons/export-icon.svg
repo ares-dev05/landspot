@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Export" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="basic_elaboration_document_download" transform="translate(11.000000, 6.500000) scale(-1, 1) rotate(90.000000) translate(-11.000000, -6.500000) translate(8.000000, 3.000000)" stroke="#323337" stroke-width="0.75">
+            <polyline id="Shape" points="5.625 4.375 3 7 0.375 4.375"></polyline>
+            <path d="M3,7 L3,0.875" id="Shape"></path>
+        </g>
+        <polyline id="Path-2" stroke="#323337" stroke-width="0.75" fill-rule="nonzero" points="9.38242154 4.21313566 9.38242154 1 1 1 1 12.5 9.38242154 12.5 9.38242154 9"></polyline>
+    </g>
+</svg>

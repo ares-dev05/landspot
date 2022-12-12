@@ -1,0 +1,87 @@
+.primary-container {
+  height: 100vh;
+  padding-top: $app-navbar-height;
+  overflow: hidden;
+
+  .close-discovery {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transform: translate3d(-100%, 100%, 0);
+    font-size: 22px;
+    z-index: $z-index-close-discovery;
+    color: inherit;
+  }
+
+  & > section {
+    &.left-panel {
+      z-index: $z-index-left-panel; //to keep shadow over map
+      flex: 0 0 26%;
+      overflow-x: hidden;
+      padding: $content-padding;
+      box-shadow: $app-box-shadow;
+
+      @import "components/left-panel";
+    }
+
+    &.right-panel {
+      overflow-x: hidden;
+      flex: 1 1 100%;
+      padding: $content-padding;
+      position: relative;
+
+      &.flex-column {
+        display: flex;
+        flex-flow: column;
+      }
+
+      @import "components/right-panel";
+    }
+
+    &.content {
+      flex: 1 100%;
+      padding: {
+        right: 114px;
+        left: 80px;
+        top: 62px;
+        bottom: 30px;
+      }
+
+      overflow-y: auto;
+
+      display: flex;
+
+      & > header {
+        @extend %landspot-section-heading;
+      }
+
+      @import "components/house";
+      @import "components/user-profile";
+      @import "components/discovery-manager";
+      @import "components/estate-lots";
+      @import "components/estate-packages";
+    }
+
+    &.wrap-items {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.footprints-wrapper {
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+
+  & > .primary-container {
+    padding-top: 0;
+    background: #fff;
+    border-radius: 1em;
+    height: 100%;
+
+    .close-discovery {
+      display: block;
+    }
+  }
+}

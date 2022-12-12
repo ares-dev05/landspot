@@ -1,0 +1,1 @@
+require('./lotmix-faq/index');

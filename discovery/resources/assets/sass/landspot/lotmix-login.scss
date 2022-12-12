@@ -1,0 +1,381 @@
+.primary-container.login-container {
+  background: white;
+  padding-top: 0;
+
+  nav.app-nav {
+    position: relative;
+    box-shadow: none;
+    height: 100px;
+    display: block;
+    background: #fff;
+    z-index: $z-index-spinner;
+
+    & > .nav-header {
+      padding: 40px 50px;
+      align-items: center;
+      border: none;
+
+      .logo {
+        background-color: $landspot-theme-color;
+        mask: url("../../img/Lmix_logo.svg") left center/contain no-repeat;
+        width: 100%;
+      }
+    }
+  }
+
+  .landspot-modal {
+    width: 700px;
+  }
+
+  .lotmix-signup {
+    max-width: 100%;
+    flex: 1 1 100%;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px;
+
+    header, h1 {
+      font-weight: normal;
+      font-size: 28px;
+      line-height: 44px;
+      margin: 50px 0 58px;
+      text-align: center;
+    }
+
+    .auth-form {
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .form-rows {
+        width: 100%;
+        margin-top: 0;
+
+        .form-row.column {
+          flex-direction: row;
+          margin-bottom: 15px;
+          align-items: center;
+
+          .landspot-input {
+            flex: 1 1 100%;
+            width: 100%;
+            height: 60px;
+
+            & > input {
+              height: 100%;
+              padding: 0 20px;
+            }
+          }
+        }
+      }
+
+      .button.primary {
+        height: 50px;
+        max-width: 160px;
+        width: 100%;
+        margin-top: 36px;
+        border-radius: 25px;
+      }
+
+      .social-auth {
+        margin-top: 60px;
+        padding: 0 150px;
+        box-sizing: unset;
+
+        .google-button {
+          box-sizing: border-box;
+        }
+
+        .facebook-button {
+          width: 208px;
+          box-sizing: border-box;
+
+          .facebook {
+            margin-right: 10px;
+          }
+        }
+
+        & > .heading {
+          margin: 40px 0 30px;
+          line-height: 19px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.primary-container.sign-up-container {
+  position: relative;
+  padding-top: 0;
+  height: 750px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+
+  .footer-image {
+    max-width: 100%;
+    margin-top: calc(21px + 7%);
+  }
+
+  .sm {
+    display: none;
+  }
+
+  .md {
+    display: block;
+  }
+
+  nav.app-nav {
+    position: relative;
+    box-shadow: none;
+    display: block;
+    background: transparent;
+
+    & > .nav-header {
+      align-items: center;
+
+      .button.primary {
+        width: 170px;
+        height: 60px;
+        flex-shrink: 0;
+
+        margin-right: 70px;
+        padding: 1.2em 3.5em;
+        border-radius: 35px;
+        font-size: 16px;
+      }
+
+      border: none;
+
+      .logo {
+        height: 30px;
+        background-color: $landspot-theme-color;
+        mask: url("../../img/Lmix_logo.svg") left center/contain no-repeat;
+        width: 100%;
+        margin-left: 54px;
+      }
+    }
+  }
+}
+
+.sign-up-container, .login-container {
+  .alert {
+    text-align: left;
+
+    ul {
+      margin-top: 0;
+    }
+  }
+
+  .help-block {
+    color: red;
+    font-size: 14px;
+  }
+
+  .social-auth {
+    margin-top: 20px;
+    border-top: $app-border;
+    padding-top: 13px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .social-buttons {
+      flex: 1 1 100%;
+      justify-content: center;
+      display: flex;
+      margin-bottom: 17px;
+
+      .google-button, .facebook-button {
+
+        border-radius: 20px;
+        padding: 0 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFFFFF;
+        font-size: 12px;
+        text-align: center;
+        height: 40px;
+
+        .landspot-icon {
+          margin-right: 13px;
+
+          &:before {
+            background-color: #FFFFFF;
+          }
+        }
+      }
+
+      .google-button {
+        background-color: #4285F4;
+        margin-right: 10px;
+        width: 177px;
+
+        .landspot-icon {
+          margin-right: 11px;
+        }
+      }
+
+      .facebook-button {
+        background-color: #4367B2;
+      }
+    }
+
+    .footer-text {
+      color: #323337;
+      font-size: 12px;
+      line-height: 19px;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .primary-container.login-container {
+
+    .landspot-modal {
+      position: relative;
+    }
+
+    nav.app-nav {
+      height: 120px;
+      background: transparent;
+
+      & > .nav-header {
+        padding: 50px 0;
+        justify-content: center;
+
+        .logo {
+          width: 113px;
+          padding-right: 0;
+          margin-right: 0;
+          border-right: none;
+        }
+      }
+    }
+
+    .landspot-modal {
+      width: 87%;
+      max-height: 100%;
+      height: 100%;
+      border-radius: 0;
+      padding: 0;
+
+      top: 0;
+      transform: none;
+    }
+
+    .lotmix-signup {
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+
+      padding: 0 20px 35px;
+
+      & > header, h1 {
+        font-size: 20px;
+        line-height: 34px;
+        margin: 36px 0 33px;
+        text-align: center;
+      }
+
+      .auth-form {
+
+        .forgot-password-row {
+          justify-content: center;
+          margin-bottom: 0;
+
+          .forgot-password {
+            color: $landspot-theme-color;
+            font-size: 12px;
+            line-height: 20px;
+          }
+        }
+
+
+        .button.primary {
+          margin-top: 30px;
+        }
+
+        .social-auth {
+          margin-top: 40px;
+
+          & > .heading {
+            margin: 20px 0 25px;
+          }
+
+          .social-buttons {
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+
+            .google-button {
+              width: 220px;
+              margin-right: 0;
+              margin-bottom: 10px;
+            }
+
+            .facebook-button {
+              width: 220px;
+              margin-bottom: 51px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .primary-container.sign-up-container {
+    background: none;
+
+    .sm {
+      display: block;
+    }
+
+    .md {
+      display: none;
+    }
+
+    nav.app-nav > .nav-header {
+      .button.primary {
+        display: none;
+      }
+
+      .logo {
+        margin: 0 auto;
+        height: 20px;
+        width: 123px;
+      }
+    }
+  }
+  .sign-up-container {
+    .social-auth {
+      font-size: 14px;
+      flex-direction: column;
+
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+
+        & > a {
+          font-size: 12px;
+          margin: 0 0 20px 0;
+        }
+      }
+
+      .footer-text {
+        margin-top: 0;
+        text-align: center;
+      }
+    }
+  }
+}

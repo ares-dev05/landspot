@@ -1,0 +1,100 @@
+.welcome-block {
+  background: #F4F7FA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 90px;
+
+  .greeting {
+    position: relative;
+    padding-right: 50px;
+    flex-basis: 50%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .greeting-text {
+    font-family: Montserrat, sans-serif;
+    max-width: 331px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    color: #7E7F94;
+  }
+
+  .greeting-img {
+    padding-bottom: 658px;
+    flex-basis: 50%;
+    background: url('../../img/lotmix/home-main.png') no-repeat center;
+    background-size: contain;
+  }
+
+  .home-h1 {
+    max-width: 431px;
+
+    &:before {
+      width: 141px;
+      left: -44px;
+      top: -36px;
+      height: 97px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .welcome-block {
+    border-radius: initial;
+    flex-direction: column;
+
+    .greeting-img {
+      align-self: stretch;
+      padding-bottom: 46%;
+      box-shadow: #F4F7FA 0 76px 100px 0 inset;
+    }
+
+    .greeting {
+      align-items: center;
+    }
+
+    .greeting-text {
+      margin: 0 auto;
+    }
+
+    .home-h1 {
+      text-align: center;
+      margin: 35px 0 25px;
+    }
+
+    .lear-more {
+      margin-top: 21px;
+      transform: translateY(25%);
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .welcome-block {
+    .greeting {
+      padding: 0 36px;
+      background-image: none;
+    }
+
+    .home-h1 {
+      font-size: 35px;
+    }
+
+    .greeting-text {
+      text-align: center;
+    }
+
+    .greeting-img {
+      min-height: 450px;
+      background: url('../../img/lotmix/home-main.png') no-repeat center;
+      background-size: cover;
+    }
+  }
+}

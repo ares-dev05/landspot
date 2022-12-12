@@ -1,0 +1,799 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans');
+@import "./bootstrap-custom-grid/bootstrap-custom-grid";
+@import "navbar";
+
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $text-size;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0
+}
+
+@media (max-width: 1680px) {
+  body {
+    font-size: $text-size - 1px;
+  }
+}
+
+.flex-left {
+  align-items: flex-start;
+  display: flex;
+  justify-content: left;
+}
+
+.landspot-container {
+  .btn-register {
+    .btn {
+      height: 50px;
+      line-height: 50px;
+      padding: 0;
+      width: 190px;
+      border-radius: 60px;
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  }
+  .helping-builders {
+    h1 {
+      color: $landspot-text-color;
+      font-family: Montserrat, sans-serif;
+      font-size: 42px;
+      line-height: 58px;
+
+      padding: 167px 0 35px;
+    }
+    .illustration {
+      padding-bottom: 592px;
+      background: url('../img/Illustration.png') no-repeat 43px 100%;
+      background-size: 660px;
+    }
+  }
+
+  .unprecedented-access,
+  .for-builders,
+  .get-involved,
+  .for-developers {
+    position: relative;
+    //max-width: 1440px;
+    //margin: 0 auto;
+  }
+
+  .unprecedented-access {
+    padding-top: 77px;
+    overflow: hidden;
+
+    h2 {
+      padding: 40px 0 15px;
+    }
+
+    .sketch-laptop {
+      float: right;
+      width: 810px;
+      padding-bottom: 745px;
+      margin-right: -108px;
+      background: url('../img/SketchLaptop_Landspot.png') no-repeat 0 0;
+      background-size: contain;
+
+      @media (min-width: 1440px) {
+        & {
+          background-image: url('../img/SketchLaptop_Landspot_Full.png');
+        }
+      }
+    }
+
+    &:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      height: 800px;
+      background-color: #F7F7F7;
+      bottom: -525px;
+      left: 0;
+      transform-origin: top center;
+      transform: skewY(-10deg);
+      z-index: -1;
+    }
+  }
+
+  .for-builders {
+    background-color: #F7F7F7;
+    position: relative;
+
+    & > .container > .row {
+      margin-top: -20px;
+    }
+
+    h2 {
+      margin: 0 0 30px;
+    }
+
+    .info {
+      p {
+        padding-bottom: 38px;
+      }
+
+      .flex-left:last-child p {
+        padding-bottom: 0;
+        margin: 0;
+      }
+
+      .discover-land-icon {
+        background: url('../img/Icon-Discover-Land.png') no-repeat 0 0;
+      }
+
+      .documentation-icon {
+        background: url('../img/Icon-Documentation.png') no-repeat 0 0;
+      }
+
+      .live-information-icon {
+        background: url('../img/Icon-Live-Information.png') no-repeat 0 0;
+      }
+
+      .discover-land-icon,
+      .documentation-icon,
+      .live-information-icon {
+        padding: 39px;
+        margin-right: 17px;
+        margin-left: 7px;
+        margin-top: 13px;
+        background-size: 65px;
+      }
+    }
+  }
+
+  .for-developers {
+    padding-top: 198px;
+    overflow: hidden;
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .price-lists-icon {
+      background: url('../img/Icon-Share-Price-Lists.png') no-repeat 0 0;
+    }
+
+    .industry-catalogue-icon {
+      background: url('../img/Icon-Industry-Catalogue.png') no-repeat 0 50%;
+    }
+
+    .builder-brochures-icon {
+      background: url('../img/Icon-Builder-Brochures.png') no-repeat 0 0;
+    }
+
+    .price-lists-icon,
+    .industry-catalogue-icon,
+    .builder-brochures-icon {
+      margin: 74px 0 29px 7px;
+      padding: 30px;
+      background-size: 66px;
+    }
+
+    .row > div:nth-last-child(-n+3) p {
+      font-size: 16px;
+      line-height: 30px;
+    }
+
+    &:before {
+      content: '';
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      background-color: #F7F7F7;
+      z-index: -1;
+      left: 0;
+      top: -600px;
+      transform-origin: left bottom;
+      transform: skewY(10deg);
+    }
+  }
+
+  .get-involved {
+    background-color: $landspot-blue-color;
+    margin-top: 380px;
+
+    &:before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: inherit;
+      z-index: -1;
+    }
+    &:before {
+      top: 0;
+      left: 0;
+      transform-origin: right top;
+      transform: skewY(10deg);
+    }
+
+    h2 {
+      margin-bottom: 47px;
+    }
+    p {
+      height: 498px;
+      font-size: 18px;
+      line-height: 32px;
+    }
+
+    h2, h3, p {
+      color: #ffffff;
+    }
+
+    .btn-register {
+      position: absolute;
+      bottom: 242px;
+      .btn {
+        height: 55px;
+        border: 1px solid #ffffff;
+        line-height: 53px;
+        padding: 0;
+        width: 270px;
+
+        &:hover {
+          color: $landspot-blue-color;
+          background: #ffffff;
+        }
+      }
+    }
+  }
+
+  .premium-membership {
+    margin: 0 0 150px;
+    top: -68px;
+    position: relative;
+    background: #fff;
+    height: 360px;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+
+    h2 {
+      margin: 67px 0 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 32px;
+      margin-bottom: 62px;
+    }
+
+    .form-control {
+      border: none;
+      border-radius: inherit;
+      box-shadow: none;
+      padding: 0 0 6px;
+      border-bottom: 1px solid #D9D9D9;
+
+      height: 38px;
+      font-size: 14px;
+      line-height: 38px;
+      color: #BDBDBD;
+
+      &.email {
+        max-width: 334px;
+      }
+    }
+
+    .btn-register {
+      .btn {
+        margin: -8px -30px;
+        width: 222px;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 34px;
+    line-height: 46px;
+    color: $landspot-blue-color;
+    font-family: Montserrat, sans-serif;
+  }
+
+  h3 {
+    margin: 0 0 10px;
+    color: $landspot-text-color;
+    font-size: 20px;
+    line-height: 27px;
+  }
+
+  p {
+    opacity: 0.8;
+    color: $landspot-text-color;
+    font-size: 16px;
+    line-height: 30px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .landspot-container {
+    .helping-builders {
+      h1 {
+        font-size: 35.5px;
+        line-height: 47px;
+
+        padding: 120px 0 40px;
+      }
+
+      .btn-register {
+        .btn {
+          height: 50px;
+          width: 190px;
+          border-radius: 60px;
+
+          font-family: Montserrat, sans-serif;
+          font-size: 12px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      }
+      .illustration {
+        padding-bottom: 480px;
+        background-size: 508px;
+        background-position: 36px 22px;
+      }
+    }
+
+    .unprecedented-access {
+      padding-top: 41px;
+
+      h2 {
+        padding: 40px 0 15px;
+      }
+
+      .sketch-laptop {
+        width: 584px;
+        padding-bottom: 641px;
+        margin-right: -22px;
+        margin-top: -2px;
+        background-size: cover;
+      }
+
+      &:after {
+        bottom: -560px;
+      }
+    }
+
+    .for-builders {
+      //margin-top: 74px;
+      padding-top: 74px;
+      & > .container > .row {
+        margin-top: -60px;
+      }
+
+      h2 {
+        margin: 0 0 20px;
+      }
+
+      .info {
+        .flex-left:last-child p {
+          padding-bottom: 52px;
+        }
+
+        .discover-land-icon,
+        .documentation-icon,
+        .live-information-icon {
+          margin-right: 27px;
+          margin-left: 5px;
+          margin-top: 3px;
+          padding: 24px;
+          background-size: 48px;
+        }
+
+        h3 {
+          margin-top: -3px;
+        }
+      }
+    }
+
+    .for-developers {
+      padding-top: 160px;
+
+      .price-lists-icon,
+      .industry-catalogue-icon,
+      .builder-brochures-icon {
+        margin: 50px 0 22px 5px;
+        padding: 25px;
+        background-size: 50px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .get-involved {
+      margin-top: 338px;
+
+      h2 {
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+
+      p {
+        height: 457px;
+      }
+
+      .btn-register {
+        bottom: 208px;
+        .btn {
+          height: 50px;
+          line-height: 50px;
+        }
+      }
+    }
+
+    .premium-membership {
+      top: -75px;
+      margin-bottom: 125px;
+
+      h2 {
+        margin-top: 70px;
+      }
+
+      .btn-register {
+        .btn {
+          margin: -10px 12px;
+        }
+      }
+
+      .form-control {
+        &.email {
+          max-width: 220px;
+        }
+      }
+    }
+
+    .unprecedented-access,
+    .for-builders,
+    .get-involved {
+      //max-width: 1024px;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 42px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .landspot-container {
+    .helping-builders {
+      text-align: center;
+      h1 {
+        font-size: 40px;
+        line-height: 50px;
+
+        padding: 64px 0 32px;
+      }
+      .illustration {
+        padding-bottom: 574px;
+        background-size: 578px;
+        background-position: bottom center;
+      }
+    }
+
+    .unprecedented-access {
+      padding-top: 71px;
+      text-align: center;
+
+      h2 {
+        padding: 0 0 15px;
+      }
+
+      .sketch-laptop {
+        margin-top: 46px;
+        margin-right: 0;
+        width: 100%;
+        padding-bottom: 579px;
+        background: url('../img/SketchLaptop_Landspot_Responsive.png') no-repeat center 0;
+        background-size: contain;
+      }
+
+      &:after {
+        bottom: -530px;
+      }
+    }
+
+    .for-builders {
+      margin-top: -8px;
+      h2 {
+        margin-top: 8px;
+      }
+      & > .container > .row {
+        margin-top: -32px;
+      }
+      .info {
+        margin-top: 40px;
+        p {
+          padding-bottom: 28px;
+        }
+        .flex-left:last-child p {
+          padding-bottom: 180px;
+        }
+
+        .discover-land-icon,
+        .documentation-icon,
+        .live-information-icon {
+          padding: 29px;
+          background-size: 56px;
+          margin-top: 7px;
+        }
+      }
+    }
+
+    .for-developers {
+      padding-top: 178px;
+
+      h3 {
+        margin-top: 38px;
+      }
+      .price-lists-icon,
+      .industry-catalogue-icon,
+      .builder-brochures-icon {
+        margin: 47px 28px 35px 5px;
+        padding: 30px;
+        background-size: 58px;
+        float: left;
+      }
+    }
+
+    .get-involved {
+      margin-top: 208px;
+      text-align: center;
+
+      h2 {
+        margin-top: 93px;
+      }
+
+      p {
+        height: 355px;
+      }
+
+      .get-involved-developer {
+        p {
+          height: 410px;
+        }
+        .btn-register {
+          bottom: 210px;
+        }
+      }
+
+      .btn-register {
+        bottom: 110px;
+        left: calc(50% - 135px);
+      }
+    }
+
+    .premium-membership {
+      text-align: center;
+      height: 528px;
+      top: -62px;
+      margin-bottom: 108px;
+
+      p {
+        margin-bottom: 31px;
+      }
+
+      .btn-register {
+        .btn {
+          width: 200px;
+        }
+      }
+
+      .form-control {
+        margin-bottom: 25px;
+        &.email {
+          max-width: 100%;
+          margin-bottom: 75px;
+        }
+      }
+    }
+
+    .for-builders,
+    .get-involved {
+      //max-width: 768px;
+    }
+
+  }
+}
+
+@media (max-width: 760px) {
+  .landspot-container {
+    .helping-builders {
+      text-align: center;
+      h1 {
+        font-size: 28px;
+        line-height: 38px;
+
+        padding: 28px 0 24px;
+      }
+
+      .btn-register {
+        .btn {
+          height: 45px;
+          width: 184px;
+          line-height: 45px;
+        }
+      }
+
+      .illustration {
+        padding-bottom: 300px;
+        background-size: 306px;
+      }
+    }
+
+    .unprecedented-access {
+      padding-top: 43px;
+
+      h2 {
+        font-size: 24px;
+        line-height: 34px;
+        padding: 0 0 8px;
+      }
+
+      .sketch-laptop {
+        margin-top: 55px;
+        width: 100%;
+        padding-bottom: 271px;
+      }
+
+      &:after {
+        bottom: -695px;
+      }
+    }
+
+    .for-builders {
+      text-align: center;
+
+      & > .container > .row {
+        margin-top: 15px;
+      }
+
+      .info {
+        margin-top: 45px;
+
+        .flex-left {
+          flex-flow: wrap;
+          justify-content: center;
+        }
+
+        p {
+          padding-bottom: 37px;
+        }
+        .flex-left:last-child p {
+          padding-bottom: 125px;
+        }
+
+        .discover-land-icon,
+        .documentation-icon,
+        .live-information-icon {
+          padding: 28px;
+          margin-right: 0;
+          background-size: 56px;
+        }
+      }
+    }
+
+    .for-developers {
+      padding-top: 123px;
+      text-align: center;
+
+      h3 {
+        margin-top: 8px;
+      }
+
+      .row > div:nth-last-child(-n+3) p {
+        font-size: 14px;
+        line-height: 26px;
+      }
+
+      .price-lists-icon,
+      .industry-catalogue-icon,
+      .builder-brochures-icon {
+        margin: 47px 0 0;
+        background-position-x: center;
+        float: none;
+      }
+    }
+
+    .get-involved {
+      margin-top: 208px;
+
+      h2 {
+        font-size: 30px;
+        margin-top: 73px;
+        margin-bottom: 24px;
+      }
+
+      p {
+        height: 280px;
+        font-size: 14px;
+        line-height: 26px;
+      }
+
+      .get-involved-developer {
+        p {
+          height: 375px;
+        }
+        .btn-register {
+          bottom: 195px;
+        }
+      }
+
+      .btn-register {
+        bottom: 48px;
+      }
+    }
+
+    .premium-membership {
+      top: -80px;
+      margin-bottom: 85px;
+
+      h2 {
+        line-height: 35px;
+      }
+
+      p {
+        margin-bottom: 45px;
+        font-size: 14px;
+        line-height: 26px;
+        padding: 0 30px;
+      }
+
+      .form-control {
+        margin-bottom: 32px;
+        font-size: 12px;
+        line-height: 32px;
+        height: 32px;
+
+        &.email {
+          margin-bottom: 62px;
+        }
+      }
+    }
+
+    .for-builders,
+    .get-involved {
+      //max-width: 375px
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-top: 13px;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 26px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+
+
+@import "terms";
+@import "footer";

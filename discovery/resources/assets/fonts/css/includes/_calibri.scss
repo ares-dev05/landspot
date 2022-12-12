@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Calibri'),
+  url("../../blob/Calibri/Calibri.eot") format('embedded-opentype'),
+  url("../../blob/Calibri/Calibri.woff2") format("woff2"),
+  url("../../blob/Calibri/Calibri.woff") format("woff"),
+  url("../../blob/Calibri/Calibri.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Calibri';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Calibri Italic'), local('Calibri-Italic'),
+  url("../../blob/Calibri/Calibri-Italic.eot") format('embedded-opentype'),
+  url("../../blob/Calibri/Calibri-Italic.woff2") format("woff2"),
+  url("../../blob/Calibri/Calibri-Italic.woff") format("woff"),
+  url("../../blob/Calibri/Calibri-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Calibri Bold'), local('Calibri-Bold'),
+  url("../../blob/Calibri/Calibri-Bold.eot") format('embedded-opentype'),
+  url("../../blob/Calibri/Calibri-Bold.woff2") format("woff2"),
+  url("../../blob/Calibri/Calibri-Bold.woff") format("woff"),
+  url("../../blob/Calibri/Calibri-Bold.ttf") format("truetype");
+}

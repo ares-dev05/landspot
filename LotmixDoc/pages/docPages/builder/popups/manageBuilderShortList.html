@@ -1,0 +1,120 @@
+<ul class="breadcrumb">
+  <li><a class="aList1" href="index.html">Home</a></li>
+  <li><a class="aList" href="pages/builderLotmix.html">Builder</a></li>
+  <li>Builders Manager</li>
+  <li><a class="aList" href="pages/docPages/builder/builderManagerPage.html">My clients page (E.1)</a></li>
+  <li><a class="aList" href="pages/docPages/builder/popups/manageBuilderShortList.html">Manage Short List Pop up (E.2)</a></li>
+</ul>
+<div>
+  <div style="border-style: solid; background-color: lightgreen; ">
+    <b>User stories</b>
+    <ul>
+      <li>As a builder Manager I want to manage(add new/ delete existed) what floorplans should be displayed for corresponding clients short list </li>
+      <li>As a builder Manager I want to see all added Floorplans with Facades for corresponding client in the table</li>
+      <li>As a builder manager I want to abort changes if I don't click on submit button</li>
+      <li>As a builder manager I want to close pop up without any changes apply</li>
+    </ul>
+  </div>
+
+  <ul>
+    <li>
+      <b>Title</b>
+    </li>
+    <li>
+      <b>Add Floor plan section</b>
+      <ul>
+        <li>
+          <b>Select Floorplan</b>
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for this manager floorplans
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Select Facade</b>
+          <ul>
+            <li>
+              Dropdown list
+            </li>
+            <li>
+              List options must be formed from available for this floorplan Facades
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>&#43; Add icon</b>
+          <ul>
+            <li>
+              Calls JS script to add selected options to the <b>Floorplans</b> table
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Floorplans table section</b>
+      Displays added floorplans to display for this client
+      <ul>
+        <li>
+          Floorplan name - text - first column
+        </li>
+        <li>
+          Facade name - text - second column
+        </li>
+        <li>
+          Bucket icon - third column
+          <ul>
+            <li>
+              Calls JS script that removes corresponding row from the table
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>Save changes</b> - submit button
+      <ul>
+        On Click
+        <li>
+          Calls PUT request with edited data
+        </li>
+
+      </ul>
+    </li>
+    <li>
+      <b>Cancel</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <b>X icon</b>
+      <ul>
+        <li>
+          Button<br>
+          On Click
+          <ul>
+            <li>
+              Close pop up without updating edited values in DB
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+  </li>
+  </ul>
+</div>

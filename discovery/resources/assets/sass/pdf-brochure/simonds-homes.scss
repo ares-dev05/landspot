@@ -1,0 +1,184 @@
+@import "a4-page";
+
+$title-height: 17.6mm;
+$brand-color: #e31137;
+
+.brand-logo {
+  background: #fff url('#{$APP_URL}/images/pdf_public/SimondsLogo_Refined190204_CMYK_PrimaryRed_NoWhiteBoarder.svg') center 10px/75% no-repeat;
+  position: absolute;
+  width: 26%;
+  height: 9%;
+}
+
+.facade-preview {
+  height: 132mm;
+  background: white center center/cover no-repeat;
+}
+
+.attributes {
+  background: $brand-color;
+  color: #fff;
+  font-size: 18pt;
+  text-transform: capitalize;
+  height: $title-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.5mm;
+  font-family: "BrandonGrotesque Medium";
+}
+
+.lot-features {
+  border: 0;
+  border-spacing: 0;
+  width: 100%;
+  height: $a4-page-height - $title-height - 132mm;
+  font-weight: bold;
+
+  &.double {
+    .features {
+      padding: 9mm 8mm;
+      width: 36%;
+      float: left;
+    }
+
+    .house-description {
+      font-size: 12pt;
+      margin-top: 18pt;
+      max-height: 101mm;
+    }
+
+    .disclaimer {
+      right: 8mm;
+      left: auto;
+      width: calc(64% - 16mm);
+    }
+
+    .lot-size {
+      font-size: 12pt;
+      bottom: 10mm;
+    }
+
+    .floorplan-image {
+      width: 64%;
+
+      & > div {
+        &:not(.label) {
+          display: flex;
+          justify-content: space-between;
+          flex-flow: row nowrap;
+
+          & > .image {
+            position: relative;
+            height: 85% !important;
+            flex: 1 50%;
+            background: center center / contain no-repeat scroll transparent;
+          }
+        }
+      }
+
+      .label {
+        text-align: left;
+        top: 9mm;
+        left: 8mm;
+      }
+    }
+  }
+
+  .features {
+    padding: 9mm 8mm;
+    background: #dddedf;
+    width: 58.2%;
+    float: left;
+    height: 100%;
+    font-family: "BrandonGrotesque Regular";
+  }
+  .range-name {
+    color: #fff;
+    font-size: 10pt;
+    text-transform: uppercase;
+
+    font-family: "BrandonGrotesque Bold";
+  }
+  .house-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000;
+    font-size: 24pt;
+    font-family: "BrandonGrotesque Bold";
+    letter-spacing: -0.27pt;
+  }
+  .price {
+    color: #fff;
+    font-size: 26pt;
+  }
+  .lot-size {
+    position: absolute;
+    bottom: 25mm;
+    font-size: 14pt;
+    letter-spacing: -0.17pt;
+  }
+  .house-description {
+    margin: 16pt 0;
+    max-height: 85mm;
+    overflow: hidden;
+    font-size: 14pt;
+
+    letter-spacing: -0.17pt;
+  }
+
+  .disclaimer {
+    position: absolute;
+    bottom: 8mm;
+    left: 8mm;
+    font-size: 6pt;
+    line-height: 8pt;
+    width: calc(58.2% - 16mm);
+  }
+  ul.house-description{
+    padding-left: 0.5em;
+
+    list-style-type: none;
+    & > li {
+      position: relative;
+      line-height: 17pt;
+
+      &:not(:last-child) {
+        margin-bottom: 15pt;
+      }
+      &.item {
+        .dot {
+          position: absolute;
+          left: -8pt;
+          font-size: 20pt;
+          line-height: 24pt;
+          top: -2pt;
+          transform: translateY(-7pt);
+        }
+      }
+    }
+  }
+  .floorplan-image {
+    position: relative;
+    padding: 20mm 10mm 10mm 10mm;
+    float: right;
+    height: 100%;
+    width: 40%;
+
+    .label {
+      position: absolute;
+      text-align: center;
+      font-family: "BrandonGrotesque Medium";
+      font-size: 12pt;
+      top: 17.5mm;
+      left: 0;
+      right: 0;
+    }
+    .image {
+      background: transparent center center/contain no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

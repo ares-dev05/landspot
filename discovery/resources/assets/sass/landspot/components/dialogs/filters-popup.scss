@@ -1,0 +1,51 @@
+.filters-popup {
+  height: 100%;
+  padding: 20px;
+  font-size: 14px;
+
+  & > .popupmodal-header {
+    font-size: 20px;
+    border-bottom: $app-border;
+    margin: 0 -20px;
+    padding: 5px 20px 25px;
+  }
+  & > .popupmodal-footer {
+    .button {
+      font-size: 14px;
+    }
+  }
+
+  .nice-dropdown,
+  .landspot-input > input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .nice-dropdown {
+    & > button[type=button] {
+      line-height: 36px;
+    }
+    & > .list {
+      max-height: 20vh;
+    }
+  }
+
+  .form-rows {
+    .form-row {
+      flex-wrap: wrap;
+      .left-item {
+        margin-bottom: 10px;
+        flex: 1 1 100%;
+      }
+      .right-item {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .button.close {
+    top: 25px;
+  }
+}

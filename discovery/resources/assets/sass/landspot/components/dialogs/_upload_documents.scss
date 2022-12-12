@@ -1,0 +1,157 @@
+.upload-documents_title {
+  border-bottom: 1.5px solid #f2f3f6;
+  padding-bottom: 12px;
+  color: #3c3fc4;
+  font-weight: 500;
+}
+
+.upload-documents_form {
+  display: flex;
+  flex-direction: column;
+
+  .form-row:nth-child(2) {
+    flex: 1;
+    padding: 0 3%;
+  }
+
+  .form-row:first-child {
+    flex-basis: 30%;
+  }
+
+  .document-types {
+    display: flex;
+  }
+
+  .document-type {
+    font-size: 11px;
+    color: #616970;
+    margin-right: 9px;
+    border-radius: 7px;
+    border: 1px solid #c2ccd5;
+    padding: 9px 18px 9px 15px;
+
+    .landspot-icon {
+      margin-right: 10px;
+    }
+
+    .ic-quote {
+      padding: 8px;
+    }
+
+    .ic-drawings {
+      padding: 10px;
+    }
+
+    .ic-brochure {
+      padding: 10px;
+    }
+
+    .cube {
+      padding: 10px;
+    }
+
+    .landspot-icon:before {
+      background-color: #616970;
+    }
+
+    &.active, &:hover {
+      color: white;
+      cursor: pointer;
+      background: $landspot-theme-color;
+      border-color: $landspot-theme-color;
+
+      .landspot-icon:before {
+        background-color: white;
+      }
+    }
+  }
+
+  .quote {
+    padding: 9px 20px 9px 15px;
+  }
+
+  .drawing {
+    padding-left: 18px;
+    padding-right: 23px;
+  }
+
+  .brochure {
+    padding-right: 21px;
+    margin-right: 7px;
+  }
+
+  .package {
+    padding-right: 23px;
+  }
+
+  .other {
+    padding-right: 15px;
+  }
+
+  .file-upload {
+    margin-top: 20px;
+  }
+
+  .button.transparent {
+    font-size: 14px;
+    border-radius: 25px;
+    padding: 13px 35px 12px 25px;
+    border: 1px solid rgba(50, 51, 55, 0.2);
+
+    .cloud-upload {
+      padding: 12px;
+    }
+  }
+
+  .button.transparent:hover {
+    opacity: 1;
+    color: white;
+    background: $landspot-theme-color;
+    border: 1px solid $landspot-theme-color;
+
+    .cloud-upload:before {
+      background-color: white;
+    }
+  }
+
+  .landspot-icon:hover {
+    color: white;
+
+    &.active {
+      background: $landspot-theme-color;
+    }
+  }
+
+  label {
+    line-height: 3;
+    font-weight: 400;
+  }
+}
+
+.upload-documents_table-type {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.upload-documents_table {
+  .landspot-icon {
+    margin-right: 5px;
+  }
+
+  .document-name {
+    width: 30%;
+    text-align: center;
+  }
+
+  tbody td:last-child {
+    text-align: right;
+  }
+
+  tbody td:first-child {
+    text-align: left;
+  }
+}
+
+.upload-documents_open-counts {
+  opacity: .6;
+}

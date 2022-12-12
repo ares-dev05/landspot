@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'BrandonGrotesque Bold';
+  src: local('BrandonGrotesque Bold'), url('#{$APP_URL}/fonts/brandon_bld.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'BrandonGrotesque Medium';
+  src: local('BrandonGrotesque Medium'), url('#{$APP_URL}/fonts/brandon_med.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'BrandonGrotesque Regular';
+  src: local('BrandonGrotesque Regular'), url('#{$APP_URL}/fonts/brandon_reg.woff') format('woff');
+}

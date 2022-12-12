@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Icon---Upload" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-4" transform="translate(0.000000, 1.000000)" stroke="#323337">
+            <g id="basic_elaboration_document_download" transform="translate(9.142857, 4.000000) scale(1, -1) translate(-9.142857, -4.000000) translate(5.142857, 0.000000)">
+                <polyline id="Shape" points="7.23214286 4.625 3.85714286 8 0.482142857 4.625"></polyline>
+                <path d="M3.85714286,8 L3.85714286,0.125" id="Shape"></path>
+            </g>
+            <path d="M0.642857143,10.9285714 L17.3571429,10.9285714" id="Line" stroke-linecap="square" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

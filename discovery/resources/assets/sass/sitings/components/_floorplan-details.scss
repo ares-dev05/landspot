@@ -1,0 +1,229 @@
+.floorplan-details {
+  justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+
+  .view-floorplan {
+    color: $table-text-color;
+    font-size: $larger-text-size;
+    font-weight: $font-weight-medium;
+    line-height: 25px;
+
+    h5, h4 {
+      @extend %landconnect-h5;
+      margin-top: 14px;
+      border-bottom: 1px solid #979797;
+
+      &:not(:first-of-type) {
+        margin-top: 26px;
+      }
+
+      &.floorplans-information {
+        margin-top: 32px;
+      }
+    }
+
+    label {
+      @extend %dialog-label;
+    }
+
+    p {
+      margin-bottom: 10px;
+
+      & > span:last-child {
+        padding-left: 15px;
+        font-weight: normal;
+      }
+    }
+
+    position: relative;
+
+    .close-btn {
+      line-height: 14px;
+      font-size: 40px;
+      font-weight: 300;
+      color: $icon-color;
+
+      position: absolute;
+      right: 18px;
+      top: 22px;
+    }
+
+    .files-information {
+      h4 {
+        margin-bottom: 18px;
+      }
+
+      label {
+        margin-bottom: 30px;
+      }
+
+      .ellipsis {
+        margin-bottom: 0;
+      }
+
+      .floorplans-offset {
+        margin-top: 18px;
+      }
+
+      .download {
+        margin-top: 15px;
+      }
+    }
+
+    .history-notes {
+      & > h5 {
+        display: flex;
+
+        & > button {
+          margin-left: auto;
+
+          & > i {
+            padding: 7px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .history-issues {
+      .red {
+        color: red;
+      }
+
+      .issues-button-group {
+        & > .primary {
+          margin-right: 25px;
+        }
+      }
+    }
+
+    .table-wrapper {
+      padding: {
+        left: 20px;
+        right: 20px;
+      };
+
+      td, th {
+        padding: {
+          top: 8px;
+          bottom: 8px;
+        };
+      }
+    }
+
+    label {
+      width: 100%;
+      max-width: 50%;
+      margin-bottom: 12px;
+    }
+
+    .live-date-static {
+      width: 50%;
+      opacity: .5;
+      display: inline-block;
+      font-weight: 400;
+    }
+
+    input {
+      width: fit-content;
+      line-height: 30px;
+      opacity: 0.5;
+      border: 0;
+
+      &:disabled {
+        background: transparent;
+      }
+    }
+
+    label,
+    input,
+    .autocomplete-dropdown {
+      display: inline-block;
+    }
+
+    .order-row,
+    .inputs-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .order-row {
+      margin-bottom: 5px;
+
+      label {
+        margin-bottom: 0;
+      }
+    }
+
+    .inputs-group {
+      & > :not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  .floorplan-header {
+    position: relative;
+    color: $landconnect-text-color;
+    font-size: 22px;
+    font-weight: $font-weight-bold;
+    line-height: 44px;
+
+    display: flex !important;
+    align-items: center;
+
+    .floorplan-status {
+      margin-left: auto;
+
+      & > span {
+        @include span-status;
+      }
+    }
+  }
+
+  .contractor-approval {
+    & > .nice-radio {
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+
+      & > .radio-item {
+        width: 100%;
+
+        &:last-of-type {
+          margin-top: 10px;
+          margin-left: 0;
+        }
+      }
+    }
+
+    & > textarea {
+      border: 1px solid $table-text-color;
+      height: 5em;
+      width: 100%;
+      resize: none;
+    }
+
+    & > button.primary {
+      &.ok {
+        background: green;
+
+        &:hover {
+          color: green;
+          border-color: green;
+          background: white;
+        }
+      }
+
+      &.error {
+        background: red;
+
+        &:hover {
+          color: red;
+          border-color: red;
+          background: white;
+        }
+      }
+    }
+  }
+}

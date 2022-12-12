@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Calibri'),
+  url("#{$APP_URL}/fonts/Calibri.eot") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Calibri.woff2") format("woff2"),
+  url("#{$APP_URL}/fonts/Calibri.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Calibri.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Calibri';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Calibri Italic'), local('Calibri-Italic'),
+  url("#{$APP_URL}/fonts/Calibri-Italic.eot") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Calibri-Italic.woff2") format("woff2"),
+  url("#{$APP_URL}/fonts/Calibri-Italic.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Calibri-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Calibri Bold'), local('Calibri-Bold'),
+  url("#{$APP_URL}/fonts/Calibri-Bold.eot") format('embedded-opentype'),
+  url("#{$APP_URL}/fonts/Calibri-Bold.woff2") format("woff2"),
+  url("#{$APP_URL}/fonts/Calibri-Bold.woff") format("woff"),
+  url("#{$APP_URL}/fonts/Calibri-Bold.ttf") format("truetype");
+}

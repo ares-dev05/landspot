@@ -1,0 +1,145 @@
+.details-popup {
+  @import "./brief-block";
+
+  width: 100%;
+  max-width: 900px;
+
+  .actions a {
+    font-size: 14px;
+  }
+
+  .user-name {
+    font-size: 26px;
+
+    span {
+      font-size: 20px;
+      border-left: 1px solid #E2E2E2;
+      margin-left: 15px;
+      font-weight: 400;
+      padding-left: 15px;
+      color: $landspot-theme-color;
+    }
+  }
+
+  .add-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $landspot-theme-color;
+    border: none;
+    margin-bottom: 5px;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+
+    i {
+      margin-right: 12px;
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      color: gray;
+    }
+  }
+
+  .category {
+    padding: 24px 25px;
+    background-color: #F2F4F6;
+    color: #BABCBE;
+    margin-bottom: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 500;
+
+    &.active {
+      background-color: $landspot-theme-color;
+      color: #FFFFFF;
+    }
+  }
+
+  .short-list {
+    padding: 5px 25px;
+
+    .short-list_form {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .list {
+        max-height: 25vh;
+      }
+
+      .form-row {
+        flex-basis: 30%;
+
+        .left-item {
+          opacity: 0.5;
+          color: #2C3E50;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: -0.43px;
+        }
+      }
+
+      label {
+        line-height: 3;
+        font-weight: 400;
+      }
+    }
+
+    .short-list_title {
+      border-bottom: 1.5px solid #f2f3f6;
+      padding-bottom: 12px;
+      color: #2C3E50;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .short-list_table {
+      tbody td:last-child {
+        text-align: right;
+      }
+
+      tbody td:first-child {
+        text-align: left;
+      }
+    }
+  }
+
+  .upload-document {
+    padding: 5px 25px;
+
+    .upload-documents_title {
+      color: #2C3E50;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .upload-documents_form .file-upload {
+      padding-bottom: 6px;
+      margin-right: 5px;
+    }
+  }
+
+  .superstructure {
+    justify-content: center;
+
+    button:last-of-type {
+      margin-left: unset;
+    }
+  }
+  .popupmodal-footer {
+
+
+    button.button {
+      margin: 0 auto;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 22px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+}

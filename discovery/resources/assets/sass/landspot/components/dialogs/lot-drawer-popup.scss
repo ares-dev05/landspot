@@ -1,0 +1,43 @@
+.lot-drawer-popup {
+  width: 90%;
+  max-width: 1200px;
+  min-height: 50%;
+  & > .lot-drawer {
+    display: flex;
+
+    .sidebar {
+      flex: 0 0 20%;
+      margin-right: 15px;
+
+      .lot-settings {
+        margin-top: 0;
+
+        .form-row {
+          flex-wrap: wrap;
+
+          .left-item {
+            width: 100%;
+            flex: 100%;
+          }
+          .right-item {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 80px;
+          }
+        }
+      }
+    }
+
+    .summary {
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+
+      .edit-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+}

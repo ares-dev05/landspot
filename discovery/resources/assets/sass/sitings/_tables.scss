@@ -1,0 +1,114 @@
+.portal-table {
+  width: 100%;
+  margin-bottom: 25px;
+
+  thead {
+    & > tr > th {
+      color: $table-thead-text-color;
+      font-weight: 500;
+      line-height: 14px;
+      padding: 25px 0;
+      text-align: left;
+    }
+  }
+
+  td {
+    vertical-align: middle;
+    border-bottom: 1px solid $table-border-color;
+    padding: {
+      top: 24px;
+      bottom: 24px;
+    };
+    color: $table-text-color;
+    font-weight: 300;
+    font-size: $larger-text-size;
+
+    &:not(:first-of-type) {
+      padding-left: 8px;
+    }
+
+    &:not(:last-of-type) {
+      padding-right: 8px;
+    }
+
+    &.nowrap {
+      white-space: nowrap;
+    }
+
+    &.text {
+      line-height: normal;
+    }
+
+    &.actions {
+      white-space: nowrap;
+      font-size: larger;
+      font-weight: 500;
+
+      .landconnect-icon.trash,
+      .landconnect-icon.eye {
+        padding: 7px;
+      }
+      & > button:not(:first-child), a:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+
+    &.attachments {
+      max-width: 20ch;
+
+      & > .svg-name {
+        margin-bottom: 5px;
+      }
+
+      & > .manage-svg {
+        display: flex;
+
+        & > .svg-viewer {
+          margin-left: 15px;
+
+          .landconnect-icon.svg {
+            padding: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  th {
+    vertical-align: middle;
+    border-bottom: 1px solid $table-thead-border-color;
+
+    &:not(:first-of-type) {
+      padding-left: 8px;
+    }
+
+    &:not(:last-of-type) {
+      padding-right: 8px;
+    }
+  }
+
+  &.floorplans-list {
+    margin-top: 10px;
+    margin-bottom: 35px;
+
+    col:first-child {
+      width: 205px;
+    }
+
+    td {
+      border: none;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
+    td, th {
+      line-height: 1;
+
+      & > .fa-times {
+        color: $icon-color;
+        float: right;
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+@mixin kaspa-round-button($hoverBgColor:$header-text-color, $hoverTextColor: #fff, $padding:null) {
+  border-radius: 60px;
+  text-align: center;
+  background: #fff;
+  padding: $padding;
+  &:hover {
+    color: $hoverTextColor;
+    background: $hoverBgColor;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.container .navbar-brand,
+.container-fluid > .navbar .navbar-brand {
+  padding: 0 0 0 0.75rem;
+  margin-left: 0;
+}
+
+.navbar-default {
+  background: transparent;
+  border: none;
+
+  padding: 0;
+  margin: 0;
+
+  .navbar-toggler {
+    border: none;
+    margin: 0;
+    padding-bottom: 8px;
+    .icon-bar {
+      background-color: $item-text-color;
+      display: block;
+      width: 26px;
+      height: 2px;
+      border-radius: 1px;
+
+      & + .icon-bar {
+        margin-top: 6px;
+      }
+    }
+  }
+
+  .navbar-brand {
+    padding: 0;
+    display: inline-block;
+    width: 145px;
+    background: url('../../img/LC_Logo_Landspot_Icon-Blue.svg') no-repeat bottom left/contain;
+    height: 32px;
+  }
+
+  .navbar-nav {
+    margin: 7.5px 12px;
+
+    & > li {
+      display: flex;
+      align-items: center;
+
+      & > a {
+        opacity: 0.8;
+        font-size: $app-menu-font-size;
+        padding: 6px 18px;
+        letter-spacing: -0.15px;
+        color: $text-color;
+        line-height: 20px;
+        display: block;
+
+        &.active {
+          font-weight: 600;
+          color: var(--main-color);
+        }
+
+        &.login-link {
+          @include kaspa-round-button;
+          padding: 0;
+          line-height: 38px;
+          width: 118px;
+          letter-spacing: 1px;
+          font-weight: 600;
+          margin-left: 23px;
+        }
+      }
+    }
+  }
+
+  .container {
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .collapse:not(.show) {
+    display: flex;
+    justify-content: flex-start !important;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .collapse {
+    max-height: 300px;
+    transition: max-height 0.4s ease-in-out;
+  }
+
+  .navbar-default {
+    .container {
+      padding-top: 20px;
+    }
+    padding: 4px 0 15px;
+    border-bottom: 1px solid $navbar-border-color;
+    .navbar-brand {
+      margin-left: 0.75rem;
+      height: 25px;
+      width: 120px;
+    }
+
+    .navbar-nav > li > a {
+      &.login-link {
+        border: none !important;
+        margin-left: 0;
+        padding: 0 18px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media (min-width: 991px) {
+  .navbar-default .navbar-nav {
+    margin: 0;
+  }
+}
+
+@media (min-width: 767px) {
+  .navbar-nav {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,437 @@
+.lotmix-estate {
+  display: flex;
+  width: 100%;
+
+  @import "../../landspot/components/cards";
+
+  @media (max-width: 768px) {
+    flex-direction: column
+  }
+
+  .left-section {
+    width: 30%;
+    border-right: 1px solid #EAECEF;
+
+    @media (max-width: 768px) {
+      width: 100%
+    }
+  }
+
+  .right-section {
+    width: 70%;
+    overflow-x: hidden;
+
+    @media (max-width: 768px) {
+      width: 100%
+    }
+  }
+
+  .estate-info {
+    padding: 0 30px 30px 30px;
+
+    .button-back {
+      padding-top: 26px;
+
+      a {
+        font-size: 18px;
+        line-height: 38px;
+        font-weight: 500;
+        color: #b2b2b2;
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .estate-content {
+      .more-less {
+        display: contents;
+        font-weight: 600;
+        font-size: 11px;
+        color: #29C97C;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      .fal {
+        display: none;
+      }
+
+      .button-wrapper + .more-less {
+        display: none;
+      }
+
+      .more-less > span {
+        display: contents;
+      }
+
+      @media (max-width: 768px) {
+        .information-wrap {
+          display: flex;
+          flex-direction: column-reverse;
+          padding-top: 26px;
+        }
+
+        .button-wrapper + .more-less {
+          display: flex;
+        }
+
+        .more-less {
+          display: flex;
+          align-items: center;
+        }
+
+        .more-less > span {
+          display: none;
+        }
+
+        .fal {
+          display: block;
+          font-size: 20px;
+          margin-left: 10px;
+        }
+
+        .show-more {
+          display: block;
+
+          &-button {
+            display: flex;
+            margin-bottom: 37px;
+          }
+        }
+
+        .show-less {
+          display: none;
+
+        }
+      }
+    }
+
+    .estate-image {
+      img {
+        width: 250px;
+      }
+    }
+
+    .estate-name {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 38px;
+      color: #000000;
+    }
+
+    .estate-description {
+      padding-top: 25px;
+      font-size: 15px;
+      line-height: 27px;
+      color: #000000;
+    }
+
+    .line {
+      border: 1px solid #E3E7EE;
+      margin-top: 40px;
+      margin-bottom: 40px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .estate-website, .estate-contact {
+      div {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .website {
+        font-size: 14px;
+        line-height: 19px;
+        font-weight: 500;
+        color: #323337;
+      }
+
+      .estate-contact-details {
+        font-size: 14px;
+        line-height: 10px;
+        font-weight: 500;
+        color: #323337;
+      }
+
+      .phone {
+        margin-left: 25px;
+      }
+    }
+
+    .estate-contact-details {
+      display: flex;
+    }
+
+    .estate-contact {
+      padding-top: 20px;
+    }
+
+    .card-label-header {
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $landspot-theme-color;
+    }
+
+    .button-wrapper {
+      display: flex;
+      padding-top: 30px;
+    }
+
+    .display-location-wrap {
+      margin-left: 15px;
+    }
+
+    .card-footer {
+      display: none;
+    }
+  }
+
+  //estate filters
+  .estate-filter {
+    border-bottom: 1px solid #E3E7EE;
+
+    .show-filter {
+      display: none;
+    }
+
+    .first-row {
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-left: 21px;
+      padding-top: 10px;
+
+      .left-item {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 16px;
+        color: #333333;
+      }
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 25px;
+
+        .left-item {
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 14px;
+          color: #232456;
+        }
+      }
+    }
+
+    .inputs {
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .price-row {
+      label {
+        width: 81px;
+      }
+
+      .price {
+        width: 104px;
+        padding: 10px 0;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        color: $landspot-theme-color;
+        border: 1px solid $landspot-theme-color;
+        border-radius: 18px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .price-slider {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+
+        .price {
+          display: none;
+        }
+
+        .price-slider {
+          display: block;
+        }
+      }
+    }
+
+    .clear-filters {
+      margin-top: 10px;
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 12px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      border: 1px solid #E0E0E0;
+      border-radius: 18px;
+
+      &:hover {
+        cursor: pointer;
+        border-color: $landspot-theme-color;
+        color: $landspot-theme-color;
+      }
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      &.show-mobile-filter {
+        .estate-form {
+          display: flex;
+        }
+      }
+
+      .show-filter {
+        display: block;
+        padding: 17px 24px;
+        border-top: 1px solid #EAECEF;
+
+        span {
+          width: 200px;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 14px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        i {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+
+  .header {
+    padding: 24px 24px 14px 24px;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  .estate-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px 24px;
+
+    @media (max-width: 768px) {
+      display: none;
+      flex-direction: column;
+    }
+  }
+
+  .filters-header {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #333333;
+  }
+
+  .form-input {
+    width: 80px;
+    padding: 10px 7px 10px 18px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ABABAB;
+    border: 1px solid #ABABAB;
+    outline: none;
+    margin-left: 12px;
+
+    &:focus {
+      border-color: $landspot-theme-color;
+    }
+
+    &__width {
+      width: 80px;
+      padding: 10px 0 10px 18px;
+    }
+
+    &__depth {
+      width: 80px;
+      padding: 10px 0 10px 18px;
+    }
+
+    @media (max-width: 768px) {
+      width: 147px;
+      margin-left: 0;
+      text-align: unset;
+    }
+  }
+
+  .cards {
+    .cards-list {
+      margin: 0;
+      padding: 0 14px 18px 14px;
+
+      .card {
+        .content {
+          box-shadow: none;
+          border: 1px solid #E3E7EE;
+        }
+      }
+    }
+  }
+
+  .lot-card-content {
+    padding: 20px 20px 5px 20px;
+
+    .lot-footer {
+      display: flex;
+      margin-bottom: 10px;
+
+      .lot-params {
+        flex-basis: 64%;
+      }
+
+      .button {
+        flex-basis: 36%;
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .lot-sizes {
+      .lot-size-width {
+        margin-right: 10px;
+      }
+    }
+  }
+}

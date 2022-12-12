@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Icon---3d" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(1.000000, 1.500000)">
+            <polygon id="Fill-1" points="0 2.90981818 0 12.3643636 8 15.2727273 16 12.3643636 16 2.90981818 8.18604651 0"></polygon>
+            <polygon id="Stroke-2" stroke="#323337" points="8 15.2727273 16 12.3636364 16 2.90909091 8.18604651 0 0 2.90909091 0 12.3636364"></polygon>
+            <polygon id="Fill-4" points="8 15.2727273 8 5.81762564 0 2.90909091"></polygon>
+            <polyline id="Stroke-5" stroke="#323337" points="8 15.2727273 8 5.81818182 0 2.90909091"></polyline>
+            <polygon id="Fill-7" points="0 2.90909091 8 5.81818182 16 2.90909091"></polygon>
+            <polyline id="Stroke-8" stroke="#323337" points="0 2.90909091 8 5.81818182 16 2.90909091"></polyline>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,21 @@
+.cards {
+  &.hidden {
+    display: none;
+  }
+  .cards-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: {
+      left: -$card-margin;
+      right: -$card-margin*2;
+      top: $card-margin;
+    }
+
+    @import "card";
+  }
+
+  & > p {
+    text-align: center;
+  }
+}

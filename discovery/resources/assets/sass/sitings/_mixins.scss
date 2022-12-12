@@ -1,0 +1,167 @@
+@mixin text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+}
+
+@mixin kaspa-input($border, $padding:null, $font-size: inherit) {
+  width: 100%;
+  appearance: none;
+  display: block;
+  border: $border;
+  padding: $padding;
+  font-size: $font-size;
+  &:focus {
+    outline: 1px $kaspa-brand-color;
+  }
+
+  &:disabled {
+    background: #fff;
+  }
+
+  &.password {
+    -webkit-text-security: disc;
+  }
+}
+
+@mixin placeholder-color {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@mixin landconnect-round-button($hoverBgColor:$landconnect-theme-color, $hoverTextColor: #fff, $padding:null) {
+  border-radius: 60px;
+  text-align: center;
+  background: #fff;
+  padding: $padding;
+  &:hover {
+    color: $hoverTextColor;
+    background: $hoverBgColor;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin kaspa-scrollbar {
+  &::-webkit-scrollbar {
+    background: #F1F1F1;
+    width: 14px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #BFBFBF;
+    width: 14px;
+  }
+}
+
+@mixin sitings-scrollbar {
+  &::-webkit-scrollbar {
+    background: #eee;
+    border-radius: 5px;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+    width: 10px;
+  }
+}
+
+@mixin background-brand-color {
+  background-color: $landconnect-theme-color;
+}
+
+@mixin card-image($scale: $landconnect-theme-color) {
+  width: 100%;
+  height: 0;
+  padding-top: $scale;
+}
+
+@mixin ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin brand-color {
+  color: $landconnect-theme-color;
+}
+
+@mixin validation-error-input {
+  &.has-error {
+    & > input {
+      background-color: $validation-error-color;
+    }
+  }
+}
+
+@mixin validation-error-button {
+  &.has-error {
+    & > button {
+      background-color: $validation-error-color;
+    }
+  }
+}
+
+@mixin awesome-icon($content, $font-weight: 600) {
+  content: $content;
+  position: absolute;
+  font-weight: $font-weight;
+  font-family: "Font Awesome 5 Pro";
+}
+
+@mixin awesome-icon-after($content, $left, $right: null) {
+  position: relative;
+  &:after {
+    @include awesome-icon($content);
+    left: $left;
+    right: $right;
+    bottom: 50%;
+    transform: translateY(50%);
+    display: block;
+  }
+}
+
+
+@mixin span-status {
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  height: 33px;
+  color: $table-text-color;
+
+  border-radius: 5px;
+  background-color: #F3F5F7;
+  font-size: $larger-text-size;
+  line-height: normal;
+  text-transform: capitalize;
+  padding: 0 20px 0 17px;
+  white-space: nowrap;
+
+  & > i {
+    display: inline-block;
+    margin-right: 8px;
+    height: 5px;
+    width: 5px;
+    border-radius: 3px;
+
+    &.awaiting-approval {
+      background-color: orange;
+    }
+
+    &.active {
+      background-color: green;
+    }
+
+    &.attention {
+      background-color: red;
+    }
+
+    &.in-progress {
+      background-color: blue;
+    }
+  }
+}

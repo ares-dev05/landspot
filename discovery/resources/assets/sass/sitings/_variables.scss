@@ -1,0 +1,72 @@
+$app-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.11);
+$app-navbar-height: 110px;
+
+$app-border-color: #E4E7EA;
+$app-border-width: 1pt;
+$app-border: $app-border-width solid $app-border-color;
+$large-font-size: 16px;
+
+$landconnect-logo-color: #d2d2d2;
+
+$landconnect-theme-color: var(--main-color, $landconnect-logo-color);
+//$landconnect-logo-color: var(--logo-color, $builder-default-logo-color);
+$landconnect-text-color: #323337;
+
+// Typography
+$text-color: #333;
+$text-size: 11px;
+$larger-text-size: 12px;
+$nav-text-size: 13px;
+$item-text-color: #565656;
+
+$navbar-border-color: #BDBDBD;
+$navbar-default-height: 90px;
+
+$table-text-color: #7C8289;
+$table-border-color: #E4E7EA;
+$table-thead-border-color: #AFB3B7;
+$table-thead-text-color: #323337;
+
+//Dropdowns
+$select-border-color: #e4e4e4;
+$filter-input-height: 39px;
+
+$default-text-color: #878787;
+$default-bg-color: #F3F3F3;
+
+//Popups
+$max-dialog-height: 85vh;
+
+$kaspa-green-color: #00E994;
+$default-border-color: #dddddd;
+$anchor-hover-color: #464646;
+
+$page-padding: 15px;
+$app-menu-font-size: 14px;
+
+//Print
+$a4-page-height: 297mm;
+$a4-page-width: 210mm;
+$print-page-margin: 10mm;
+$print-header-height: 20mm;
+$print-header-padding: 5mm;
+
+//Sitings
+$content-padding: 26px;
+$card-margin: 10px;
+$highlighted-text-color: #4a4a4a;
+$a4-image-scale: 297/210*100%;
+$button-background-color: #B1B7C3;
+$button-background-color-active: #91959F;
+$input-background-color: #F2F3F6;
+$validation-error-color: rgba(255, 0, 0, 0.25);
+
+
+//Login
+$kaspa-brand-color: #FF5D53;
+$kaspa-menu-color: #4A4A4A;
+
+$icon-color: #9b9b9b;
+
+$font-weight-bold: 500;
+$font-weight-medium: 300;

@@ -1,0 +1,299 @@
+.amenity-section {
+  .amenity-title {
+    font-size: 21px;
+    line-height: 38px;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .amenity-marker {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      font-weight: bold;
+      text-shadow: 1px 1px 1px white;
+    }
+  }
+
+  .add-amenity-form {
+    margin-bottom: 20px;
+
+    .amenity-category,
+    .landspot-input {
+      margin-bottom: 10px;
+
+      &,
+      button {
+        text-transform: capitalize;
+      }
+    }
+
+    .add-button {
+      padding: 10px 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      cursor: pointer;
+      color: $landspot-theme-color;
+
+      i {
+        margin-right: 5px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        color: #949393;
+      }
+    }
+
+    .add-amenity-tabs {
+      display: flex;
+      border-bottom: 1pt solid #E4E7EA;
+      margin-bottom: 10px;
+
+      .add-amenity-tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        height: 30px;
+        color: #323337;
+        flex-basis: 50%;
+        flex-shrink: 0;
+        border-bottom: 3px solid transparent;
+      }
+
+      .add-amenity-tab-active {
+        color: $landspot-theme-color;
+        border-bottom: 3px solid $landspot-theme-color;
+      }
+
+      .add-amenity-tab:hover:not(.add-amenity-tab-active) {
+        cursor: pointer;
+        color: $landspot-theme-color;
+        border-bottom: 3px solid $landspot-theme-color;
+        opacity: 0.7;
+      }
+    }
+
+    .two-inputs {
+      display: flex;
+
+      & > *:first-child {
+        margin-right: 5px;
+      }
+
+      & > *:last-child {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .snapshot-wrapper {
+    padding-top: 20px;
+    @media (max-width: 760px) {
+      padding: 0 45px 20px 45px;
+    }
+    .snapshot-section {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+      @media (max-width: 1000px) {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 760px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .snapshot-card {
+        width: 100%;
+        max-width: 290px;
+        height: 84px;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        padding: 21px 13px;
+        display: flex;
+        font-style: normal;
+        font-size: 15px;
+        line-height: 18px;
+
+        .snapshot-left-block {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 15px;
+          white-space: nowrap;
+
+          & > span {
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+          & > .landspot-input {
+            max-width: 8vw;
+            display: inherit;
+            align-items: center;
+            & > input {
+              margin-right: 3px;
+              max-width: 70px;
+            }
+          }
+        }
+
+        .snapshot-right-block {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+
+          & > div {
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 13px;
+          }
+
+          .snapshot-title {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 8px;
+          }
+
+          .snapshot-description {
+            opacity: 0.5;
+          }
+          & > .landspot-input {
+            max-width: 100%;
+          }
+        }
+      }
+
+      .card-space:not(:last-child) {
+        margin-right: 10px;
+        margin-bottom: 35px;
+        @media (max-width: 760px) {
+          margin: 0 0 35px 0;
+        }
+      }
+    }
+  }
+
+  .amenity-wrapper {
+    margin-top: 54px;
+    margin-bottom: 54px;
+  }
+
+  .amenity-map {
+    display: flex;
+    padding-top: 17px;
+
+    .accordion-section {
+      flex-grow: 1;
+    }
+  }
+
+  .amenities-accordion {
+    & > div {
+      padding: 10px 0;
+      border-top: 2pt solid #e4e7ea;
+    }
+
+    .category {
+      cursor: pointer;
+      padding: 0 12px;
+      text-transform: capitalize;
+      font-size: 10px;
+      font-weight: 600;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      line-height: 12px;
+
+      svg {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+        color: $landspot-theme-color;
+      }
+
+      .carpet {
+        margin-left: auto;
+      }
+
+      &.active {
+        color: $landspot-theme-color;
+      }
+    }
+
+    .amenity-list {
+      margin: 4px 0 0 0;
+      counter-reset: item;
+      padding-left: 4.3em;
+
+      li {
+        line-height: 26px;
+        display: block;
+        color: #323337;
+        font-size: 12px;
+        opacity: 0.8;
+        cursor: pointer;
+
+        &::before {
+          content: counter(item) '. ';
+          counter-increment: item;
+          font-weight: 600;
+        }
+
+        &:hover {
+          color: $landspot-theme-color;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+
+    .amenity-wrapper {
+      margin-top: 40px;
+
+      .amenity-map {
+        flex-direction: column-reverse;
+        padding: 0 8%;
+
+        @media (max-width: 460px) {
+          padding: 0;
+        }
+
+        .estate-map-section {
+          flex: 0 0 auto;
+        }
+      }
+    }
+    .amenities-accordion {
+      margin-top: 18px;
+
+      & > div {
+        border-top: 1pt solid #e4e7ea;
+      }
+    }
+    .amenity-title {
+      text-align: center;
+    }
+  }
+  @media (max-width: 460px) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    .estate-header {
+      margin-left: 5%;
+    }
+    .amenity-wrapper {
+      margin-bottom: 20px;
+    }
+  }
+}

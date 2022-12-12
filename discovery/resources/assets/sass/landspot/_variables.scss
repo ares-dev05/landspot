@@ -1,0 +1,54 @@
+//Main
+$builder-default-logo-color: #D2D2D2;
+$landspot-blue-color: #3D40C6;
+
+$landspot-theme-color: var(--main-color, $landspot-blue-color);
+$landspot-logo-color: var(--logo-color, $builder-default-logo-color);
+$landspot-text-color: #323337;
+$landspot-text-size: 13px;
+$header-text-size: 18px;
+$small-text-size: 12px;
+$smaller-text-size: 11px;
+$extra-small-text-size: 10px;
+$large-font-size: 16px;
+$icon-font-size: 16px;
+
+$landspot-image-scale: 10/16*100%;
+$a4-image-scale: 297/210*100%;
+$input-background-color: #F2F3F6;
+$validation-error-color: rgba(255, 0, 0, 0.25);
+
+//Navigation panel
+$app-navbar-height: 110px;
+
+$app-border-color: #E4E7EA;
+$app-border-width: 1pt;
+$app-border: $app-border-width solid $app-border-color;
+$app-border-radius: 6px;
+$app-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.11);
+$item-box-shadow: 0 3px 20px 0 rgba(189, 189, 189, 0.4);
+
+$color-status-published:  #A5F6D5;
+$color-status-unpublished:  #FF5D53;
+$color-available: #00E994;
+$color-sold: red;
+$color-on-hold: orange;
+
+$highlighted-text-color: #4a4a4a;
+$button-background-color: #BCC1C5;
+
+//Sections
+$content-padding: 26px;
+$card-margin: 10px;
+$font-weight-bold: 500;
+$font-weight-medium: 300;
+
+//chat
+$avatar-size: 45px;
+
+//Print
+$a4-page-height: 297mm;
+$a4-page-width: 210mm;
+$print-page-margin: 10mm;
+$print-header-height: 20mm;
+$print-header-padding: 5mm;

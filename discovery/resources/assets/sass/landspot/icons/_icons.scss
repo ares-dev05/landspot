@@ -1,0 +1,227 @@
+.ic-other{
+  @include landspot-mask-image('ic-other');
+}
+
+.ic-brochure{
+  @include landspot-mask-image('ic-brochure');
+}
+
+.ic-drawings{
+  @include landspot-mask-image('ic-drawings');
+}
+
+.ic-quote{
+  @include landspot-mask-image('ic-quote');
+}
+
+.ic-my-lotmix {
+  @include landspot-mask-image('ic-my-lotmix');
+}
+
+.ic-find-land {
+  @include landspot-mask-image('ic-find-land');
+}
+
+.ic-insights {
+  @include landspot-mask-image('ic-insights');
+}
+
+.ic-shortlist {
+  @include landspot-mask-image('ic-shortlist');
+}
+
+.ic-floorplans {
+  @include landspot-mask-image('ic-floorplans');
+}
+
+.address-book {
+  @include landspot-mask-image('address-book');
+}
+
+.adjust {
+  @include landspot-mask-image('adjust');
+}
+
+.angle-down {
+  @include landspot-mask-image('angle-down');
+}
+
+.arrow-left {
+  @include landspot-mask-image('arrow-left');
+}
+
+.arrow-right {
+  @include landspot-mask-image('arrow-right');
+}
+
+.bars {
+  @include landspot-mask-image('bars');
+}
+
+.bathroom {
+  @include landspot-mask-image('bathroom');
+}
+
+.bedroom {
+  @include landspot-mask-image('bedroom');
+}
+
+.blueprint {
+  @include landspot-mask-image('blueprint');
+}
+
+.car-park {
+  @include landspot-mask-image('car-park');
+}
+
+.cloud-upload {
+  @include landspot-mask-image('cloud-upload');
+}
+
+.cog {
+  @include landspot-mask-image('cog');
+}
+
+.comment {
+  @include landspot-mask-image('comment');
+}
+
+.compose {
+  @include landspot-mask-image('compose');
+}
+
+.cube {
+  @include landspot-mask-image('cube');
+}
+
+.document {
+  @include landspot-mask-image('document');
+}
+
+.export {
+  @include landspot-mask-image('export');
+}
+
+.eye {
+  @include landspot-mask-image('eye');
+}
+
+.facebook {
+  @include landspot-mask-image('facebook');
+}
+
+.floorplan {
+  @include landspot-mask-image('floorplan');
+}
+
+.grid {
+  @include landspot-mask-image('grid');
+}
+
+.google {
+  @include landspot-mask-image('google');
+}
+
+.home {
+  @include landspot-mask-image('home');
+}
+
+.house {
+  @include landspot-mask-image('house');
+}
+
+.image {
+  @include landspot-mask-image('image');
+}
+
+.land-sales {
+  @include landspot-mask-image('land-sales');
+}
+
+.list {
+  @include landspot-mask-image('list');
+}
+
+.lmix-list {
+  @include landspot-mask-image('lmix-list');
+}
+
+.map-marker {
+  @include landspot-mask-image('map-marker');
+}
+
+.minus {
+  @include landspot-mask-image('minus');
+}
+
+.paperclip {
+  @include landspot-mask-image('paperclip');
+}
+
+.pen-bold {
+  @include landspot-mask-image('pen-bold');
+}
+
+.pen {
+  @include landspot-mask-image('pen');
+}
+
+.plus {
+  @include landspot-mask-image('plus');
+}
+
+.search {
+  @include landspot-mask-image('search');
+}
+
+.shortlist {
+  @include landspot-mask-image('shortlist');
+}
+
+.times {
+  @include landspot-mask-image('times');
+}
+
+.trash {
+  @include landspot-mask-image('trash');
+}
+
+.trash-restore {
+  @include landspot-mask-image('trash-restore');
+}
+
+.upload {
+  @include landspot-mask-image('upload');
+}
+
+.user {
+  @include landspot-mask-image('user');
+}
+
+.curve {
+  @include landspot-mask-image('curve');
+}
+
+.rotation {
+  @include landspot-mask-image('rotation');
+}
+
+.straight {
+  @include landspot-mask-image('straight');
+}
+
+.curve-direction-right {
+  @include landspot-mask-image('curve-direction-right');
+}
+
+.curve-direction-left {
+  @include landspot-mask-image('curve-direction-left');
+}
+
+.boundary-arrow-left {
+  @include landspot-mask-image('boundary-arrow-left');
+}
+
+.boundary-arrow-right {
+  @include landspot-mask-image('boundary-arrow-right');
+}

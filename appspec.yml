@@ -1,0 +1,41 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/landspot/deployment
+permissions:
+  - object: /var/www/landspot/deployment
+    owner: deploy-user
+    group: www-data
+    pattern: "**"
+    mode: 775
+    type:
+      - file
+      - directory
+hooks:
+  BeforeInstall:
+    - location: deployment-scripts/arrange-deployment-folders.sh
+      runas: root
+  AfterInstall:
+    - location: deployment-scripts/env-config.sh
+      runas: deploy-user
+    - location: deployment-scripts/composer-install.sh
+      runas: deploy-user
+    - location: deployment-scripts/npm-install.sh
+      runas: deploy-user
+    - location: deployment-scripts/artisan-helpers.sh
+      runas: deploy-user
+    - location: deployment-scripts/db-migrate.sh
+      runas: deploy-user
+    - location: deployment-scripts/npm-build.sh
+      runas: deploy-user
+    - location: deployment-scripts/npm-build-sitings.sh
+      runas: deploy-user
+    - location: deployment-scripts/copy-oauth-keys.sh
+      runas: deploy-user
+    - location: deployment-scripts/create-sitemap.sh
+      runas: root
+  ApplicationStart:
+    - location: deployment-scripts/finish-installation.sh
+      runas: root
+      

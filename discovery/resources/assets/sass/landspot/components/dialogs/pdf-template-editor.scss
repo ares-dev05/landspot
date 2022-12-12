@@ -1,0 +1,194 @@
+.pdf-template-editor {
+  height: 100%;
+  max-width: 1200px;
+  .popupmodal-body {
+    & > header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 35px;
+
+      & > .colorpickers {
+        margin-left: 50px;
+
+        & > label {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin-bottom: 10px;
+
+          &:not(:last-of-type) {
+            margin-right: 35px;
+          }
+
+          .picker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: transparent;
+            margin: 0 10px;
+          }
+
+          .landspot-input {
+            max-width: 70px;
+          }
+
+          .landspot-input > input,
+          .picker {
+            cursor: pointer;
+          }
+
+          .colorpicker-wrapper {
+            position: absolute;
+            right: 0;
+            top: 30px;
+            z-index: $z-index-chat;
+            .close {
+              right: 0;
+              top: 0;
+            }
+            .sketch-picker {
+              padding: 15px 15px 5px 15px!important;
+            }
+          }
+        }
+      }
+
+      .nice-dropdown {
+        min-width: 24ch;
+      }
+
+      .label {
+        font-size: 10px;
+        font-weight: $font-weight-bold;
+        line-height: $landspot-text-size;
+        padding-bottom: 10px;
+      }
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        & > .colorpickers {
+          margin-left: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    & > .pdf-template-container {
+      border: $app-border;
+      box-shadow: $app-box-shadow;
+      height: 0;
+      padding-bottom: $a4-page-height/$a4-page-width*100%;
+      position: relative;
+
+      .wrapper {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: $print-page-margin/$a4-page-width*100%;
+
+        .page {
+          position: relative;
+          height: 100%;
+          padding: ($print-header-height + $print-header-padding)/($a4-page-width - $print-page-margin*2)*100% 0;
+
+          & > header,
+          & > footer {
+            height: $print-header-height/($a4-page-height - $print-page-margin*2)*100%;
+            border: 0;
+            outline: $app-border;
+            outline-style: dashed;
+            outline-offset: 0;
+            position: absolute;
+            width: 100%;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .trash-link {
+              left: 5px;
+              top: 5px;
+            }
+
+            .placeholder-text {
+              font-weight: $font-weight-medium;
+              text-align: center;
+
+              .landspot-icon {
+                padding: 18px;
+                margin-right: 15px;
+              }
+
+              & > span:not(.helper) {
+                font-size: $large-font-size;
+              }
+
+              .helper {
+                opacity: 0.37;
+                font-size: $small-text-size;
+                display: block;
+                margin-top: 12px;
+              }
+            }
+          }
+          & > header {
+            top: 0;
+          }
+          & > footer {
+            bottom: 0;
+          }
+
+          & > .stages-table {
+            .table-header > .title {
+              font-size: 18px;
+            }
+
+            .table {
+              margin-top: 12px;
+              margin-bottom: 25px;
+              border-spacing: 0;
+
+              thead tr th {
+                border-top: none;
+              }
+              thead tr th,
+              tbody tr td {
+                color: inherit;
+                &:first-child {
+                  padding-left: 15px;
+                }
+              }
+            }
+          }
+
+          & > textarea {
+            border: 0;
+            outline: $app-border;
+            outline-style: dashed;
+            outline-offset: 0;
+            width: 100%!important;
+            min-height: 45px;
+            padding: 15px;
+
+            &.title-text {
+              margin-top: 15px;
+              min-height: 75px;
+
+              font-size: 24px;
+              font-weight: $font-weight-bold;
+              line-height: 44px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

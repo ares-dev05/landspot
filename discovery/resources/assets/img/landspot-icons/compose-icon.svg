@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="26px" viewBox="0 0 31 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Compose" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Group-7" transform="translate(17.899495, 9.899495) scale(-1, 1) rotate(135.000000) translate(-17.899495, -9.899495) translate(15.899495, -2.100505)" stroke-linejoin="round" stroke-width="0.75">
+            <path d="M3.70752678,4.0673901 L1.85376339,0 L0,4.0673901 L-1.11022302e-15,21.6272396 C-9.84843042e-16,22.6510448 0.82995814,23.481003 1.85376339,23.481003 L1.85376339,23.481003 C2.87756864,23.481003 3.70752678,22.6510448 3.70752678,21.6272396 L3.70752678,4.0673901 Z" id="Stroke-1" stroke="#323337"></path>
+            <path d="M0,4.32544791 L3.70752678,4.32544791" id="Stroke-3" stroke="#323337"></path>
+            <path d="M0,20.3913973 L3.70752678,20.3913973" id="Stroke-5" stroke="#4A4A4A"></path>
+        </g>
+        <polyline id="Path-3" stroke="#323337" stroke-width="0.75" fill-rule="nonzero" points="18.6156841 3 3 3 3 23.759893 23.6179535 23.759893 23.6179535 10.7013592"></polyline>
+    </g>
+</svg>

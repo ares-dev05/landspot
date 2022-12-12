@@ -1,0 +1,100 @@
+body.modal-opened {
+  overflow-y: hidden;
+}
+
+.popupmodal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-popup-modal-backdrop;
+  background: rgba(216, 216, 216, 0.46);
+}
+
+.portal-modal {
+  width: 664px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.11);
+  padding: 35px;
+  z-index: $z-index-popup-modal-backdrop;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50vh;
+  transform: translateY(-50%);
+  max-height: 85vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  & > .popupmodal-header {
+    color: $kaspa-menu-color;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 44px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-bottom: 20px;
+    @include text-overflow-ellipsis;
+  }
+
+  & > .popupmodal-body {
+    margin: 0 -35px;
+    padding: 0 35px;
+    flex: 1 100%;
+    overflow: {
+      x: hidden;
+      y: auto;
+    };
+  }
+
+  & > .popupmodal-footer {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 0;
+    margin-top: 25px;
+    align-items: center;
+
+    & > .cancel + button {
+      margin-left: 25px;
+    }
+
+    & button {
+      @include landconnect-round-button;
+      border: 0;
+      font-weight: 300;
+      color: $icon-color;
+
+      height: 40px;
+      min-width: 85px;
+
+      &.default {
+        min-width: 127px;
+        border: 1px solid $landconnect-theme-color;
+        font-weight: 600;
+        color: $landconnect-theme-color;
+        letter-spacing: 1px;
+      }
+
+      &.cancel {
+        font-size: $app-menu-font-size;
+      }
+
+      &:first-of-type {
+        margin-right: 5px;
+      }
+
+      &:last-of-type {
+        margin-left: auto;
+      }
+
+      &:hover {
+        background: $landconnect-theme-color;
+        color: #fff;
+      }
+    }
+  }
+}

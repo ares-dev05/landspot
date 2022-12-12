@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Courier";
+    src: local("Courier"), url(#{$APP_URL}/fonts/CourierNew.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Helvetica";
+    src: local("Helvetica"),
+    url(#{$APP_URL}/fonts/HelveticaRegular.woff) format("woff"),
+    url(#{$APP_URL}/fonts/HelveticaRegular.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: local('Georgia'), url(#{$APP_URL}/fonts/Georgia.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/Georgia.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/Georgia.woff) format('woff'),
+    url(#{$APP_URL}/fonts/Georgia.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tahoma';
+    src: url(#{$APP_URL}/fonts/Tahoma.eot) format('embedded-opentype');
+    src: local('Tahoma'),
+    url(#{$APP_URL}/fonts/Tahoma.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/Tahoma.woff) format('woff'),
+    url(#{$APP_URL}/fonts/Tahoma.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Times New Roman";
+    src: local('Times New Roman'), url(#{$APP_URL}/fonts/TimesNewRomanRegular.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/TimesNewRomanRegular.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/TimesNewRomanRegular.woff) format('woff'),
+    url(#{$APP_URL}/fonts/TimesNewRomanRegular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: local('Verdana'), url(#{$APP_URL}/fonts/Verdana.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/Verdana.eot) format('embedded-opentype'),
+    url(#{$APP_URL}/fonts/Verdana.woff) format('woff'),
+    url(#{$APP_URL}/fonts/Verdana.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

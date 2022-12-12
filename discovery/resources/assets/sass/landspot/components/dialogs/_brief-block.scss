@@ -1,0 +1,91 @@
+.brief-details-wrapper {
+  width: 100%;
+
+  .brief-row {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+
+    &:not(:first-child){
+      border-top: 1px solid rgba(149,158,167,0.15);
+    }
+  }
+
+  .contact-details {
+    line-height: 24px;
+
+    & > div:last-child{
+      //padding-top: 22px;
+    }
+
+    span {
+      margin-left: 15px;
+      font-size: 13px;
+      line-height: 16px;
+      font-style: italic;
+    }
+  }
+
+  .brief-row:last-child {
+    padding-bottom: 20px;
+  }
+
+  .brief-title {
+    flex-basis: 25%;
+    font-size: 14px;
+    font-weight: 500;
+    color: $landspot-theme-color;
+  }
+
+  .brief-data {
+    flex-basis: 75%;
+    font-size: 13px;
+    color: #717887;
+
+    .data-block {
+      display: flex;
+      flex-direction: column;
+      margin-left: 5px;
+    }
+
+    .export {
+      margin-right: 7px;
+    }
+  }
+
+  .first-name-data {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 10px;
+  }
+
+  .data-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    & > div {
+      margin: 0 5px;
+    }
+  }
+
+  .active-data {
+    transform: translateY(-6px);
+    background-color: $landspot-theme-color;
+    color: white;
+    border-radius: 5px;
+    padding: 6px 10px 6px 10px;
+  }
+
+  .line-break {
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .icon-lock {
+    font-size: 16px;
+    color: $landspot-theme-color;
+  }
+}

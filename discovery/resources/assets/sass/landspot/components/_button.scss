@@ -1,0 +1,114 @@
+.button {
+  display: inline-block;
+  font-size: $small-text-size;
+  font-weight: $font-weight-bold;
+  color: #fff;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.75em 2.5em;
+  border-radius: 20px;
+  transition: .3s;
+  border: $app-border-width solid transparent;
+
+  @supports (-ms-ime-align: auto) {
+    padding: 0 2.5em;
+    line-height: 33px;
+  }
+
+  & > .landspot-icon {
+    padding: 7px;
+    margin-right: 10px;
+
+    @supports (-ms-ime-align: auto) {
+      vertical-align: middle;
+      &.trash {
+        padding-right: 4px;
+      }
+    }
+  }
+
+  &:not(.transparent) {
+    & > .landspot-icon {
+      &:before {
+        @include background-brand-color;
+      }
+    }
+  }
+
+  &.primary {
+    background: $landspot-theme-color;
+
+    & > .landspot-icon::before {
+      background: white;
+    }
+
+    &:hover {
+      background: #fff;
+      @include brand-color;
+      border-color: $landspot-theme-color;
+
+      & > .landspot-icon::before {
+        @include background-brand-color;
+      }
+    }
+  }
+
+  &.transparent {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: $landspot-text-color;
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+  &.default {
+    background: #fff;
+    @include brand-color;
+    border-color: $landspot-theme-color;
+
+    &:hover {
+      @include background-brand-color;
+      color: #fff;
+
+      & > .landspot-icon::before {
+        background: white;
+      }
+    }
+  }
+
+  &.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 18px;
+
+    .landspot-icon {
+      margin-right: 0;
+      padding: 8px;
+    }
+  }
+
+  &.add-company {
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  &.disabled,
+  &[disabled] {
+    opacity: .5;
+    cursor: default;
+  }
+
+  & > .beg-icon {
+    vertical-align: middle;
+    margin-right: .5em;
+  }
+
+  & > .end-icon {
+    vertical-align: middle;
+    margin-left: .5em;
+  }
+}

@@ -1,0 +1,44 @@
+.brief-popup {
+  @import "./brief-block";
+  width: 100%;
+  max-width: 900px;
+
+  .brief-header {
+    text-align: center;
+    font-size: 30px;
+  }
+
+
+  .popupmodal-footer {
+    justify-content: center;
+  }
+
+  .button {
+    font-size: 15px;
+    padding: 14px 14px;
+    border-radius: 25px;
+  }
+
+  .primary {
+    margin-left: 5px !important;
+  }
+
+  .reject {
+    display: inline-block;
+    color: #4D5465;
+    background-color: white;
+    font-size: 15px;
+    padding: 14px 40px;
+    border-radius: 25px;
+    border: 1pt solid #a9acb6;
+    font-weight: 500;
+    transition: .3s;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+
+    &:hover {
+      background-color: #e2e6ea;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin make-grid-columns($i: 1, $list: ".col-md-#{$i}, .col-lg-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-md-#{$i}, .col-lg-#{$i}";
+  }
+  #{$list} {
+    position: relative;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ceil(($grid-gutter-width / 2));
+    padding-right: floor(($grid-gutter-width / 2));
+  }
+}
+
+@mixin make-grid-columns-sm($i: 1, $list: ".col-sm-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns-tablet-portrait {
+    $list: "#{$list}, .col-sm-#{$i}";
+  }
+  #{$list} {
+    position: relative;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ceil(($grid-gutter-width / 2));
+    padding-right: floor(($grid-gutter-width / 2));
+  }
+}
+
+@mixin make-grid-columns-xs($i: 1, $list: ".col-xs-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns-mobile {
+    $list: "#{$list}, .col-xs-#{$i}";
+  }
+  #{$list} {
+    position: relative;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ceil(($grid-gutter-width-mobile / 2));
+    padding-right: floor(($grid-gutter-width-mobile / 2));
+  }
+}
+
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin float-grid-columns($class, $columns, $i: 1, $list: ".col-#{$class}-#{$i}") {
+  @for $i from (1 + 1) through $columns {
+    $list: "#{$list}, .col-#{$class}-#{$i}";
+  }
+  #{$list} {
+    float: left;
+  }
+}
+
+
+@mixin calc-grid-column($index, $class, $type, $columns) {
+  @if ($type == width) and ($index > 0) {
+    .col-#{$class}-#{$index} {
+      width: percentage(($index / $columns));
+    }
+  }
+  @if ($type == push) and ($index > 0) {
+    .col-#{$class}-push-#{$index} {
+      left: percentage(($index / $columns));
+    }
+  }
+  @if ($type == push) and ($index == 0) {
+    .col-#{$class}-push-0 {
+      left: auto;
+    }
+  }
+  @if ($type == pull) and ($index > 0) {
+    .col-#{$class}-pull-#{$index} {
+      right: percentage(($index / $columns));
+    }
+  }
+  @if ($type == pull) and ($index == 0) {
+    .col-#{$class}-pull-0 {
+      right: auto;
+    }
+  }
+  @if ($type == offset) {
+    .col-#{$class}-offset-#{$index} {
+      margin-left: percentage(($index / $columns));
+    }
+  }
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin loop-grid-columns($columns, $class, $type) {
+  @for $i from 0 through $columns {
+    @include calc-grid-column($i, $class, $type, $columns);
+  }
+}
+
+
+// Create grid for specific class
+@mixin make-grid($class) {
+  @if $class == 'xs' {
+    @include float-grid-columns($class, $grid-columns-mobile);
+    @include loop-grid-columns($grid-columns-mobile, $class, width);
+    @include loop-grid-columns($grid-columns-mobile, $class, pull);
+    @include loop-grid-columns($grid-columns-mobile, $class, push);
+    @include loop-grid-columns($grid-columns-mobile, $class, offset);
+  } @else if $class == 'sm' {
+    @include float-grid-columns($class, $grid-columns-tablet-portrait);
+    @include loop-grid-columns($grid-columns-tablet-portrait, $class, width);
+    @include loop-grid-columns($grid-columns-tablet-portrait, $class, pull);
+    @include loop-grid-columns($grid-columns-tablet-portrait, $class, push);
+    @include loop-grid-columns($grid-columns-tablet-portrait, $class, offset);
+  } @else {
+    @include float-grid-columns($class, $grid-columns);
+    @include loop-grid-columns($grid-columns, $class, width);
+    @include loop-grid-columns($grid-columns, $class, pull);
+    @include loop-grid-columns($grid-columns, $class, push);
+    @include loop-grid-columns($grid-columns, $class, offset);
+  }
+}

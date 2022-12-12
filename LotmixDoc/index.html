@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LotmixSpec</title>
+    <link rel="stylesheet" type="text/css" href="styles/general.css">
+    <link rel="stylesheet" type="text/css" href="styles/sideNav.css">
+    <link rel="stylesheet" type="text/css" href="styles/breadcrumbs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+<div class="sidenav">
+    <a class="aList" href="pages/process.html" >Process documentation</a>
+    <div>
+        <button class="dropdown-btn">Documentation <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+            <div>
+                <button class="dropdown-btn">Requirements <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-container">
+                    <div>
+                        <button class="dropdown-btn">Text <i class="fa fa-caret-down"></i></button>
+                        <div class="dropdown-container">
+                            <a class="aList" href="pages/builderLotmix.html" id="builder">Builder</a>
+                            <a class="aList" href="pages/landDevLotmix.html">Land Developer</a>
+                        </div>
+                    </div>
+                    <a class="aList" href="pages/diagrams.html">Diagrams</a>
+
+                </div>
+            </div>
+            <a class="aList" href="pages/design.html">Design</a>
+            <a class="aList1" href="#" id="sourceCode" onclick="leftMenuNav(this.id)">Source Code</a>
+            <a class="aList" href="pages/testDoc.html">Test Documentation</a>
+        </div>
+    </div>
+</div>
+
+<div class="main" >
+    <div style="margin-left: 10px;" id="mainBlock">
+        <h1>Lotmix Specification</h1>
+        Please use left navigation menu to navigate :)
+    </div>
+</div>
+
+
+
+
+
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    $(window).on('load', function() {
+        $('.dropdown-btn').on('click', function() {
+            console.log('asd')
+            $('.dropdown-btn').removeClass('active');
+            $(this).addClass("active")
+            var dropdownContent = $(this).next();
+            if (dropdownContent.css('display') === 'block') {
+                dropdownContent.css('display', 'none')
+            } else {
+                dropdownContent.css('display', 'block')
+            }
+
+        })
+    });
+
+</script>
+
+<script>
+    $(window).on('load', function() {
+        $("body").on('click', 'a.aList', function (e) {
+            e.preventDefault();
+            const url= ($(this).attr("href"));
+            fetch(url).then(res1 => {
+                res1.text().then(html => {
+                    document.getElementById("mainBlock").innerHTML = html;
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

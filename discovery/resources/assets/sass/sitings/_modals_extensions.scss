@@ -1,0 +1,15 @@
+.portal-modal {
+  &.bulk-uploader {
+    height: 85vh;
+    min-width: 800px;
+  }
+  &.measurement {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.svg-dialog {
+  min-height: 95vh;
+  min-width: 66vw;
+}

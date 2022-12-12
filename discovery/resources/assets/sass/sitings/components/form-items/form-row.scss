@@ -1,0 +1,67 @@
+.form-row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+  &.column {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  & > label {
+    font-weight: $font-weight-bold;
+  }
+
+  .left-item {
+    flex: 50%;
+    margin-right: 20px;
+    max-width: 200px;
+  }
+
+  .right-item {
+    flex: 1 1 100%;
+    margin-left: auto;
+    max-width: 200px;
+  }
+
+  & > .two-inputs {
+    display: flex;
+    & > input[type=text],
+    & > input[type=number] {
+      min-width: 0;
+      padding: {
+        left: 1ch;
+        right: 1ch;
+      }
+
+      &:first-of-type {
+        margin-right: 5px;
+      }
+      &:last-of-type {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  & > .row-column {
+    position: relative;
+    align-self: flex-start;
+    flex: 0 0 50%;
+    padding: 0 12px;
+
+    word-break: break-word;
+
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  &.price-row {
+    margin-top: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
