@@ -1,5 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 .filter-bar {
   padding-bottom: 30px;
+
+  .wrap-upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .sitting-header {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    border-radius: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    padding-left: $content-padding;
+    padding-bottom: $content-padding / 2;
+    margin-top: -$content-padding / 2;
+    margin-left: -$content-padding;
+    margin-right: -$content-padding;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .sitting-header .bar {
+    border-bottom: 3px solid #1F65FF;
+    width: 100px;
+    position: absolute;
+    bottom: 0;
+    margin-left: -26px;
+  }
+
+  .letter {
+    // font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #828282;
+  }
+
+  .letter-bold {
+    // font-family: 'Inter';
+    font-style: bold;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #333333;
+  }
   
   .filter-form {
     .first-row {

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: url(~http://localhost:8000/fonts/roboto/Roboto-italic-400.ttf) format('truetype'), url(~http://localhost:8000/fonts/roboto/Roboto-italic-400.woff) format('woff'), url(~http://localhost:8000/fonts/roboto/Roboto-italic-400.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  src: url(~http://localhost:8000/fonts/roboto/Roboto-italic-700.ttf) format('truetype'), url(~http://localhost:8000/fonts/roboto/Roboto-italic-700.woff) format('woff'), url(~http://localhost:8000/fonts/roboto/Roboto-italic-700.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.eot);
+  src: local('Roboto'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.ttf) format('truetype'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.eot?#iefix) format('embedded-opentype'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.woff) format('woff'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.svg#Roboto) format('svg'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-400.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(~http://localhost:8000/fonts/roboto/Roboto-normal-700.ttf) format('truetype'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-700.woff) format('woff'), url(~http://localhost:8000/fonts/roboto/Roboto-normal-700.woff2) format('woff2');
+}
+
