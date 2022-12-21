@@ -12,6 +12,8 @@ import {DrawerContext, tabs} from '../DrawerContainer';
 import * as actions from '../store/details/actions';
 import LotView from './canvas-view/LotView';
 import PagePreview from './page/PagePreview';
+import ReferencePlan, {ReferencePlanInstance} from './ReferencePlan';
+
 import {
     ExportSiting, ExportSitingInstance, DrawHouseDetails, DrawHouseDetailsInstance,
     DrawAnnotations, DrawAnnotationsInstance, DrawEdges, DrawEdgesInstance,
@@ -462,6 +464,7 @@ class CompanyDataContainer extends Component {
                 }}>
                     <LeftPanel className='sidebar'>
                         <Switch>
+                            <Route exact path={ReferencePlan.componentUrl} component={ReferencePlanInstance}/>
                             <Route exact path={DrawEdges.componentUrl} component={DrawEdgesInstance}/>
                             <Route exact path={DrawEasements.componentUrl} component={DrawEasementsInstance}/>
                             <Route exact path={DrawHouse.componentUrl} component={DrawHouseInstance}/>

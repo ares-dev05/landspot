@@ -9,6 +9,47 @@
     width: 100%;
   }
 
+  .boundary-add-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .boundary-add-wrap .title {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #38393B;
+    display: block;
+  }
+
+  .add-button {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #38393B;
+    background: #F3F4F6;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .add-button:hover {
+    background-color: #1F65FF;
+    color: #FFFFFF;
+  }
+
   .sitting-header {
     background: #FFFFFF;
     border-bottom: 1px solid #E0E0E0;

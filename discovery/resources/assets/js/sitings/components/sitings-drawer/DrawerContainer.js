@@ -479,7 +479,6 @@ class DrawerContainer extends Component {
                         <Route exact path={DrawHouseDetails.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={DrawAnnotations.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={ExportSiting.componentUrl} component={CompanyDataContainer}/>
-
                     </Switch>
                 </DrawerContext.Provider>
 

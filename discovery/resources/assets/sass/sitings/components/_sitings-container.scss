@@ -29,12 +29,12 @@
         padding-top: 25px;
       }
 
-      border-bottom: $app-border;
       padding-bottom: 15px;
     }
 
     .form-upload {
       margin-bottom: 30px;
+      border-bottom: $app-border;
 
       .form-upload-container {
         display: flex;
@@ -49,6 +49,58 @@
         .form-upload-button {
           border-radius: 5px;
           width: 220px;
+        }
+
+        .file-block {
+          width: 100%;
+          span.title {
+            font-family: 'DM Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            display: flex;
+            align-items: center;
+            color: #333333;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            margin-bottom: 7px;
+          }
+        }
+
+        .file-picker-wrap {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 16px;
+          gap: 12px;
+          justify-content: space-between;
+          width: 100%;
+          height: 68px;
+          border: 1px solid #DCDDDF;
+          border-radius: 8px;
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+        }
+
+        .tool-wrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 12px;
+          width: 72px;
+          height: 36px;
+          flex: none;
+          order: 2;
+          flex-grow: 0;
+          justify-content: space-between;
+        }
+
+        .tool-wrap img {
+          cursor: pointer;
         }
 
         .upload-button {
@@ -69,6 +121,11 @@
           cursor: pointer;
         }
 
+        .upload-button:hover {
+          background-color: #1F65FF;
+          color: #FFFFFF;
+        }
+
         .document-wrap {
           display: flex;
           justify-content: space-between;
@@ -77,6 +134,44 @@
         .pdf-image-wrap {
           background: #F3F4F6;
           border-radius: 8px;
+          width: 43px;
+          height: 43px;
+          position: relative;
+        }
+
+        .pdf-image-wrap img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .detail-wrap {
+          padding-left: 10px;
+        }
+
+        .detail-wrap .title {
+          font-family: 'DM Sans';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+          color: #38393B;
+          display: block;
+        }
+
+        .detail-wrap .info {
+          font-family: 'DM Sans';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          color: #858688;
+          display: block;
         }
 
         .disabled {

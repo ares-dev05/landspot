@@ -14,7 +14,11 @@ import PagePreview from './page/PagePreview';
 import StepNavigation from './StepNavigation';
 import AccountMgr from '~/sitings-sdk/src/sitings/data/AccountMgr';
 import Builder from '~/sitings-sdk/src/sitings/data/Builder';
-import uploadPng from './../../../../../img/upload.png'
+import uploadPng from './../../../../../img/upload.png';
+import FilepdfPng from './../../../../../img/FilePdf.png';
+import eyePng from './../../../../../img/Eye.png';
+import DotsThreePng from './../../../../../img/DotsThree.png';
+import LotEdges from './sidebar/LotEdges';
 
 class ReferencePlan extends Component {
     static componentUrl = '/sitings/drawer/reference-plan';
@@ -26,6 +30,8 @@ class ReferencePlan extends Component {
         resetDrawerStore: PropTypes.func.isRequired,
         createNewSiting: PropTypes.func.isRequired,
         showErrors: PropTypes.func.isRequired,
+        saveDrawerData: PropTypes.func.isRequired,
+        currentStep: PropTypes.object,
         userProfile: PropTypes.object
     };
 
@@ -70,7 +76,8 @@ class ReferencePlan extends Component {
     fileUploaded = (uploadingFile) => {
         const {
             drawerDetails: { siting },
-            loadSitingWithRef
+            loadSitingWithRef,
+            saveDrawerData
         } = this.props;
 
         loadSitingWithRef({ sitingId: siting.id });
@@ -78,6 +85,7 @@ class ReferencePlan extends Component {
             [uploadingFile]: false,
             uploadingPercent: 0
         });
+
     };
 
     fileUploadError = (response, uploadingFile) => {
@@ -113,6 +121,7 @@ class ReferencePlan extends Component {
             uploadingEngineeringFile,
             uploadingPercent
         } = this.state;
+
 
         const currentPage = getPage();
         const plan = drawerData[currentTab];
@@ -150,6 +159,7 @@ class ReferencePlan extends Component {
                                 </p>
                             </div>
 
+                            {console.log('plan', plan)}
                             {console.log('siting', siting)}
 
                             {siting &&
@@ -158,9 +168,18 @@ class ReferencePlan extends Component {
                                     <div className="form-rows form-upload">
                                         <div className="form-row form-upload-container">
                                             {plan && (
-                                                <div className='document-wrap'>
-                                                    <div className='upload-button'><img src={uploadPng} />Upload</div>
-                                                    <div>A</div>
+                                                <div className='file-block'>
+                                                    <span className='title'>Reference plan</span>
+                                                    <div className='file-picker-wrap'>
+                                                        <div className='document-wrap'>
+                                                            <div className='pdf-image-wrap'><img src={FilepdfPng} /></div>
+                                                            <div className='detail-wrap'><span className='title'>{plan.name}</span><span className='info'>PDF 225kb</span></div>
+                                                        </div>
+                                                        <div className='tool-wrap'>
+                                                            <img src={eyePng} />
+                                                            <img src={DotsThreePng} />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             )}
                                             {!plan && uploadingReferenceFile &&
@@ -183,6 +202,7 @@ class ReferencePlan extends Component {
                                                 /></div>}
                                         </div>
                                     </div>
+                                    <LotEdges companyLoaded={true} traceEnabled={false} metric={true} />
                                     {/* {
                                         (hasEngineering || (AccountMgr.i.builder && AccountMgr.i.builder.hasEngineering)) &&
                                         <div className="form-rows form-upload">
@@ -269,6 +289,7 @@ const ReferencePlanConsumer = (props) => (
                 resetDrawerData,
                 showErrors,
                 setupDrawerCallback,
+                saveDrawerData,
                 getPage
             }) => <ReferencePlan  {...props} {...{
                 setCurrentStep,
@@ -279,7 +300,8 @@ const ReferencePlanConsumer = (props) => (
                 setupDrawerCallback,
                 currentTab,
                 setTab,
-                getPage
+                saveDrawerData,
+                getPage,
             }} />
         }
     </DrawerContext.Consumer>
@@ -287,7 +309,7 @@ const ReferencePlanConsumer = (props) => (
 
 const ReferencePlanInstance = connect((state) => ({
     drawerDetails: state.sitingsDrawerDetails,
-    userProfile: state.userProfile
+    userProfile: state.userProfile,
 }), actions)(ReferencePlanConsumer);
 
 export { ReferencePlanInstance };

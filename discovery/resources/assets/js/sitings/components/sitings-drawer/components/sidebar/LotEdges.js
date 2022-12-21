@@ -9,6 +9,7 @@ import LotEdgeEvent from '~/sitings-sdk/src/sitings/events/LotEdgeEvent';
 import CanvasModel from '../CanvasModel';
 import UserAction from '../consts';
 import ManipulationManager from '../../../../../sitings-sdk/src/sitings/model/lot/trace/ManipulationManager';
+import uploadPng from './../../../../../../img/upload.png';
 
 class LotEdges extends Component {
     static propTypes = {
@@ -24,6 +25,7 @@ class LotEdges extends Component {
 
         this.state = {};
         this.pathModel = null;
+
     }
 
     componentDidMount() {
@@ -73,6 +75,8 @@ class LotEdges extends Component {
         const {
             setDrawerData
         } = this.props;
+
+        console.log('addEdge')
         const canvasModel = CanvasModel.getModel();
         const lotModel    = canvasModel.pathModel;
 
@@ -103,15 +107,23 @@ class LotEdges extends Component {
     render() {
         const {companyLoaded, traceEnabled, metric} = this.props;
 
+        console.log('props', {companyLoaded, traceEnabled, metric})
+
         let edges = [];
         if (companyLoaded) {
             const canvasModel = CanvasModel.getModel();
             const {pathModel} = canvasModel;
             edges = pathModel.edges;
+
+            console.log('edges', edges)
         }
 
         return (
             <div className={classnames('lot-settings edges-list', traceEnabled && 'disabled')}>
+                <div className='boundary-add-wrap'>
+                    <span className='title'>Reference plan</span><div className='add-button' onClick={() => this.addEdge()}><img src={uploadPng} />Upload</div>
+                </div>
+
                 {
                     edges.map(
                         (edge, edgeIndex) => <Edge key={edgeIndex}
@@ -122,13 +134,6 @@ class LotEdges extends Component {
                         />
                     )
                 }
-
-                <div>
-                    <button type="button" className='button default'
-                            onClick={() => this.addEdge()}>
-                        <i className="landconnect-icon plus"/> Add boundary
-                    </button>
-                </div>
             </div>
         );
     }
