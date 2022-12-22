@@ -182,10 +182,10 @@ class ReferencePlan extends Component {
                                                     </div>
                                                 </div>
                                             )}
-                                            {!plan && uploadingReferenceFile &&
+                                            {plan == null && uploadingReferenceFile &&
                                                 <ProgressBar percent={uploadingPercent}
                                                     className='form-upload-button' />}
-                                            {!plan && !uploadingReferenceFile && <div className='wrap-upload'>
+                                            {plan == null && !uploadingReferenceFile && <div className='wrap-upload'>
                                                 <span>Reference plan</span>
                                                 <FileUploader
                                                     className='form-row'
@@ -235,7 +235,7 @@ class ReferencePlan extends Component {
                                 </React.Fragment>
                             }
 
-                            {plan &&
+                            {/* {plan &&
                                 <React.Fragment>
                                     <div className="form-rows">
                                         <div className="form-row">
@@ -260,7 +260,7 @@ class ReferencePlan extends Component {
                                         )}
                                     </Cards>
                                 </React.Fragment>
-                            }
+                            } */}
                         </div>
                     </div>
                     <StepNavigation hidePrev={true} />

@@ -78,6 +78,7 @@ class DrawerContainer extends Component {
             sitingId: null,
             importId: null,
             previewWidth: 300,
+            previewHeight: 300,
             zoom: 100,
             referencePage: null,
             engineeringPage: null,
@@ -427,6 +428,10 @@ class DrawerContainer extends Component {
         this.setState({drawerData: {...this.state.drawerData, previewWidth}});
     }
 
+    setPreviewHeight = (previewHeight) => {
+        this.setState({drawerData: {...this.state.drawerData, previewHeight}});
+    }
+
     getPage = () => {
         const {drawerData: {referencePage, engineeringPage}, currentTab} = this.state;
 
@@ -461,6 +466,7 @@ class DrawerContainer extends Component {
             setTab: this.setTab,
             getPage: this.getPage,
             setPreviewWidth: this.setPreviewWidth,
+            setPreviewHeight: this.setPreviewHeight,
             setHeightVisualisationMode: this.setHeightVisualisationMode,
             setThreeDVisualisationMode: this.setThreeDVisualisationMode,
             setNearmapsVisualisationMode: this.setNearmapsVisualisationMode,

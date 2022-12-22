@@ -23,6 +23,8 @@
       padding: $content-padding;
       position: relative;
 
+      background-color: #F7F7F9;
+
       &.flex-column {
         display: flex;
         flex-flow: column;

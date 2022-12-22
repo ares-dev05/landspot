@@ -254,19 +254,19 @@
 
     .step-nav {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      background-color: $landconnect-theme-color;
+      background-color: #fff;
       box-shadow: $app-box-shadow;
 
-      height: 30px;
+      height: 70px;
       border-top: $app-border;
 
       position: fixed;
       left: 0;
       bottom: 0;
       width: 26%;
-      padding: 20px $content-padding 30px;
+      padding: 0px $content-padding;
       color: #fff;
 
       & > .button {
@@ -281,10 +281,48 @@
           margin: 0;
 
           &:before {
-            background-color: #fff;
+            background-color: #38393B;
           }
         }
       }
+    }
+
+    .landconnect.arrow-left {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #38393B;
+    }
+
+    .button-before {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .button-continue {
+      background: #005FF9;
+      border-radius: 8px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      height: 40px;
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      color: #FFFFFF;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      padding: 0.75em 0.85rem;
+    }
+
+    .button-continue:hover {
+      background: #3462ad;
     }
 
     .lot-settings {
@@ -324,8 +362,8 @@
 
           .delete-btn {
             position: absolute;
-            right: -20px;
-            top: 30px;
+            right: 8px;
+            top: 10px;
 
             & > .landconnect-icon {
               padding: 6px;
@@ -736,6 +774,11 @@
       }
     }
 
+    .arrow-active {
+      background: #F3F4F6;
+      border-radius: 8px;
+    }
+
     .document-details {
       .landconnect-input {
         width: 100%;
@@ -750,13 +793,14 @@
     overflow: hidden;
 
     .page-preview {
-      max-width: calc(100% - 30px) !important;
-      height: 100% !important;
+      max-height: calc(100% - 110px) !important;
       box-shadow: $app-box-shadow;
       position: absolute;
+      bottom: 0px;
       flex-shrink: 0;
       background: #fff;
       z-index: $z-index-left-panel - 1;
+      width: 100%!important;
 
       .sitings-sliders {
         position: absolute;
@@ -818,60 +862,73 @@
 
       .react-resizable-handle {
         position: absolute;
-        width: 30px;
-        height: 100%;
-        top: 0;
+        width: 100%;
+        height: 10px;
+        top: -10px;
         right: -40px;
-        cursor: col-resize;
-        z-index: -1;
+        cursor: row-resize;
+        z-index: 3;
       }
 
       .page-preview-tabs {
         position: absolute;
         display: block;
         content: '';
-        top: 0;
-        left: 100%;
-        cursor: pointer;
-        text-transform: uppercase;
+        top: -47px;
+        left: 0%;
+        // text-transform: uppercase;
+        box-sizing: border-box;
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        width: 100%;
+        height: 47px;
+        background: #FFFFFF;
+        border-bottom: 1px solid #E0E0E0;
+        border-radius: 0px;
+        flex: none;
+        order: 0;
+        flex-grow: 1;
 
-        & > :nth-child(1) {
-          position: absolute;
-          display: block;
-          top: calc(0% + 30px * 2);
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
+        // & > :nth-child(1) {
+        //   position: absolute;
+        //   display: block;
+        //   top: calc(0% + 30px * 2);
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
 
-        & > :nth-child(2) {
-          position: absolute;
-          display: block;
-          top: 200px;
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
-        & > :nth-child(3) {
-          position: absolute;
-          display: block;
-          top: 340px;
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
+        // & > :nth-child(2) {
+        //   position: absolute;
+        //   display: block;
+        //   top: 200px;
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
+        // & > :nth-child(3) {
+        //   position: absolute;
+        //   display: block;
+        //   top: 340px;
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
 
         .page-preview-tab {
           display: flex;
@@ -889,6 +946,37 @@
 
         .page-preview-tab-hide {
           display: none;
+        }
+
+        .pdf-name {
+          font-family: 'DM Sans';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+          color: #38393B;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+
+        .tool-wrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 0px;
+          width: 58px;
+          height: 36px;
+          flex: none;
+          order: 2;
+          flex-grow: 0;
+          justify-content: space-between;
+
+          img {
+            cursor: pointer;
+          }
         }
       }
 

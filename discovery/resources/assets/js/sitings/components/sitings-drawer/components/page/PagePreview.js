@@ -23,6 +23,9 @@ import NearmapModel from '../../../../../sitings-sdk/src/sitings/model/nearmap/N
 import EventBase from '../../../../../sitings-sdk/src/events/EventBase';
 import ViewSettings from '../../../../../sitings-sdk/src/sitings/global/ViewSettings';
 import Utils from '../../../../../sitings-sdk/src/utils/Utils';
+import CarrotDown from '~/../img/CarrotDown.png';
+import CarrotUp from '~/../img/CarrotUp.png';
+import XPng from '~/../img/X.png';
 
 class PagePreview extends Component {
     static propTypes = {
@@ -555,6 +558,7 @@ class PagePreview extends Component {
             engineeringEnabled,
             setEngineeringMode,
             setPreviewWidth,
+            setPreviewHeight,
             setDrawerData,
             drawerData,
             currentTab,
@@ -586,21 +590,29 @@ class PagePreview extends Component {
         const hasNearmapLocation  = nearmapLocation !== null;
         const hasNearmapControls  = nearmapsVisualisationEnabled && hasNearmapLocation && !nearmapAutoPlacement;
 
+        console.log('drawerData', drawerData)
+
         return (
             <ResizableBox className="page-preview"
                           onResizeStop={(event, dimensions) => {
-                              this.setState({resizeTS: ++resizeTS});
-                              setPreviewWidth(dimensions.size.width);
-                              setDrawerData({resizeTS: ++resizeTS});
-                              this.resizeCurrentView();
+                            console.log('event', event)
+                            console.log('dimensions', dimensions)
+                            event.preventDefault()
+                            //   this.setState({resizeTS: --resizeTS});
+                            //   setPreviewHeight(dimensions.size.height);
+                            //   setDrawerData({resizeTS: --resizeTS});
+                            //   this.resizeCurrentView();
+                          }}
+                          onResize={(event) => {
+                            console.log('onResize : event', event)
                           }}
                           minConstraints={[0, 0]}
-                          width={drawerData.previewWidth}
-                          height={0}
-                          axis="x">
+                          width={0}
+                          height={drawerData.previewHeight}
+                          axis="y">
 
                 <React.Fragment>
-                    {
+                    {/* {
                         (heightVisualisationEnabled || (nearmapsVisualisationEnabled && hasNearmapLocation)) &&
                         <ZoomButtons setZoom={heightVisualisationEnabled ? this.setEnvelopeZoom : this.setNearmapZoom} disabled={false}/>
                     }
@@ -759,86 +771,10 @@ class PagePreview extends Component {
                                         }}/>
                             </div>
                         }
-                    </div>
+                    </div> */}
                     <div className="page-preview-tabs">
-                        <React.Fragment>
-                            {   hasHeightEnvelope && inAdvancedMode &&
-                                <button
-                                    className={`page-preview-tab ${currentTab === tabs.HEIGHT_VISUALISATION.id ? 'page-preview-tab-active' : ''}`}
-                                    onClick={() => {
-                                        if (!measurementsModel.leftSetback || !measurementsModel.rightSetback) {
-                                            showErrors({message: 'You need to set both Setbacks first'});
-                                            return;
-                                        }
-                                        this.setZoom(500);
-                                        this.setState({resetPage: true});
-                                        setTab(tabs.HEIGHT_VISUALISATION.id);
-                                        showTestEnvelope();
-                                    }}
-                                >
-                                    {tabs.HEIGHT_VISUALISATION.label}
-                                </button>
-                            }
-                            {   hasAdvancedFeatures && inAdvancedMode &&
-                                <button
-                                    className={`page-preview-tab ${currentTab === tabs.THREE_D_VISUALISATION.id ? 'page-preview-tab-active' : ''}`}
-                                    onClick={() => {
-                                        this.setState({resetPage: true});
-                                        setTab(tabs.THREE_D_VISUALISATION.id);
-                                        show3DLandSurvey();
-                                    }}
-                                >
-                                    {tabs.THREE_D_VISUALISATION.label}
-                                </button>
-                            }
-
-                            {   hasNearmapOverlay && inAdvancedMode &&
-                            <button
-                                className={`page-preview-tab ${currentTab === tabs.NEARMAPS_VISUALISATION.id ? 'page-preview-tab-active' : ''}`}
-                                onClick={() => {
-                                    this.setState({resetPage: true});
-                                    setTab(tabs.NEARMAPS_VISUALISATION.id);
-                                    showNearmapsOverlay();
-                                }}
-                            >
-                                {tabs.NEARMAPS_VISUALISATION.label}
-                            </button>
-                            }
-
-                            {(drawerData.referencePlan || drawerData.referencePage) && !inAdvancedMode && (
-                                <button
-                                    className={`page-preview-tab ${currentTab === tabs.REFERENCE.id ? 'page-preview-tab-active' : ''}`}
-                                    onClick={() => {
-                                        this.setZoom(0);
-                                        this.setState({resetPage: true});
-                                        setTab(tabs.REFERENCE.id);
-                                    }}
-                                >
-                                    {tabs.REFERENCE.label}
-                                </button>
-                            )}
-                            {(drawerData.engineeringPlan || drawerData.engineeringPage) && (
-                                <button
-                                    className={`page-preview-tab ${currentTab === tabs.ENGINEERING.id ? 'page-preview-tab-active' : ''}`}
-                                    onClick={() => {
-                                        this.setZoom(0);
-                                        this.setState({resetPage: true});
-                                        setTab(tabs.ENGINEERING.id);
-                                        if (heightVisualisationEnabled) {
-                                            showTestEnvelope();
-                                        }
-                                        if (threeDVisualisationEnabled) {
-                                            show3DLandSurvey();
-                                        }
-                                        if (nearmapsVisualisationEnabled) {
-                                            showNearmapsOverlay();
-                                        }
-                                    }}
-                                >
-                                    {tabs.ENGINEERING.label}
-                                </button>
-                            )}
-                        </React.Fragment>
+                        <span className='pdf-name'>Subplan.pdf</span>
+                        <div className='tool-wrap'><img src={CarrotUp}/><img src={XPng}/></div>
                     </div>
                 </React.Fragment>
             </ResizableBox>
@@ -912,6 +848,7 @@ const PagePreviewConsumer = (props) => (
                  state: {currentTab, drawerData},
                  setTab,
                  setPreviewWidth,
+                 setPreviewHeight,
                  getPage,
                  showErrors,
              }) => <PagePreview  {...props} {...{
@@ -920,6 +857,7 @@ const PagePreviewConsumer = (props) => (
                 currentTab,
                 setTab,
                 setPreviewWidth,
+                setPreviewHeight,
                 drawerData,
                 getPage
             }}/>

@@ -1,15 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {DrawerContext} from '../../DrawerContainer';
+import { DrawerContext } from '../../DrawerContainer';
 import LotEdgeAngle from '~/sitings-sdk/src/sitings/model/lot/LotEdgeAngle';
 import LotPointModel from '~/sitings-sdk/src/sitings/model/lot/LotPointModel';
 import LotCurveModel from '~/sitings-sdk/src/sitings/model/lot/LotCurveModel';
 import LotEdgeEvent from '~/sitings-sdk/src/sitings/events/LotEdgeEvent';
 import CanvasModel from '../CanvasModel';
 import UserAction from '../consts';
-import ManipulationManager from '../../../../../sitings-sdk/src/sitings/model/lot/trace/ManipulationManager';
-import uploadPng from './../../../../../../img/upload.png';
+import ManipulationManager from '~/sitings-sdk/src/sitings/model/lot/trace/ManipulationManager';
+import plusPng from '~/../img/Plus.png';
+import plusHoverPng from '~/../img/Plus-hover.png';
+import TrashPng from '~/../img/Trash.png';
 
 class LotEdges extends Component {
     static propTypes = {
@@ -23,7 +25,9 @@ class LotEdges extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            addButtonHover: false
+        };
         this.pathModel = null;
 
     }
@@ -52,14 +56,14 @@ class LotEdges extends Component {
      * @param e {LotEdgeEvent}
      */
     calibrateEdge = (e) => {
-        const {setUserAction, traceEnabled} = this.props;
+        const { setUserAction, traceEnabled } = this.props;
 
         if (traceEnabled) {
             /**
              * @type {LotEdgeModel}
              */
             let lotEdgeModel = e.model;
-            setUserAction(UserAction.CALIBRATE_EDGE, {lotEdgeModel});
+            setUserAction(UserAction.CALIBRATE_EDGE, { lotEdgeModel });
         }
     };
 
@@ -68,7 +72,7 @@ class LotEdges extends Component {
             setDrawerData
         } = this.props;
         const canvasModel = CanvasModel.getModel();
-        setDrawerData({sitingSession: canvasModel.recordState()});
+        setDrawerData({ sitingSession: canvasModel.recordState() });
     };
 
     addEdge = () => {
@@ -78,7 +82,7 @@ class LotEdges extends Component {
 
         console.log('addEdge')
         const canvasModel = CanvasModel.getModel();
-        const lotModel    = canvasModel.pathModel;
+        const lotModel = canvasModel.pathModel;
 
         lotModel.addEdge(
             new LotCurveModel(
@@ -101,18 +105,16 @@ class LotEdges extends Component {
             true
         );
 
-        setDrawerData({sitingSession: canvasModel.recordState()});
+        setDrawerData({ sitingSession: canvasModel.recordState() });
     };
 
     render() {
-        const {companyLoaded, traceEnabled, metric} = this.props;
-
-        console.log('props', {companyLoaded, traceEnabled, metric})
+        const { companyLoaded, traceEnabled, metric } = this.props;
 
         let edges = [];
         if (companyLoaded) {
             const canvasModel = CanvasModel.getModel();
-            const {pathModel} = canvasModel;
+            const { pathModel } = canvasModel;
             edges = pathModel.edges;
 
             console.log('edges', edges)
@@ -121,16 +123,26 @@ class LotEdges extends Component {
         return (
             <div className={classnames('lot-settings edges-list', traceEnabled && 'disabled')}>
                 <div className='boundary-add-wrap'>
-                    <span className='title'>Reference plan</span><div className='add-button' onClick={() => this.addEdge()}><img src={uploadPng} />Upload</div>
+                    <span className='title'>Boundary lines</span>
+                    <div className='add-button'
+                        onClick={() => this.addEdge()}
+                        onMouseEnter={() => {
+                            this.setState({ addButtonHover: true })
+                        }}
+                        onMouseLeave={() => {
+                            this.setState({ addButtonHover: false })
+                        }}>
+                        <img src={this.state.addButtonHover == false ? plusPng : plusHoverPng} />Add
+                    </div>
                 </div>
 
                 {
                     edges.map(
                         (edge, edgeIndex) => <Edge key={edgeIndex}
-                                                   onEdgeChange={this.onEdgeChange}
-                                                   edge={edge}
-                                                   edgeNo={edgeIndex + 1}
-                                                   metric={metric}
+                            onEdgeChange={this.onEdgeChange}
+                            edge={edge}
+                            edgeNo={edgeIndex + 1}
+                            metric={metric}
                         />
                     )
                 }
@@ -148,218 +160,219 @@ class LotEdges extends Component {
  * @returns {*}
  * @constructor
  */
-const Edge = ({onEdgeChange, edge, edgeNo, metric}) => {
+const Edge = ({ onEdgeChange, edge, edgeNo, metric }) => {
     let tabIndex = edgeNo * (metric ? 5 : 6);
 
     return <div className='edge'
-         onMouseEnter={() => edge.highlight = true}
-         onMouseLeave={() => edge.highlight = false}
+        onMouseEnter={() => edge.highlight = true}
+        onMouseLeave={() => edge.highlight = false}
     >
         <div className='edge-shape'>
             <span>{edgeNo}</span>
             <button type="button" className='button transparent edge-type'
-                    onClick={() => {
-                        edge.isCurve = !edge.isCurve;
-                        onEdgeChange();
-                    }}>
+                onClick={() => {
+                    edge.isCurve = !edge.isCurve;
+                    onEdgeChange();
+                }}>
                 {
                     edge.isCurve
                         ? <span>
-                        <i className="landconnect-icon curve"/> Curved
-                    </span>
+                            <i className="landconnect-icon curve" /> Curved
+                        </span>
                         : <span>
-                        <i className="landconnect-icon straight"/> Straight
-                    </span>
+                            <i className="landconnect-icon straight" /> Straight
+                        </span>
                 }
             </button>
             <button type="button" className='button transparent direction'
-                    onClick={() => {
-                        edge.angleController.flip = !edge.angleController.flip;
-                        onEdgeChange();
-                    }}>
-                <i className={classnames('landconnect-icon boundary-arrow-left', edge.angleController.flip && 'active')}/>
-                <i className={classnames('landconnect-icon boundary-arrow-right', !edge.angleController.flip && 'active')}/>
+                onClick={() => {
+                    edge.angleController.flip = !edge.angleController.flip;
+                    onEdgeChange();
+                }}>
+                <i className={classnames('landconnect-icon boundary-arrow-left', edge.angleController.flip && 'active')} />
+                <i className={classnames('landconnect-icon boundary-arrow-right', !edge.angleController.flip && 'active')} />
             </button>
+            {
+            edge.canDelete && <button type="button" className='button transparent delete-btn'
+                onClick={() => {
+                    edge.deleteEdge();
+                    onEdgeChange();
+                }}>
+                <img src={TrashPng} />
+            </button>
+        }
 
             {edge.isCurve &&
-            <React.Fragment>
-                <button type="button" className='button transparent direction'
+                <React.Fragment>
+                    <button type="button" className='button transparent direction'
                         onClick={() => {
                             edge.flipCurveDirection = !edge.flipCurveDirection;
                             onEdgeChange();
                         }}>
-                    <i className={classnames('landconnect-icon curve-direction-left', edge.flipCurveDirection && 'active')}/>
-                    <i className={classnames('landconnect-icon curve-direction-right', !edge.flipCurveDirection && 'active')}/>
-                </button>
-                <div className='landconnect-input'>
-                    <input type='number'
-                           tabIndex={tabIndex++}
-                           autoComplete="off"
-                           onChange={(e) => {
-                               const value = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                               metric ? (edge.radius = value) : (edge.radiusFt = value);
-                               onEdgeChange();
-                           }}
-                           onFocus={(event) => event.target.select()}
-                           maxLength={7}
-                           placeholder='Radius'
-                           value={(metric ? edge.radius : edge.radiusFt) || ''}
-                    />
-                </div>
-            </React.Fragment>
+                        <i className={classnames('landconnect-icon curve-direction-left', edge.flipCurveDirection && 'active')} />
+                        <i className={classnames('landconnect-icon curve-direction-right', !edge.flipCurveDirection && 'active')} />
+                    </button>
+                    <div className='landconnect-input'>
+                        <input type='number'
+                            tabIndex={tabIndex++}
+                            autoComplete="off"
+                            onChange={(e) => {
+                                const value = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                                metric ? (edge.radius = value) : (edge.radiusFt = value);
+                                onEdgeChange();
+                            }}
+                            onFocus={(event) => event.target.select()}
+                            maxLength={7}
+                            placeholder='Radius'
+                            value={(metric ? edge.radius : edge.radiusFt) || ''}
+                        />
+                    </div>
+                </React.Fragment>
             }
         </div>
 
         {metric &&
-        <div className="edge-dimension">
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.length = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={7}
-                       placeholder='Meters'
-                       value={edge.length || ''}
-                />
+            <div className="edge-dimension">
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.length = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={7}
+                        placeholder='Meters'
+                        value={edge.length || ''}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.degrees = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Deg'
+                        value={typeof edge.angleController.degrees === 'undefined' ? '' : edge.angleController.degrees}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.minutes = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Min'
+                        value={typeof edge.angleController.minutes === 'undefined' ? '' : edge.angleController.minutes}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.seconds = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Sec'
+                        value={typeof edge.angleController.seconds === 'undefined' ? '' : edge.angleController.seconds}
+                    />
+                </div>
             </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.degrees = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Deg'
-                       value={typeof edge.angleController.degrees === 'undefined' ? '' : edge.angleController.degrees}
-                />
-            </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.minutes = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Min'
-                       value={typeof edge.angleController.minutes === 'undefined' ? '' : edge.angleController.minutes}
-                />
-            </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.seconds = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Sec'
-                       value={typeof edge.angleController.seconds === 'undefined' ? '' : edge.angleController.seconds}
-                />
-            </div>
-        </div>
         }
 
         {!metric &&
-        <div className="edge-dimension">
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.feet = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={7}
-                       placeholder='Feet'
-                       value={edge.feet || ''}
-                />
+            <div className="edge-dimension">
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.feet = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={7}
+                        placeholder='Feet'
+                        value={edge.feet || ''}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.inches = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={7}
+                        placeholder='Inches'
+                        value={edge.inches || ''}
+                    />
+                </div>
             </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.inches = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={7}
-                       placeholder='Inches'
-                       value={edge.inches || ''}
-                />
-            </div>
-        </div>
         }
 
         {!metric &&
-        <div className="edge-dimension">
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.degrees = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Deg'
-                       value={edge.angleController.degrees || ''}
-                />
+            <div className="edge-dimension">
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.degrees = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Deg'
+                        value={edge.angleController.degrees || ''}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.minutes = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Min'
+                        value={edge.angleController.minutes || ''}
+                    />
+                </div>
+                <div className='landconnect-input'>
+                    <input type='number'
+                        tabIndex={tabIndex++}
+                        autoComplete="off"
+                        onChange={(e) => {
+                            edge.angleController.seconds = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                            onEdgeChange();
+                        }}
+                        onFocus={(event) => event.target.select()}
+                        maxLength={5}
+                        placeholder='Sec'
+                        value={edge.angleController.seconds || ''}
+                    />
+                </div>
             </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.minutes = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Min'
-                       value={edge.angleController.minutes || ''}
-                />
-            </div>
-            <div className='landconnect-input'>
-                <input type='number'
-                       tabIndex={tabIndex++}
-                       autoComplete="off"
-                       onChange={(e) => {
-                           edge.angleController.seconds = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                           onEdgeChange();
-                       }}
-                       onFocus={(event) => event.target.select()}
-                       maxLength={5}
-                       placeholder='Sec'
-                       value={edge.angleController.seconds || ''}
-                />
-            </div>
-        </div>
         }
 
-        {
-            edge.canDelete && <button type="button" className='button transparent delete-btn'
-                                      onClick={() => {
-                                          edge.deleteEdge();
-                                          onEdgeChange();
-                                      }}>
-                <i className='landconnect-icon trash'/>
-            </button>
-        }
+        
     </div>
 };
 
@@ -373,10 +386,10 @@ const LotEdgesConsumer = (props) => (
     <DrawerContext.Consumer>
         {
             ({
-                 setDrawerData, setUserAction
-             }) => <LotEdges  {...props} {...{
                 setDrawerData, setUserAction
-            }}/>
+            }) => <LotEdges  {...props} {...{
+                setDrawerData, setUserAction
+            }} />
         }
     </DrawerContext.Consumer>
 );
