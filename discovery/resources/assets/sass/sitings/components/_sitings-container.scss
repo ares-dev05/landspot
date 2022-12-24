@@ -793,7 +793,7 @@
     overflow: hidden;
 
     .page-preview {
-      max-height: calc(100% - 110px) !important;
+      max-height: calc(100% - 48px) !important;
       box-shadow: $app-box-shadow;
       position: absolute;
       bottom: 0px;
@@ -862,11 +862,13 @@
 
       .react-resizable-handle {
         position: absolute;
-        width: 100%;
+        width: calc(100% - 240px);
         height: 10px;
-        top: -10px;
-        right: -40px;
+        top: -47px;
+        left: 120px;
+        cursor: -webkit-grabbing;
         cursor: row-resize;
+        height: 7px;
         z-index: 3;
       }
 
@@ -887,6 +889,7 @@
         height: 47px;
         background: #FFFFFF;
         border-bottom: 1px solid #E0E0E0;
+        border-top: 1px solid #E0E0E0;
         border-radius: 0px;
         flex: none;
         order: 0;
@@ -929,7 +932,6 @@
         //   border-top-right-radius: 10px;
         //   transform: rotate(90deg);
         // }
-
         .page-preview-tab {
           display: flex;
           align-items: center;
@@ -1326,4 +1328,6 @@
     padding: 5px;
     background: #fff;
   }
-}
+}    
+
+// ------------------------------------------ //

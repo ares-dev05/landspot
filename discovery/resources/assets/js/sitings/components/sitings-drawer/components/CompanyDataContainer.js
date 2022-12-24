@@ -495,12 +495,13 @@ class CompanyDataContainer extends Component {
                             nearmapsVisualisationEnabled={nearmapsVisualisationEnabled}
                         />
                     }
+                    
                     {companyLoaded &&
-                    <LotView step={applicationStep}
-                             engineeringEnabled={engineeringEnabled}
-                             heightVisualisationEnabled={heightVisualisationEnabled}
-                             threeDVisualisationEnabled={threeDVisualisationEnabled}
-                             nearmapsVisualisationEnabled={nearmapsVisualisationEnabled}/>
+                        <LotView step={applicationStep}
+                                engineeringEnabled={engineeringEnabled}
+                                heightVisualisationEnabled={heightVisualisationEnabled}
+                                threeDVisualisationEnabled={threeDVisualisationEnabled}
+                                nearmapsVisualisationEnabled={nearmapsVisualisationEnabled}/>
                     }
                 </RightPanel>
             </React.Fragment>

@@ -27,6 +27,7 @@ import CarrotDown from '~/../img/CarrotDown.png';
 import CarrotUp from '~/../img/CarrotUp.png';
 import XPng from '~/../img/X.png';
 
+
 class PagePreview extends Component {
     static propTypes = {
         page: PropTypes.object,
@@ -65,6 +66,8 @@ class PagePreview extends Component {
             // nearmap settings
             nearmapAutoPlacement: false,
             nearmapLocation: null,
+            height: this.props.drawerData.previewHeight
+
         };
     }
 
@@ -94,7 +97,8 @@ class PagePreview extends Component {
 
         if (page) {
             this.setState({
-                resizeTS: ++resizeTS
+                resizeTS: ++resizeTS,
+                height: this.props.drawerData.previewHeight
             });
         }
 
@@ -495,8 +499,10 @@ class PagePreview extends Component {
     resizeCurrentView(forceResize = false) {
         if (!this.pixiApp) {
             // nothing to resize
+            console.log('nothing')
             return;
         }
+        console.log('exist')
 
         const {renderer} = this.pixiApp;
         const pagePreview = document.querySelector('.page-preview');
@@ -504,7 +510,7 @@ class PagePreview extends Component {
         const height = pagePreview.clientHeight;
 
         if (renderer.width !== width || renderer.height !== height || forceResize) {
-            renderer.resize(width, height);
+            renderer.resize(width, height - this.props.previewHeight);
 
             /// Center the canvasView in the window. All content will then be centred inside the canvasView automatically
             if (this.pixiApp.stage.children.length) {
@@ -557,7 +563,6 @@ class PagePreview extends Component {
             traceEnabled,
             engineeringEnabled,
             setEngineeringMode,
-            setPreviewWidth,
             setPreviewHeight,
             setDrawerData,
             drawerData,
@@ -590,29 +595,21 @@ class PagePreview extends Component {
         const hasNearmapLocation  = nearmapLocation !== null;
         const hasNearmapControls  = nearmapsVisualisationEnabled && hasNearmapLocation && !nearmapAutoPlacement;
 
-        console.log('drawerData', drawerData)
-
         return (
             <ResizableBox className="page-preview"
-                          onResizeStop={(event, dimensions) => {
-                            console.log('event', event)
-                            console.log('dimensions', dimensions)
-                            event.preventDefault()
+                          onResize={(event, dimensions) => {
                             //   this.setState({resizeTS: --resizeTS});
-                            //   setPreviewHeight(dimensions.size.height);
                             //   setDrawerData({resizeTS: --resizeTS});
-                            //   this.resizeCurrentView();
-                          }}
-                          onResize={(event) => {
-                            console.log('onResize : event', event)
+                              setDrawerData({...oldViewScale, previewHeight: dimensions.size.height});
+                              this.resizeCurrentView();
                           }}
                           minConstraints={[0, 0]}
                           width={0}
-                          height={drawerData.previewHeight}
+                          height={this.state.height}
                           axis="y">
 
                 <React.Fragment>
-                    {/* {
+                    {
                         (heightVisualisationEnabled || (nearmapsVisualisationEnabled && hasNearmapLocation)) &&
                         <ZoomButtons setZoom={heightVisualisationEnabled ? this.setEnvelopeZoom : this.setNearmapZoom} disabled={false}/>
                     }
@@ -771,10 +768,12 @@ class PagePreview extends Component {
                                         }}/>
                             </div>
                         }
-                    </div> */}
+                    </div>
                     <div className="page-preview-tabs">
-                        <span className='pdf-name'>Subplan.pdf</span>
-                        <div className='tool-wrap'><img src={CarrotUp}/><img src={XPng}/></div>
+                        <React.Fragment>
+                            <span className='pdf-name'>Subplan.pdf</span>
+                            <div className='tool-wrap'><img src={CarrotUp} /><img src={XPng} /></div>
+                        </React.Fragment>
                     </div>
                 </React.Fragment>
             </ResizableBox>
@@ -847,7 +846,6 @@ const PagePreviewConsumer = (props) => (
                  setDrawerData,
                  state: {currentTab, drawerData},
                  setTab,
-                 setPreviewWidth,
                  setPreviewHeight,
                  getPage,
                  showErrors,
@@ -856,7 +854,6 @@ const PagePreviewConsumer = (props) => (
                 setDrawerData,
                 currentTab,
                 setTab,
-                setPreviewWidth,
                 setPreviewHeight,
                 drawerData,
                 getPage

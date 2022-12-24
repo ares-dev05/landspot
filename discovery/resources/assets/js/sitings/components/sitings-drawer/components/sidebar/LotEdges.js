@@ -116,8 +116,6 @@ class LotEdges extends Component {
             const canvasModel = CanvasModel.getModel();
             const { pathModel } = canvasModel;
             edges = pathModel.edges;
-
-            console.log('edges', edges)
         }
 
         return (
