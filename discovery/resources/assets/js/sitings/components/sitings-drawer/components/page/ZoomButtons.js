@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 const ZoomButtons = ({ setZoom, disabled, previewHeight }) => {
-    console.log('ZoomButtons', previewHeight)
     const bottomV = previewHeight == undefined? 60: previewHeight;
     return <div className={classnames('zoom-buttons', disabled && 'disabled')}
         style={{

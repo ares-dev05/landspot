@@ -79,7 +79,7 @@
           justify-content: space-between;
           width: 100%;
           height: 68px;
-          border: 1px solid #DCDDDF;
+          border: 1px solid #dcdddf;
           border-radius: 8px;
           flex: none;
           order: 1;
@@ -109,8 +109,8 @@
           font-weight: 500;
           font-size: 14px;
           line-height: 20px;
-          color: #38393B;
-          background: #F3F4F6;
+          color: #38393b;
+          background: #f3f4f6;
           border-radius: 8px;
           display: flex;
           flex-direction: row;
@@ -122,8 +122,8 @@
         }
 
         .upload-button:hover {
-          background-color: #1F65FF;
-          color: #FFFFFF;
+          background-color: #1f65ff;
+          color: #ffffff;
         }
 
         .document-wrap {
@@ -132,7 +132,7 @@
         }
 
         .pdf-image-wrap {
-          background: #F3F4F6;
+          background: #f3f4f6;
           border-radius: 8px;
           width: 43px;
           height: 43px;
@@ -158,7 +158,7 @@
           line-height: 20px;
           display: flex;
           align-items: center;
-          color: #38393B;
+          color: #38393b;
           display: block;
         }
 
@@ -223,7 +223,7 @@
       }
     }
 
-    @import "cards";
+    @import 'cards';
 
     .cards {
       .cards-list {
@@ -281,7 +281,7 @@
           margin: 0;
 
           &:before {
-            background-color: #38393B;
+            background-color: #38393b;
           }
         }
       }
@@ -293,7 +293,7 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
-      color: #38393B;
+      color: #38393b;
     }
 
     .button-before {
@@ -303,7 +303,7 @@
     }
 
     .button-continue {
-      background: #005FF9;
+      background: #005ff9;
       border-radius: 8px;
       flex: none;
       order: 0;
@@ -314,7 +314,7 @@
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
-      color: #FFFFFF;
+      color: #ffffff;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -488,7 +488,6 @@
             }
           }
 
-
           & > .button-label {
             font-size: 16px;
             font-weight: 300;
@@ -588,7 +587,6 @@
                   flex-wrap: wrap;
 
                   & > .landconnect-input {
-
                     &.width {
                       position: relative;
                       margin-top: 0 !important;
@@ -734,8 +732,7 @@
 
       .nice-radio {
         & > .radio-item {
-
-          & > label > input[type="radio"]:checked + i.fa:before {
+          & > label > input[type='radio']:checked + i.fa:before {
             content: '\f192';
             font-weight: 500;
             color: $landconnect-theme-color;
@@ -775,7 +772,7 @@
     }
 
     .arrow-active {
-      background: #F3F4F6;
+      background: #f3f4f6;
       border-radius: 8px;
     }
 
@@ -800,7 +797,7 @@
       flex-shrink: 0;
       background: #fff;
       z-index: $z-index-left-panel - 1;
-      width: 100%!important;
+      width: 100% !important;
 
       .sitings-sliders {
         position: absolute;
@@ -887,9 +884,9 @@
         padding: 16px 24px;
         width: 100%;
         height: 47px;
-        background: #FFFFFF;
-        border-bottom: 1px solid #E0E0E0;
-        border-top: 1px solid #E0E0E0;
+        background: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        border-top: 1px solid #e0e0e0;
         border-radius: 0px;
         flex: none;
         order: 0;
@@ -958,7 +955,7 @@
           line-height: 20px;
           display: flex;
           align-items: center;
-          color: #38393B;
+          color: #38393b;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -984,7 +981,8 @@
 
       & > .image {
         &.cross {
-          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>") no-repeat center center;
+          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>")
+            no-repeat center center;
           background-size: 100% 100%, auto;
           cursor: default;
         }
@@ -1087,7 +1085,8 @@
       }
     }
 
-    .lot-view, .trace-view {
+    .lot-view,
+    .trace-view {
       width: 100%;
       height: 100%;
       display: flex;
@@ -1104,9 +1103,21 @@
 
       & > .threed-canvas {
         background: #f9f9f9;
-        background: -moz-linear-gradient(top,  #f9f9f9 0%, #f1f2f8 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  #f9f9f9 0%,#f1f2f8 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  #f9f9f9 0%,#f1f2f8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: -moz-linear-gradient(
+          top,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+          top,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(
+          to bottom,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#f1f2f8',GradientType=0 ); /* IE6-9 */
       }
 
@@ -1328,6 +1339,43 @@
     padding: 5px;
     background: #fff;
   }
-}    
+
+  .control-pan {
+    background: #ffffff;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.11);
+    border-radius: 8px;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 167px;
+    width: 48px;
+    justify-content: space-between;
+    padding: 8px;
+
+    img {
+      margin: 0 auto;
+    }
+
+    .circle-slider {
+      margin: 0 auto;
+    }
+
+    .cursor-wrap {
+      background: #1f65ff;
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+      }
+    }
+  }
+}
 
 // ------------------------------------------ //

@@ -499,10 +499,8 @@ class PagePreview extends Component {
     resizeCurrentView(forceResize = false) {
         if (!this.pixiApp) {
             // nothing to resize
-            console.log('nothing')
             return;
         }
-        console.log('exist')
 
         const {renderer} = this.pixiApp;
         const pagePreview = document.querySelector('.page-preview');
@@ -603,6 +601,7 @@ class PagePreview extends Component {
                               setDrawerData({...oldViewScale, previewHeight: dimensions.size.height});
                               this.resizeCurrentView();
                           }}
+                          resizeHandles={['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne']}
                           minConstraints={[0, 0]}
                           width={0}
                           height={this.state.height}
