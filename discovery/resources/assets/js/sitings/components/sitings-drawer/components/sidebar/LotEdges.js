@@ -80,7 +80,6 @@ class LotEdges extends Component {
             setDrawerData
         } = this.props;
 
-        console.log('addEdge')
         const canvasModel = CanvasModel.getModel();
         const lotModel = canvasModel.pathModel;
 

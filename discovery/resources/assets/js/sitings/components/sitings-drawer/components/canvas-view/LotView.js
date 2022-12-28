@@ -91,7 +91,6 @@ class LotView extends Component {
     }
 
     if (drawerData.previewHeight != prevProps.drawerData.previewHeight) {
-      console.log('drawerData : previewHeight', drawerData.previewHeight)
       const { width, height } = this.getDrawerDimensions()
       this.pixiApp.renderer.resize(width, height - drawerData.previewHeight)
     }
@@ -899,7 +898,7 @@ class LotView extends Component {
           ref={node => (this.pixiElement = node)}
         />
 
-        {restored && <SiteCoverage full={isExport} />}
+        {/* {restored && <SiteCoverage full={isExport} />} */}
 
         {isExport && (
           <div
@@ -1319,9 +1318,9 @@ class InteractiveNorthIndicator extends PIXI.Sprite {
 
     this.symbolHolder = new PIXI.Sprite()
 
-    this.addChild(this.back)
-    this.addChild(this.symbolHolder)
-    this.symbolHolder.addChild(this.symbol)
+    // this.addChild(this.back)
+    // this.addChild(this.symbolHolder)
+    // this.symbolHolder.addChild(this.symbol)
 
     // rotate the symbol
     this.angle = angle

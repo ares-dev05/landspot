@@ -1,3 +1,4 @@
+export {default as ReferencePlan, ReferencePlanInstance} from './ReferencePlan';
 export {default as DrawEdges, DrawEdgesInstance} from './DrawEdges';
 export {default as DrawEasements, DrawEasementsInstance} from './DrawEasements';
 export {default as DrawHouse, DrawHouseInstance} from './DrawHouse';

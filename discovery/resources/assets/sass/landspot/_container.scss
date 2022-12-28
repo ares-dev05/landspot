@@ -21,6 +21,7 @@
       overflow-x: hidden;
       padding: $content-padding;
       box-shadow: $app-box-shadow;
+      position: relative;
 
       @import "components/left-panel";
     }

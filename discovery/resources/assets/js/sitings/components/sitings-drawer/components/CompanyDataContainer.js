@@ -12,12 +12,11 @@ import {DrawerContext, tabs} from '../DrawerContainer';
 import * as actions from '../store/details/actions';
 import LotView from './canvas-view/LotView';
 import PagePreview from './page/PagePreview';
-import ReferencePlan, {ReferencePlanInstance} from './ReferencePlan';
 
 import {
     ExportSiting, ExportSitingInstance, DrawHouseDetails, DrawHouseDetailsInstance,
     DrawAnnotations, DrawAnnotationsInstance, DrawEdges, DrawEdgesInstance,
-    DrawEasements, DrawEasementsInstance, DrawHouse, DrawHouseInstance
+    DrawEasements, DrawEasementsInstance, DrawHouse, DrawHouseInstance, ReferencePlan, ReferencePlanInstance
 } from './index';
 
 import CompanyData from './CompanyData';
@@ -455,7 +454,7 @@ class CompanyDataContainer extends Component {
                     recordState: this.recordState,
                     oldViewScale,
                     metric,
-                    companyLoaded,
+                    companyLoaded: false,
                     traceEnabled,
                     engineeringEnabled,
                     heightVisualisationEnabled,
@@ -479,7 +478,6 @@ class CompanyDataContainer extends Component {
                     {
                         (
                             (applicationStep === ApplicationStep.TRACE_OUTLINE ||
-                                applicationStep === ApplicationStep.ADD_EASEMENT ||
                                 applicationStep === ApplicationStep.ADD_MEASUREMENTS)
                         ) &&
                         <PagePreview
