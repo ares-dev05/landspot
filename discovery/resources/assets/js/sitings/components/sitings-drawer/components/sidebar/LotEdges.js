@@ -190,14 +190,15 @@ const Edge = ({ onEdgeChange, edge, edgeNo, metric }) => {
                 <i className={classnames('landconnect-icon boundary-arrow-right', !edge.angleController.flip && 'active')} />
             </button>
             {
-            edge.canDelete && <button type="button" className='button transparent delete-btn'
-                onClick={() => {
-                    edge.deleteEdge();
-                    onEdgeChange();
-                }}>
-                <img src={TrashPng} />
-            </button>
-        }
+                edge.canDelete && 
+                <button type="button" className='button transparent delete-btn'
+                    onClick={() => {
+                        edge.deleteEdge();
+                        onEdgeChange();
+                    }}>
+                    <img src={TrashPng} />
+                </button>
+            }
 
             {edge.isCurve &&
                 <React.Fragment>

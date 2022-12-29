@@ -246,11 +246,11 @@ class ReferencePlan extends Component {
                       )}
                     </div>
                   </div>
-                  <LotEdges
+                  {/* <LotEdges
                     companyLoaded={true}
                     traceEnabled={false}
                     metric={true}
-                  />
+                  /> */}
                 </React.Fragment>
               )}
             </div>

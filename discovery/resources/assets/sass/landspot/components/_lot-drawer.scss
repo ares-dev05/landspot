@@ -1,6 +1,10 @@
 .lot-drawer {
   .sidebar {
     .step-note {
+      p {
+        font-size: 12px;
+      }
+
       .doc-name {
         & > a {
           display: flex;
@@ -73,8 +77,14 @@
 
     .lot-settings {
       & > .header {
-        font-size: $large-font-size;
-        font-weight: $font-weight-bold;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.1px;
+        color: #38393B;
         margin: 10px 0;
 
         &:not(:first-child) {
