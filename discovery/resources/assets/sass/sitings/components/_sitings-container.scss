@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap');
 
+.flex-start {
+  justify-content: flex-start !important;
+}
+
+img.offset-right {
+  margin-right: 1rem;
+}
+
 .file-block {
   width: 100%;
   span.title {
@@ -476,14 +484,15 @@
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding: 10px 13px;
-          gap: 5px;
+          padding: 10px 16px;
+          gap: 8px;
           background: #F3F4F6;
           border-radius: 8px;
           flex: none;
           order: 0;
           flex-grow: 0;
           cursor: pointer;
+          margin-right: 8px;
 
           span {
             font-family: 'DM Sans';
@@ -644,14 +653,75 @@
       }
 
       .landconnect-input {
-        width: 116px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         input {
           height: 36px;
+          width: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 12px 10px 12px;
+          background: transparent;
+          gap: 8px;
+          border: 1px solid #DCDDDF;
+          border-radius: 8px;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
         }
+
+        input:focus {
+          border: 1px solid #3c3d3d;
+          outline-width: 0;
+        }
+      }
+
+      .landconnect-input.offset-meter-input {
+        width: 116px;
+
+        input {
+          text-align: right;
+        }
+      }
+
+      .left-placeholder {
+        position: relative;
+        left: -105px;
+        margin-top: 0.5px;
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #858688;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        z-index: -1;
+      }
+
+      .right-placeholder {
+        position: relative;
+        left: -53px;
+        margin-top: 0.5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #38393B;
+        flex: none;
+        order: 1;
+        flex-grow: 1;
+        z-index: -1;
       }
 
       .easements {
@@ -703,14 +773,13 @@
               .easement-dimension {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: flex-start;
 
                 &.double-inputs {
                   flex-direction: row;
                   flex-wrap: wrap;
 
                   & > .landconnect-input {
-                    width: 116px;
                     height: 36px;
                     &.width {
                       position: relative;
@@ -764,12 +833,63 @@
                   }
                 }
 
+                .offset {
+                  margin-left: 4px;
+                }
+
                 & > .landconnect-input {
                   &.input-group {
                     & > .input-group-addon {
                       &:not(:first-child) {
                         margin-left: 10px;
                       }
+                    }
+
+                    #parallel-mode {
+                      height: 36px;
+                      width: 116px;
+                      box-sizing: border-box;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      padding: 10px 22px 10px 12px;
+                      gap: 8px;
+                      border: 1px solid #DCDDDF;
+                      border-radius: 8px;
+                      flex: none;
+                      order: 0;
+                      flex-grow: 0;
+                      background: transparent;
+                      margin-left: 4px;
+                      background-image: linear-gradient(45deg, transparent 50%, #38393B 50%), linear-gradient(135deg, #38393B 50%, transparent 50%);
+                      background-position: calc(100% - 15px) calc(1em + 3px), calc(100% - 10px) calc(1em + 3px), calc(100% - 2.5em) calc(0.5em + 1px);
+                      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+                      background-repeat: no-repeat;
+                      margin: 0;      
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      margin-left: 4px;
+                    }
+
+                    #parallel-mode:focus {
+                      background-image: linear-gradient(45deg, #38393B 50%, transparent 50%), linear-gradient(135deg, transparent 50%, #38393B 50%);
+                      background-position: calc(100% - 10px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) calc(0.5em + 2px);
+                      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+                      background-repeat: no-repeat;
+                      border-color: #38393B;
+                      outline: 0;
+                    }
+
+                    #parallel-mode:focus-visible {
+                      outline: 0;
+                    }
+
+                    #parallel-mode:focus-within {
+                      outline: 0;
                     }
                   }
 
@@ -835,7 +955,6 @@
                 flex: 1;
 
                 & > .landconnect-input {
-                  width: 100%;
                 }
 
                 &:last-child {
@@ -844,6 +963,26 @@
               }
             }
           }
+        }
+      }
+
+      .offset-meter-input {
+        width: 116px;
+        input {
+          height: 36px;
+          width: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 22px 10px 12px;
+          background: transparent;
+          gap: 8px;
+          border: 1px solid #DCDDDF;
+          border-radius: 8px;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
         }
       }
 
