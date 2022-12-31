@@ -11,7 +11,7 @@ import CanvasModel from '../CanvasModel';
 import {DrawerContext} from '../../DrawerContainer';
 import RestoreEvent from '~/sitings-sdk/src/sitings/events/RestoreEvent';
 import AccountMgr from '~/sitings-sdk/src/sitings/data/AccountMgr';
-import TrashPng from '~/../img/Trash.png';
+import TrashPng from '~/../img/Trash.svg';
 
 class LotEasements extends Component {
     static propTypes = {
@@ -227,7 +227,7 @@ class LotEasements extends Component {
                         <div className='header'>Lot truncations</div>
                         <div className="easements">
                             <div className="btn-group">
-                                <button type="button"
+                                <button type="number"
                                         className={classnames('button', (modelMode && canvasModel.lotFeaturesModel.mode === LotFeaturesModel.MODE_TRUNCATION) ? 'primary' : 'default')}
                                         onClick={() => this.addEasement(LotFeaturesModel.MODE_TRUNCATION)}>
                                     <i className="landconnect-icon plus"/> Corner truncation
@@ -282,7 +282,7 @@ const Truncation = ({truncation, onTruncationChange, truncationNo}) => {
                 Truncation
             </div>
 
-            <button type="button" className='button transparent delete-btn'
+            <button type="number" className='button transparent delete-btn'
                     onClick={() => {
                         truncation.deleteTruncation();
                         onTruncationChange();
@@ -293,7 +293,7 @@ const Truncation = ({truncation, onTruncationChange, truncationNo}) => {
             <div className='easement-dimension'>
                 <div className='landconnect-input input-group'>
                     <div className="input-group-addon">
-                        <button type="button" className='button transparent'
+                        <button type="number" className='button transparent'
                                 onClick={() => {
                                     truncation.size = toggleSize;
                                     onTruncationChange();
@@ -351,7 +351,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                         {easementType}
                     </div>
 
-                    <button type="button" className='button transparent delete-btn'
+                    <button type="number" className='button transparent delete-btn'
                             onClick={() => {
                                 onDelete();
                                 onEasementChange();
@@ -364,7 +364,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                         <div className='easement-angle top'>
                             {metric &&
                                 <div className='landconnect-input offset-meter-input'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -389,7 +389,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                             {!metric &&
                             <React.Fragment>
                                 <div className='landconnect-input offset-meter-input'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -410,7 +410,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     <span className='right-placeholder'>ft</span>
                                 </div>
                                 <div className='landconnect-input offset-meter-input'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -435,7 +435,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
 
                             {isSplayed &&
                             <div className='landconnect-input offset-meter-input'>
-                                <input type='string'
+                                <input type="number"
                                     tabIndex={tabIndex++}
                                     autoComplete="off"
                                     onChange={(e) => {
@@ -489,7 +489,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                         <React.Fragment>
                             {metric ?
                                 <div className='landconnect-input offset-meter-input offset'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -506,7 +506,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                 </div> :
                                 <div className='easement-angle'>
                                     <div className='landconnect-input offset-meter-input offset'>
-                                        <input type='string'
+                                        <input type="number"
                                             tabIndex={tabIndex++}
                                             autoComplete="off"
                                             onChange={(e) => {
@@ -522,7 +522,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         <span className='right-placeholder'>ft</span>
                                     </div>
                                     <div className='landconnect-input offset-meter-input offset'>
-                                        <input type='string'
+                                        <input type="number"
                                             tabIndex={tabIndex++}
                                             autoComplete="off"
                                             onChange={(e) => {
@@ -546,7 +546,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                     <React.Fragment>
                         {metric ?
                             <div className='landconnect-input offset-meter-input offset'>
-                                <input type='string'
+                                <input type="number"
                                     tabIndex={tabIndex++}
                                     autoComplete="off"
                                     onChange={(e) => {
@@ -563,7 +563,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                             </div> :
                             <div className='easement-angle'>
                                 <div className='landconnect-input offset-meter-input offset'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -579,7 +579,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     <span className='right-placeholder'>ft</span>
                                 </div>
                                 <div className='landconnect-input offset-meter-input offset'>
-                                    <input type='string'
+                                    <input type="number"
                                         tabIndex={tabIndex++}
                                         autoComplete="off"
                                         onChange={(e) => {
@@ -596,73 +596,14 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                 </div>
                             </div>
                         }
-                        <div className='easement-angle'>
-                            <div className='landconnect-input offset-meter-input'>
-                                <input type='string'
-                                    tabIndex={tabIndex++}
-                                    autoComplete="off"
-                                    onChange={(e) => {
-                                        easement.angle.degrees = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                        onEasementChange();
-                                    }}
-                                    onFocus={(event) => event.target.select()}
-                                    maxLength={5}
-                                    placeholder=''
-                                    value={easement.angle.degrees || ''}
-                                />
-                                {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>degrees</span>}
-                                <span className='right-placeholder'>deg</span>
-                            </div>
-                            <div className='landconnect-input offset-meter-input offset'>
-                                <input type='string'
-                                    tabIndex={tabIndex++}
-                                    autoComplete="off"
-                                    onChange={(e) => {
-                                        easement.angle.minutes = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                        onEasementChange();
-                                    }}
-                                    onFocus={(event) => event.target.select()}
-                                    maxLength={5}
-                                    placeholder=''
-                                    value={easement.angle.minutes || ''}
-                                />
-                                {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>minutes</span>}
-                                <span className='right-placeholder'>min</span>
-                            </div>
-                            <div className='landconnect-input offset-meter-input offset'>
-                                <input type='string'
-                                    tabIndex={tabIndex++}
-                                    autoComplete="off"
-                                    onChange={(e) => {
-                                        easement.angle.seconds = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                        onEasementChange();
-                                    }}
-                                    onFocus={(event) => event.target.select()}
-                                    maxLength={5}
-                                    placeholder=''
-                                    value={easement.angle.seconds || ''}
-                                />
-                                {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>seconds</span>}
-                                <span className='right-placeholder'>sec</span>
-                            </div>
-                        </div>
-
-                        <button type="button" className='button transparent direction'
-                                onClick={() => {
-                                    easement.flipStart = !easement.flipStart;
-                                    onEasementChange();
-                                }}>
-                            <i className={classnames('landconnect-icon boundary-arrow-left', easement.flipStart && 'active')}/>
-                            <i className={classnames('landconnect-icon boundary-arrow-right', !easement.flipStart && 'active')}/>
-                        </button>
                     </React.Fragment>
                     }
                 </div>
                 {easement.type === LotEasementModel.ANGLED &&
                     <React.Fragment>
-                        <div className='easement-angle'>
-                            <div className='landconnect-input offset-meter-input'>
-                                <input type='string'
+                        <div className='easement-angle angle-flex'>
+                            <div className='landconnect-input offset-meter-input offset'>
+                                <input type="number"
                                     tabIndex={tabIndex++}
                                     autoComplete="off"
                                     onChange={(e) => {
@@ -675,10 +616,10 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     value={easement.angle.degrees || ''}
                                 />
                                 {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>degrees</span>}
-                                <span className='right-placeholder'>deg</span>
+                                <span className='right-placeholder'>d</span>
                             </div>
                             <div className='landconnect-input offset-meter-input offset'>
-                                <input type='string'
+                                <input type="number"
                                     tabIndex={tabIndex++}
                                     autoComplete="off"
                                     onChange={(e) => {
@@ -691,10 +632,10 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     value={easement.angle.minutes || ''}
                                 />
                                 {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>minutes</span>}
-                                <span className='right-placeholder'>min</span>
+                                <span className='right-placeholder'>m</span>
                             </div>
                             <div className='landconnect-input offset-meter-input offset'>
-                                <input type='string'
+                                <input type="number"
                                     tabIndex={tabIndex++}
                                     autoComplete="off"
                                     onChange={(e) => {
@@ -707,18 +648,18 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     value={easement.angle.seconds || ''}
                                 />
                                 {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>seconds</span>}
-                                <span className='right-placeholder'>sec</span>
+                                <span className='right-placeholder'>s</span>
                             </div>
-                        </div>
 
-                        <button type="button" className='button transparent direction'
-                                onClick={() => {
-                                    easement.flipStart = !easement.flipStart;
-                                    onEasementChange();
-                                }}>
-                            <i className={classnames('landconnect-icon boundary-arrow-left', easement.flipStart && 'active')}/>
-                            <i className={classnames('landconnect-icon boundary-arrow-right', !easement.flipStart && 'active')}/>
-                        </button>
+                            <button type="number" className='button transparent direction'
+                                    onClick={() => {
+                                        easement.flipStart = !easement.flipStart;
+                                        onEasementChange();
+                                    }}>
+                                <i className={classnames('landconnect-icon boundary-arrow-left', easement.flipStart && 'active')}/>
+                                <i className={classnames('landconnect-icon boundary-arrow-right', !easement.flipStart && 'active')}/>
+                            </button>
+                        </div>
                     </React.Fragment>
                     }
             </div>

@@ -24,9 +24,9 @@ import Geom from '~/sitings-sdk/src/utils/Geom'
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent'
 import { ToggleSwitch } from '~sitings~/helpers/ToggleSwitch'
 import DisplayManager from '../../../../../sitings-sdk/src/utils/DisplayManager'
-import MagnifyingGlassMinus from '~/../img/MagnifyingGlassMinus.png'
-import MagnifyingGlassPlus from '~/../img/MagnifyingGlassPlus.png'
-import NavigationArrow from '~/../img/NavigationArrow.png'
+import MagnifyingGlassMinus from '~/../img/MagnifyingGlassMinus.svg'
+import MagnifyingGlassPlus from '~/../img/MagnifyingGlassPlus.svg'
+import NavigationArrow from '~/../img/NavigationArrow.svg'
 
 class LotView extends Component {
   static propTypes = {
@@ -1060,9 +1060,6 @@ const LotControls = ({
     leftMargin = leftMargin + pagePreview.clientWidth
   }
 
-  const [rotationDeg, setRotationDeg] = useState('20')
-
-  useEffect(() => {}, [rotationDeg])
 
   return (
     <DrawerContext.Consumer>
@@ -1090,7 +1087,7 @@ const LotControls = ({
             <div
               className='control-pan'
               style={{
-                bottom: `${previewHeight + 60}px`
+                bottom: step < 3 ? `${previewHeight + 60}px`: '10px'
               }}
             >
               <div className='circle-slider'>
@@ -1105,10 +1102,10 @@ const LotControls = ({
                   trackSize={1}
                   knobSize={15}
                   trackColor='#eeeeee'
-                  progressColorFrom='#1F65FF'
-                  progressColorTo='#1F65FF'
-                  labelColor='#1F65FF'
-                  knobColor='#1F65FF'
+                  progressColorFrom='$landconnect-theme-color'
+                  progressColorTo='$landconnect-theme-color'
+                  labelColor='$landconnect-theme-color'
+                  knobColor='$landconnect-theme-color'
                   label=' '
                   labelBottom={true}
                   onChange={value => {

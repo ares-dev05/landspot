@@ -8,6 +8,55 @@ img.offset-right {
   margin-right: 1rem;
 }
 
+.btn-primary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+  margin-right: 8px;
+
+  span {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #38393B;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+
+.btn-primary.active {
+  background: $landconnect-theme-color;
+  span {
+    color: #FFFFFF;
+  }
+
+  .landconnect-icon:before{
+    background-color: #FFFFFF;
+  }
+}
+
+.btn-primary:hover {
+  background: $landconnect-theme-color;
+  span {
+    color: #FFFFFF;
+  }
+
+  .landconnect-icon:before{
+    background-color: #FFFFFF;
+  }
+}
+
 .file-block {
   width: 100%;
   span.title {
@@ -79,7 +128,7 @@ img.offset-right {
 }
 
 .upload-button:hover {
-  background-color: #1f65ff;
+  background-color: $landconnect-theme-color;
   color: #ffffff;
 }
 
@@ -480,55 +529,6 @@ img.offset-right {
           color: #38393B;
         }
 
-        .btn-primary {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 10px 16px;
-          gap: 8px;
-          background: #F3F4F6;
-          border-radius: 8px;
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          cursor: pointer;
-          margin-right: 8px;
-
-          span {
-            font-family: 'DM Sans';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            color: #38393B;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
-          }
-        }
-
-        .btn-primary.active {
-          background: #1F65FF;
-          span {
-            color: #FFFFFF;
-          }
-
-          .landconnect-icon:before{
-            background-color: #FFFFFF;
-          }
-        }
-
-        .btn-primary:hover {
-          background: #1F65FF;
-          span {
-            color: #FFFFFF;
-          }
-
-          .landconnect-icon:before{
-            background-color: #FFFFFF;
-          }
-        }
-
         &.column {
           flex-direction: column;
         }
@@ -653,10 +653,7 @@ img.offset-right {
       }
 
       .landconnect-input {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
+        height: 36px;
         input {
           height: 36px;
           width: 100%;
@@ -682,6 +679,7 @@ img.offset-right {
 
       .landconnect-input.offset-meter-input {
         width: 116px;
+        height: 36px;
 
         input {
           text-align: right;
@@ -689,8 +687,9 @@ img.offset-right {
       }
 
       .left-placeholder {
-        position: relative;
-        left: -105px;
+        position: absolute;
+        left: 13px;
+        top: 10px;
         margin-top: 0.5px;
         font-family: 'DM Sans';
         font-style: normal;
@@ -707,8 +706,9 @@ img.offset-right {
       }
 
       .right-placeholder {
-        position: relative;
-        left: -53px;
+        position: absolute;
+        right: 13px;
+        top: 10px;
         margin-top: 0.5px;
         font-style: normal;
         font-weight: 400;
@@ -852,7 +852,7 @@ img.offset-right {
                       display: flex;
                       flex-direction: row;
                       align-items: center;
-                      padding: 10px 22px 10px 12px;
+                      padding: 10px 12px 10px 12px;
                       gap: 8px;
                       border: 1px solid #DCDDDF;
                       border-radius: 8px;
@@ -968,6 +968,8 @@ img.offset-right {
 
       .offset-meter-input {
         width: 116px;
+        position: relative;
+
         input {
           height: 36px;
           width: 100%;
@@ -975,7 +977,7 @@ img.offset-right {
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding: 10px 22px 10px 12px;
+          padding: 10px 12px 10px 12px;
           background: transparent;
           gap: 8px;
           border: 1px solid #DCDDDF;
@@ -983,6 +985,15 @@ img.offset-right {
           flex: none;
           order: 0;
           flex-grow: 0;
+        }
+      }
+
+      .angle-flex {
+        display: flex;
+        margin-top: 5px;
+
+        .offset {
+          margin-right: 4px;
         }
       }
 
@@ -1626,7 +1637,7 @@ img.offset-right {
     }
 
     .cursor-wrap {
-      background: #1f65ff;
+      background: $landconnect-theme-color;
       border-radius: 8px;
       width: 32px;
       height: 32px;

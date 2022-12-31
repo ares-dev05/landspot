@@ -23,9 +23,9 @@ import NearmapModel from '../../../../../sitings-sdk/src/sitings/model/nearmap/N
 import EventBase from '../../../../../sitings-sdk/src/events/EventBase'
 import ViewSettings from '../../../../../sitings-sdk/src/sitings/global/ViewSettings'
 import Utils from '../../../../../sitings-sdk/src/utils/Utils'
-import CarrotUp from '~/../img/CarrotUp.png'
-import CarrotDown from '~/../img/CarrotDown.png'
-import XPng from '~/../img/X.png'
+import CarrotUp from '~/../img/CarrotUp.svg'
+import CarrotDown from '~/../img/CarrotDown.svg'
+import XPng from '~/../img/X.svg'
 
 class PagePreview extends Component {
   static propTypes = {

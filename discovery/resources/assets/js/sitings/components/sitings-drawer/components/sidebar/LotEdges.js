@@ -11,7 +11,7 @@ import UserAction from '../consts';
 import ManipulationManager from '~/sitings-sdk/src/sitings/model/lot/trace/ManipulationManager';
 import plusPng from '~/../img/Plus.png';
 import plusHoverPng from '~/../img/Plus-hover.png';
-import TrashPng from '~/../img/Trash.png';
+import TrashPng from '~/../img/Trash.svg';
 
 class LotEdges extends Component {
     static propTypes = {
@@ -121,15 +121,9 @@ class LotEdges extends Component {
             <div className={classnames('lot-settings edges-list', traceEnabled && 'disabled')}>
                 <div className='boundary-add-wrap'>
                     <span className='title'>Boundary lines</span>
-                    <div className='add-button'
-                        onClick={() => this.addEdge()}
-                        onMouseEnter={() => {
-                            this.setState({ addButtonHover: true })
-                        }}
-                        onMouseLeave={() => {
-                            this.setState({ addButtonHover: false })
-                        }}>
-                        <img src={this.state.addButtonHover == false ? plusPng : plusHoverPng} />Add
+                    <div className='btn-primary'
+                        onClick={() => this.addEdge()}>
+                        <i className="landconnect-icon plus"/> <span>Add</span>
                     </div>
                 </div>
 

@@ -46,7 +46,7 @@
   }
 
   .add-button:hover {
-    background-color: #1F65FF;
+    background-color: $landconnect-theme-color;
     color: #FFFFFF;
   }
 
@@ -68,7 +68,7 @@
   }
 
   .sitting-header .bar {
-    border-bottom: 3px solid #1F65FF;
+    border-bottom: 3px solid $landconnect-theme-color;
     width: 100px;
     position: absolute;
     bottom: 0;
