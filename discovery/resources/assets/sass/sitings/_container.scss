@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap');
+
 .primary-container {
   height: 100vh;
   padding-top: $app-navbar-height;
@@ -20,6 +22,8 @@
       flex: 1 1 100%;
       padding: $content-padding;
       position: relative;
+
+      background-color: #F7F7F9;
 
       &.flex-column {
         display: flex;

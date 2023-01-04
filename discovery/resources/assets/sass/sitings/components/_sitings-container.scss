@@ -1,7 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap');
+
+.flex-start {
+  justify-content: flex-start !important;
+}
+
+img.offset-right {
+  margin-right: 1rem;
+}
+
+.btn-primary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+  margin-right: 8px;
+
+  span {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #38393B;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+
+.btn-primary.active {
+  background: $landconnect-theme-color;
+  span {
+    color: #FFFFFF;
+  }
+
+  .landconnect-icon:before{
+    background-color: #FFFFFF;
+  }
+}
+
+.btn-primary:hover {
+  background: $landconnect-theme-color;
+  span {
+    color: #FFFFFF;
+  }
+
+  .landconnect-icon:before{
+    background-color: #FFFFFF;
+  }
+}
+
+.file-block {
+  width: 100%;
+  span.title {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-bottom: 7px;
+  }
+}
+
+.file-picker-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+  height: 68px;
+  border: 1px solid #dcdddf;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.tool-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 12px;
+  width: 72px;
+  height: 36px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  justify-content: space-between;
+}
+
+.tool-wrap img {
+  cursor: pointer;
+}
+
+.upload-button {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #38393b;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: $landconnect-theme-color;
+  color: #ffffff;
+}
+
+.document-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pdf-image-wrap {
+  background: #f3f4f6;
+  border-radius: 8px;
+  width: 43px;
+  height: 43px;
+  position: relative;
+}
+
+.pdf-image-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.detail-wrap {
+  padding-left: 10px;
+}
+
+.detail-wrap .title {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #38393b;
+  display: block;
+}
+
+.detail-wrap .info {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #858688;
+  display: block;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .sitings-container {
   .button > .landconnect-icon {
     padding: 7px;
-    margin-right: 10px;
+    margin-right: 7px;
 
     &:before {
       background-color: #888;
@@ -14,6 +202,10 @@
     }
 
     .step-note {
+      p {
+        font-size: 12px;
+      }
+
       .doc-name {
         & > a {
           display: flex;
@@ -27,12 +219,12 @@
         padding-top: 25px;
       }
 
-      border-bottom: $app-border;
       padding-bottom: 15px;
     }
 
     .form-upload {
       margin-bottom: 30px;
+      border-bottom: $app-border;
 
       .form-upload-container {
         display: flex;
@@ -47,12 +239,6 @@
         .form-upload-button {
           border-radius: 5px;
           width: 220px;
-        }
-
-        .disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-          pointer-events: none;
         }
       }
     }
@@ -98,7 +284,7 @@
       }
     }
 
-    @import "cards";
+    @import 'cards';
 
     .cards {
       .cards-list {
@@ -129,19 +315,19 @@
 
     .step-nav {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      background-color: $landconnect-theme-color;
+      background-color: #fff;
       box-shadow: $app-box-shadow;
 
-      height: 30px;
+      height: 70px;
       border-top: $app-border;
 
       position: fixed;
       left: 0;
       bottom: 0;
       width: 26%;
-      padding: 20px $content-padding 30px;
+      padding: 0px $content-padding;
       color: #fff;
 
       & > .button {
@@ -156,14 +342,60 @@
           margin: 0;
 
           &:before {
-            background-color: #fff;
+            background-color: #38393b;
           }
         }
       }
     }
 
-    .lot-settings {
+    .landconnect.arrow-left {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #38393b;
+    }
+
+    .button-before {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .button-continue {
+      background: #005ff9;
+      border-radius: 8px;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      height: 40px;
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      color: #ffffff;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      padding: 0.75em 0.85rem;
+    }
+
+    .button-continue:hover {
+      background: #3462ad;
+    }
+
+    .lot-settings.edges-list {
       margin: 30px 0 40px;
+    }
+
+    .lot-settings {
+      .easements {
+        border-bottom: 1px solid #E0E0E0;
+        border-radius: 0px;
+        margin-bottom: 20px;
+      }
 
       &.disabled {
         pointer-events: none;
@@ -172,13 +404,58 @@
       }
 
       & > .header {
-        font-size: $large-font-size;
-        font-weight: $font-weight-bold;
-        margin: 10px 0 0;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.1px;
+        color: #333333;
 
-        &:not(:first-child) {
-          margin-top: 30px;
+        span {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+          color: #333333;
+          flex: none;
+          order: 0;
+          flex-grow: 1;
         }
+
+        .flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 20px;
+
+          p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            margin-right: 3px;
+            color: #4F4F4F;
+            flex: none;
+            flex-grow: 0;
+          }
+        }
+
+        img {
+          cursor: pointer;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 21px 0 20px 0;
 
         &.break {
           margin-top: 80px;
@@ -199,8 +476,8 @@
 
           .delete-btn {
             position: absolute;
-            right: -20px;
-            top: 30px;
+            right: 8px;
+            top: 10px;
 
             & > .landconnect-icon {
               padding: 6px;
@@ -279,6 +556,21 @@
       }
 
       .easements .btn-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .header {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          display: flex;
+          align-items: center;
+          letter-spacing: 0.1px;
+          color: #38393B;
+        }
+
         &.column {
           flex-direction: column;
         }
@@ -325,7 +617,6 @@
             }
           }
 
-
           & > .button-label {
             font-size: 16px;
             font-weight: 300;
@@ -365,15 +656,115 @@
       }
 
       .note {
-        flex: 1 1 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 5px;
-        background: #d5d5e6;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 16px 12px 0px;
+        gap: 8px;
+        width: 100%;
+        height: 40px;
+        background: #D5E3FF;
+        border-radius: 8px;
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+        margin-top: 1rem;
+
+        span {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          color: #005FF9;
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+        }
+
+        i:before {
+          color: #005FF9;
+        }
 
         & > i {
           margin-right: 10px;
         }
+      }
+
+      .landconnect-input {
+        height: 36px;
+
+        input {
+          height: 36px;
+          width: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 12px 10px 12px;
+          background: transparent;
+          gap: 8px;
+          border: 1px solid #DCDDDF;
+          border-radius: 8px;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+
+        input:focus {
+          border: 1px solid #3c3d3d;
+          outline-width: 0;
+        }
+      }
+
+      .landconnect-input.offset-meter-input {
+        width: 116px;
+        height: 36px;
+
+        input {
+          text-align: right;
+        }
+      }
+
+      .left-placeholder {
+        position: absolute;
+        left: 13px;
+        top: 10px;
+        margin-top: 0.5px;
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #858688;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        z-index: -1;
+      }
+
+      .right-placeholder {
+        position: absolute;
+        right: 13px;
+        top: 10px;
+        margin-top: 0.5px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #38393B;
+        flex: none;
+        order: 1;
+        flex-grow: 1;
+        z-index: -1;
       }
 
       .easements {
@@ -404,28 +795,35 @@
                 }
               }
 
+              .wrap {
+                width: calc(100% - 20px);
+              }
+
+              .row {
+                display: flex;
+                justify-content: space-between;
+              }
+
               .easement-number,
               .easement-type {
                 line-height: 30px;
               }
 
               .easement-type {
-                margin: 0 15px;
                 width: 70px;
               }
 
               .easement-dimension {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                width: 200px;
+                align-items: center;
+                justify-content: flex-start;
 
                 &.double-inputs {
                   flex-direction: row;
                   flex-wrap: wrap;
 
                   & > .landconnect-input {
-
+                    height: 36px;
                     &.width {
                       position: relative;
                       margin-top: 0 !important;
@@ -478,6 +876,10 @@
                   }
                 }
 
+                .offset {
+                  margin-left: 4px;
+                }
+
                 & > .landconnect-input {
                   &.input-group {
                     & > .input-group-addon {
@@ -485,10 +887,57 @@
                         margin-left: 10px;
                       }
                     }
+
+                    #parallel-mode {
+                      height: 36px;
+                      width: 116px;
+                      box-sizing: border-box;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      padding: 10px 12px 10px 12px;
+                      gap: 8px;
+                      border: 1px solid #DCDDDF;
+                      border-radius: 8px;
+                      flex: none;
+                      order: 0;
+                      flex-grow: 0;
+                      background: transparent;
+                      margin-left: 4px;
+                      background-image: linear-gradient(45deg, transparent 50%, #38393B 50%), linear-gradient(135deg, #38393B 50%, transparent 50%);
+                      background-position: calc(100% - 15px) calc(1em + 3px), calc(100% - 10px) calc(1em + 3px), calc(100% - 2.5em) calc(0.5em + 1px);
+                      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+                      background-repeat: no-repeat;
+                      margin: 0;      
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+                      -webkit-appearance: none;
+                      -moz-appearance: none;
+                      appearance: none;
+                      margin-left: 4px;
+                    }
+
+                    #parallel-mode:focus {
+                      background-image: linear-gradient(45deg, #38393B 50%, transparent 50%), linear-gradient(135deg, transparent 50%, #38393B 50%);
+                      background-position: calc(100% - 10px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) calc(0.5em + 2px);
+                      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+                      background-repeat: no-repeat;
+                      border-color: #38393B;
+                      outline: 0;
+                    }
+
+                    #parallel-mode:focus-visible {
+                      outline: 0;
+                    }
+
+                    #parallel-mode:focus-within {
+                      outline: 0;
+                    }
                   }
 
                   &:not(:first-child) {
-                    margin-top: 15px;
+                    margin-top: 0px;
                   }
 
                   &.slider {
@@ -499,6 +948,7 @@
                       margin: 15px 0;
                       padding-right: 1ch;
                     }
+
                   }
 
                   &.checkbox {
@@ -549,7 +999,6 @@
                 flex: 1;
 
                 & > .landconnect-input {
-                  width: 100%;
                 }
 
                 &:last-child {
@@ -558,6 +1007,37 @@
               }
             }
           }
+        }
+      }
+
+      .offset-meter-input {
+        width: 116px;
+        position: relative;
+
+        input {
+          height: 36px;
+          width: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 12px 10px 12px;
+          background: transparent;
+          gap: 8px;
+          border: 1px solid #DCDDDF;
+          border-radius: 8px;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+      }
+
+      .angle-flex {
+        display: flex;
+        margin-top: 5px;
+
+        .offset {
+          margin-right: 4px;
         }
       }
 
@@ -571,11 +1051,23 @@
 
       .nice-radio {
         & > .radio-item {
-
-          & > label > input[type="radio"]:checked + i.fa:before {
+          & > label > input[type='radio']:checked + i.fa:before {
             content: '\f192';
             font-weight: 500;
             color: $landconnect-theme-color;
+          }
+
+          span {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            color: #38393B;
+            flex: none;
+            order: 1;
+            flex-grow: 1;
           }
         }
       }
@@ -611,6 +1103,11 @@
       }
     }
 
+    .arrow-active {
+      background: #f3f4f6;
+      border-radius: 8px;
+    }
+
     .document-details {
       .landconnect-input {
         width: 100%;
@@ -625,13 +1122,14 @@
     overflow: hidden;
 
     .page-preview {
-      max-width: calc(100% - 30px) !important;
-      height: 100% !important;
+      max-height: calc(100% - 48px) !important;
       box-shadow: $app-box-shadow;
       position: absolute;
+      bottom: 0px;
       flex-shrink: 0;
       background: #fff;
       z-index: $z-index-left-panel - 1;
+      width: 100% !important;
 
       .sitings-sliders {
         position: absolute;
@@ -693,61 +1191,76 @@
 
       .react-resizable-handle {
         position: absolute;
-        width: 30px;
-        height: 100%;
-        top: 0;
-        right: -40px;
-        cursor: col-resize;
-        z-index: -1;
+        width: calc(100% - 240px);
+        height: 10px;
+        top: -47px;
+        left: 120px;
+        cursor: -webkit-grabbing;
+        cursor: row-resize;
+        height: 7px;
+        z-index: 3;
       }
 
       .page-preview-tabs {
         position: absolute;
         display: block;
         content: '';
-        top: 0;
-        left: 100%;
-        cursor: pointer;
-        text-transform: uppercase;
+        top: -47px;
+        left: 0%;
+        // text-transform: uppercase;
+        box-sizing: border-box;
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        width: 100%;
+        height: 47px;
+        background: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        border-top: 1px solid #e0e0e0;
+        border-radius: 0px;
+        flex: none;
+        order: 0;
+        flex-grow: 1;
 
-        & > :nth-child(1) {
-          position: absolute;
-          display: block;
-          top: calc(0% + 30px * 2);
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
+        // & > :nth-child(1) {
+        //   position: absolute;
+        //   display: block;
+        //   top: calc(0% + 30px * 2);
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
 
-        & > :nth-child(2) {
-          position: absolute;
-          display: block;
-          top: 200px;
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
-        & > :nth-child(3) {
-          position: absolute;
-          display: block;
-          top: 340px;
-          left: calc(100% - 150px / 2 + 30px / 2);
-          width: 150px;
-          height: 30px;
-          background: $button-background-color;
-          box-sizing: border-box;
-          border-top-right-radius: 10px;
-          transform: rotate(90deg);
-        }
-
+        // & > :nth-child(2) {
+        //   position: absolute;
+        //   display: block;
+        //   top: 200px;
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
+        // & > :nth-child(3) {
+        //   position: absolute;
+        //   display: block;
+        //   top: 340px;
+        //   left: calc(100% - 150px / 2 + 30px / 2);
+        //   width: 150px;
+        //   height: 30px;
+        //   background: $button-background-color;
+        //   box-sizing: border-box;
+        //   border-top-right-radius: 10px;
+        //   transform: rotate(90deg);
+        // }
         .page-preview-tab {
           display: flex;
           align-items: center;
@@ -765,11 +1278,43 @@
         .page-preview-tab-hide {
           display: none;
         }
+
+        .pdf-name {
+          font-family: 'DM Sans';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          display: flex;
+          align-items: center;
+          color: #38393b;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+
+        .tool-wrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 10px 0px;
+          width: 58px;
+          height: 36px;
+          flex: none;
+          order: 2;
+          flex-grow: 0;
+          justify-content: space-between;
+
+          img {
+            cursor: pointer;
+          }
+        }
       }
 
       & > .image {
         &.cross {
-          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>") no-repeat center center;
+          background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/><path d='M0 0 L100 100 ' stroke='grey' stroke-dasharray='1' stroke-width='0.5'/></svg>")
+            no-repeat center center;
           background-size: 100% 100%, auto;
           cursor: default;
         }
@@ -872,7 +1417,8 @@
       }
     }
 
-    .lot-view, .trace-view {
+    .lot-view,
+    .trace-view {
       width: 100%;
       height: 100%;
       display: flex;
@@ -889,9 +1435,21 @@
 
       & > .threed-canvas {
         background: #f9f9f9;
-        background: -moz-linear-gradient(top,  #f9f9f9 0%, #f1f2f8 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  #f9f9f9 0%,#f1f2f8 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  #f9f9f9 0%,#f1f2f8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: -moz-linear-gradient(
+          top,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+          top,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(
+          to bottom,
+          #f9f9f9 0%,
+          #f1f2f8 100%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#f1f2f8',GradientType=0 ); /* IE6-9 */
       }
 
@@ -1113,4 +1671,150 @@
     padding: 5px;
     background: #fff;
   }
+
+  .control-pan {
+    background: #ffffff;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.11);
+    border-radius: 8px;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 167px;
+    width: 48px;
+    justify-content: space-between;
+    padding: 8px;
+
+    img {
+      margin: 0 auto;
+    }
+
+    .circle-slider {
+      margin: 0 auto;
+    }
+
+    .cursor-wrap {
+      background: $landconnect-theme-color;
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      position: relative;
+
+      img {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+      }
+    }
+  }
 }
+
+
+.search-floorplan {
+  input {
+    height: 40px !important;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+    padding: 8px 16px;
+    border: 1px solid #DCDDDF;
+    border-radius: 10px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+
+    ::-webkit-input-placeholder { /* Edge */
+      color: $font-color-inputbox-placeholder;
+    }
+    
+    :-ms-input-placeholder { /* Internet Explorer */
+      color: $font-color-inputbox-placeholder;
+    }
+    
+    ::placeholder {
+      color: $font-color-inputbox-placeholder;
+    }
+  }
+
+  input:focus {
+    border: 1px solid #3c3d3d;
+    outline-width: 0;
+  }
+
+  input:focus-visible {
+    border: 1px solid #3c3d3d;
+    outline-width: 0;
+  }
+}
+
+#browse-header {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.1px;
+  color: #333333;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.price-slider.house-slider {
+  margin: 15px 0;
+  padding-right: 0ch;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .house-slider-wrap {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-top: 4px;
+  }
+
+  .slider-container {
+    width: 50%;
+    .rail {
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .slider-handles {
+      position: relative;
+
+      .left-bar {
+        background: #1F65FF;
+        height: 3px;
+        left: 0px;
+        z-index: -1;
+        position: absolute;
+        top: 1px;
+      }
+
+      .right-bar {
+        background: #E4E7EA;
+        height: 3px;
+        right: 0px;
+        z-index: -1;
+        position: absolute;
+        top: 1px;
+      }
+    }
+  }
+}
+
+// ------------------------------------------ //

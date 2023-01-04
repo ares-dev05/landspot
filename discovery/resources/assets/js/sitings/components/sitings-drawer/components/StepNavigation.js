@@ -10,19 +10,20 @@ const StepNavigation = ({
             <div className="step-nav">
                 {
                     !hidePrev &&
-                    <button type="button" className='button transparent'
+                    <button type="button" className='button transparent button-before'
                             disabled={disabledAll}
                             onClick={() => saveState ? saveDrawerData(currentStep - 1) : setNextStep(currentStep - 1, prevWithState)}>
                         <i className="landconnect-icon arrow-left"/>
+                        <span className='landconnect arrow-left'>Back</span>
                     </button>
                 }
 
                 {
                     !hideNext &&
-                    <button type="button" className='button next transparent'
+                    <button type="button" className='button next button-continue'
                             disabled={disabledNext || disabledAll}
                             onClick={() => saveDrawerData(currentStep + 1)}>
-                        Next step &nbsp;&nbsp;&nbsp;<i className="landconnect-icon arrow-right"/>
+                        Continue
                     </button>
                 }
             </div>

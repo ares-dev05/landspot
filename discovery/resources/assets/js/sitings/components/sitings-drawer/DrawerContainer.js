@@ -6,10 +6,9 @@ import {withAlert} from 'react-alert';
 import {isEqual, get, unset} from 'lodash';
 
 import * as actions from './store/details/actions';
-import ReferencePlan, {ReferencePlanInstance} from './components/ReferencePlan';
 import {
     DrawEdges, DrawEasements, DrawHouse, DrawHouseDetails, DrawAnnotations, ExportSiting,
-    CompanyDataContainer
+    CompanyDataContainer, ReferencePlan, ReferencePlanInstance
 } from './components';
 import {LoadingSpinner} from '~sitings~/helpers';
 import DisplayManager from '~/sitings-sdk/src/utils/DisplayManager';
@@ -78,6 +77,7 @@ class DrawerContainer extends Component {
             sitingId: null,
             importId: null,
             previewWidth: 300,
+            previewHeight: 0,
             zoom: 100,
             referencePage: null,
             engineeringPage: null,
@@ -188,6 +188,8 @@ class DrawerContainer extends Component {
     saveDrawerData = (nextStep, exportType = null) => {
         const {drawerData} = this.state;
         const {saveRawData} = this.props;
+
+        console.log('saveDrawerData : drawerData', drawerData)
 
         if (drawerData.sitingId) {
             unset(drawerData, 'sitingSession.multiFloors.companyData');
@@ -427,6 +429,10 @@ class DrawerContainer extends Component {
         this.setState({drawerData: {...this.state.drawerData, previewWidth}});
     }
 
+    setPreviewHeight = (previewHeight) => {
+        this.setState({drawerData: {...this.state.drawerData, previewHeight}});
+    }
+
     getPage = () => {
         const {drawerData: {referencePage, engineeringPage}, currentTab} = this.state;
 
@@ -461,6 +467,7 @@ class DrawerContainer extends Component {
             setTab: this.setTab,
             getPage: this.getPage,
             setPreviewWidth: this.setPreviewWidth,
+            setPreviewHeight: this.setPreviewHeight,
             setHeightVisualisationMode: this.setHeightVisualisationMode,
             setThreeDVisualisationMode: this.setThreeDVisualisationMode,
             setNearmapsVisualisationMode: this.setNearmapsVisualisationMode,
@@ -479,7 +486,6 @@ class DrawerContainer extends Component {
                         <Route exact path={DrawHouseDetails.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={DrawAnnotations.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={ExportSiting.componentUrl} component={CompanyDataContainer}/>
-
                     </Switch>
                 </DrawerContext.Provider>
 

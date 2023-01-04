@@ -240,6 +240,26 @@ export default class LotFeaturesModel extends RestoreDispatcher {
 		return true;
 	}
 
+	setParallelEasement(easement, type)
+	{
+		const reference = easement.reference;
+		const distance  = easement.distance;
+
+		if (type == 0) {  // LotEasementModel.EXTERNAL
+            this._parallelEasements.addParallelEdge(reference, distance, false);
+            easement.deleteEasement();
+		} else {
+            this._addSpecialEasement(
+                reference,
+                distance,
+                LotEasementModel.EXTERNAL
+            );
+            easement.deleteEdge();
+		}
+
+		return true;
+	}
+
 	/**
 	 * @param x {number}
 	 * @param y {number}

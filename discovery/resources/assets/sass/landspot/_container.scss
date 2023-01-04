@@ -5,7 +5,7 @@
 
   .close-discovery {
     display: none;
-    position: absolute;
+    position: absolute;/*  */
     right: 15px;
     top: 15px;
     transform: translate3d(-100%, 100%, 0);
@@ -21,9 +21,12 @@
       overflow-x: hidden;
       padding: $content-padding;
       box-shadow: $app-box-shadow;
+      position: relative;
 
       @import "components/left-panel";
     }
+
+
 
     &.right-panel {
       overflow-x: hidden;
