@@ -157,20 +157,14 @@ class DrawHouse extends Component {
         return (
             <React.Fragment>
                 <div className="filter-bar">
+                    <div className='sitting-header'>
+                        <p className='letter'>Base Siting&nbsp;/&nbsp;</p>
+                        <p className='letter-bold'>Step 3</p>
+                        <div className='bar'></div>
+                    </div>
                     <div className="filter-form">
-                        <div>STEP 4</div>
-                        <div className="first-row has-nav">
-                            <span className="filters-header">Add floorplan</span>
-
-                            <div className='toggle-metric'>
-                                <ToggleSwitch
-                                    labelPosition="left"
-                                    onClick={() => this.toggleMirror(!mirrored)}
-                                    text={{on: 'Mirror', off: 'Mirror'}}
-                                    label={{on: '', off: ''}}
-                                    state={mirrored}
-                                />
-                            </div>
+                        <div className='first-row has-nav'>
+                            <span className='filters-header'>House selection</span>
                         </div>
 
                         {hasDualOcc &&
@@ -203,7 +197,7 @@ class DrawHouse extends Component {
 
                         <div className="step-note"/>
 
-                        <LotHouses companyLoaded={companyLoaded && restored} loadHouseData={loadHouseData}
+                        <LotHouses companyLoaded={restored} loadHouseData={loadHouseData}
                                    floorModel={canvasModel ? canvasModel.multiFloors.crtFloor : null}/>
                     </div>
                 </div>

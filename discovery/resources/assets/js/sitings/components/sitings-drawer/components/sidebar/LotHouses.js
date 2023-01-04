@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {DrawerContext} from '../../DrawerContainer';
-import {NiceRadio} from '~sitings~/helpers/NiceRadio';
+import {HouseRadio} from '~sitings~/helpers/HouseRadio';
 import {NiceCheckbox} from '~sitings~/helpers';
 import HouseLayerType from '~/sitings-sdk/src/sitings/model/house/HouseLayerType';
 import CanvasModel from '../CanvasModel';
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent';
 import HouseModel from '../../../../../sitings-sdk/src/sitings/model/house/HouseModel';
+import CarrotUp from '~/../img/CarrotUp.svg'
+import CarrotDown from '~/../img/CarrotDown.svg'
+import {ToggleSwitch} from '~sitings~/helpers/ToggleSwitch';
 
 const DEFAULT_REAR_OPTION = 'option_x5f_rear_x5f_standard';
 
@@ -22,6 +25,11 @@ class LotHouses extends Component {
 
         this.state = {
             rangeId: null,
+            houseId: null,
+            selectedRangeName: '',
+            selectedHouseName: '',
+            rangeMinimized: 0,
+            houseMinimized: 0,
             searchText: '',
             ranges: [],
             houses: [],
@@ -43,13 +51,52 @@ class LotHouses extends Component {
         this.removeMultiHouseListener();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         const {
             companyLoaded,
         } = this.props;
+
+        const {
+            rangeId,
+            houseId,
+            ranges,
+            houses
+        } = this.state;
+
         if (companyLoaded && !prevProps.companyLoaded) {
             this.checkHouseModel();
             this.addMultiHouseListener();
+        } else if (rangeId != null && rangeId != prevState.rangeId) {
+            ranges.map((range, index) => {
+                if (String(rangeId) === range.id.toString()) {
+                    const inx = index + 1;
+                    this.setState({selectedRangeName: 'Item ' + inx})
+                }
+            })
+
+            if (companyLoaded) {
+                const canvasModel = CanvasModel.getModel();
+                const houseModel  = canvasModel.multiFloors.crtFloor;
+                const houseId     = houseModel && houseModel.houseData ? houseModel.houseData.id : null;
+                
+                if(this.state.houseId == null) {
+                    this.setState({houseId: houseId});
+                }
+
+                houses.map((house, index) => {
+                    if (String(houseId) === house.id.toString() && this.state.houseId == null) {
+                        const inx = index + 1;
+                        this.setState({selectedHouseName: 'Item ' + inx})
+                    }
+                })
+            }
+        } else if (houseId != null && houseId != prevState.houseId) {
+            houses.map((house, index) => {
+                if (String(houseId) === house.id.toString()) {
+                    const inx = index + 1;
+                    this.setState({selectedHouseName: 'Item ' + inx})
+                }
+            })
         }
     }
 
@@ -223,35 +270,47 @@ class LotHouses extends Component {
         const {ranges, houses, rangeId, searchText, houseLoading} = this.state;
 
         let houseModel = null;
-        let houseId    = null;
         let canvasModel = null;
-
-        if (companyLoaded) {
-            canvasModel = CanvasModel.getModel();
-            houseModel  = canvasModel.multiFloors.crtFloor;
-            houseId     = houseModel && houseModel.houseData ? houseModel.houseData.id : null;
-        }
 
         return (
             <div className={classnames('lot-settings add-house', houseLoading && 'disabled')}>
-                <div className='landconnect-input search-floorplan'>
+                <div className='search-floorplan'>
                     <input type='text'
                            autoComplete="off"
                            onChange={(e) => this.filterFloors(e.target.value)}
-                           placeholder='Search floorplan'
+                           placeholder='Type a floorplan name'
                            value={searchText || ''}
                     />
                 </div>
 
+                <div id='browse-header'>Browse for a floorplan</div>
+
                 {!searchText &&
                 <React.Fragment>
-                    <div className='header'>Floorplan Range</div>
+                    <div className='header'>
+                        <span>Select a range</span>
+                        {this.state.rangeMinimized == 1 && <div className='flex'>
+                                <p>{rangeId == null? '' : this.state.selectedRangeName}</p>
+                                <img
+                                    src={CarrotDown}
+                                    onClick={() => {
+                                        this.setState({rangeMinimized : !this.state.rangeMinimized});     
+                                    }} />
+                            </div>}
+                        {this.state.rangeMinimized == 0 && <img
+                                src={CarrotUp}
+                                onClick={() => {
+                                    this.setState({rangeMinimized: !this.state.rangeMinimized});
+                                }}
+                            />
+                        }
+                    </div>
                     <div className="form-rows">
                         {
-                            ranges.map(
+                            this.state.rangeMinimized == 0 && ranges.map(
                                 range => <div key={range.id}
                                               className="form-row">
-                                    <NiceRadio
+                                    <HouseRadio
                                         name={`range-radio-${range.name}`}
                                         value={range.id}
                                         checked={String(rangeId) === range.id.toString()}
@@ -271,20 +330,39 @@ class LotHouses extends Component {
                 </React.Fragment>
                 }
 
-                <div className='header'>Floorplan</div>
+                <div className='header'>
+                        <span>Floorplan</span>
+                        {this.state.houseMinimized == 1 && <div className='flex'>
+                                <p>{this.state.houseId == null? '' : this.state.selectedHouseName}</p>
+                                <img
+                                    src={CarrotDown}
+                                    onClick={() => {
+                                        this.setState({houseMinimized : !this.state.houseMinimized});     
+                                    }} />
+                            </div>}
+                        {this.state.houseMinimized == 0 && <img
+                                src={CarrotUp}
+                                onClick={() => {
+                                    this.setState({houseMinimized: !this.state.houseMinimized});
+                                }}
+                            />
+                        }
+                    </div>
                 <div className="form-rows">
                     {
-                        houses.map(
+                        this.state.houseMinimized == 0 && houses.map(
                             (house, index) => <div key={index+'_'+house.id}
                                           className="form-row">
-                                <NiceRadio
+                                <HouseRadio
                                     name={`floorplan-radio-${house.name}`}
                                     value={house.id}
-                                    checked={String(houseId) === house.id.toString()}
+                                    checked={String(this.state.houseId) === house.id.toString()}
                                     label={house.name.toUpperCase()}
                                     onChange={houseId => {
                                         const selectedHouse = houses.find(house => house.id === houseId);
                                         this.loadHouse(selectedHouse);
+
+                                        this.setState({houseId: houseId});
                                     }}
                                 />
                             </div>
@@ -294,7 +372,7 @@ class LotHouses extends Component {
 
                 {!searchText &&
                 <React.Fragment>
-                    <div className='header'>Facade</div>
+                    <div className='header'><span>Facade</span></div>
                     <div className="form-rows">
                         {
                             (houseModel && houseModel.format === HouseModel.FORMAT_XML) ?
@@ -303,7 +381,7 @@ class LotHouses extends Component {
                                         return (
                                             <div key={facade.id}
                                                  className="form-row">
-                                                <NiceRadio
+                                                <HouseRadio
                                                     name={`facade-radio-${facade.id}`}
                                                     value={facade.id}
                                                     checked={facade === houseModel.xmlMerger.facade}
@@ -327,7 +405,7 @@ class LotHouses extends Component {
                                                 return (
                                                     <div key={group.id}
                                                          className="form-row">
-                                                        <NiceRadio
+                                                        <HouseRadio
                                                             name={`facade-radio-${group.id}`}
                                                             value={group.id}
                                                             checked={facade.visible}
@@ -350,7 +428,7 @@ class LotHouses extends Component {
 
                 {!searchText &&
                 <React.Fragment>
-                    <div className='header'>Option</div>
+                    <div className='header'><span>Floorplan settings</span></div>
                     <div className="form-rows">
                         {
                             (houseModel && houseModel.format === HouseModel.FORMAT_XML) ?
@@ -424,6 +502,13 @@ class LotHouses extends Component {
                                     : null
                                 )
                         }
+                        <ToggleSwitch
+                                    labelPosition="left"
+                                    onClick={() => this.toggleMirror(!mirrored)}
+                                    text={{on: 'Mirror', off: 'Mirror'}}
+                                    label={{on: '', off: ''}}
+                                    state={mirrored}
+                                />
                     </div>
                 </React.Fragment>
                 }
