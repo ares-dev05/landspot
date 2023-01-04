@@ -436,7 +436,7 @@ class LotHouses extends Component {
                 }
 
                 <div className='header'>
-                        <span>Floorplan</span>
+                        <span>Select a floorplan</span>
                         {this.state.houseMinimized == 1 && <div className='flex'>
                                 <p>{this.state.houseId == null? '' : this.state.selectedHouseName}</p>
                                 <img
@@ -477,7 +477,7 @@ class LotHouses extends Component {
 
                 {!searchText &&
                 <React.Fragment>
-                    <div className='header'><span>Facade</span></div>
+                    <div className='header'><span>Select a facade</span></div>
                     <div className="form-rows">
                         {
                             (houseModel && houseModel.format === HouseModel.FORMAT_XML) ?
