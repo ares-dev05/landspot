@@ -91,19 +91,6 @@ class DrawHouse extends Component {
         this.forceUpdate();
     };
 
-    toggleMirror = (mirrored) => {
-        const {
-            setDrawerData,
-        } = this.props;
-        const canvasModel = CanvasModel.getModel();
-        const houseModel  = canvasModel.multiFloors.crtFloor;
-
-        if (!houseModel) return;
-
-        houseModel.toggleMirror();
-        setDrawerData({mirrored});
-    };
-
     selectFloor = (index) => {
         const floorsModel = CanvasModel.getModel().multiFloors;
 
@@ -198,7 +185,7 @@ class DrawHouse extends Component {
                         <div className="step-note"/>
 
                         <LotHouses companyLoaded={restored} loadHouseData={loadHouseData}
-                                   floorModel={canvasModel ? canvasModel.multiFloors.crtFloor : null}/>
+                                   floorModel={canvasModel ? canvasModel.multiFloors.crtFloor : null} mirrored={mirrored} />
                     </div>
                 </div>
                 <StepNavigation saveState={true}/>

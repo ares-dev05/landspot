@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {DrawerContext} from '../../DrawerContainer';
 import {HouseRadio} from '~sitings~/helpers/HouseRadio';
-import {NiceCheckbox} from '~sitings~/helpers';
+import {Housecheckbox} from '~sitings~/helpers';
 import HouseLayerType from '~/sitings-sdk/src/sitings/model/house/HouseLayerType';
 import CanvasModel from '../CanvasModel';
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent';
@@ -12,6 +12,7 @@ import HouseModel from '../../../../../sitings-sdk/src/sitings/model/house/House
 import CarrotUp from '~/../img/CarrotUp.svg'
 import CarrotDown from '~/../img/CarrotDown.svg'
 import {ToggleSwitch} from '~sitings~/helpers/ToggleSwitch';
+import HouseSlider from '~sitings~/helpers/HouseSlider';
 
 const DEFAULT_REAR_OPTION = 'option_x5f_rear_x5f_standard';
 
@@ -263,14 +264,118 @@ class LotHouses extends Component {
         this.setState({searchText, houses});
     };
 
+    toggleMirror = () => {
+        const {
+            setDrawerData,
+            mirrored
+        } = this.props;
+        const canvasModel = CanvasModel.getModel();
+        const houseModel  = canvasModel.multiFloors.crtFloor;
+
+        if (!houseModel) return;
+
+        houseModel.toggleMirror();
+        setDrawerData({mirrored: !mirrored});
+    };
+
     render() {
         const {
-            companyLoaded,
+            setDrawerData,
+            mirrored,
         } = this.props;
+
+        const checkRotation = (handleRotation = null, type = 'lot') => {
+            const {
+                drawerData: {rotation},
+                drawerDetails: {drawerData},
+            } = this.props;
+    
+            // const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.layers.0.rotation', null);
+            const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.crtFloor.rotation', null);
+            if (type === 'house' || (houseRotation && handleRotation === null)) {
+                const viewRotation = (handleRotation !== null && type === 'house')
+                    ? handleRotation
+                    : houseRotation !== null
+                        ? houseRotation
+                        : drawerData.houseRotation || 0;
+    
+                const canvasModel = CanvasModel.getModel();
+    
+                if (canvasModel.multiFloors.crtFloor.rotation !== viewRotation) {
+                    canvasModel.multiFloors.setFloorRotation(viewRotation);
+                }
+            }
+    
+            if (type === 'lot' || (rotation && handleRotation === null)) {
+                const viewRotation = handleRotation !== null
+                    ? handleRotation
+                    : rotation !== null
+                        ? rotation
+                        : drawerData.rotation || 0;
+    
+                if (this.canvasView.viewRotation !== viewRotation) {
+                    this.canvasView.viewRotation = viewRotation;
+                }
+    
+                // Update the north indicator rotation
+                let northRotation = parseFloat(this.props.drawerData.northRotation);
+                if (!isFinite(northRotation)) {
+                    northRotation = 0;
+                }
+    
+                // update the north rotation
+                this.northIndicator.angle = northRotation ? northRotation : viewRotation;
+            }
+        };
+
+        function rotationFormatter(d, text, onUpdate) {
+            return (
+                <React.Fragment>
+                    {text}
+        
+                    <input type='number' className='slider-value'
+                           onChange={(e) => {
+                               const value = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                               if (e.target.value==="-") {
+                                   onUpdate([-0]);
+                               }
+                               else if (!isNaN(value)) {
+                                   onUpdate([value]);
+                               }
+                           }}
+                           maxLength={6}
+                           value={d}
+                    />
+        
+                    <i className='landconnect-icon rotation'/>
+                </React.Fragment>
+            );
+        }
+
+        const Slider = ({value, label, onSlideEnd, onUpdate}) => {
+            return (
+                <HouseSlider min={-180} max={180} step={0.01}
+                                formatter={value => rotationFormatter(value, label, onUpdate)}
+                                values={[value || 0]}
+                                onSlideEnd={onSlideEnd}
+                                onUpdate={values => {
+                                    onUpdate(values);
+                                }}/>
+            );
+        };
+
+        console.log('props', this.props)
         const {ranges, houses, rangeId, searchText, houseLoading} = this.state;
 
         let houseModel = null;
         let canvasModel = null;
+
+        let  houseRotation = 0;
+        try {
+            canvasModel = CanvasModel.getModel();
+            houseRotation = canvasModel.multiFloors.crtFloor.rotation;
+        } catch (e) {}
+        houseRotation = Math.round((houseRotation + Number.EPSILON) * 100) / 100;
 
         return (
             <div className={classnames('lot-settings add-house', houseLoading && 'disabled')}>
@@ -441,7 +546,7 @@ class LotHouses extends Component {
                                             return (
                                                 <div key={index+'_'+option.name}
                                                      className="form-row">
-                                                    <NiceCheckbox
+                                                    <HouseRadio
                                                         name={`option-radio-${option.name}`}
                                                         value={option.name}
                                                         checked={houseModel.xmlMerger.selectedOptions.indexOf(option)!==-1}
@@ -476,7 +581,7 @@ class LotHouses extends Component {
                                                 return (
                                                     <div key={group.id}
                                                          className="form-row">
-                                                        <NiceCheckbox
+                                                        <HouseRadio
                                                             checked={option.visible}
                                                             label={label.toUpperCase()}
                                                             name={`option-${group.id}`}
@@ -504,11 +609,22 @@ class LotHouses extends Component {
                         }
                         <ToggleSwitch
                                     labelPosition="left"
-                                    onClick={() => this.toggleMirror(!mirrored)}
-                                    text={{on: 'Mirror', off: 'Mirror'}}
+                                    onClick={() => this.toggleMirror()}
+                                    text={{on: 'Mirror floorplan', off: 'Mirror floorplan'}}
                                     label={{on: '', off: ''}}
                                     state={mirrored}
                                 />
+                        <Slider value={houseRotation || null}
+                                label='HOUSE ROTATION'
+                                onSlideEnd={() => {
+                                    const canvasModel = CanvasModel.getModel();
+                                    setDrawerData({sitingSession: canvasModel.recordState()});
+                                }}
+                                onUpdate={values => {
+                                    checkRotation(values[0], 'house');
+                                    const canvasModel = CanvasModel.getModel();
+                                    setDrawerData({sitingSession: canvasModel.recordState()});
+                                }}/>
                     </div>
                 </React.Fragment>
                 }
@@ -524,7 +640,7 @@ const LotHousesConsumer = (props) => (
             ({
                  state: {drawerData}, setDrawerData
              }) => <LotHouses  {...props} {...{
-                drawerData, setDrawerData
+                drawerData, setDrawerData,
             }}/>
         }
     </DrawerContext.Consumer>

@@ -948,6 +948,7 @@ img.offset-right {
                       margin: 15px 0;
                       padding-right: 1ch;
                     }
+
                   }
 
                   &.checkbox {
@@ -1768,6 +1769,52 @@ img.offset-right {
   padding-top: 21px;
   padding-bottom: 21px;
   border-bottom: 1px solid #E0E0E0;
+}
+
+.price-slider.house-slider {
+  margin: 15px 0;
+  padding-right: 0ch;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .house-slider-wrap {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-top: 4px;
+  }
+
+  .slider-container {
+    width: 50%;
+    .rail {
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .slider-handles {
+      position: relative;
+
+      .left-bar {
+        background: #1F65FF;
+        height: 3px;
+        left: 0px;
+        z-index: -1;
+        position: absolute;
+        top: 1px;
+      }
+
+      .right-bar {
+        background: #E4E7EA;
+        height: 3px;
+        right: 0px;
+        z-index: -1;
+        position: absolute;
+        top: 1px;
+      }
+    }
+  }
 }
 
 // ------------------------------------------ //
