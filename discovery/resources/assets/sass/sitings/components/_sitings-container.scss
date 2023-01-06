@@ -14,7 +14,7 @@ img.offset-right {
   align-items: center;
   padding: 10px 16px;
   gap: 8px;
-  background: #F3F4F6;
+  background: $button-background-color;
   border-radius: 8px;
   flex: none;
   order: 0;
@@ -48,6 +48,8 @@ img.offset-right {
 
 .btn-primary:hover {
   background: $landconnect-theme-color;
+  color: #FFFFFF;
+
   span {
     color: #FFFFFF;
   }
@@ -116,7 +118,7 @@ img.offset-right {
   font-size: 14px;
   line-height: 20px;
   color: #38393b;
-  background: #f3f4f6;
+  background: $button-background-color;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
@@ -138,7 +140,7 @@ img.offset-right {
 }
 
 .pdf-image-wrap {
-  background: #f3f4f6;
+  background: $button-background-color;
   border-radius: 8px;
   width: 43px;
   height: 43px;
@@ -219,7 +221,7 @@ img.offset-right {
         padding-top: 25px;
       }
 
-      padding-bottom: 15px;
+      padding-bottom: 2px;
     }
 
     .form-upload {
@@ -1090,21 +1092,48 @@ img.offset-right {
     }
 
     .direction {
+      background: transparent;
+      border-radius: 8px;
+      width: 28px;
+      height: 28px;
+      position: relative;
+      cursor: pointer;
+
       & > .landconnect-icon {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%,-50%);
         &:first-child {
           margin-right: 0;
         }
 
-        &.active {
+        &:before {
+          background-color: #9A9B9D;
+        }
+      }
+
+      &.active {
+        background: #F3F4F6;
+        border-radius: 8px;
+        width: 28px;
+        height: 28px;
+        position: relative;
+
+        & > .landconnect-icon {
+          position: absolute;
+          top: 50%;
+          right: 50%;
+          transform: translate(50%,-50%);
           &:before {
-            background-color: $landconnect-theme-color;
+            background-color: #38393B;
           }
         }
       }
     }
 
     .arrow-active {
-      background: #f3f4f6;
+      background: $button-background-color;
       border-radius: 8px;
     }
 
@@ -1815,6 +1844,20 @@ img.offset-right {
       }
     }
   }
+}
+
+.house-control-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sitings-container .button > .landconnect-icon:before {
+  background-color: #000;
+}
+
+.gap {
+  gap: 10px;
 }
 
 // ------------------------------------------ //

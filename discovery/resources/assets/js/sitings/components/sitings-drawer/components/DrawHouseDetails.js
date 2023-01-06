@@ -63,12 +63,16 @@ class DrawHouseDetails extends Component {
         return (
             <React.Fragment>
                 <div className="filter-bar">
+                    <div className='sitting-header'>
+                        <p className='letter'>Base Siting&nbsp;/&nbsp;</p>
+                        <p className='letter-bold'>Step 3</p>
+                        <div className='bar'></div>
+                    </div>
                     <div className="filter-form">
-                        <div>STEP 5</div>
-                        <div className="first-row has-nav">
-                            <span className="filters-header">House details</span>
+                        <div className='first-row has-nav'>
+                            <span className='filters-header'>House details</span>
                         </div>
-                        <div className="step-note"/>
+                        <div className="step-note"><p>Modify your selected floorplan, or add trees and other structures to the site.</p></div>
 
                         <HouseDetails companyLoaded={companyLoaded}/>
                     </div>

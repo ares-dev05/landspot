@@ -14,6 +14,9 @@ import MeasurementPointEvent from '~/sitings-sdk/src/sitings/events/MeasurementP
 import AccountMgr from '~/sitings-sdk/src/sitings/data/AccountMgr';
 import UserAction from '../consts';
 import Builder from '~/sitings-sdk/src/sitings/data/Builder';
+import {HouseRadio} from '~sitings~/helpers/HouseRadio';
+import TrashPng from '~/../img/Trash.svg';
+import EyePng from '~/../img/Eye.svg';
 
 function rotationFormatter(d) {
     return `ROTATION ${d}°`;
@@ -150,7 +153,7 @@ class HouseDetails extends Component {
 
     render() {
         const {modelMode} = this.state;
-        const {companyLoaded} = this.props;
+        let {companyLoaded} = this.props;
         const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.layers.0.rotation', null);
         const canvasRotation = _.get(this.props, 'drawerData.rotation', null);
         const rotation = canvasRotation + houseRotation;
@@ -159,6 +162,8 @@ class HouseDetails extends Component {
         let trees = [];
         let structures = [];
         let transformations = [];
+
+        companyLoaded = true;
 
         if (companyLoaded) {
             const canvasModel = CanvasModel.getModel();
@@ -179,22 +184,22 @@ class HouseDetails extends Component {
                 <React.Fragment>
                     <div className='header'>House modifications</div>
                     <div className="easements">
-                        <div className="btn-group">
-                            <button type="button"
-                                    className={classnames('button', modelMode === modelModes.MODE_EXTENSION ? 'primary' : 'default')}
+                        <div className="btn-group flex-start">
+                            <div
+                                    className={classnames('btn-primary', modelMode === modelModes.MODE_EXTENSION ? 'primary' : 'default')}
                                     onClick={() => this.addModification(modelModes.MODE_EXTENSION)}>
                                 <i className="landconnect-icon plus"/> Extension
-                            </button>
-                            <button type="button"
-                                    className={classnames('button', modelMode === modelModes.MODE_REDUCTION ? 'primary' : 'default')}
+                            </div>
+                            <div
+                                    className={classnames('btn-primary', modelMode === modelModes.MODE_REDUCTION ? 'primary' : 'default')}
                                     onClick={() => this.addModification(modelModes.MODE_REDUCTION)}>
                                 <i className="landconnect-icon plus"/> Reduction
-                            </button>
-                            <button type="button"
-                                    className={classnames('button', modelMode === modelModes.MODE_ADD_ON ? 'primary' : 'default')}
+                            </div>
+                            <div
+                                    className={classnames('btn-primary', modelMode === modelModes.MODE_ADD_ON ? 'primary' : 'default')}
                                     onClick={() => this.addModification(modelModes.MODE_ADD_ON)}>
                                 <i className="landconnect-icon plus"/> Add on
-                            </button>
+                            </div>
 
                             {
                                 (
@@ -238,11 +243,11 @@ class HouseDetails extends Component {
                 <div className='header'>Trees</div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', modelMode === modelModes.MODE_TREE ? 'primary' : 'default')}
+                        <div
+                                className={classnames('btn-primary', modelMode === modelModes.MODE_TREE ? 'primary' : 'default')}
                                 onClick={() => this.addModification(modelModes.MODE_TREE)}>
                             <i className="landconnect-icon plus"/> Tree
-                        </button>
+                        </div>
                         {
                             modelMode === modelModes.MODE_TREE &&
                             <div className="note">
@@ -274,18 +279,18 @@ class HouseDetails extends Component {
                 <div className='header'>Pools / Sheds / Other</div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', modelMode === modelModes.MODE_STRUCTURE ? 'primary' : 'default')}
+                        <div
+                                className={classnames('btn-primary', modelMode === modelModes.MODE_STRUCTURE ? 'primary' : 'default')}
                                 onClick={() => this.addModification(modelModes.MODE_STRUCTURE)}>
                             <i className="landconnect-icon plus"/> Structure
-                        </button>
+                        </div>
 
                         {   AccountMgr.i.builder === Builder.ARLI_HOMES &&
-                            <button type="button"
-                                    className={classnames('button', modelMode === modelModes.MODE_RAINWATER ? 'primary' : 'default')}
+                            <div
+                                    className={classnames('btn-primary', modelMode === modelModes.MODE_RAINWATER ? 'primary' : 'default')}
                                     onClick={() => this.addModification(modelModes.MODE_RAINWATER)}>
                                 <i className="landconnect-icon plus"/>Rainwater Pad
-                            </button>
+                            </div>
                         }
 
                         {
@@ -334,196 +339,211 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
             <div className="easement-number">
                 {modificationNo}
             </div>
-            <div className="easement-type">
-                {isStructure
-                    ? <div className='landconnect-input'>
-                        <input type='text'
-                               autoComplete="off"
-                               onChange={e => {
-                                   modification.labelText = e.target.value;
-                                   onModificationChange();
-                               }}
-                               disabled={!isPool}
-                               onFocus={(event) => event.target.select()}
-                               placeholder='Add a label'
-                               value={modification.labelText || ''}
-                        />
-                    </div>
-                    : modificationTitle
-                }
-            </div>
-
-            <div className='easement-dimension double-inputs'>
-                {isTree &&
-                <div className='landconnect-input'>
-                    <input type='number'
-                           autoComplete="off"
-                           onChange={(e) => {
-                               modification.radius = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                               onModificationChange();
-                           }}
-                           onFocus={(event) => event.target.select()}
-                           maxLength={5}
-                           placeholder='Radius'
-                           value={modification.radius || ''}
-                    />
-                </div>
-                }
-
-                {!isTree &&
-                <React.Fragment>
-                    <div className='landconnect-input width'>
-                        <input type='number'
-                               autoComplete="off"
-                               onChange={(e) => {
-                                   if (isTransformation) {
-                                       modification.widthString = e.target.value.slice(0, e.target.maxLength);
-                                   }   else {
-                                       modification.width = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                   }
-
-                                   onModificationChange();
-                               }}
-                               onFocus={(event) => event.target.select()}
-                               maxLength={5}
-                               disabled={isRainwater}
-                               placeholder='Width'
-                               value={isTransformation ? modification.widthString : (modification.width || '')}
-                        />
-                    </div>
-                    <div className='landconnect-input height'>
-                        <input type='number'
-                               autoComplete="off"
-                               onChange={(e) => {
-                                   if (isTransformation) {
-                                       modification.heightString = e.target.value.slice(0, e.target.maxLength);
-                                   }   else {
-                                       modification.height = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                   }
-
-                                   onModificationChange();
-                               }}
-                               onFocus={(event) => event.target.select()}
-                               maxLength={5}
-                               disabled={isRainwater}
-                               placeholder='Height'
-                               value={isTransformation ? modification.heightString : (modification.height || '')}
-                        />
-                    </div>
-                </React.Fragment>
-                }
-
-                {isStructure && !isRainwater &&
-                <div className="landconnect-input checkbox">
-                    <NiceCheckbox
-                        checked={inSiteCoverage}
-                        label='Include in Site Coverage'
-                        name={`structure-${modificationNo}`}
-                        onChange={(value) => {
-                            modification.includeInSiteCoverage = !modification.includeInSiteCoverage;
-                            onModificationChange();
-                        }}
-                    />
-                </div>
-                }
-
-                {isStructure &&
-                <div className='landconnect-input slider'>
-                    <CompoundSlider min={-180} max={180} step={1}
-                                    values={[modification.rotation || 0]}
-                                    formatter={rotationFormatter}
-                                    onUpdate={values => {
-                                        modification.rotation = parseFloat(values[0]);
+            <div className='wrap'>
+                <div className='row'>
+                    <div className="easement-type">
+                        {isStructure
+                            ? <div className='landconnect-input'>
+                                <input type='text'
+                                    autoComplete="off"
+                                    onChange={e => {
+                                        modification.labelText = e.target.value;
                                         onModificationChange();
-                                    }}/>
-                </div>
-                }
+                                    }}
+                                    disabled={!isPool}
+                                    onFocus={(event) => event.target.select()}
+                                    placeholder='Add a label'
+                                    value={modification.labelText || ''}
+                                />
+                            </div>
+                            : modificationTitle
+                        }
+                    </div>
 
-                {(!isStructure && !isTree && !isAddOn) &&
-                <div className='btn-group transformations'>
-                    <button type="button" className='button transparent direction'
-                            style={{
-                                transform: `rotate(${rotation}deg)`
-                            }}
-                            onClick={() => {
-                                modification.direction = TransformationModel.DIR_LEFT;
-                                onModificationChange();
-                            }}>
-                        <i className={
-                            classnames(
-                                'landconnect-icon boundary-arrow-left',
-                                modification.direction === TransformationModel.DIR_LEFT ? 'active' : ''
-                            )
-                        }/>
-                    </button>
-                    <button type="button" className='button transparent direction'
-                            style={{
-                                transform: `rotate(${rotation}deg)`
-                            }}
-                            onClick={() => {
-                                modification.direction = TransformationModel.DIR_RIGHT;
-                                onModificationChange();
-                            }}>
-                        <i className={
-                            classnames(
-                                'landconnect-icon boundary-arrow-right',
-                                modification.direction === TransformationModel.DIR_RIGHT ? 'active' : ''
-                            )
-                        }/>
-                    </button>
-                    <button type="button" className='button transparent direction'
-                            style={{
-                                transform: `rotate(${rotation}deg)`
-                            }}
-                            onClick={() => {
-                                modification.direction = TransformationModel.DIR_TOP;
-                                onModificationChange();
-                            }}>
-                        <i className={
-                            classnames(
-                                'landconnect-icon boundary-arrow-up',
-                                modification.direction === TransformationModel.DIR_TOP ? 'active' : ''
-                            )
-                        }/>
-                    </button>
-                    <button type="button" className='button transparent direction'
-                            style={{
-                                transform: `rotate(${rotation}deg)`
-                            }}
-                            onClick={() => {
-                                modification.direction = TransformationModel.DIR_BOTTOM;
-                                onModificationChange();
-                            }}>
-                        <i className={
-                            classnames(
-                                'landconnect-icon boundary-arrow-down',
-                                modification.direction === TransformationModel.DIR_BOTTOM ? 'active' : ''
-                            )
-                        }/>
-                    </button>
+                    <div className='house-control-wrap'>
+                        {(!isStructure && !isTree && !isAddOn) &&
+                        <div className='button transparent'
+                                onClick={() => {
+                                    modification.applied = !modification.applied;
+                                    onModificationChange();
+                                }}>
+                            <i className={classnames('landconnect-icon', modification.applied ? 'eye' : 'eye-slash')}/>
+                        </div>
+                        }
+
+                        <div className='button transparent delete-btn'
+                                onClick={() => {
+                                    (isStructure || isTree)
+                                        ? modification.remove()
+                                        : modification.deleteTransformation();
+                                    onModificationChange();
+                                }}>
+                             <img src={TrashPng} />
+                        </div>
+                    </div>
                 </div>
-                }
+                <div className='easement-dimension double-inputs gap'>
+                    {isTree &&
+                        <div className='landconnect-input offset-meter-input'>
+                            <input type='number'
+                                autoComplete="off"
+                                onChange={(e) => {
+                                    modification.radius = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                                    onModificationChange();
+                                }}
+                                onFocus={(event) => event.target.select()}
+                                maxLength={5}
+                                placeholder=''
+                                value={modification.radius || ''}
+                            />
+                            <span className='left-placeholder'>Radius</span>
+                            <span className='right-placeholder'>m</span>
+                        </div>
+                        }
+
+                        {!isTree &&
+                        <React.Fragment>
+                            <div className='landconnect-input offset-meter-input'>
+                                <input type='number'
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        if (isTransformation) {
+                                            modification.widthString = e.target.value.slice(0, e.target.maxLength);
+                                        }   else {
+                                            modification.width = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                                        }
+
+                                        onModificationChange();
+                                    }}
+                                    onFocus={(event) => event.target.select()}
+                                    maxLength={5}
+                                    disabled={isRainwater}
+                                    placeholder=''
+                                    value={isTransformation ? modification.widthString : (modification.width || '')}
+                                />
+                                <span className='left-placeholder'>Width</span>
+                                <span className='right-placeholder'>m</span>
+                            </div>
+                            <div className='landconnect-input offset-meter-input'>
+                                <input type='number'
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        if (isTransformation) {
+                                            modification.heightString = e.target.value.slice(0, e.target.maxLength);
+                                        }   else {
+                                            modification.height = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                                        }
+
+                                        onModificationChange();
+                                    }}
+                                    onFocus={(event) => event.target.select()}
+                                    maxLength={5}
+                                    disabled={isRainwater}
+                                    placeholder=''
+                                    value={isTransformation ? modification.heightString : (modification.height || '')}
+                                />
+                                <span className='left-placeholder'>Height</span>
+                                <span className='right-placeholder'>m</span>
+                            </div>
+                        </React.Fragment>
+                        }
+
+                        {isStructure && !isRainwater &&
+                        <div className="landconnect-input checkbox">
+                            <HouseRadio
+                                checked={inSiteCoverage}
+                                label='Include in Site Coverage'
+                                name={`structure-${modificationNo}`}
+                                onChange={(value) => {
+                                    modification.includeInSiteCoverage = !modification.includeInSiteCoverage;
+                                    onModificationChange();
+                                }}
+                            />
+                        </div>
+                        }
+
+                        {isStructure &&
+                        <div className='landconnect-input slider'>
+                            <CompoundSlider min={-180} max={180} step={1}
+                                            values={[modification.rotation || 0]}
+                                            formatter={rotationFormatter}
+                                            onUpdate={values => {
+                                                modification.rotation = parseFloat(values[0]);
+                                                onModificationChange();
+                                            }}/>
+                        </div>
+                        }
+
+                        {(!isStructure && !isTree && !isAddOn) &&
+                        <div className='btn-group transformations gap'>
+                            <div    
+                                className={
+                                    classnames(
+                                        'transparent direction',
+                                        modification.direction === TransformationModel.DIR_LEFT ? 'active' : ''
+                                    )
+                                }
+                                style={{
+                                    // transform: `rotate(${rotation}deg)`
+                                }}
+                                onClick={() => {
+                                    modification.direction = TransformationModel.DIR_LEFT;
+                                    onModificationChange();
+                                }}>
+                                <i className='landconnect-icon boundary-arrow-left'/>
+                            </div>
+                            <div    
+                                className={
+                                    classnames(
+                                        'transparent direction',
+                                        modification.direction === TransformationModel.DIR_RIGHT ? 'active' : ''
+                                    )
+                                }
+                                style={{
+                                    // transform: `rotate(${rotation}deg)`
+                                }}
+                                onClick={() => {
+                                    modification.direction = TransformationModel.DIR_RIGHT;
+                                    onModificationChange();
+                                }}>
+                                <i className='landconnect-icon boundary-arrow-right'/>
+                            </div>
+                            <div    
+                                className={
+                                    classnames(
+                                        'transparent direction',
+                                        modification.direction === TransformationModel.DIR_TOP ? 'active' : ''
+                                    )
+                                }
+                                style={{
+                                    // transform: `rotate(${rotation}deg)`
+                                }}
+                                onClick={() => {
+                                    modification.direction = TransformationModel.DIR_TOP;
+                                    onModificationChange();
+                                }}>
+                                <i className='landconnect-icon boundary-arrow-up'/>
+                            </div>
+                            <div    
+                                className={
+                                    classnames(
+                                        'transparent direction',
+                                        modification.direction === TransformationModel.DIR_BOTTOM ? 'active' : ''
+                                    )
+                                }
+                                style={{
+                                    // transform: `rotate(${rotation}deg)`
+                                }}
+                                onClick={() => {
+                                    modification.direction = TransformationModel.DIR_BOTTOM;
+                                    onModificationChange();
+                                }}>
+                                <i className='landconnect-icon boundary-arrow-down'/>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
-
-            {(!isStructure && !isTree && !isAddOn) &&
-            <button type="button" className='button transparent'
-                    onClick={() => {
-                        modification.applied = !modification.applied;
-                        onModificationChange();
-                    }}>
-                <i className={classnames('landconnect-icon', modification.applied ? 'eye' : 'eye-slash')}/>
-            </button>
-            }
-
-            <button type="button" className='button transparent delete-btn'
-                    onClick={() => {
-                        (isStructure || isTree)
-                            ? modification.remove()
-                            : modification.deleteTransformation();
-                        onModificationChange();
-                    }}>
-                <i className='landconnect-icon times'/>
-            </button>
         </div>
     );
 };
