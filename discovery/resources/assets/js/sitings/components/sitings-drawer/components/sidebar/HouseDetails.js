@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import _ from 'lodash';
 import CompoundSlider from '~sitings~/helpers/CompoundSlider';
+import HouseSlider from '~sitings~/helpers/HouseSlider';
 import {NiceCheckbox} from '~sitings~/helpers';
 import {DrawerContext} from '../../DrawerContainer';
 import CanvasModel from '../CanvasModel';
@@ -16,7 +17,6 @@ import UserAction from '../consts';
 import Builder from '~/sitings-sdk/src/sitings/data/Builder';
 import {HouseRadio} from '~sitings~/helpers/HouseRadio';
 import TrashPng from '~/../img/Trash.svg';
-import EyePng from '~/../img/Eye.svg';
 
 function rotationFormatter(d) {
     return `ROTATION ${d}°`;
@@ -240,14 +240,16 @@ class HouseDetails extends Component {
                 </React.Fragment>
                 }
 
-                <div className='header'>Trees</div>
+                <div className='header no-margin-bottom'>
+                    <p>Trees</p>
+                    <div
+                        className={classnames('btn-primary', modelMode === modelModes.MODE_TREE ? 'primary' : 'default')}
+                        onClick={() => this.addModification(modelModes.MODE_TREE)}>
+                        <i className="landconnect-icon plus"/> Tree
+                    </div>
+                </div>
                 <div className="easements">
                     <div className="btn-group">
-                        <div
-                                className={classnames('btn-primary', modelMode === modelModes.MODE_TREE ? 'primary' : 'default')}
-                                onClick={() => this.addModification(modelModes.MODE_TREE)}>
-                            <i className="landconnect-icon plus"/> Tree
-                        </div>
                         {
                             modelMode === modelModes.MODE_TREE &&
                             <div className="note">
@@ -276,15 +278,16 @@ class HouseDetails extends Component {
                 </div>
 
 
-                <div className='header'>Pools / Sheds / Other</div>
+                <div className='header no-margin-bottom'>
+                    <p>Pools / Sheds / Other</p>
+                    <div
+                        className={classnames('btn-primary', modelMode === modelModes.MODE_STRUCTURE ? 'primary' : 'default')}
+                        onClick={() => this.addModification(modelModes.MODE_STRUCTURE)}>
+                        <i className="landconnect-icon plus"/> Structure
+                    </div>
+                </div>
                 <div className="easements">
                     <div className="btn-group">
-                        <div
-                                className={classnames('btn-primary', modelMode === modelModes.MODE_STRUCTURE ? 'primary' : 'default')}
-                                onClick={() => this.addModification(modelModes.MODE_STRUCTURE)}>
-                            <i className="landconnect-icon plus"/> Structure
-                        </div>
-
                         {   AccountMgr.i.builder === Builder.ARLI_HOMES &&
                             <div
                                     className={classnames('btn-primary', modelMode === modelModes.MODE_RAINWATER ? 'primary' : 'default')}
@@ -343,7 +346,7 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                 <div className='row'>
                     <div className="easement-type">
                         {isStructure
-                            ? <div className='landconnect-input'>
+                            ? <div className='landconnect-input offset-meter-input long'>
                                 <input type='text'
                                     autoComplete="off"
                                     onChange={e => {
@@ -352,11 +355,30 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                                     }}
                                     disabled={!isPool}
                                     onFocus={(event) => event.target.select()}
-                                    placeholder='Add a label'
+                                    placeholder=''
                                     value={modification.labelText || ''}
                                 />
+                                <span className='left-placeholder'>Label</span>
+                                <span className='right-placeholder'>Text</span>
                             </div>
-                            : modificationTitle
+                            : !isTree ? modificationTitle: null
+                        }
+                        {isTree &&
+                            <div className='landconnect-input offset-meter-input'>
+                                <input type='number'
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        modification.radius = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
+                                        onModificationChange();
+                                    }}
+                                    onFocus={(event) => event.target.select()}
+                                    maxLength={5}
+                                    placeholder=''
+                                    value={modification.radius || ''}
+                                />
+                                <span className='left-placeholder'>Radius</span>
+                                <span className='right-placeholder'>m</span>
+                            </div>
                         }
                     </div>
 
@@ -383,25 +405,7 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                     </div>
                 </div>
                 <div className='easement-dimension double-inputs gap'>
-                    {isTree &&
-                        <div className='landconnect-input offset-meter-input'>
-                            <input type='number'
-                                autoComplete="off"
-                                onChange={(e) => {
-                                    modification.radius = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                                    onModificationChange();
-                                }}
-                                onFocus={(event) => event.target.select()}
-                                maxLength={5}
-                                placeholder=''
-                                value={modification.radius || ''}
-                            />
-                            <span className='left-placeholder'>Radius</span>
-                            <span className='right-placeholder'>m</span>
-                        </div>
-                        }
-
-                        {!isTree &&
+                    {!isTree &&
                         <React.Fragment>
                             <div className='landconnect-input offset-meter-input'>
                                 <input type='number'
@@ -446,25 +450,11 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                                 <span className='right-placeholder'>m</span>
                             </div>
                         </React.Fragment>
-                        }
+                    }
 
-                        {isStructure && !isRainwater &&
-                        <div className="landconnect-input checkbox">
-                            <HouseRadio
-                                checked={inSiteCoverage}
-                                label='Include in Site Coverage'
-                                name={`structure-${modificationNo}`}
-                                onChange={(value) => {
-                                    modification.includeInSiteCoverage = !modification.includeInSiteCoverage;
-                                    onModificationChange();
-                                }}
-                            />
-                        </div>
-                        }
-
-                        {isStructure &&
-                        <div className='landconnect-input slider'>
-                            <CompoundSlider min={-180} max={180} step={1}
+                    {isStructure &&
+                        <div className='house-detail slider'>
+                            <HouseSlider min={-180} max={180} step={1}
                                             values={[modification.rotation || 0]}
                                             formatter={rotationFormatter}
                                             onUpdate={values => {
@@ -472,9 +462,23 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                                                 onModificationChange();
                                             }}/>
                         </div>
-                        }
+                    }
 
-                        {(!isStructure && !isTree && !isAddOn) &&
+                    {isStructure && !isRainwater &&
+                        <div className="landconnect-input checkbox">
+                            <HouseRadio
+                                checked={inSiteCoverage}
+                                label={`structure-${modificationNo}`}
+                                name='Include in Site Coverage'
+                                onChange={(value) => {
+                                    modification.includeInSiteCoverage = !modification.includeInSiteCoverage;
+                                    onModificationChange();
+                                }}
+                            />
+                        </div>
+                    }
+
+                    {(!isStructure && !isTree && !isAddOn) &&
                         <div className='btn-group transformations gap'>
                             <div    
                                 className={

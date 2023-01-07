@@ -18,7 +18,8 @@ import ThreeDControls from './ThreeDControls';
 import NearmapControls from './NearmapControls';
 import CanvasView from '~/sitings-sdk/src/sitings/view/SitingsView';
 import SegmentationModel from '~/sitings-sdk/src/sitings/model/levels/segmentation/SegmentationModel';
-
+import HomePng from '~/../img/Home.svg';
+import FilePng from '~/../img/File.svg';
 
 class Annotations extends Component {
     static propTypes = {
@@ -204,17 +205,19 @@ class Annotations extends Component {
 
         return (
             <div className={classnames('lot-settings', engineeringEnabled && 'disabled')}>
-                <div className='header'>Measurements</div>
+                <div className='header no-margin-bottom'>
+                    <p>Measurements</p>
+                    <div
+                        className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_MEASUREMENT) ? 'primary' : 'default')}
+                        onClick={() => {
+                            canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_MEASUREMENT;
+                            this.setCurrentMode(MeasurementsLayerModel.MODE_MEASUREMENT);
+                        }}>
+                        <i className="landconnect-icon plus"/> Add
+                    </div>
+                </div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', (modelMode && currentMode === MeasurementsLayerModel.MODE_MEASUREMENT) ? 'primary' : 'default')}
-                                onClick={() => {
-                                    canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_MEASUREMENT;
-                                    this.setCurrentMode(MeasurementsLayerModel.MODE_MEASUREMENT);
-                                }}>
-                            <i className="landconnect-icon plus"/> Add measurement
-                        </button>
                         {
                             (
                                 modelMode === MeasurementsLayerModel.MODE_MEASUREMENT
@@ -234,22 +237,22 @@ class Annotations extends Component {
                 <div className='header'>Align</div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', (modelMode && currentMode === MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT) ? 'primary' : 'default')}
+                        <div
+                                className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT) ? 'primary' : 'default')}
                                 onClick={() => {
                                     canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT;
                                     this.setCurrentMode(MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT);
                                 }}>
                             <i className="landconnect-icon plus"/> Align wall to boundary
-                        </button>
-                        <button type="button"
-                                className={classnames('button', (modelMode && currentMode === MeasurementsLayerModel.MODE_PAGE_ALIGNMENT) ? 'primary' : 'default')}
+                        </div>
+                        <div
+                                className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_PAGE_ALIGNMENT) ? 'primary' : 'default')}
                                 onClick={() => {
                                     canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_PAGE_ALIGNMENT;
                                     this.setCurrentMode(MeasurementsLayerModel.MODE_PAGE_ALIGNMENT);
                                 }}>
                             <i className="landconnect-icon plus"/> Align to page
-                        </button>
+                        </div>
 
                         {
                             (

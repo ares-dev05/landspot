@@ -70,27 +70,18 @@ class DrawAnnotations extends Component {
         return (
             <React.Fragment>
                 <div className="filter-bar">
+                    <div className='sitting-header'>
+                        <p className='letter'>Base Siting&nbsp;/&nbsp;</p>
+                        <p className='letter-bold'>Step 5</p>
+                        <div className='bar'></div>
+                    </div>
                     <div className="filter-form">
-                        <div>STEP 6{
-                            engineeringEnabled ? '.1' :
-                            threeDVisualisationEnabled ? '.2' :
-                            nearmapsVisualisationEnabled ? '.3' :
-                            heightVisualisationEnabled ? '.4' :
-                                null
-                        }</div>
-                        <div className="first-row has-nav">
-                            <span
-                                className="filters-header">{
-                                    engineeringEnabled ? 'Advanced Siting' :
-                                    threeDVisualisationEnabled ? '3D Mode' :
-                                    nearmapsVisualisationEnabled ? 'Nearmap Overlay' :
-                                    heightVisualisationEnabled ? 'Height Envelope' :
-                                        'Annotations'
-                                }</span>
+                        <div className='first-row has-nav'>
+                            <span className='filters-header'>Annotations</span>
                         </div>
-                        <div className="step-note"/>
+                        <div className="under-bar"></div>
 
-                        {companyLoaded && <Annotations/>}
+                        <Annotations/>
                     </div>
                 </div>
                 <StepNavigation saveState={true} disabledAll={engineeringEnabled || heightVisualisationEnabled || threeDVisualisationEnabled || nearmapsVisualisationEnabled}/>

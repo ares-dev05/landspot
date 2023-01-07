@@ -59,6 +59,17 @@ img.offset-right {
   }
 }
 
+.header {
+  .btn-primary {
+    font-size: 11px;
+    line-height: 11px;
+  }
+
+  &.no-margin-bottom {
+    margin-bottom: 0px!important;
+  }
+}
+
 .file-block {
   width: 100%;
   span.title {
@@ -725,6 +736,14 @@ img.offset-right {
       .landconnect-input.offset-meter-input {
         width: 116px;
         height: 36px;
+
+        &.long {
+          width: 186px;
+
+          input {
+            padding: 10px 38px 10px 12px!important;
+          }
+        }
 
         input {
           text-align: right;
@@ -1860,4 +1879,21 @@ img.offset-right {
   gap: 10px;
 }
 
+.double-inputs.gap {
+  margin-top: 10px;
+}
+
+.house-detail {
+  width: 100%;
+  .price-slider.house-slider {
+    margin: 0px !important;
+  }
+}
+
+.under-bar {
+  width: 100%;
+  margin: 20px 0 25px 0;
+  height: 1px;
+  border-bottom: 1px solid #E0E0E0;
+}
 // ------------------------------------------ //
