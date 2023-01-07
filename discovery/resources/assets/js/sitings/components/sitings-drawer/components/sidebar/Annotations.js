@@ -237,21 +237,33 @@ class Annotations extends Component {
                 <div className='header'>Align</div>
                 <div className="easements">
                     <div className="btn-group">
-                        <div
+                        <div className='annotation-wrap'>
+                            <div className='left-pan'>
+                                <img src={HomePng}/>
+                                <span>Align wall to boundary</span>
+                            </div>
+                            <div
                                 className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT) ? 'primary' : 'default')}
                                 onClick={() => {
                                     canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT;
                                     this.setCurrentMode(MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT);
                                 }}>
-                            <i className="landconnect-icon plus"/> Align wall to boundary
+                                <i className="landconnect-icon plus"/> Select lines
+                            </div>
                         </div>
-                        <div
+                        <div className='annotation-wrap'>
+                            <div className='left-pan'>
+                                <img src={FilePng}/>
+                                <span>Align lot to page</span>
+                            </div>
+                            <div
                                 className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_PAGE_ALIGNMENT) ? 'primary' : 'default')}
                                 onClick={() => {
                                     canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_PAGE_ALIGNMENT;
                                     this.setCurrentMode(MeasurementsLayerModel.MODE_PAGE_ALIGNMENT);
                                 }}>
-                            <i className="landconnect-icon plus"/> Align to page
+                                <i className="landconnect-icon plus"/> Select lines
+                            </div>
                         </div>
 
                         {

@@ -33,6 +33,19 @@ img.offset-right {
     order: 1;
     flex-grow: 0;
   }
+
+  &.primary {
+    background: $landconnect-theme-color;
+    color: #FFFFFF;
+
+    span {
+      color: #FFFFFF;
+    }
+
+    .landconnect-icon:before{
+      background-color: #FFFFFF;
+    }
+  }
 }
 
 .btn-primary.active {
@@ -653,6 +666,23 @@ img.offset-right {
           @media (min-width: 1025px) and (max-width: 1200px) {
             flex-direction: row;
           }
+        }
+
+        .annotation-wrap {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+
+          .left-pan {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+          }
+        }
+
+        .annotation-wrap:nth-child(1) {
+          margin-bottom: 10px;
         }
       }
 
