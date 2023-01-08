@@ -522,7 +522,8 @@ class Siting extends Model
             'command' => 'getenvelopecatalogue'
         ]);
 
-        return UserAPI::get('lcapi-call', compact('query'));
+        // return UserAPI::get('lcapi-call', compact('query'));
+        return ""; // Ares Bug
     }
 
     /**

@@ -173,6 +173,7 @@ class HouseDetails extends Component {
                 },
                 multiFloors: {crtFloor}
             } = canvasModel;
+
             trees = modelStructures.filter(structure => structure.type === StructurePoint.TREE);
             structures = modelStructures.filter(structure => structure.dataType === StructureRectangle.DATA_TYPE);
             transformations = crtFloor ? crtFloor.transformations.transformations : [];
@@ -328,6 +329,7 @@ class HouseDetails extends Component {
 }
 
 const Modification = ({modification, onModificationChange, modificationNo, modificationTitle, rotation}) => {
+    console.log('modification', modification)
     const type = modification.type;
     const isStructure = modification.dataType === StructureRectangle.DATA_TYPE;
     const isPool = type === StructureRectangle.POOL;

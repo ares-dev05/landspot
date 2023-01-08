@@ -20,6 +20,8 @@ import CanvasView from '~/sitings-sdk/src/sitings/view/SitingsView';
 import SegmentationModel from '~/sitings-sdk/src/sitings/model/levels/segmentation/SegmentationModel';
 import HomePng from '~/../img/Home.svg';
 import FilePng from '~/../img/File.svg';
+import TrashPng from '~/../img/Trash.svg';
+
 
 class Annotations extends Component {
     static propTypes = {
@@ -39,6 +41,9 @@ class Annotations extends Component {
 
     componentDidMount() {
         const canvasModel = CanvasModel.getModel();
+        canvasModel.streetsModel.addEventListener(EventBase.ADDED, this.onAnnotationAdded, this);
+        canvasModel.posModel.addEventListener(EventBase.CHANGE, this.onAnnotationChange, this);
+
         canvasModel.measurementsModel.addEventListener(MeasurementPointEvent.EDIT, this.editMeasurement, this);
         canvasModel.streetsModel.addEventListener(StreetModel.SNAP, this.onCanvasModelChange, this);
         canvasModel.lotTopographyModel.addEventListener(EventBase.ADDED, this.onCanvasModelChange, this);
@@ -48,6 +53,7 @@ class Annotations extends Component {
         canvasModel.multiFloors.addEventListener('floorRotated', this.onCanvasModelChange, this, 100);
     }
 
+    
     componentWillUnmount() {
         const canvasModel = CanvasModel.getModel();
         canvasModel.measurementsModel.removeEventListener(MeasurementPointEvent.EDIT, this.editMeasurement, this);
@@ -91,6 +97,18 @@ class Annotations extends Component {
                 break;
             }
         }
+    };
+    
+    onAnnotationAdded = () => {
+        this.onEasementChange();
+    };
+
+    onAnnotationChange = () => {
+        const {
+            setDrawerData
+        } = this.props;
+        const canvasModel = CanvasModel.getModel();
+        setDrawerData({sitingSession: canvasModel.recordState()});
     };
 
     setCurrentMode = (currentMode) => {
@@ -179,7 +197,13 @@ class Annotations extends Component {
         const props = {...this.props, ...this, ...this.state};
         const {
             streetsModel: {streets},
+            posModel: {points},
         } = canvasModel;
+
+        console.log('streets',streets)
+        console.log('points',points)
+
+        console.log('canvasModel',canvasModel)
 
         if (AccountMgr.i.builder && AccountMgr.i.builder.hasAdvancedFeatures) {
             if (AccountMgr.i.builder.hasHeightEnvelope && heightVisualisationEnabled) {
@@ -224,7 +248,7 @@ class Annotations extends Component {
                             ) &&
                             <div className="note">
                                 <i className="fal fa-exclamation-circle"/>
-                                Select a lot boundary and then click on a house wall
+                                Click on a lot to place
                             </div>
                         }
                     </div>
@@ -286,53 +310,59 @@ class Annotations extends Component {
                     </div>
                 </div>
 
-                <div className='header'>Private open space</div>
+                <div className='header no-margin-bottom'>
+                    <p>Private open space</p>
+                    <div
+                            className={classnames('btn-primary', (modelMode && currentMode === MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE) ? 'primary' : 'default')}
+                            onClick={() => {
+                                canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE;
+                                this.setCurrentMode(MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE);
+                            }}>
+                        <i className="landconnect-icon plus"/> Add
+                    </div>
+                </div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', (modelMode && currentMode === MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE) ? 'primary' : 'default')}
-                                onClick={() => {
-                                    canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE;
-                                    this.setCurrentMode(MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE);
-                                }}>
-                            <i className="landconnect-icon plus"/> Draw open space area
-                        </button>
-
-                        <button type="button" className="button transparent"
-                                onClick={() => {
-                                    canvasModel.posModel.clear();
-                                }}>
-                            <i className="landconnect-icon times"/> Clear Points
-                        </button>
-
                         {
                             (
                                 modelMode === MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE
                             ) &&
                             <div className="note">
                                 <i className="fal fa-exclamation-circle"/>
-                                Click points on the siting to draw open space
+                                Click points on the siting to add open space
                             </div>
                         }
                     </div>
 
                     <div className="easement">
-                        <div className="blocks"/>
+                        <div className="blocks">
+                            {points.map((annotation, annotationIndex) =>
+                                <Annotation
+                                    key={annotationIndex}
+                                    annotation={annotation}
+                                    annotationNo={annotationIndex + 1}
+                                    onCanvasModelChange={this.onCanvasModelChange}
+                                    type={0}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
 
 
-                <div className='header'>Street names</div>
+                <div className='header no-margin-bottom'>
+                    <p>Street names</p>
+                    <div
+                            className={classnames('btn-primary', currentMode === false ? 'primary' : 'default')}
+                            onClick={() => {
+                                canvasModel.measurementsModel.currentMode = MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE;
+                                this.setCurrentMode(MeasurementsLayerModel.MODE_PRIVATE_OPEN_SPACE);
+                            }}>
+                        <i className="landconnect-icon plus"/> Add
+                    </div>
+                </div>
                 <div className="easements">
                     <div className="btn-group">
-                        <button type="button"
-                                className={classnames('button', currentMode === false ? 'primary' : 'default')}
-                                onClick={() => {
-
-                                }}>
-                            <i className="landconnect-icon plus"/> Add street name
-                        </button>
-
                         {
                             (
                                 currentMode === false
@@ -352,6 +382,7 @@ class Annotations extends Component {
                                     annotation={annotation}
                                     annotationNo={annotationIndex + 1}
                                     onCanvasModelChange={this.onCanvasModelChange}
+                                    type={1}
                                 />
                             )}
                         </div>
@@ -360,16 +391,19 @@ class Annotations extends Component {
 
                 {(engineeringAvailable || nearmapAvailable) &&
                     <React.Fragment>
-                        <div className='header'>Advanced Siting</div>
+                        <div className='header no-margin-bottom'>
+                            <p>Advanced Siting</p>
+                            {drawerData.siting &&
+                                <div
+                                        className={classnames('btn-primary', (currentMode === MeasurementsLayerModel.MODE_ENGINEERING_ALIGNMENT) ? 'primary' : 'default')}
+                                        onClick={engineeringAvailable ? this.showAlignEngineering : this.showNearmapsOverlay}>
+                                    <i className="landconnect-icon plus"/> Add
+                                </div>
+                            }
+                        </div>
                         <div className="easements">
                             <div className="btn-group">
-                                {drawerData.siting &&
-                                    <button type="button"
-                                            className={classnames('button', (currentMode === MeasurementsLayerModel.MODE_ENGINEERING_ALIGNMENT) ? 'primary' : 'default')}
-                                            onClick={engineeringAvailable ? this.showAlignEngineering : this.showNearmapsOverlay}>
-                                        Create Advanced Siting
-                                    </button>
-                                }
+                                
                             </div>
                         </div>
                     </React.Fragment>
@@ -379,31 +413,52 @@ class Annotations extends Component {
     }
 }
 
-const Annotation = ({annotation, onCanvasModelChange, annotationNo}) => {
+const Annotation = ({annotation, onCanvasModelChange, annotationNo, type}) => {
+    console.log('annotation', annotation.type)
+    const isStreet = type == 1;
+    const isPos = type == 0;
     return (
-        <div className="block street-names">
-            <div className="easement-number street-names-number">
+        <div className="block">
+            <div className="easement-number">
                 {annotationNo}
             </div>
 
-            <div className='easement-dimension street-names-input'>
-                <div className='landconnect-input'>
-                    <input type='text'
-                           autoComplete="off"
-                           onChange={(e) => {
-                               annotation.text = e.target.value;
-                               onCanvasModelChange();
-                           }}
-                           onFocus={(event) => event.target.select()}
-                           placeholder='Street name'
-                           value={annotation.text || ''}
-                    />
-                </div>
-            </div>
+            <div className='wrap'>
+                <div className='row'>
+                    <div className="easement-type">
+                        {isStreet &&
+                            <div className='landconnect-input offset-meter-input long'>
+                                <input type='text'
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        annotation.text = e.target.value;
+                                        onCanvasModelChange();
+                                    }}
+                                    onFocus={(event) => event.target.select()}
+                                    placeholder=''
+                                    value={annotation.text || ''}
+                                />
+                                <span className='left-placeholder'>Label</span>
+                                <span className='right-placeholder'>Text</span>
+                            </div>
+                        }
+                        {isPos && `Point`}
+                    </div>
 
-            <button type="button" className='button transparent delete-btn'>
-                <i className='landconnect-icon times'/>
-            </button>
+                    <div className='house-control-wrap'>
+                        <div className='button transparent delete-btn'
+                                onClick={() => {
+                                    const canvasModel = CanvasModel.getModel();
+                                    if(isPos)
+                                        annotation.deletePoint()
+                                    onCanvasModelChange();
+                                }}>
+                             <img src={TrashPng} />
+                        </div>
+                    </div>
+                </div>
+                <div className='easement-dimension'></div>
+            </div>
         </div>
     );
 };

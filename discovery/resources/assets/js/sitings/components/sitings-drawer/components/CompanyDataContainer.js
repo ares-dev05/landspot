@@ -477,8 +477,7 @@ class CompanyDataContainer extends Component {
                 <RightPanel className='flex-column drawer'>
                     {
                         (
-                            (applicationStep === ApplicationStep.TRACE_OUTLINE ||
-                                applicationStep === ApplicationStep.ADD_MEASUREMENTS)
+                            (applicationStep === ApplicationStep.TRACE_OUTLINE)
                         ) &&
                         <PagePreview
                             oldViewScale={this.state.oldViewScale}
