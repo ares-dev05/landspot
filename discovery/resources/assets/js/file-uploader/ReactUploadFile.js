@@ -213,6 +213,8 @@ export default class ReactUploadFile extends Component {
             this.onAbort(curId);
         });
 
+        console.log('formData', formData);
+
         xhr.send(formData);
 
         this.setState({

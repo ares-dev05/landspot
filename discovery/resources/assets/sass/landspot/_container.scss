@@ -22,6 +22,7 @@
       padding: $content-padding;
       box-shadow: $app-box-shadow;
       position: relative;
+      min-width: 480px;
 
       @import "components/left-panel";
     }

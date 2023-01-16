@@ -23,6 +23,7 @@ import ThemeManager from '~/sitings-sdk/src/sitings/view/theme/ThemeManager'
 import Geom from '~/sitings-sdk/src/utils/Geom'
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent'
 import { ToggleSwitch } from '~sitings~/helpers/ToggleSwitch'
+import HouseSlider from '~sitings~/helpers/HouseSlider';
 import DisplayManager from '../../../../../sitings-sdk/src/utils/DisplayManager'
 import MagnifyingGlassMinus from '~/../img/MagnifyingGlassMinus.svg'
 import MagnifyingGlassPlus from '~/../img/MagnifyingGlassPlus.svg'
@@ -53,12 +54,15 @@ class LotView extends Component {
     this.northIndicator = null
     this.canvasSvgView = null
     this.pixiApp = null
+    this.northApp = null
     this.pixiElement = null
+    this.northElement = null
   }
 
   componentDidMount () {
     window.addEventListener('resize', this.resizeEventListener)
     this.addPixiApp()
+    this.addNorthApp()
     if (this.pixiElement) {
       this.setupCanvasView()
       this.setupLotPathModel()
@@ -93,6 +97,7 @@ class LotView extends Component {
     if (drawerData.previewHeight != prevProps.drawerData.previewHeight) {
       const { width, height } = this.getDrawerDimensions()
       this.pixiApp.renderer.resize(width, height - drawerData.previewHeight)
+      this.northApp.renderer.resize(32, 32)
     }
   }
 
@@ -133,6 +138,7 @@ class LotView extends Component {
     this.canvasView = null
     this.canvasSvgView = null
     this.pixiApp = null
+    this.northApp = null
     this.pixiElement = null
 
     window.removeEventListener('resize', this.resizeEventListener)
@@ -617,8 +623,22 @@ class LotView extends Component {
     })
 
     ViewSettings.instance.application = this.pixiApp
-
     this.pixiElement.appendChild(this.pixiApp.view)
+  }
+
+  addNorthApp = () => {
+    PIXI.settings.RESOLUTION = 1
+
+    this.northApp = new PIXI.Application({
+      width: 32,
+      height: 32,
+      backgroundColor: 0x1F65FF,
+      antialias: true,
+      autoResize: true,
+      forceFXAA: true,
+      forceCanvas: true
+    })
+    this.northElement.appendChild(this.northApp.view)
   }
 
   addMainStage = () => {
@@ -658,8 +678,8 @@ class LotView extends Component {
     const mainStage = stage.getChildByName('mainStage') || stage
 
     if (this.northIndicator) {
-      this.northIndicator.x = width - this.northIndicator.size / 2 - 26
-      this.northIndicator.y = height - 142
+      this.northIndicator.x = 16
+      this.northIndicator.y = 16
     }
 
     const lotBackground = mainStage.getChildByName('lotBackground')
@@ -781,8 +801,8 @@ class LotView extends Component {
   }
 
   addNorthIndicator = () => {
-    const { stage } = this.pixiApp
-    const mainStage = stage.getChildByName('mainStage') || stage
+    const { stage } = this.northApp
+    const mainStage = stage
 
     this.northIndicator.name = 'northIndicator'
     mainStage.addChild(this.northIndicator)
@@ -889,7 +909,11 @@ class LotView extends Component {
     const model = CanvasModel.getModel()
     const isExport = step === ApplicationStep.EXPORT_PDF
     const hasEngineering = model.engineeringState && model.engineeringState.view
-    const isEngineeringExport = isExport && hasEngineering
+    const isEngineeringExport = isExport && hasEngineering;
+
+    const setNorthElement = (element) => {
+      this.northElement = element
+    }
 
     return (
       <React.Fragment>
@@ -937,11 +961,12 @@ class LotView extends Component {
             disabled={disablePageAlignButtons}
           />
         )}
-
+        
         <LotControls
           houseRotation={houseRotation}
           northRotation={northRotation}
           checkRotation={this.checkRotation}
+          setNorthElement={setNorthElement}
           step={step}
           canvasView={this.canvasView}
           drawerDetails={drawerDetails}
@@ -1050,15 +1075,23 @@ const LotControls = ({
   checkRotation,
   step,
   canvasView = {},
+  setNorthElement,
   houseRotation = 0,
-  northRotation = 0
+  northRotation = 0,
 }) => {
   const pagePreview = document.querySelector('.page-preview')
   let leftMargin = 30
 
+  
   if (pagePreview) {
     leftMargin = leftMargin + pagePreview.clientWidth
   }
+
+  useEffect(() => {
+    const northDom = document.getElementById('north-element');
+    const angle = 45 + northRotation;
+    northDom.style.transform = 'rotate(' + angle + 'deg)';
+  }, [northRotation])
 
 
   return (
@@ -1084,13 +1117,42 @@ const LotControls = ({
               </div>
             )}
 
+            <div className="sitings-sliders"
+              style={{
+                left: '30px',
+                bottom: step == 1 && drawerData.referencePlan != null ? `${previewHeight + 60}px`: '10px'
+              }}>
+                {step > ApplicationStep.ADD_EASEMENT && 
+                  <Slider value={houseRotation || null}
+                    label='HOUSE ROTATION'
+                    onSlideEnd={() => {
+                      const canvasModel = CanvasModel.getModel();
+                      setDrawerData({ sitingSession: canvasModel.recordState() });
+                    }}
+                    onUpdate={values => {
+                      checkRotation(values[0], 'house');
+                      const canvasModel = CanvasModel.getModel();
+                      setDrawerData({ sitingSession: canvasModel.recordState() });
+                    }} />
+                }
+                <Slider value={rotation || null}
+                  label='LOT ROTATION'
+                  onSlideEnd={values => {
+                    setDrawerData({ rotation: values[0] });
+                  }}
+                  onUpdate={values => {
+                    checkRotation(values[0]);
+                    setDrawerData({ rotation: values[0] });
+                  }} />
+            </div>
+
             <div
               className='control-pan'
               style={{
-                bottom: step < 3 ? `${previewHeight + 60}px`: '10px'
+                bottom: step == 1 && drawerData.referencePlan != null ? `${previewHeight + 60}px`: '10px'
               }}
             >
-              <div className='circle-slider'>
+              {/* <div className='circle-slider'>
                 <CircularSlider
                   min={0}
                   max={360}
@@ -1102,33 +1164,33 @@ const LotControls = ({
                   trackSize={1}
                   knobSize={15}
                   trackColor='#eeeeee'
-                  progressColorFrom='$landconnect-theme-color'
-                  progressColorTo='$landconnect-theme-color'
-                  labelColor='$landconnect-theme-color'
-                  knobColor='$landconnect-theme-color'
+                  progressColorFrom='#1F65FF'
+                  progressColorTo='#1F65FF'
+                  labelColor='#1F65FF'
+                  knobColor='#1F65FF'
                   label=' '
                   labelBottom={true}
                   onChange={value => {
                     if (value > 180) {
                       value = value - 360
                     }
-                    if (
-                      step === ApplicationStep.IMPORT_FLOOR_PLAN ||
-                      step === ApplicationStep.ADD_EXTENSIONS ||
-                      step === ApplicationStep.ADD_MEASUREMENTS
-                    ) {
-                      checkRotation(value, 'house')
-                      const canvasModel = CanvasModel.getModel()
-                      setDrawerData({
-                        sitingSession: canvasModel.recordState()
-                      })
-                    } else if (step !== ApplicationStep.EXPORT_PDF) {
+                    console.log('step', step)
+                    // if (
+                    //   step === ApplicationStep.TRACE_OUTLINE ||
+                    //   step === ApplicationStep.ADD_EASEMENT
+                    // ) {
                       checkRotation(value)
                       setDrawerData({ rotation: value })
-                    }
+                    // } else if (step !== ApplicationStep.EXPORT_PDF) {
+                    //   checkRotation(value, 'house')
+                    //   const canvasModel = CanvasModel.getModel()
+                    //   setDrawerData({
+                    //     sitingSession: canvasModel.recordState()
+                    //   })
+                    // }
                   }}
                 />
-              </div>
+              </div> */}
               <img
                 src={MagnifyingGlassPlus}
                 width='16px'
@@ -1145,30 +1207,16 @@ const LotControls = ({
                   scaleModel(-5)
                 }}
               />
-              <div className='cursor-wrap'>
-                <img src={NavigationArrow} width='16px' height='16px' />
+              <div className='cursor-wrap' ref={node => (setNorthElement(node))}>
+                <div className='img'>
+                  <img src={NavigationArrow} width='16px' height='16px' id="north-element"/>
+                </div>
               </div>
             </div>
           </div>
         )
       }}
     </DrawerContext.Consumer>
-  )
-}
-
-const Slider = ({ value, label, onSlideEnd, onUpdate }) => {
-  return (
-    <CompoundSlider
-      min={-180}
-      max={180}
-      step={0.01}
-      formatter={value => rotationFormatter(value, label, onUpdate)}
-      values={[value || 0]}
-      onSlideEnd={onSlideEnd}
-      onUpdate={values => {
-        onUpdate(values)
-      }}
-    />
   )
 }
 
@@ -1297,7 +1345,7 @@ class InteractiveNorthIndicator extends PIXI.Sprite {
 
     // Draw graphics
     this.back = new PIXI.Graphics()
-    this.back.beginFill(ThemeManager.i.theme.primary)
+    this.back.beginFill(0x1F65FF)
     this.back.lineStyle(1, 0, 0)
     this.back.drawCircle(0, 0, this.size / 2)
     this.back.endFill()
@@ -1315,8 +1363,8 @@ class InteractiveNorthIndicator extends PIXI.Sprite {
 
     this.symbolHolder = new PIXI.Sprite()
 
-    // this.addChild(this.back)
-    // this.addChild(this.symbolHolder)
+    this.addChild(this.back)
+    this.addChild(this.symbolHolder)
     // this.symbolHolder.addChild(this.symbol)
 
     // rotate the symbol
@@ -1342,8 +1390,33 @@ class InteractiveNorthIndicator extends PIXI.Sprite {
   onSymbolClicked (event) {
     const position = this.toLocal(event.data.global)
     const angle = Geom.rad2deg(Math.atan2(position.y, position.x)) + 90
-
+  
     this.angle = angle
     this.emit(EventBase.CHANGE, angle)
   }
 }
+
+const Slider = ({value, label, onSlideEnd, onUpdate}) => {
+  const [rotation, setRotation] = useState(null);
+
+  useEffect(
+      () => {
+          if (value !== null && rotation === null) {
+              setRotation(value);
+          }
+      },
+      [value, rotation]
+  );
+
+  return (
+      <HouseSlider min={-180} max={180} step={0.01}
+                      formatter={value => rotationFormatter(value, label, onUpdate)}
+                      label={label}
+                      values={[rotation || 0]}
+                      onSlideEnd={onSlideEnd}
+                      onUpdate={values => {
+                          onUpdate(values);
+                          setRotation(values[0]);
+                      }}/>
+  );
+};

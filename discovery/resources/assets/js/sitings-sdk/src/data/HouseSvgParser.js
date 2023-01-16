@@ -62,8 +62,6 @@ export default class HouseSvgParser extends MeasuredSvgParser
 	{
 		super(houseData, asynchronous);
 
-		console.log('driveway house data ', houseData);
-
 		/**
          * @type {string}
          * @private

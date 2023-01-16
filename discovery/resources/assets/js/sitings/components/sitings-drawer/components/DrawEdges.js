@@ -8,6 +8,8 @@ import { DrawerContext } from '../DrawerContainer'
 import * as actions from '../store/details/actions'
 import StepNavigation from './StepNavigation'
 import LotEdges from './sidebar/LotEdges'
+import { ProgressBar } from '~sitings~/helpers'
+import FileUploader from '~sitings~/helpers/file-uploader/FileUploader'
 import { CompanyDataContext } from './CompanyDataContainer'
 import uploadPng from './../../../../../img/upload.svg'
 import FilepdfPng from './../../../../../img/FilePdf.svg'
@@ -31,11 +33,17 @@ class DrawEdges extends Component {
     setApplicationStep: PropTypes.func.isRequired,
     setTraceMode: PropTypes.func.isRequired,
     setMetric: PropTypes.func.isRequired,
+    loadSitingWithRef: PropTypes.func.isRequired,
     metric: PropTypes.bool.isRequired
   }
 
   constructor (props) {
     super(props)
+
+    this.state = {
+      uploadingReferenceFile: false,
+      uploadingPercent: 0
+    }
   }
 
   componentDidMount () {
@@ -47,13 +55,17 @@ class DrawEdges extends Component {
       setCurrentStep,
       setApplicationStep,
       drawerData: { sitingSession },
-      drawerDetails: { drawerData }
+      drawerDetails: { drawerData },
+      location: { state },
+      loadSitingWithRef
     } = this.props
     const page = drawerData ? drawerData.page : null
 
     if (!sitingSession || !page) {
       loadSitingDrawer({ sitingId }, { step: 'edges' })
     }
+
+    if (state) loadSitingWithRef({ ...state.drawerData })
 
     setCurrentStep('DRAW_EDGES')
     setApplicationStep(ApplicationStep.TRACE_OUTLINE)
@@ -65,15 +77,49 @@ class DrawEdges extends Component {
     setTraceMode(!traceEnabled)
   }
 
+  fileUploaded = uploadingFile => {
+    const {
+      drawerData,
+      loadSitingWithRef,
+      saveDrawerData
+    } = this.props
+
+    loadSitingWithRef({ sitingId: drawerData.sitingId })
+    this.setState({
+      [uploadingFile]: false,
+      uploadingPercent: 0
+    })
+
+    saveDrawerData(2)
+  }
+
+  fileUploadError = (response, uploadingFile) => {
+    if (response) {
+      this.props.showErrors(response)
+    }
+    this.setState({
+      [uploadingFile]: false,
+      uploadingPercent: 0
+    })
+  }
+
+  beforeUpload = uploadingFile => {
+    this.setState({ [uploadingFile]: true })
+  }
+
+  fileUploadingProgress = progress => {
+    this.setState({
+      uploadingPercent: parseInt((progress.loaded / progress.total) * 100)
+    })
+  }
+
   componentDidUpdate (prevProps) {
     const {
         drawerData
       } = this.props
       if(drawerData.sitingId != undefined && drawerData.sitingId != null && drawerData.referencePlan == null) {
-        console.log('-> ->')
-        console.log('params', drawerData.sitingId)
         // window.location.href = "https://localsunny.com/sitings/drawer/478/edges";
-        this.props.saveDrawerData(1)
+        // this.props.saveDrawerData(1)
       }
   }
 
@@ -81,19 +127,24 @@ class DrawEdges extends Component {
 
   render () {
     const {
-      companyLoaded,
       traceEnabled,
       metric,
       setMetric,
       drawerData,
-      getPage
+      getPage,
+      match: {
+        params: { sitingId }
+      },
     } = this.props
 
+    const {
+      uploadingReferenceFile,
+      uploadingPercent
+    } = this.state
+    
     const hasTrace = AccountMgr.i.builder
       ? AccountMgr.i.builder.hasManualTracing
       : false
-
-    console.log('drawerData', drawerData.referencePlan)
 
     return (
       <React.Fragment>
@@ -106,16 +157,35 @@ class DrawEdges extends Component {
           <div className='filter-form'>
 
             <div className='first-row has-nav'>
-                <span className='filters-header'>Lot boundaries</span>
-              </div>
+              <span className='filters-header'>Lot boundaries</span>
 
-              <div className='step-note'>
-                <p>
-                  Create the boundaries for your lot. Upload a subplan to
-                  reference or trace, or manually enter the details of each
-                  boundary line below.
-                </p>
-              </div>
+              {!hasTrace &&
+                <div className='toggle-metric'>
+                    <ToggleSwitch
+                        labelPosition="left"
+                        onClick={() => setMetric(!metric)}
+                        text={{on: 'Metric', off: 'Imperial'}}
+                        label={{on: '', off: ''}}
+                        state={metric}
+                    />
+                </div>
+                }
+
+                {hasTrace &&
+                <button type="button" className='button default'
+                        onClick={() => this.toggleTraceMode()}>
+                    {traceEnabled ? 'Complete Trace' : 'Trace Lot'}
+                </button>
+                }
+            </div>
+
+            <div className='step-note'>
+              <p>
+                Create the boundaries for your lot. Upload a subplan to
+                reference or trace, or manually enter the details of each
+                boundary line below.
+              </p>
+            </div>
 
             {drawerData.referencePlan != null && <div className='file-block'>
               <span className='title'>Reference plan</span>
@@ -135,6 +205,45 @@ class DrawEdges extends Component {
                 </div>
               </div>
             </div>}
+
+            {drawerData.referencePlan == null && uploadingReferenceFile && (
+                <ProgressBar
+                  percent={uploadingPercent}
+                  className='form-upload-button'
+                />
+              )}
+
+            {drawerData.referencePlan == null && !uploadingReferenceFile && (
+              <div className='wrap-upload'>
+                <span>Reference plan</span>
+                <FileUploader
+                  className='form-row'
+                  // baseUrl={`/sitings/drawer/${sitingId}/edges`}
+                  baseUrl='/sitings/drawer/reference-plan'
+                  acceptMime='application/pdf'
+                  bodyFields={{ id: sitingId }}
+                  fileFieldName={'image'}
+                  chooseFileButton={
+                    <div className='upload-button'>
+                      <img src={uploadPng} />
+                      Upload
+                    </div>
+                  }
+                  beforeUpload={() =>
+                    this.beforeUpload('uploadingReferenceFile')
+                  }
+                  uploadError={response =>
+                    this.fileUploadError(
+                      response,
+                      'uploadingReferenceFile'
+                    )
+                  }
+                  uploadSuccess={() =>
+                    this.fileUploaded('uploadingReferenceFile')
+                  }
+                  onProgress={this.fileUploadingProgress}
+                />
+              </div>)}
 
             <LotEdges
               companyLoaded={true}

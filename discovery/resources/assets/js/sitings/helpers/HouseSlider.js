@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Slider, Handles, Tracks, Rail} from 'react-compound-slider';
-import {formatNumber} from '~sitings~/helpers';
-
-const getPricesText = (ranges) => {
-    return 'PRICE RANGE: $' + formatNumber(ranges[0]) + ' - $' + formatNumber(ranges[1]);
-};
 
 const Track = ({source, target, getTrackProps}) => (
     <div
@@ -53,19 +48,35 @@ class HouseSlider extends React.Component {
         onSlideEnd: PropTypes.func,
         values: PropTypes.array.isRequired,
         formatter: PropTypes.func,
+        label: PropTypes.string.isRequired,
     };
 
+    onstructor() {
+        this.state = {
+            currentPosition: 0
+        };
+    }
+
+    componentDidMount() {
+        
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+    }
+
     render() {
-        const {min, max, values, step, onUpdate, formatter, onSlideEnd} = this.props;
+        const {min, max, values, step, onUpdate, onChange, onSlideEnd, label} = this.props;
+
         return (
             <div className='price-slider house-slider'>
-                <div className="house-slider-wrap"><p>Rotation</p><p>{values}</p></div>
+                <div className="house-slider-wrap"><p>{label}</p><p>{values}</p></div>
                 <Slider
                     className='slider-container'
-                    step={step}
-                    mode={2}
+                    step={1}
+                    mode={1}
                     domain={[min, max]}
                     onUpdate={onUpdate}
+                    onChange={onChange}
                     onSlideEnd={onSlideEnd}
                     values={values}
                 >

@@ -35,6 +35,10 @@ export const loadSitingDrawer = (urlParams, params) => {
 
 export const saveRawData = (data, urlParams) => {
     const url = '/sitings/drawer/siting/:sitingId';
+
+    console.log('-- saveRawData --', {
+        url, data, urlParams
+    })
     return APIAction(SAVE_RAW_DATA, 'put', url, data, urlParams);
 };
 

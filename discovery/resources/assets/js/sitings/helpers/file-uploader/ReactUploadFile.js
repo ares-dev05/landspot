@@ -127,6 +127,7 @@ export default class ReactUploadFile extends Component {
 
         const fieldNameType = typeof this.fileFieldName;
         const numberLimit = this.numberLimit === 0 ? this.files.length : Math.min(this.files.length, this.numberLimit);
+
         for (let i = numberLimit - 1; i >= 0; i--) {
             if (fieldNameType === 'function') {
                 const file = this.files[i];
@@ -165,9 +166,9 @@ export default class ReactUploadFile extends Component {
         const xhr = new XMLHttpRequest();
 
         xhr.upload.onprogress = (event) => this.onProgress(event);
-
+        
         xhr.open('post', targetUrl, true);
-
+        
         /* authorization info for cross-domain */
         xhr.withCredentials = this.withCredentials;
 

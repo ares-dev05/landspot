@@ -13,6 +13,7 @@ import CarrotUp from '~/../img/CarrotUp.svg'
 import CarrotDown from '~/../img/CarrotDown.svg'
 import {ToggleSwitch} from '~sitings~/helpers/ToggleSwitch';
 import HouseSlider from '~sitings~/helpers/HouseSlider';
+import { useEffect, useState } from 'react';
 
 const DEFAULT_REAR_OPTION = 'option_x5f_rear_x5f_standard';
 
@@ -29,19 +30,25 @@ class LotHouses extends Component {
             houseId: null,
             selectedRangeName: '',
             selectedHouseName: '',
+            selectedFacadeName: '',
             rangeMinimized: 0,
             houseMinimized: 0,
+            facadeMinimized: 0,
             searchText: '',
             ranges: [],
             houses: [],
-            houseLoading: false
+            houseLoading: false,
+            houseAngle: 0,
+            currentSliderAngle: []
         };
     }
 
     componentDidMount() {
-        const {
-            companyLoaded,
-        } = this.props;
+        // const {
+        //     companyLoaded,
+        // } = this.props;
+
+        const companyLoaded = true
 
         if (companyLoaded) {
             this.checkHouseModel();
@@ -53,9 +60,11 @@ class LotHouses extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const {
-            companyLoaded,
-        } = this.props;
+        // const {
+        //     companyLoaded,
+        // } = this.props;
+
+        const companyLoaded = true;
 
         const {
             rangeId,
@@ -70,8 +79,7 @@ class LotHouses extends Component {
         } else if (rangeId != null && rangeId != prevState.rangeId) {
             ranges.map((range, index) => {
                 if (String(rangeId) === range.id.toString()) {
-                    const inx = index + 1;
-                    this.setState({selectedRangeName: 'Item ' + inx})
+                    this.setState({selectedRangeName: range.displayName})
                 }
             })
 
@@ -86,19 +94,32 @@ class LotHouses extends Component {
 
                 houses.map((house, index) => {
                     if (String(houseId) === house.id.toString() && this.state.houseId == null) {
-                        const inx = index + 1;
-                        this.setState({selectedHouseName: 'Item ' + inx})
+                        this.setState({selectedHouseName: house.name})
                     }
                 })
             }
         } else if (houseId != null && houseId != prevState.houseId) {
             houses.map((house, index) => {
+                console.log('house', house)
                 if (String(houseId) === house.id.toString()) {
-                    const inx = index + 1;
-                    this.setState({selectedHouseName: 'Item ' + inx})
+                    this.setState({selectedHouseName: house.name})
                 }
             })
         }
+
+        let  houseRotation = 0;
+        try {
+            const canvasModel = CanvasModel.getModel();
+            houseRotation = canvasModel.multiFloors.crtFloor.rotation;
+            houseRotation = Math.round((houseRotation + Number.EPSILON) * 100) / 100;
+    
+            console.log('componentDidUpdate : houseRotation', houseRotation)
+            console.log('componentDidUpdate : this.state.houseAngle', this.state.houseAngle)
+    
+            if(houseRotation != null && houseRotation != 0 && this.state.houseAngle == 0) {
+                this.setState({houseAngle: houseRotation})
+            }
+        } catch (e) {}
     }
 
     addMultiHouseListener = () => {
@@ -285,46 +306,51 @@ class LotHouses extends Component {
         } = this.props;
 
         const checkRotation = (handleRotation = null, type = 'lot') => {
-            const {
-                drawerData: {rotation},
-                drawerDetails: {drawerData},
-            } = this.props;
-    
-            // const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.layers.0.rotation', null);
-            const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.crtFloor.rotation', null);
-            if (type === 'house' || (houseRotation && handleRotation === null)) {
-                const viewRotation = (handleRotation !== null && type === 'house')
-                    ? handleRotation
-                    : houseRotation !== null
-                        ? houseRotation
-                        : drawerData.houseRotation || 0;
-    
-                const canvasModel = CanvasModel.getModel();
-    
-                if (canvasModel.multiFloors.crtFloor.rotation !== viewRotation) {
-                    canvasModel.multiFloors.setFloorRotation(viewRotation);
+            try {
+
+                const {
+                    drawerData: {rotation},
+                    drawerDetails: {drawerData},
+                } = this.props;
+        
+                // const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.layers.0.rotation', null);
+                const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.crtFloor.rotation', null);
+                if (type === 'house' || (houseRotation && handleRotation === null)) {
+                    const viewRotation = (handleRotation !== null && type === 'house')
+                        ? handleRotation
+                        : houseRotation !== null
+                            ? houseRotation
+                            : drawerData.houseRotation || 0;
+        
+                    const canvasModel = CanvasModel.getModel();
+        
+                    if (canvasModel.multiFloors.crtFloor.rotation !== viewRotation) {
+                        canvasModel.multiFloors.setFloorRotation(viewRotation);
+                    }
                 }
-            }
-    
-            if (type === 'lot' || (rotation && handleRotation === null)) {
-                const viewRotation = handleRotation !== null
-                    ? handleRotation
-                    : rotation !== null
-                        ? rotation
-                        : drawerData.rotation || 0;
-    
-                if (this.canvasView.viewRotation !== viewRotation) {
-                    this.canvasView.viewRotation = viewRotation;
+        
+                if (type === 'lot' || (rotation && handleRotation === null)) {
+                    const viewRotation = handleRotation !== null
+                        ? handleRotation
+                        : rotation !== null
+                            ? rotation
+                            : drawerData.rotation || 0;
+        
+                    if (this.canvasView.viewRotation !== viewRotation) {
+                        this.canvasView.viewRotation = viewRotation;
+                    }
+        
+                    // Update the north indicator rotation
+                    let northRotation = parseFloat(this.props.drawerData.northRotation);
+                    if (!isFinite(northRotation)) {
+                        northRotation = 0;
+                    }
+        
+                    // update the north rotation
+                    this.northIndicator.angle = northRotation ? northRotation : viewRotation;
                 }
-    
-                // Update the north indicator rotation
-                let northRotation = parseFloat(this.props.drawerData.northRotation);
-                if (!isFinite(northRotation)) {
-                    northRotation = 0;
-                }
-    
-                // update the north rotation
-                this.northIndicator.angle = northRotation ? northRotation : viewRotation;
+            } catch (e) {
+
             }
         };
 
@@ -353,19 +379,33 @@ class LotHouses extends Component {
         }
 
         const Slider = ({value, label, onSlideEnd, onUpdate}) => {
+            const [rotation, setRotation] = useState(null);
+
+            useEffect(
+                () => {
+                    if (value !== null && rotation === null) {
+                        setRotation(value);
+                    }
+                },
+                [value, rotation]
+            );
+
             return (
                 <HouseSlider min={-180} max={180} step={0.01}
                                 formatter={value => rotationFormatter(value, label, onUpdate)}
-                                values={[value || 0]}
+                                values={[rotation || 0]}
                                 onSlideEnd={onSlideEnd}
+                                label={label}
                                 onUpdate={values => {
                                     onUpdate(values);
+                                    setRotation(values[0]);
                                 }}/>
             );
         };
 
-        console.log('props', this.props)
         const {ranges, houses, rangeId, searchText, houseLoading} = this.state;
+        
+        const houseId = houseModel && houseModel.houseData ? houseModel.houseData.id : null;
 
         let houseModel = null;
         let canvasModel = null;
@@ -374,6 +414,7 @@ class LotHouses extends Component {
         try {
             canvasModel = CanvasModel.getModel();
             houseRotation = canvasModel.multiFloors.crtFloor.rotation;
+            houseModel = canvasModel.multiFloors.crtFloor;
         } catch (e) {}
         houseRotation = Math.round((houseRotation + Number.EPSILON) * 100) / 100;
 
@@ -399,13 +440,13 @@ class LotHouses extends Component {
                                 <img
                                     src={CarrotDown}
                                     onClick={() => {
-                                        this.setState({rangeMinimized : !this.state.rangeMinimized});     
+                                        this.setState({rangeMinimized : 0});     
                                     }} />
                             </div>}
                         {this.state.rangeMinimized == 0 && <img
                                 src={CarrotUp}
                                 onClick={() => {
-                                    this.setState({rangeMinimized: !this.state.rangeMinimized});
+                                    this.setState({rangeMinimized: 1});
                                 }}
                             />
                         }
@@ -416,7 +457,7 @@ class LotHouses extends Component {
                                 range => <div key={range.id}
                                               className="form-row">
                                     <HouseRadio
-                                        name={`range-radio-${range.name}`}
+                                        name={`${range.name}`}
                                         value={range.id}
                                         checked={String(rangeId) === range.id.toString()}
                                         label={range.name.toUpperCase()}
@@ -425,6 +466,7 @@ class LotHouses extends Component {
                                                 houseModel.houseData = null;
                                                 houseModel.clearLayers();
                                             }
+                                            this.setState({rangeMinimized: 1});
                                             this.filterCompanyData({rangeId});
                                         }}
                                     />
@@ -442,13 +484,13 @@ class LotHouses extends Component {
                                 <img
                                     src={CarrotDown}
                                     onClick={() => {
-                                        this.setState({houseMinimized : !this.state.houseMinimized});     
+                                        this.setState({houseMinimized : 0});     
                                     }} />
                             </div>}
                         {this.state.houseMinimized == 0 && <img
                                 src={CarrotUp}
                                 onClick={() => {
-                                    this.setState({houseMinimized: !this.state.houseMinimized});
+                                    this.setState({houseMinimized: 1});
                                 }}
                             />
                         }
@@ -459,7 +501,7 @@ class LotHouses extends Component {
                             (house, index) => <div key={index+'_'+house.id}
                                           className="form-row">
                                 <HouseRadio
-                                    name={`floorplan-radio-${house.name}`}
+                                    name={`${house.name}`}
                                     value={house.id}
                                     checked={String(this.state.houseId) === house.id.toString()}
                                     label={house.name.toUpperCase()}
@@ -468,6 +510,8 @@ class LotHouses extends Component {
                                         this.loadHouse(selectedHouse);
 
                                         this.setState({houseId: houseId});
+                                        this.setState({houseMinimized: 1});
+                                        this.setState({selectedHouseName: `${house.name}`})
                                     }}
                                 />
                             </div>
@@ -477,7 +521,24 @@ class LotHouses extends Component {
 
                 {!searchText &&
                 <React.Fragment>
-                    <div className='header'><span>Select a facade</span></div>
+                    <div className='header'>
+                        <span>Select a facade</span>
+                        {this.state.facadeMinimized == 1 && <div className='flex'>
+                                <p>{this.state.selectedFacadeName}</p>
+                                <img
+                                    src={CarrotDown}
+                                    onClick={() => {
+                                        this.setState({facadeMinimized : 0});     
+                                    }} />
+                            </div>}
+                        {this.state.facadeMinimized == 0 && <img
+                                src={CarrotUp}
+                                onClick={() => {
+                                    this.setState({facadeMinimized: 1});
+                                }}
+                            />
+                        }
+                    </div>
                     <div className="form-rows">
                         {
                             (houseModel && houseModel.format === HouseModel.FORMAT_XML) ?
@@ -487,13 +548,15 @@ class LotHouses extends Component {
                                             <div key={facade.id}
                                                  className="form-row">
                                                 <HouseRadio
-                                                    name={`facade-radio-${facade.id}`}
+                                                    name={`${facade.id}`}
                                                     value={facade.id}
                                                     checked={facade === houseModel.xmlMerger.facade}
                                                     label={facade.name.toUpperCase()}
                                                     onChange={() => {
                                                         houseModel.setXMLSelectedFacade(facade);
                                                         this.recordState();
+                                                        this.setState({selectedFacadeName: `${facade.id}`});
+                                                        this.setState({facadeMinimized: 1});
                                                     }}
                                                 />
                                             </div>
@@ -511,13 +574,15 @@ class LotHouses extends Component {
                                                     <div key={group.id}
                                                          className="form-row">
                                                         <HouseRadio
-                                                            name={`facade-radio-${group.id}`}
+                                                            name={`${group.id}`}
                                                             value={group.id}
                                                             checked={facade.visible}
                                                             label={label.toUpperCase()}
                                                             onChange={facadeId => {
                                                                 houseModel.selectFacade(facadeId);
                                                                 this.recordState();
+                                                                this.setState({selectedFacadeName: `${group.id}`});
+                                                            this.setState({facadeMinimized: 1});
                                                             }}
                                                         />
                                                     </div>
@@ -614,17 +679,6 @@ class LotHouses extends Component {
                                     label={{on: '', off: ''}}
                                     state={mirrored}
                                 />
-                        <Slider value={houseRotation || null}
-                                label='HOUSE ROTATION'
-                                onSlideEnd={() => {
-                                    const canvasModel = CanvasModel.getModel();
-                                    setDrawerData({sitingSession: canvasModel.recordState()});
-                                }}
-                                onUpdate={values => {
-                                    checkRotation(values[0], 'house');
-                                    const canvasModel = CanvasModel.getModel();
-                                    setDrawerData({sitingSession: canvasModel.recordState()});
-                                }}/>
                     </div>
                 </React.Fragment>
                 }

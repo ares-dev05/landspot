@@ -355,6 +355,8 @@ img.offset-right {
       width: 26%;
       padding: 0px $content-padding;
       color: #fff;
+      min-width: 480px;
+      z-index: 999;
 
       & > .button {
         color: #fff;
@@ -390,7 +392,7 @@ img.offset-right {
     }
 
     .button-continue {
-      background: #005ff9;
+      background: $landconnect-theme-color;
       border-radius: 8px;
       flex: none;
       order: 0;
@@ -722,14 +724,14 @@ img.offset-right {
           display: flex;
           align-items: center;
           text-align: center;
-          color: #005FF9;
+          color: $landconnect-theme-color;
           flex: none;
           order: 1;
           flex-grow: 0;
         }
 
         i:before {
-          color: #005FF9;
+          color: $landconnect-theme-color;
         }
 
         & > i {
@@ -931,6 +933,12 @@ img.offset-right {
                   margin-left: 4px;
                 }
 
+                .no-offset {
+                  .offset:first-child {
+                    margin-left: 0px !important;
+                  }
+                }
+
                 & > .landconnect-input {
                   &.input-group {
                     & > .input-group-addon {
@@ -1072,7 +1080,7 @@ img.offset-right {
           display: flex;
           flex-direction: row;
           align-items: center;
-          padding: 10px 12px 10px 12px;
+          padding: 10px 25px 10px 45px;
           background: transparent;
           gap: 8px;
           border: 1px solid #DCDDDF;
@@ -1089,6 +1097,12 @@ img.offset-right {
 
         .offset {
           margin-right: 4px;
+        }
+
+        .no-offset {
+          .offset:first-child {
+            margin-left: 0px !important;
+          }
         }
       }
 
@@ -1216,7 +1230,6 @@ img.offset-right {
 
         .price-slider {
           display: flex;
-          flex-direction: row-reverse;
           justify-content: space-between;
           align-items: center;
           margin: 15px 0;
@@ -1679,7 +1692,6 @@ img.offset-right {
 
         .price-slider {
           display: flex;
-          flex-direction: row-reverse;
           justify-content: space-between;
           align-items: center;
           margin: 15px 0;
@@ -1758,13 +1770,14 @@ img.offset-right {
     right: 30px;
     display: flex;
     flex-direction: column;
-    height: 167px;
+    height: 127px;
     width: 48px;
     justify-content: space-between;
-    padding: 8px;
+    padding: 15px 8px 8px 8px;
 
     img {
       margin: 0 auto;
+      cursor: pointer;
     }
 
     .circle-slider {
@@ -1777,12 +1790,19 @@ img.offset-right {
       width: 32px;
       height: 32px;
       position: relative;
+      cursor: pointer;
 
-      img {
+      .img {
         position: absolute;
         top: 50%;
         right: 50%;
         transform: translate(50%, -50%);
+        width: 16px;
+        height: 16px;
+      }
+
+      canvas {
+        border-radius: 8px;
       }
     }
   }
@@ -1875,10 +1895,9 @@ img.offset-right {
       position: relative;
 
       .left-bar {
-        background: #1F65FF;
+        background: $landconnect-theme-color;
         height: 3px;
         left: 0px;
-        z-index: -1;
         position: absolute;
         top: 1px;
       }
@@ -1887,9 +1906,12 @@ img.offset-right {
         background: #E4E7EA;
         height: 3px;
         right: 0px;
-        z-index: -1;
         position: absolute;
         top: 1px;
+      }
+
+      .handle {
+        z-index: 1;
       }
     }
   }
@@ -1925,5 +1947,29 @@ img.offset-right {
   margin: 20px 0 25px 0;
   height: 1px;
   border-bottom: 1px solid #E0E0E0;
+}
+
+.arrow-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-left: 10px;
+
+  .transparent.direction {
+    margin-left: 0px!important;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 // ------------------------------------------ //

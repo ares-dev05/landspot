@@ -26,6 +26,7 @@ import Utils from '../../../../../sitings-sdk/src/utils/Utils'
 import CarrotUp from '~/../img/CarrotUp.svg'
 import CarrotDown from '~/../img/CarrotDown.svg'
 import XPng from '~/../img/X.svg'
+import { max } from 'lodash'
 
 class PagePreview extends Component {
   static propTypes = {
@@ -87,7 +88,7 @@ class PagePreview extends Component {
 
   componentDidMount () {
     let { resizeTS } = this.state
-    const { getPage } = this.props
+    const { getPage, setPreviewHeight } = this.props
 
     const page = getPage()
 
@@ -96,6 +97,12 @@ class PagePreview extends Component {
         resizeTS: ++resizeTS,
         height: this.props.drawerData.previewHeight
       })
+
+      const maxHeight =
+        document.getElementsByClassName('right-panel')[0].offsetHeight;
+
+      setPreviewHeight(maxHeight * 0.3)
+
     }
 
     this.addNearmapModelListener()
@@ -683,6 +690,9 @@ class PagePreview extends Component {
         minConstraints={[0, 0]}
         width={0}
         height={this.props.drawerData.previewHeight}
+        style={{
+          display: drawerData.referencePlan != null? 'block': 'none'
+        }}
         axis='y'
       >
         <React.Fragment>
@@ -885,18 +895,18 @@ class PagePreview extends Component {
                   : 'Loading...'}
               </span>
               <div className='tool-wrap'>
-                {this.props.drawerData.previewHeight < maxHeight && (
+                {this.props.drawerData.previewHeight < maxHeight * 0.3 && (
                   <img
                     src={CarrotUp}
                     onClick={() => {
                       setDrawerData({
                         ...oldViewScale,
-                        previewHeight: maxHeight
+                        previewHeight: maxHeight * 0.3
                       })
                     }}
                   />
                 )}
-                {this.props.drawerData.previewHeight == maxHeight && (
+                {this.props.drawerData.previewHeight >= maxHeight * 0.3 && (
                   <img
                     src={CarrotDown}
                     onClick={() => {

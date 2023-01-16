@@ -156,6 +156,10 @@ class CompanyDataContainer extends Component {
                     siting
                 },
             } = this.props;
+
+            console.log('initCompanyData', this.state)
+            console.log('siting', siting)
+            
             const {
                 userSettings: {
                     state, builder, multihouse,
@@ -464,7 +468,7 @@ class CompanyDataContainer extends Component {
                     <LeftPanel className='sidebar'>
                         <Switch>
                             <Route exact path={ReferencePlan.componentUrl} component={ReferencePlanInstance}/>
-                            <Route exact path={DrawEdges.componentUrl} component={DrawEdgesInstance}/>
+                            <Route exact path={DrawEdges.componentUrl} component={ReferencePlanInstance}/>
                             <Route exact path={DrawEasements.componentUrl} component={DrawEasementsInstance}/>
                             <Route exact path={DrawHouse.componentUrl} component={DrawHouseInstance}/>
                             <Route exact path={DrawHouseDetails.componentUrl} component={DrawHouseDetailsInstance}/>

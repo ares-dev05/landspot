@@ -458,6 +458,7 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                         <div className='house-detail slider'>
                             <HouseSlider min={-180} max={180} step={1}
                                             values={[modification.rotation || 0]}
+                                            label="Rotation"
                                             formatter={rotationFormatter}
                                             onUpdate={values => {
                                                 modification.rotation = parseFloat(values[0]);

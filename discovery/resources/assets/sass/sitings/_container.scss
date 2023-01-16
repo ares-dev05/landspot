@@ -12,6 +12,7 @@
       overflow-x: hidden;
       padding: $content-padding;
       box-shadow: $app-box-shadow;
+      min-width: 480px;
 
       @import "components/left-panel";
       @import "components/sidebar";

@@ -62,9 +62,11 @@ class DrawEasements extends Component {
   render () {
     const { companyLoaded, metric, setMetric } = this.props
 
-    const hasTrace = AccountMgr.i.builder
-      ? AccountMgr.i.builder.hasManualTracing
-      : false
+    // const hasTrace = AccountMgr.i.builder
+    //   ? AccountMgr.i.builder.hasManualTracing
+    //   : false
+
+    const hasTrace = false
 
     return (
       <React.Fragment>
@@ -77,6 +79,18 @@ class DrawEasements extends Component {
           <div className='filter-form'>
             <div className='first-row has-nav'>
               <span className='filters-header'>Lot details</span>
+
+              {!hasTrace &&
+                <div className='toggle-metric'>
+                    <ToggleSwitch
+                        labelPosition="left"
+                        onClick={() => setMetric(!metric)}
+                        text={{on: 'Metric', off: 'Imperial'}}
+                        label={{on: '', off: ''}}
+                        state={metric}
+                    />
+                </div>
+                }
             </div>
 
             <div className='step-note'>

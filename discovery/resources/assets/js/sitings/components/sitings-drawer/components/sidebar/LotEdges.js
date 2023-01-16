@@ -175,14 +175,34 @@ const Edge = ({ onEdgeChange, edge, edgeNo, metric }) => {
                         </span>
                 }
             </button>
-            <button type="button" className='button transparent direction'
-                onClick={() => {
-                    edge.angleController.flip = !edge.angleController.flip;
-                    onEdgeChange();
-                }}>
-                <i className={classnames('landconnect-icon boundary-arrow-left', edge.angleController.flip && 'active')} />
-                <i className={classnames('landconnect-icon boundary-arrow-right', !edge.angleController.flip && 'active')} />
-            </button>
+            <div className='arrow-wrap'>
+                <div    
+                    className={
+                        classnames(
+                            'transparent direction',
+                            edge.angleController.flip && 'active'
+                        )
+                    }
+                    onClick={() => {
+                        edge.angleController.flip = !edge.angleController.flip;
+                        onEdgeChange();
+                    }}>
+                    <i className='landconnect-icon boundary-arrow-left'/>
+                </div>
+                <div    
+                    className={
+                        classnames(
+                            'transparent direction',
+                            !edge.angleController.flip && 'active'
+                        )
+                    }
+                    onClick={() => {
+                        edge.angleController.flip = !edge.angleController.flip;
+                        onEdgeChange();
+                    }}>
+                    <i className='landconnect-icon boundary-arrow-right'/>
+                </div>
+            </div>
             {
                 edge.canDelete && 
                 <button type="button" className='button transparent delete-btn'
@@ -196,14 +216,34 @@ const Edge = ({ onEdgeChange, edge, edgeNo, metric }) => {
 
             {edge.isCurve &&
                 <React.Fragment>
-                    <button type="button" className='button transparent direction'
-                        onClick={() => {
-                            edge.flipCurveDirection = !edge.flipCurveDirection;
+                    <div className='arrow-wrap'>
+                        <div    
+                            className={
+                                classnames(
+                                    'transparent direction',
+                                    edge.flipCurveDirection && 'active'
+                                )
+                            }
+                            onClick={() => {
+                                edge.flipCurveDirection = !edge.flipCurveDirection;
                             onEdgeChange();
-                        }}>
-                        <i className={classnames('landconnect-icon curve-direction-left', edge.flipCurveDirection && 'active')} />
-                        <i className={classnames('landconnect-icon curve-direction-right', !edge.flipCurveDirection && 'active')} />
-                    </button>
+                            }}>
+                            <i className='landconnect-icon curve-direction-left'/>
+                        </div>
+                        <div    
+                            className={
+                                classnames(
+                                    'transparent direction',
+                                    !edge.flipCurveDirection && 'active'
+                                )
+                            }
+                            onClick={() => {
+                                edge.flipCurveDirection = !edge.flipCurveDirection;
+                            onEdgeChange();
+                            }}>
+                            <i className='landconnect-icon curve-direction-right'/>
+                        </div>
+                    </div>
                     <div className='landconnect-input'>
                         <input type='number'
                             tabIndex={tabIndex++}

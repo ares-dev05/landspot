@@ -116,7 +116,7 @@ class LotEasements extends Component {
                             ) &&
                             <div className="note">
                                 <i className="fal fa-exclamation-circle"/>
-                                <span>Click on a lot to place</span>
+                                <span>Click on a boundary to place</span>
                             </div>
                         }
                     </div>
@@ -161,7 +161,7 @@ class LotEasements extends Component {
                             ) &&
                             <div className="note">
                                 <i className="fal fa-exclamation-circle"/>
-                                <span>Click on a lot to place</span>
+                                <span>Click on a boundary to place</span>
                             </div>
                         }
                     </div>
@@ -185,7 +185,7 @@ class LotEasements extends Component {
 
                 <div className="easements">
                     <div className="btn-group">
-                        <div className='header'>Lot boundary lines</div>
+                        <div className='header'>Building Envelope</div>
                         <div
                             className={classnames('btn-primary', (modelMode && canvasModel.lotFeaturesModel.mode === LotFeaturesModel.MODE_ENVELOPE) ? 'active' : '')}
                             onClick={() => this.addEasement(LotFeaturesModel.MODE_ENVELOPE)}>
@@ -198,7 +198,7 @@ class LotEasements extends Component {
                             ) &&
                             <div className="note">
                                 <i className="fal fa-exclamation-circle"/>
-                                <span>Click on a lot to place</span>
+                                <span>Click on a boundary line to place</span>
                             </div>
                         }
                     </div>
@@ -328,8 +328,6 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
     const isSimpleParallel = isParallel || isExternal || isEnvelope;
     let tabIndex = easementNo * (metric ? 5 : 7) + (isEnvelope ? 100 : 0);
 
-    console.log('easement.type', easement.type)
-
     const onDelete = () => {
         if (isParallel) {
             easement.deleteEdge();
@@ -340,6 +338,9 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
         }
     };
 
+    console.log('isParallel', isParallel)
+    console.log('easement EXTERNAL', LotEasementModel.EXTERNAL)
+    
     return (
         <div className="block">
             <div className="easement-number">
@@ -359,9 +360,13 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                         <img src={TrashPng} className="offset-right"/>
                     </button>
                 </div>
-                <div className='easement-dimension'>
+                <div className='easement-dimension' style={{
+                    display: metric? 'flex': isParallel? 'flex': 'block'
+                }}>
                     {!isDriveway &&
-                        <div className='easement-angle top'>
+                        <div className='easement-angle top' style={{
+                            display: metric? 'flex': 'inline-flex'
+                        }}>
                             {metric &&
                                 <div className='landconnect-input offset-meter-input'>
                                     <input type="number"
@@ -382,7 +387,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     />
                                     {(easement.type === LotEasementModel.EXTERNAL || easement.type === undefined) && <span className='left-placeholder'>Offset</span>}
                                     {easement.type === LotEasementModel.BLOCK && <span className='left-placeholder'>Width</span>}
-                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Distance</span>}
+                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Offset</span>}
                                     <span className='right-placeholder'>m</span>
                                 </div>
                             }
@@ -400,13 +405,15 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         }}
                                         onFocus={(event) => event.target.select()}
                                         maxLength={5}
-                                        placeholder={isEnvelope ? 'Setback Distance (ft)' : 'Width (ft)'}
+                                        // placeholder={isEnvelope ? 'Setback Distance (ft)' : 'Width (ft)'}
+                                        placeholder=''
                                         value={
                                             isSimpleParallel ? (easement.feet || '') : (easement.widthFeet || '')
                                         }
                                     />
                                     {(easement.type === LotEasementModel.EXTERNAL || easement.type === undefined) && <span className='left-placeholder'>Offset</span>}
                                     {easement.type === LotEasementModel.BLOCK && <span className='left-placeholder'>Width</span>}
+                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Offset</span>}
                                     <span className='right-placeholder'>ft</span>
                                 </div>
                                 <div className='landconnect-input offset-meter-input'>
@@ -421,13 +428,15 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         }}
                                         onFocus={(event) => event.target.select()}
                                         maxLength={5}
-                                        placeholder={isEnvelope ? 'Setback Distance (in)' : 'Width (in)'}
+                                        // placeholder={isEnvelope ? 'Setback Distance (in)' : 'Width (in)'}
+                                        placeholder=''
                                         value={
                                             isSimpleParallel ? (easement.inches || '') : (easement.widthInches || '')
                                         }
                                     />
                                     {(easement.type === LotEasementModel.EXTERNAL || easement.type === undefined) && <span className='left-placeholder'>Offset</span>}
                                     {easement.type === LotEasementModel.BLOCK && <span className='left-placeholder'>Width</span>}
+                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Offset</span>}
                                     <span className='right-placeholder'>in</span>
                                 </div>
                             </React.Fragment>
@@ -472,8 +481,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
 
                             {splayedBtn &&
                                 <select name="parallel-mode" id="parallel-mode" 
-                                    defaultValue={isSplayed? "reg": "splay"}
-                                    disabled={isSplayed}
+                                    defaultValue={isSplayed? "splay": "reg"}
                                     onChange={() => {
                                         easement.splayed = !easement.splayed;
                                         onEasementChange();
@@ -498,13 +506,13 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         }}
                                         onFocus={(event) => event.target.select()}
                                         maxLength={5}
-                                        placeholder='Height'
+                                        placeholder=''
                                         value={easement.distance || ''}
                                     />
                                     <span className='left-placeholder'>Height</span>
                                     <span className='right-placeholder'>m</span>
                                 </div> :
-                                <div className='easement-angle'>
+                                <div className={metric? 'easement-angle': 'easement-angle no-offset'}>
                                     <div className='landconnect-input offset-meter-input offset'>
                                         <input type="number"
                                             tabIndex={tabIndex++}
@@ -515,7 +523,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                             }}
                                             onFocus={(event) => event.target.select()}
                                             maxLength={5}
-                                            placeholder='Height (ft)'
+                                            placeholder=''
                                             value={easement.feet || ''}
                                         />
                                         <span className='left-placeholder'>Height</span>
@@ -531,7 +539,7 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                             }}
                                             onFocus={(event) => event.target.select()}
                                             maxLength={5}
-                                            placeholder='Height (in)'
+                                            placeholder=''
                                             value={easement.inches || ''}
                                         />
                                         <span className='left-placeholder'>Height</span>
@@ -558,10 +566,10 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                     placeholder=''
                                     value={easement.distance || ''}
                                 />
-                                 {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Distance</span>}
+                                 {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Width</span>}
                                  <span className='right-placeholder'>m</span>
                             </div> :
-                            <div className='easement-angle'>
+                            <div className={metric? 'easement-angle': 'easement-angle no-offset'}>
                                 <div className='landconnect-input offset-meter-input offset'>
                                     <input type="number"
                                         tabIndex={tabIndex++}
@@ -572,10 +580,10 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         }}
                                         onFocus={(event) => event.target.select()}
                                         maxLength={5}
-                                        placeholder='Offset (ft)'
+                                        placeholder=''
                                         value={easement.feet || ''}
                                     />
-                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Distance</span>}
+                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Width</span>}
                                     <span className='right-placeholder'>ft</span>
                                 </div>
                                 <div className='landconnect-input offset-meter-input offset'>
@@ -588,10 +596,10 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                         }}
                                         onFocus={(event) => event.target.select()}
                                         maxLength={5}
-                                        placeholder='Offset (in)'
+                                        placeholder=''
                                         value={easement.inches || ''}
                                     />
-                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Distance</span>}
+                                    {easement.type === LotEasementModel.ANGLED && <span className='left-placeholder'>Width</span>}
                                     <span className='right-placeholder'>in</span>
                                 </div>
                             </div>
@@ -651,14 +659,34 @@ const Easement = ({easement, onEasementChange, easementNo, easementType, externa
                                 <span className='right-placeholder'>s</span>
                             </div>
 
-                            <button type="number" className='button transparent direction'
+                            <div className='arrow-wrap'>
+                                <div    
+                                    className={
+                                        classnames(
+                                            'transparent direction',
+                                            easement.flipStart && 'active'
+                                        )
+                                    }
                                     onClick={() => {
                                         easement.flipStart = !easement.flipStart;
                                         onEasementChange();
                                     }}>
-                                <i className={classnames('landconnect-icon boundary-arrow-left', easement.flipStart && 'active')}/>
-                                <i className={classnames('landconnect-icon boundary-arrow-right', !easement.flipStart && 'active')}/>
-                            </button>
+                                    <i className='landconnect-icon boundary-arrow-left'/>
+                                </div>
+                                <div    
+                                    className={
+                                        classnames(
+                                            'transparent direction',
+                                            !easement.flipStart && 'active'
+                                        )
+                                    }
+                                    onClick={() => {
+                                        easement.flipStart = !easement.flipStart;
+                                        onEasementChange();
+                                    }}>
+                                    <i className='landconnect-icon boundary-arrow-right'/>
+                                </div>
+                            </div>
                         </div>
                     </React.Fragment>
                     }

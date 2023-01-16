@@ -39,7 +39,7 @@ function initializeDM() {
 
 const drawerSteps = Object.freeze({
     REF_PLAN_SELECT: {id: 1, path: ReferencePlan.componentUrl},
-    DRAW_EDGES: {id: ApplicationStep.TRACE_OUTLINE, path: DrawEdges.componentUrl, args: ['sitingId']},
+    DRAW_EDGES: {id: ApplicationStep.TRACE_OUTLINE, path: ReferencePlan.componentUrl, args: []},
     DRAW_EASEMENTS: {id: ApplicationStep.ADD_EASEMENT, path: DrawEasements.componentUrl, args: ['sitingId']},
     DRAW_HOUSE: {id: ApplicationStep.IMPORT_FLOOR_PLAN, path: DrawHouse.componentUrl, args: ['sitingId']},
     DRAW_HOUSE_DETAILS: {id: ApplicationStep.ADD_EXTENSIONS, path: DrawHouseDetails.componentUrl, args: ['sitingId']},
@@ -188,8 +188,6 @@ class DrawerContainer extends Component {
     saveDrawerData = (nextStep, exportType = null) => {
         const {drawerData} = this.state;
         const {saveRawData} = this.props;
-
-        console.log('saveDrawerData : drawerData', drawerData)
 
         if (drawerData.sitingId) {
             unset(drawerData, 'sitingSession.multiFloors.companyData');
@@ -479,7 +477,7 @@ class DrawerContainer extends Component {
                 <DrawerContext.Provider value={drawerContextValues}>
                     <DialogList/>
                     <Switch>
-                        <Route exact path={ReferencePlan.componentUrl} component={ReferencePlanInstance}/>
+                        <Route exact path={ReferencePlan.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={DrawEdges.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={DrawEasements.componentUrl} component={CompanyDataContainer}/>
                         <Route exact path={DrawHouse.componentUrl} component={CompanyDataContainer}/>
