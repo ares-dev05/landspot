@@ -200,11 +200,6 @@ class Annotations extends Component {
             posModel: {points},
         } = canvasModel;
 
-        console.log('streets',streets)
-        console.log('points',points)
-
-        console.log('canvasModel',canvasModel)
-
         if (AccountMgr.i.builder && AccountMgr.i.builder.hasAdvancedFeatures) {
             if (AccountMgr.i.builder.hasHeightEnvelope && heightVisualisationEnabled) {
                 // This is actually the Height Envelope Module
@@ -226,6 +221,8 @@ class Annotations extends Component {
 
         const engineeringAvailable = AccountMgr.i.builder.hasEngineering && (drawerData.engineeringPlan || drawerData.engineeringPage);
         const nearmapAvailable     = AccountMgr.i.builder.hasNearmapOverlay;
+
+        console.log('currentMode', currentMode)
 
         return (
             <div className={classnames('lot-settings', engineeringEnabled && 'disabled')}>
@@ -439,7 +436,6 @@ const Annotation = ({annotation, onCanvasModelChange, annotationNo, type}) => {
                                     value={annotation.text || ''}
                                 />
                                 <span className='left-placeholder'>Label</span>
-                                <span className='right-placeholder'>Text</span>
                             </div>
                         }
                         {isPos && `Point`}

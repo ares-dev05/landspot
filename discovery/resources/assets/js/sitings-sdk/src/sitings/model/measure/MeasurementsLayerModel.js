@@ -11,6 +11,7 @@ import KeyboardLayer from '../../global/KeyboardLayer';
 import m from '../../../utils/DisplayManager';
 import Geom from '../../../utils/Geom';
 import HouseModel from '../house/HouseModel';
+import { CompressedPixelFormat } from 'three';
 
 
 export default class MeasurementsLayerModel extends RestoreDispatcher {
@@ -420,6 +421,8 @@ export default class MeasurementsLayerModel extends RestoreDispatcher {
 
 			case MeasurementsLayerModel.MODE_HOUSE_ALIGNMENT:
 				// Rotate a house to align it to another reference house
+				this._currentMode	= null;
+
 				return this._completeHouseAlignment(px, py);
 
 			default:
@@ -444,6 +447,7 @@ export default class MeasurementsLayerModel extends RestoreDispatcher {
 
 			// Delete the unused measurement
 			this.cancelCurrentPoint();
+			this._currentMode	 = null;
 		}
 	}
 
@@ -545,8 +549,9 @@ export default class MeasurementsLayerModel extends RestoreDispatcher {
 
 		// Delete unused measurement point
 		this.cancelCurrentPoint();
+		this._currentMode	= null;
 
-		return true;
+		return false;
 	}
 
 	/**

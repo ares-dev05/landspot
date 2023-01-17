@@ -361,7 +361,6 @@ const Modification = ({modification, onModificationChange, modificationNo, modif
                                     value={modification.labelText || ''}
                                 />
                                 <span className='left-placeholder'>Label</span>
-                                <span className='right-placeholder'>Text</span>
                             </div>
                             : !isTree ? modificationTitle: null
                         }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import * as PIXI from 'pixi.js'
 import _ from 'lodash'
 import classnames from 'classnames'
-import CircularSlider from '@fseehawer/react-circular-slider'
 
 import { DrawerContext } from '../../DrawerContainer'
 import CanvasView from '~/sitings-sdk/src/sitings/view/SitingsView'
@@ -14,12 +13,9 @@ import SitingsSvgView from '~/sitings-sdk/src/sitings/svg/SitingsSvgView'
 import PdfPage from '~/sitings-sdk/src/sitings/global/PdfPage'
 import CanvasModel from '../CanvasModel'
 import store from '~sitings~/store'
-import ZoomButtons from '../page/ZoomButtons'
-import CompoundSlider from '~sitings~/helpers/CompoundSlider'
 import UserAction from '../consts'
 import MeasurementsLayerModel from '~/sitings-sdk/src/sitings/model/measure/MeasurementsLayerModel'
 import EventBase from '~/sitings-sdk/src/events/EventBase'
-import ThemeManager from '~/sitings-sdk/src/sitings/view/theme/ThemeManager'
 import Geom from '~/sitings-sdk/src/utils/Geom'
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent'
 import { ToggleSwitch } from '~sitings~/helpers/ToggleSwitch'
@@ -922,7 +918,7 @@ class LotView extends Component {
           ref={node => (this.pixiElement = node)}
         />
 
-        {/* {restored && <SiteCoverage full={isExport} />} */}
+        {restored && <SiteCoverage full={isExport} />}
 
         {isExport && (
           <div
@@ -1122,7 +1118,7 @@ const LotControls = ({
                 left: '30px',
                 bottom: step == 1 && drawerData.referencePlan != null ? `${previewHeight + 60}px`: '10px'
               }}>
-                {step > ApplicationStep.ADD_EASEMENT && 
+                {step > ApplicationStep.ADD_EASEMENT && step !== ApplicationStep.EXPORT_PDF && 
                   <Slider value={houseRotation || null}
                     label='HOUSE ROTATION'
                     onSlideEnd={() => {
@@ -1135,7 +1131,7 @@ const LotControls = ({
                       setDrawerData({ sitingSession: canvasModel.recordState() });
                     }} />
                 }
-                <Slider value={rotation || null}
+                {step !== ApplicationStep.EXPORT_PDF && <Slider value={rotation || null}
                   label='LOT ROTATION'
                   onSlideEnd={values => {
                     setDrawerData({ rotation: values[0] });
@@ -1144,53 +1140,16 @@ const LotControls = ({
                     checkRotation(values[0]);
                     setDrawerData({ rotation: values[0] });
                   }} />
+                }
             </div>
 
             <div
               className='control-pan'
               style={{
-                bottom: step == 1 && drawerData.referencePlan != null ? `${previewHeight + 60}px`: '10px'
+                bottom: step == 1 && drawerData.referencePlan != null ? `${previewHeight + 60}px`: '10px',
+                display: step === ApplicationStep.EXPORT_PDF?'none': 'flex'
               }}
             >
-              {/* <div className='circle-slider'>
-                <CircularSlider
-                  min={0}
-                  max={360}
-                  width={35}
-                  direction={1}
-                  appendToValue='°'
-                  valueFontSize='10px'
-                  progressSize={1}
-                  trackSize={1}
-                  knobSize={15}
-                  trackColor='#eeeeee'
-                  progressColorFrom='#1F65FF'
-                  progressColorTo='#1F65FF'
-                  labelColor='#1F65FF'
-                  knobColor='#1F65FF'
-                  label=' '
-                  labelBottom={true}
-                  onChange={value => {
-                    if (value > 180) {
-                      value = value - 360
-                    }
-                    console.log('step', step)
-                    // if (
-                    //   step === ApplicationStep.TRACE_OUTLINE ||
-                    //   step === ApplicationStep.ADD_EASEMENT
-                    // ) {
-                      checkRotation(value)
-                      setDrawerData({ rotation: value })
-                    // } else if (step !== ApplicationStep.EXPORT_PDF) {
-                    //   checkRotation(value, 'house')
-                    //   const canvasModel = CanvasModel.getModel()
-                    //   setDrawerData({
-                    //     sitingSession: canvasModel.recordState()
-                    //   })
-                    // }
-                  }}
-                />
-              </div> */}
               <img
                 src={MagnifyingGlassPlus}
                 width='16px'
