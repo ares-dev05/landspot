@@ -123,6 +123,9 @@ class DrawHouse extends Component {
 
     render() {
         const {
+            match: {
+                params: {sitingId}
+            },
             drawerData: {restored, mirrored},
             companyLoaded,
             loadHouseData
@@ -185,7 +188,7 @@ class DrawHouse extends Component {
                         <div className="step-note"/>
 
                         <LotHouses companyLoaded={restored} loadHouseData={loadHouseData}
-                                   floorModel={canvasModel ? canvasModel.multiFloors.crtFloor : null} mirrored={mirrored} />
+                                   floorModel={canvasModel ? canvasModel.multiFloors.crtFloor : null} mirrored={mirrored} sitingId={sitingId}/>
                     </div>
                 </div>
                 <StepNavigation saveState={true}/>

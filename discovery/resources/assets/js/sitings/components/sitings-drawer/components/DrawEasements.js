@@ -62,11 +62,9 @@ class DrawEasements extends Component {
   render () {
     const { companyLoaded, metric, setMetric } = this.props
 
-    // const hasTrace = AccountMgr.i.builder
-    //   ? AccountMgr.i.builder.hasManualTracing
-    //   : false
-
-    const hasTrace = false
+    const hasTrace = AccountMgr.i.builder
+      ? AccountMgr.i.builder.hasManualTracing
+      : false
 
     return (
       <React.Fragment>

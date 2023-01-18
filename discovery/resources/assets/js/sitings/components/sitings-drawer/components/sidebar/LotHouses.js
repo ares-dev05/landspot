@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {DrawerContext} from '../../DrawerContainer';
 import {HouseRadio} from '~sitings~/helpers/HouseRadio';
-import {Housecheckbox} from '~sitings~/helpers';
 import HouseLayerType from '~/sitings-sdk/src/sitings/model/house/HouseLayerType';
 import CanvasModel from '../CanvasModel';
 import ModelEvent from '~/sitings-sdk/src/sitings/events/ModelEvent';
@@ -12,8 +11,6 @@ import HouseModel from '../../../../../sitings-sdk/src/sitings/model/house/House
 import CarrotUp from '~/../img/CarrotUp.svg'
 import CarrotDown from '~/../img/CarrotDown.svg'
 import {ToggleSwitch} from '~sitings~/helpers/ToggleSwitch';
-import HouseSlider from '~sitings~/helpers/HouseSlider';
-import { useEffect, useState } from 'react';
 
 const DEFAULT_REAR_OPTION = 'option_x5f_rear_x5f_standard';
 
@@ -44,14 +41,34 @@ class LotHouses extends Component {
     }
 
     componentDidMount() {
-        // const {
-        //     companyLoaded,
-        // } = this.props;
+        const {
+            sitingId,
+        } = this.props;
 
         const companyLoaded = true
 
         if (companyLoaded) {
             this.checkHouseModel();
+        }
+
+        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+        
+
+        if(json == null) {
+            localStorage.setItem(sitingId.toString(), JSON.stringify({
+                rangeMinimized: 0,
+                houseMinimized: 0,
+                facadeMinimized: 0,
+            }))
+        } else {
+            this.setState({
+                rangeMinimized: json.rangeMinimized,
+                houseMinimized: json.houseMinimized,
+                facadeMinimized: json.facadeMinimized,
+                selectedRangeName: json.selectedRangeName,
+                selectedHouseName: json.selectedHouseName,
+                selectedFacadeName: json.selectedFacadeName
+            })
         }
     }
 
@@ -100,7 +117,6 @@ class LotHouses extends Component {
             }
         } else if (houseId != null && houseId != prevState.houseId) {
             houses.map((house, index) => {
-                console.log('house', house)
                 if (String(houseId) === house.id.toString()) {
                     this.setState({selectedHouseName: house.name})
                 }
@@ -112,9 +128,6 @@ class LotHouses extends Component {
             const canvasModel = CanvasModel.getModel();
             houseRotation = canvasModel.multiFloors.crtFloor.rotation;
             houseRotation = Math.round((houseRotation + Number.EPSILON) * 100) / 100;
-    
-            console.log('componentDidUpdate : houseRotation', houseRotation)
-            console.log('componentDidUpdate : this.state.houseAngle', this.state.houseAngle)
     
             if(houseRotation != null && houseRotation != 0 && this.state.houseAngle == 0) {
                 this.setState({houseAngle: houseRotation})
@@ -301,107 +314,9 @@ class LotHouses extends Component {
 
     render() {
         const {
-            setDrawerData,
+            sitingId,
             mirrored,
         } = this.props;
-
-        const checkRotation = (handleRotation = null, type = 'lot') => {
-            try {
-
-                const {
-                    drawerData: {rotation},
-                    drawerDetails: {drawerData},
-                } = this.props;
-        
-                // const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.layers.0.rotation', null);
-                const houseRotation = _.get(this.props, 'drawerData.sitingSession.multiFloors.crtFloor.rotation', null);
-                if (type === 'house' || (houseRotation && handleRotation === null)) {
-                    const viewRotation = (handleRotation !== null && type === 'house')
-                        ? handleRotation
-                        : houseRotation !== null
-                            ? houseRotation
-                            : drawerData.houseRotation || 0;
-        
-                    const canvasModel = CanvasModel.getModel();
-        
-                    if (canvasModel.multiFloors.crtFloor.rotation !== viewRotation) {
-                        canvasModel.multiFloors.setFloorRotation(viewRotation);
-                    }
-                }
-        
-                if (type === 'lot' || (rotation && handleRotation === null)) {
-                    const viewRotation = handleRotation !== null
-                        ? handleRotation
-                        : rotation !== null
-                            ? rotation
-                            : drawerData.rotation || 0;
-        
-                    if (this.canvasView.viewRotation !== viewRotation) {
-                        this.canvasView.viewRotation = viewRotation;
-                    }
-        
-                    // Update the north indicator rotation
-                    let northRotation = parseFloat(this.props.drawerData.northRotation);
-                    if (!isFinite(northRotation)) {
-                        northRotation = 0;
-                    }
-        
-                    // update the north rotation
-                    this.northIndicator.angle = northRotation ? northRotation : viewRotation;
-                }
-            } catch (e) {
-
-            }
-        };
-
-        function rotationFormatter(d, text, onUpdate) {
-            return (
-                <React.Fragment>
-                    {text}
-        
-                    <input type='number' className='slider-value'
-                           onChange={(e) => {
-                               const value = parseFloat(e.target.value.slice(0, e.target.maxLength)) || 0;
-                               if (e.target.value==="-") {
-                                   onUpdate([-0]);
-                               }
-                               else if (!isNaN(value)) {
-                                   onUpdate([value]);
-                               }
-                           }}
-                           maxLength={6}
-                           value={d}
-                    />
-        
-                    <i className='landconnect-icon rotation'/>
-                </React.Fragment>
-            );
-        }
-
-        const Slider = ({value, label, onSlideEnd, onUpdate}) => {
-            const [rotation, setRotation] = useState(null);
-
-            useEffect(
-                () => {
-                    if (value !== null && rotation === null) {
-                        setRotation(value);
-                    }
-                },
-                [value, rotation]
-            );
-
-            return (
-                <HouseSlider min={-180} max={180} step={0.01}
-                                formatter={value => rotationFormatter(value, label, onUpdate)}
-                                values={[rotation || 0]}
-                                onSlideEnd={onSlideEnd}
-                                label={label}
-                                onUpdate={values => {
-                                    onUpdate(values);
-                                    setRotation(values[0]);
-                                }}/>
-            );
-        };
 
         const {ranges, houses, rangeId, searchText, houseLoading} = this.state;
         
@@ -440,13 +355,35 @@ class LotHouses extends Component {
                                 <img
                                     src={CarrotDown}
                                     onClick={() => {
-                                        this.setState({rangeMinimized : 0});     
+                                        this.setState({rangeMinimized : 0});
+
+                                        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                        localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                            rangeMinimized: 0,
+                                            houseMinimized: json.houseMinimized,
+                                            facadeMinimized: json.facadeMinimized,
+                                            selectedRangeName: this.state.selectedRangeName,
+                                            selectedHouseName: this.selectedHouseName,
+                                            selectedFacadeName: this.selectedFacadeName,
+                                        }))
                                     }} />
                             </div>}
                         {this.state.rangeMinimized == 0 && <img
                                 src={CarrotUp}
                                 onClick={() => {
                                     this.setState({rangeMinimized: 1});
+
+                                    const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                    localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                        rangeMinimized: 1,
+                                        houseMinimized: json.houseMinimized,
+                                        facadeMinimized: json.facadeMinimized,
+                                        selectedRangeName: this.state.selectedRangeName,
+                                        selectedHouseName: this.selectedHouseName,
+                                        selectedFacadeName: this.selectedFacadeName,
+                                    }))
                                 }}
                             />
                         }
@@ -468,6 +405,18 @@ class LotHouses extends Component {
                                             }
                                             this.setState({rangeMinimized: 1});
                                             this.filterCompanyData({rangeId});
+
+                                            const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+                                            
+
+                                            localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                                rangeMinimized: 1,
+                                                houseMinimized: json.houseMinimized,
+                                                facadeMinimized: json.facadeMinimized,
+                                                selectedRangeName: this.state.selectedRangeName,
+                                                selectedHouseName: this.selectedHouseName,
+                                                selectedFacadeName: this.selectedFacadeName,
+                                            }))
                                         }}
                                     />
                                 </div>
@@ -484,13 +433,33 @@ class LotHouses extends Component {
                                 <img
                                     src={CarrotDown}
                                     onClick={() => {
-                                        this.setState({houseMinimized : 0});     
+                                        this.setState({houseMinimized : 0});   
+                                        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                        localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                            rangeMinimized: json.rangeMinimized,
+                                            houseMinimized: 0,
+                                            facadeMinimized: json.facadeMinimized,
+                                            selectedRangeName: this.state.selectedRangeName,
+                                            selectedHouseName: this.selectedHouseName,
+                                            selectedFacadeName: this.selectedFacadeName,
+                                        }))  
                                     }} />
                             </div>}
                         {this.state.houseMinimized == 0 && <img
                                 src={CarrotUp}
                                 onClick={() => {
                                     this.setState({houseMinimized: 1});
+                                    const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                    localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                        rangeMinimized: json.rangeMinimized,
+                                        houseMinimized: 1,
+                                        facadeMinimized: json.facadeMinimized,
+                                        selectedRangeName: this.state.selectedRangeName,
+                                        selectedHouseName: this.selectedHouseName,
+                                        selectedFacadeName: this.selectedFacadeName,
+                                    })) 
                                 }}
                             />
                         }
@@ -507,11 +476,23 @@ class LotHouses extends Component {
                                     label={house.name.toUpperCase()}
                                     onChange={houseId => {
                                         const selectedHouse = houses.find(house => house.id === houseId);
+                                        console.log('selectedHouse', selectedHouse)
                                         this.loadHouse(selectedHouse);
 
                                         this.setState({houseId: houseId});
                                         this.setState({houseMinimized: 1});
                                         this.setState({selectedHouseName: `${house.name}`})
+
+                                        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                        localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                            rangeMinimized: json.rangeMinimized,
+                                            houseMinimized: 1,
+                                            facadeMinimized: json.facadeMinimized,
+                                            selectedRangeName: this.state.selectedRangeName,
+                                            selectedHouseName: this.selectedHouseName,
+                                            selectedFacadeName: this.selectedFacadeName,
+                                        })) 
                                     }}
                                 />
                             </div>
@@ -528,13 +509,35 @@ class LotHouses extends Component {
                                 <img
                                     src={CarrotDown}
                                     onClick={() => {
-                                        this.setState({facadeMinimized : 0});     
+                                        this.setState({facadeMinimized : 0});   
+                                        
+                                        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                        localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                            rangeMinimized: json.rangeMinimized,
+                                            houseMinimized: json.houseMinimized,
+                                            facadeMinimized: 0,
+                                            selectedRangeName: this.state.selectedRangeName,
+                                            selectedHouseName: this.selectedHouseName,
+                                            selectedFacadeName: this.selectedFacadeName,
+                                        })) 
                                     }} />
                             </div>}
                         {this.state.facadeMinimized == 0 && <img
                                 src={CarrotUp}
                                 onClick={() => {
                                     this.setState({facadeMinimized: 1});
+
+                                    const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                    localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                        rangeMinimized: json.rangeMinimized,
+                                        houseMinimized: json.houseMinimized,
+                                        facadeMinimized: 1,
+                                        selectedRangeName: this.state.selectedRangeName,
+                                        selectedHouseName: this.selectedHouseName,
+                                        selectedFacadeName: this.selectedFacadeName,
+                                    })) 
                                 }}
                             />
                         }
@@ -557,6 +560,18 @@ class LotHouses extends Component {
                                                         this.recordState();
                                                         this.setState({selectedFacadeName: `${facade.id}`});
                                                         this.setState({facadeMinimized: 1});
+
+                                                        const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                                        localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                                            rangeMinimized: json.rangeMinimized,
+                                                            houseMinimized: json.houseMinimized,
+                                                            facadeMinimized: 1,
+                                                            selectedRangeName: this.state.selectedRangeName,
+                                                            selectedHouseName: this.selectedHouseName,
+                                                            selectedFacadeName: this.selectedFacadeName,
+                                                        })) 
+                                                        
                                                     }}
                                                 />
                                             </div>
@@ -582,7 +597,18 @@ class LotHouses extends Component {
                                                                 houseModel.selectFacade(facadeId);
                                                                 this.recordState();
                                                                 this.setState({selectedFacadeName: `${group.id}`});
-                                                            this.setState({facadeMinimized: 1});
+                                                                this.setState({facadeMinimized: 1});
+
+                                                                const json = JSON.parse(localStorage.getItem(sitingId.toString()));
+
+                                                                localStorage.setItem(sitingId.toString(), JSON.stringify({
+                                                                    rangeMinimized: json.rangeMinimized,
+                                                                    houseMinimized: json.houseMinimized,
+                                                                    facadeMinimized: 1,
+                                                                    selectedRangeName: this.state.selectedRangeName,
+                                                                    selectedHouseName: this.selectedHouseName,
+                                                                    selectedFacadeName: this.selectedFacadeName,
+                                                                })) 
                                                             }}
                                                         />
                                                     </div>

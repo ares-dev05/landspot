@@ -116,23 +116,7 @@ img.offset-right {
   flex: none;
   order: 1;
   flex-grow: 0;
-}
-
-.tool-wrap {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 12px;
-  width: 72px;
-  height: 36px;
-  flex: none;
-  order: 2;
-  flex-grow: 0;
-  justify-content: space-between;
-}
-
-.tool-wrap img {
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .upload-button {
@@ -1383,23 +1367,6 @@ img.offset-right {
           order: 0;
           flex-grow: 0;
         }
-
-        .tool-wrap {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          padding: 10px 0px;
-          width: 58px;
-          height: 36px;
-          flex: none;
-          order: 2;
-          flex-grow: 0;
-          justify-content: space-between;
-
-          img {
-            cursor: pointer;
-          }
-        }
       }
 
       & > .image {
@@ -1971,5 +1938,57 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.tool-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0px;
+  width: 58px;
+  height: 36px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  justify-content: space-between;
+  position: relative;
+
+  .menu {
+    top: 31px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 0px;
+    position: absolute;
+    width: 139px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    z-index: 10;
+
+    .item {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      color: #333333;
+      cursor: pointer;
+      padding-left: 20px;
+      width: 100%;
+    }
+
+    .item:hover {
+      background: #F7F7F9;
+    }
+  }
+
+  img {
+    cursor: pointer;
+  }
 }
 // ------------------------------------------ //

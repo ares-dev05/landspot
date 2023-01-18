@@ -47,7 +47,9 @@ class ReferencePlan extends Component {
       uploadingReferenceFile: false,
       uploadingPercent: 0,
       loadSitingsDrawer: false,
-      uploadBtnPng: uploadPng
+      uploadBtnPng: uploadPng,
+      menu: false,
+      editable: false
     }
   }
 
@@ -134,6 +136,7 @@ class ReferencePlan extends Component {
       metric,
       drawerDetails: { siting },
       drawerData,
+      setDrawerData,
       currentTab,
       setMetric
     } = this.props
@@ -204,7 +207,22 @@ class ReferencePlan extends Component {
                 </div>
                 <div className='tool-wrap'>
                   <img src={eyePng} />
-                  <img src={DotsThreePng} />
+                  <img src={DotsThreePng} onClick={() => {
+                    this.setState({menu: !this.state.menu})
+                  }}/>
+                  <div className='menu' style={{
+                    display: this.state.menu?'flex': 'none'
+                  }}>
+                    <div className='item' onClick={() => {
+                      this.setState({editable: true})
+                      this.setState({menu: false})
+                    }}>Edit</div>
+                    <div className='item'>Trace plan</div>
+                    <div className='item' onClick={() => {
+                      setDrawerData({referencePlan: null})
+                      this.setState({menu: false})
+                    }}>Delete</div>
+                  </div>
                 </div>
               </div>
             </div>}
@@ -216,7 +234,9 @@ class ReferencePlan extends Component {
                 />
               )}
 
-            {plan == null && siting != undefined && !uploadingReferenceFile && (
+
+            {/* {siting != undefined && ( */}
+            {((plan == null && siting != undefined && !uploadingReferenceFile) || this.state.editable == true) && (
               <div className='wrap-upload'>
                 <span>Reference plan</span>
                 <FileUploader
@@ -246,8 +266,11 @@ class ReferencePlan extends Component {
                       'uploadingReferenceFile'
                     )
                   }
-                  uploadSuccess={() =>
+                  uploadSuccess={() => {
                     this.fileUploaded('uploadingReferenceFile')
+
+                    this.setState({editable: false})
+                  }
                   }
                   onProgress={this.fileUploadingProgress}
                 />

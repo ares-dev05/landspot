@@ -98,13 +98,13 @@ class PagePreview extends Component {
         height: this.props.drawerData.previewHeight
       })
 
-      const maxHeight =
-        document.getElementsByClassName('right-panel')[0].offsetHeight;
-
-      setPreviewHeight(maxHeight * 0.3)
-
+      
     }
+    
+    const maxHeight =
+      document.getElementsByClassName('right-panel')[0].offsetHeight;
 
+    setPreviewHeight(maxHeight * 0.3)
     this.addNearmapModelListener()
   }
 
