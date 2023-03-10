@@ -30,13 +30,16 @@ class SendNewFloorplanNotificationJob extends SitingsJob
     public function handle()
     {
         /** @var Collection $floorplans */
-        $floorplans = Floorplan::whereIn('id', $this->floorplanIds)
-                               ->get();
+        $floorplans = Floorplan::find($this->floorplanIds);
         if ($floorplans->isNotEmpty()) {
+            $companyIds = $floorplans->map(function ($f) {
+                return $f->company->getKey();
+            })->unique()->toArray();
             User::whereIn('has_portal_access', [User::PORTAL_ACCESS_CONTRACTOR])
                 ->orWhereHas('group', function (Builder $b) {
                     $b->superAdmins();
                 })
+                ->whereIn('company_id', $companyIds)
                 ->chunk(100, function (Collection $users) use ($floorplans) {
                     foreach ($users as $user) {
                         $this->email(

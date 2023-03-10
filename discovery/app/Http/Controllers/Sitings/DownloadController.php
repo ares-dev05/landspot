@@ -40,9 +40,9 @@ class DownloadController extends Controller
         return $this->getStreamedResponse($files->toArray(), $fileName, function () use ($floorplan) {
             /** @var User $user */
             $user = auth()->user();
-            if ($user->has_portal_access == User::PORTAL_ACCESS_CONTRACTOR && $floorplan->status == Floorplan::STATUS_ATTENTION) {
-                $floorplan->update(['status' => Floorplan::STATUS_IN_PROGRESS]);
-            }
+//            if ($user->has_portal_access == User::PORTAL_ACCESS_CONTRACTOR && $floorplan->status == Floorplan::STATUS_ATTENTION) {
+//                $floorplan->update(['status' => Floorplan::STATUS_IN_PROGRESS]);
+//            }
         });
     }
 

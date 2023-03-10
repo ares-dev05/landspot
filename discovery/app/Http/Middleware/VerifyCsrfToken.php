@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/amazon-sns/notifications',
+        'api/v1/*'
     ];
 }

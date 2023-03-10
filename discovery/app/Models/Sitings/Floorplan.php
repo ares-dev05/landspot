@@ -35,9 +35,12 @@ use Illuminate\Support\Collection;
  *
  * @method static byCompany(...$args)
  * @method static byStates(...$args)
+ * @method static find($floorplanId)
  */
 class Floorplan extends Model
 {
+    use DeleteStorageFilesTrait, CustomFiltersTrait, SoftDeletes;
+
     function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -47,7 +50,6 @@ class Floorplan extends Model
         };
     }
 
-    use DeleteStorageFilesTrait, CustomFiltersTrait, SoftDeletes;
     const storageFolder = 'floorplan_svg';
     const storageFileFields = ['url'];
 
@@ -64,7 +66,7 @@ class Floorplan extends Model
     protected $appends = ['company_id'];
 
     protected $attributes = [
-        'status'  => self::STATUS_ATTENTION,
+        'status' => self::STATUS_ATTENTION,
         'history' => 0
     ];
 
@@ -79,14 +81,59 @@ class Floorplan extends Model
 
     const STATUS_ATTENTION = 'Attention';
     const STATUS_ACTIVE = 'Active';
-    const STATUS_IN_PROGRESS = 'In Progress';
     const STATUS_AWAITING_APPROVAL = 'Awaiting Approval';
+//    const STATUS_IN_PROGRESS = 'In Progress'; TODO: deprecated
+
 
     const HISTORY_EMPTY = 0;
     const HISTORY_EXISTS = 1;
     const HISTORY_EXISTS_UNREAD = 2;
 
     public $timestamps = true;
+
+
+    //==========EVENTS=============
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function (Floorplan $f) {
+            $f->files()->each(function (FloorplanFiles $ff) {
+                $ff->delete();
+            });
+        });
+
+        static::addGlobalScope('hideDrafts', function (EloquentBuilder $b) {
+            $b->where($b->qualifyColumn('status'), '<>', '');
+        });
+
+        static::saved(function (Floorplan $f) {
+            $liveStatus = $f->getAttributeFromArray('is_live');
+            if ($liveStatus !== null && $liveStatus !== $f->getOriginal('is_live')) {
+                $f->insertNote($liveStatus ? 'Landconnect made updates live' : 'Landconnect removed floorplan from live');
+            }
+
+            $planStatus = $f->getAttributeFromArray('status');
+
+            if ($planStatus == self::STATUS_ACTIVE && $planStatus !== $f->getOriginal('status')) {
+                dispatch(new SendActiveFloorplanNotificationJob($f->getKey()));
+            }
+
+            if ($planStatus == self::STATUS_AWAITING_APPROVAL && $planStatus !== $f->getOriginal('status')) {
+                dispatch(new SendApprovalRequiredFloorplanNotificationJob($f->getKey()));
+            }
+        });
+
+        static::saving(function (Floorplan $f) {
+            if ($f->url && $f->url != $f->getOriginal('url')) {
+                //$f->area_data = null;
+            }
+        });
+    }
+
+
+    //==========RELATIONS=============
 
     public function company()
     {
@@ -120,6 +167,10 @@ class Floorplan extends Model
         return $this->hasMany(FloorplanIssues::class);
     }
 
+
+    //==========SCOPES=============
+
+
     /**
      * @param EloquentBuilder $b
      * @param Collection $ids
@@ -130,66 +181,13 @@ class Floorplan extends Model
         return $b->whereIn($b->qualifyColumn('state_id'), $ids);
     }
 
+
+    //==========ATTRIBUTES=============
+
+
     function getHasUnreviewedIssuesAttribute()
     {
         return $this->issues()->unreviewedIssues()->exists();
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::deleting(function (Floorplan $f) {
-            $f->files()->each(function (FloorplanFiles $ff) {
-                $ff->delete();
-            });
-        });
-
-        static::addGlobalScope('hideDrafts', function (EloquentBuilder $b) {
-            $b->where($b->qualifyColumn('status'), '<>', '');
-        });
-
-        static::saved(function (Floorplan $f) {
-            $liveStatus = $f->getAttributeFromArray('is_live');
-            if ($liveStatus !== null && $liveStatus !== $f->getOriginal('is_live')) {
-                $f->insertNote($liveStatus ? 'Landconnect made updates live' : 'Landconnect removed floorplan from live');
-            }
-
-            $planStatus = $f->getAttributeFromArray('status');
-
-            if ($planStatus == self::STATUS_ACTIVE && $planStatus !== $f->getOriginal('status')) {
-                dispatch(new SendActiveFloorplanNotificationJob($f->getKey()));
-            }
-
-            if ($planStatus == self::STATUS_AWAITING_APPROVAL && $planStatus !== $f->getOriginal('status')) {
-                dispatch(new SendApprovalRequiredFloorplanNotificationJob($f->getKey()));
-            }
-        });
-
-        static::saving(function (Floorplan $f){
-            if ($f->url && $f->url != $f->getOriginal('url')) {
-                //$f->area_data = null;
-            }
-        });
-    }
-
-    function updateHistoryStatus()
-    {
-        if ($this->floorplanHistory()->exists()) {
-            $status = $this->floorplanHistory()
-                           ->unread()
-                           ->exists()
-                ? self::HISTORY_EXISTS_UNREAD
-                : self::HISTORY_EXISTS;
-        } else {
-            $status = self::HISTORY_EMPTY;
-        }
-
-        $this->update(['history' => $status]);
-    }
-
-    function insertNote($note, $viewed = 0)
-    {
-        $this->floorplanHistory()->create(compact('note', 'viewed'));
     }
 
     function getCompanyIdAttribute()
@@ -207,11 +205,40 @@ class Floorplan extends Model
         return $svgPath ? File::storageTempUrl($svgPath, now()->addDay(1)) : null;
     }
 
+    function setLiveDateAttribute($value)
+    {
+        $this->attributes['live_date'] = $value ? strtotime($value) : 0;
+    }
+
     // floorplans/[COMPANY_KEY]/[STATE.ABBREV]/[RANGE.FOLDER]/[HOUSE_NAME].svg
     function getSvgPathAttribute()
     {
         $path = $this->url;
         return $path ? $this->getStoragePath() . "/" . $path : null;
+    }
+
+
+    //==========FUNCTIONS=============
+
+
+    function updateHistoryStatus()
+    {
+        if ($this->floorplanHistory()->exists()) {
+            $status = $this->floorplanHistory()
+                ->unread()
+                ->exists()
+                ? self::HISTORY_EXISTS_UNREAD
+                : self::HISTORY_EXISTS;
+        } else {
+            $status = self::HISTORY_EMPTY;
+        }
+
+        $this->update(['history' => $status]);
+    }
+
+    function insertNote($note, $viewed = 0)
+    {
+        $this->floorplanHistory()->create(compact('note', 'viewed'));
     }
 
     function getStoragePath()
@@ -227,21 +254,9 @@ class Floorplan extends Model
 
     function updateIssuesStatus($status)
     {
-        if ($status == FloorplanIssues::STATUS_REJECTED) {
-
-            $issues = $this->issues()
-                           ->unreviewedIssues()
-                           ->get()
-                           ->pluck('issue_text')
-                           ->all();
-
-            dispatch(new SendContractorIssueRejectedFloorplanJob($this->getKey(), join("\n", $issues)));
-        }
-
         $this->issues()
-             ->unreviewedIssues()
-             ->update(['status' => $status]);
-
+            ->unreviewedIssues()
+            ->update(['status' => $status]);
     }
 
     /**
@@ -251,7 +266,7 @@ class Floorplan extends Model
     static function listFloorplans(array $sortOptions)
     {
         /** @var User $user */
-        $user            = auth()->user();
+        $user = auth()->user();
         $floorplansQuery = Floorplan::query();
 
         if ($user->has_portal_access == User::PORTAL_ACCESS_BUILDER) {

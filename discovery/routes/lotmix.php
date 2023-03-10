@@ -97,6 +97,11 @@ Route::domain(config('app.LOTMIX_URL'))
         Route::view('/tos', 'lotmix.tos')->name('lotmix-tos');
         // Route::view('/privacy-policy', 'lotmix.privacy-policy')->name('lotmix-privacy-policy');
 
+
+        Route::view('estate-options/requirements', 'lotmix.land-estate.estate-options');
+        Route::view('estate-options/lots/{id}', 'lotmix.land-estate.estate-options');
+
+
         Route::group(['middleware' => ['web', 'slash:add']], function () {
             Route::get('public-estates/{abbrev}', 'Lotmix\EstatesController@getPublicEstates');
 

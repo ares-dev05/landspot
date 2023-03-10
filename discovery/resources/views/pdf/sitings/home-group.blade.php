@@ -31,7 +31,7 @@
         <div class="footer">
             @include('pdf.sitings.blocks.site-coverage')
             <div class="note">
-                This siting is preliminary only and is subject to encumbrance, council, energy, engineering and/or soil & survey requirements.<br/>
+				This siting is preliminary only and is subject to encumbrances, caveats and notices, council, energy, engineering and/or soil & survey requirements. <br/>
 				Please speak to your Home Group Consultant for further information.
             </div>
         </div>

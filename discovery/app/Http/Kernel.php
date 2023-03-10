@@ -80,6 +80,8 @@ class Kernel extends HttpKernel
         'check.invitation.token' => \App\Http\Middleware\CheckInvitationToken::class,
         'check.invited.user' => \App\Http\Middleware\CheckInvitedUser::class,
         'check.brief.invited.user' => \App\Http\Middleware\CheckBriefInvitedUser::class,
+        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+        'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
 
         'sitings.check.ajax' => \App\Http\Middleware\Sitings\CheckAjax::class,
         'sitings.check.user' => \App\Http\Middleware\Sitings\CheckUser::class,

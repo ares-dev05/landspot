@@ -83,6 +83,7 @@ use Illuminate\Support\Facades\DB;
  * @method static byEmail(...$args)
  * @method static byPhone(...$args)
  * @method static byId($id)
+ * @method static byPortalAccess($portalAccess)
  * @method static developerAdmin(...$args)
  * @method static builderAdmin(...$args)
  * @method static globalEstateManager(...$args)
@@ -107,6 +108,10 @@ class User extends Authenticatable
     const PORTAL_ACCESS_ADMIN = 3;
 
     const MAX_INACTIVE_DAYS = 45;
+
+    public const TOKEN_SCOPE_PUBLIC = 'API token for clients';
+
+    public const TOKEN_SCOPE_API_ONLY_ACCESS = 'only-api-access';
 
     /**
      * The attributes that are mass assignable.
@@ -449,15 +454,9 @@ class User extends Authenticatable
         return $b->withoutGlobalScopes()->where([['id', '=', $id], ['hidden', '=', false]]);
     }
 
-    //User functions
-
-    /**
-     * @param $email
-     * @return $this
-     */
-    static function findByEmail($email)
+    function scopeByPortalAccess(EloquentBuilder $b, $type)
     {
-        return self::where('email', '=', $email)->firstOrFail();
+        return $b->where('has_portal_access', $type);
     }
 
     function scopeByEmail(EloquentBuilder $b, $email)
@@ -476,6 +475,45 @@ class User extends Authenticatable
                 $qb->orWhere('phone', '+61' . $value);
             }
         });
+    }
+
+    function scopeByGroupDefaultUser(EloquentBuilder $b, $scope = 'whereHas')
+    {
+        return $b->$scope('group', function (EloquentBuilder $b) {
+            $b->defaultUsers();
+        });
+    }
+
+    function scopeByGroupGlobalAdmin(EloquentBuilder $b, $scope = 'whereHas')
+    {
+        return $b->$scope('group', function (EloquentBuilder $b) {
+            $b->superAdmins();
+        });
+    }
+
+    function scopeByGroupBuilderAdmin(EloquentBuilder $b, $scope = 'whereHas')
+    {
+        return $b->$scope('group', function (EloquentBuilder $b) {
+            $b->builderAdmins();
+        });
+    }
+
+    function scopeByGroupDeveloperAdmin(EloquentBuilder $b, $scope = 'whereHas')
+    {
+        return $b->$scope('group', function (EloquentBuilder $b) {
+            $b->developerAdmins();
+        });
+    }
+
+    //User functions
+
+    /**
+     * @param $email
+     * @return $this
+     */
+    static function findByEmail($email)
+    {
+        return self::where('email', '=', $email)->firstOrFail();
     }
 
 

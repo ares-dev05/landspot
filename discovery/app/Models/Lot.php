@@ -160,7 +160,7 @@ class Lot extends Model
             }
         });
 
-        static::updating(function(Lot $lot){
+        static::updating(function (Lot $lot) {
             $user = auth()->user();
             $estate = $lot->stage->estate;
             $userCanUpdate = $user->estate->contains($estate) &&
@@ -168,10 +168,9 @@ class Lot extends Model
                     $user->isGlobalEstateManager() ||
                     ($estate->checkPermission(Permission::ListManager, $user->id) ||
                         $estate->checkPermission(Permission::PriceEditor, $user->id)));
-            if(!$userCanUpdate){
+            if (!$userCanUpdate) {
                 return false;
-            }
-            else{
+            } else {
                 return 'bla';
             }
         });
@@ -422,7 +421,7 @@ class Lot extends Model
                 $orderBy = $orderbyColumn->attr_name === 'frontage' || $orderbyColumn->attr_name === 'lot_number'
                     ? DB::raw('CAST(`l`.' . $conn->quoteIdentifier($orderbyColumn->attr_name) . ' AS UNSIGNED)')
                     : DB::raw('l.' . $conn->quoteIdentifier($orderbyColumn->attr_name));
-                $items->orderBy($orderBy,$direction);
+                $items->orderBy($orderBy, $direction);
             } else {
                 $items->orderBy('v' . $orderbyColumn->id, $direction);
             }

@@ -31,6 +31,12 @@ $isEstatesEnabled    = $user->state->getEstatesDisabled($user->company) == Lotmi
 $canManageMyClients  = $user->can('manage-my-clients');
 $hasTrainingVideo    = $canManageMyClients && $userCompany->isBuilder();
 
+// @TODO: make this a DB setting
+$hasKaspa = $userCompany->isBuilder() && (
+    $user->company->builder_id === 'SimondsDemo' ||
+    $user->company->builder_id === 'MelodyDemo'
+);
+
 if ($userCompany) {
 	$portalHref		 = ($userCompany->id == 22 || $userCompany->id == 23 || $userCompany->id == 39) ? "/portal-henley" : "/portal";
 }	else {
@@ -183,6 +189,16 @@ if ($userCompany) {
                        @endif
                        data-tab-content="management-items"
                        onclick="openTab(event)" title="Management">Management</a>
+                </li>
+            @endif
+            @if($isGlobalAdmin || $hasKaspa)
+                <li class="nav-item">
+                    <a href="#"
+                       class="tablink"
+                       id="kaspa-engine-nav"
+                       data-tab-content="kaspa-engine-items"
+                       onclick="openTab(event)"
+                       title="Kaspa Engine">Kaspa Engine</a>
                 </li>
             @endif
 
@@ -455,6 +471,53 @@ if ($userCompany) {
                 <a class="{{Request::is('landspot/my-clients*') ? 'active' : ''}}"
                    href="{{route('my-clients.index', [], false)}}">
                     My Clients
+                </a>
+            </li>
+        @endif
+    </ul>
+
+    <ul class="nav-items tabcontent" id="kaspa-engine-items">
+        @if($isGlobalAdmin)
+            <li class="nav-item"
+                data-selected="{{Request::is('kaspa-engine/guideline-profiles*') ? 'active' : ''}}"
+                data-tab-link-id="kaspa-engine-nav">
+                <a class="{{Request::is('kaspa-engine/guideline-profiles*') ? 'active' : ''}}"
+                   href="{{config('app.url') . route('guideline-profiles', [], false)}}">
+                    Guideline Profiles
+                </a>
+            </li>
+            <li class="nav-item"
+                data-selected="{{Request::is('kaspa-engine/formula-library*')}}"
+                data-tab-link-id="kaspa-engine-nav">
+                <a class="{{Request::is('kaspa-engine/formula-library*') ? 'active' : ''}}"
+                   href="{{config('app.url') . route('formula-library', [], false)}}">
+                    Formula Library
+                </a>
+            </li>
+        @endif
+        @if($isGlobalAdmin || $hasKaspa)
+            <li class="nav-item"
+                data-selected="{{Request::is('kaspa-engine/package-settings*') ? 'active' : ''}}"
+                data-tab-link-id="kaspa-engine-nav">
+                <a class="{{Request::is('kaspa-engine/package-settings*') ? 'active' : ''}}"
+                   href="{{config('app.url') . route('kaspa.package-settings', [], false)}}">
+                    Package Settings
+                </a>
+            </li>
+            <li class="nav-item"
+                data-selected="{{Request::is('kaspa-engine/site-costs*') ? 'active' : ''}}"
+                data-tab-link-id="kaspa-engine-nav">
+                <a class="{{Request::is('kaspa-engine/site-costs*') ? 'active' : ''}}"
+                   href="{{config('app.url') . route('kaspa.site-costs', [], false)}}">
+                    Site Costs
+                </a>
+            </li>
+            <li class="nav-item"
+                data-selected="{{Request::is('kaspa-engine/my-estates*') ? 'active' : ''}}"
+                data-tab-link-id="kaspa-engine-nav">
+                <a class="{{Request::is('kaspa-engine/my-estates*') ? 'active' : ''}}"
+                   href="{{config('app.url') . route('kaspa.my-estates', [], false)}}">
+                    My Estates
                 </a>
             </li>
         @endif

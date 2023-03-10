@@ -29,6 +29,7 @@ use Illuminate\Support\Str;
  * @property string thumb
  * @property string engineering
  * @property string nearmap
+ * @property string site_costs
  * @property string file_name
  * @property string fileURL (accessor)
  * @property string first_name
@@ -65,7 +66,7 @@ class Siting extends Model
 {
     use CustomFiltersTrait, FileStorageTrait;
 
-    const fileStorageFields = ['path', 'thumb', 'engineering', 'nearmap'];
+    const fileStorageFields = ['path', 'thumb', 'engineering', 'nearmap', 'site_costs'];
     static $storageFolder = 'sitings_brochure';
 
     const SITING_STATUS = [
@@ -87,7 +88,7 @@ class Siting extends Model
         'street', 'extra_details', 'page_size', 'page_scale',
         'lot_no', 'sp_no', 'parent_lot_no', 'parent_sp_no',
         'house', 'facade', 'options', 'path', 'file_name', 'house_svgs_id',
-        'thumb', 'engineering', 'nearmap', 'status', 'lot_area', 'site_coverage'
+        'thumb', 'engineering', 'nearmap', 'site_costs', 'status', 'lot_area', 'site_coverage'
     ];
     protected $hidden = ['user_id', 'path', 'status'];
     protected $appends = ['house_id'];
@@ -227,6 +228,11 @@ class Siting extends Model
         return $this->nearmap ? File::storageTempUrl($this->nearmap, now()->addDay(2)) : null;
     }
 
+    function getSiteCostsURLAttribute()
+    {
+        return $this->site_costs ? File::storageTempUrl($this->site_costs, now()->addDay(2)) : null;
+    }
+
     function getViewURLAttribute()
     {
         return route('export-doc', ['referencePlan' => $this->id]);
@@ -251,6 +257,12 @@ class Siting extends Model
     {
         return route('house-data', [$this, 'house-id'], false);
     }
+
+    function getHouseSvgAttribute()
+    {
+        return route('house-svg', [$this, 'house-id'], false);
+    }
+
     function getEnvelopeURLAttribute()
     {
         return route('envelope-catalogue', $this, false);
@@ -282,7 +294,17 @@ class Siting extends Model
             'has_nearmap' => $user->company->chas_nearmap===Company::NEARMAP_COMPANY_ACCESS ||
                             ($user->company->chas_nearmap===Company::NEARMAP_USER_ACCESS && $user->has_nearmap) ? 1 : 0,
             'nearmap_api_key' => $user->company->nearmap_api_key,
+            // @TEMP
+            'site_profiles' => $this->siteProfiles
         ];
+    }
+
+    function getSiteProfilesAttribute()
+    {
+        $user = $this->user;
+        return $this->user->company->siteProfile
+            ->where('state_id', '=', $user->state_id)
+            ->toArray();
     }
 
     function getReferencePlan()
@@ -505,7 +527,6 @@ class Siting extends Model
         ]);
 
         return UserAPI::get('lcapi-call', compact('query'));
-        // return ""; // Ares bug
     }
 
     /**
@@ -524,7 +545,6 @@ class Siting extends Model
         ]);
 
         return UserAPI::get('lcapi-call', compact('query'));
-        // return ""; // Ares Bug
     }
 
     /**
@@ -562,6 +582,7 @@ class Siting extends Model
             $newSiting->thumb = null;
             $newSiting->engineering = null;
             $newSiting->nearmap = null;
+            $newSiting->site_costs = null;
             $newSiting->path = null;
             $newSiting->save();
 
@@ -687,6 +708,28 @@ class Siting extends Model
         return PDFRender::html2pdf_raw($nearmap);
     }
 
+    /**
+     * @param Siting $siting
+     */
+    static function printSiteCosts(Siting $siting)
+    {
+        if (!$siting->site_costs) {
+            return null;
+        }
+
+        /**
+         * Fetch the nearmap URL
+         */
+        $site_costs = file_get_contents(
+            File::storageUrl($siting->site_costs),
+            false,
+            stream_context_create(
+                array("ssl" => array("verify_peer"=>false, "verify_peer_name"=>false))
+            )
+        );
+
+        return PDFRender::html2pdf_raw($site_costs);
+    }
 
     private function replicatePlan(HasOne $plans, Siting $siting, DrawerData $drawerData)
     {

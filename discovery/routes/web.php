@@ -92,10 +92,10 @@ Route::domain(config('app.url'))->group(function () {
             ->where('discoveryMode', '(discovery|footprints)');
     });
 
-    Route::middleware(['check.user:builder,builderAdmin,landDeveloper,estateManager,globalEstateManager', 'can:estates-access'])->group(function () {
-        Route::view('landspot/my-estates', 'user.spa', ['rootID' => 'landspot-estates', 'googleMap' => true])
-            ->name('landspot.my-estates');
-        Route::get('landspot/filter-estates', 'EstatesController@filterEstates');
+        Route::middleware(['check.user:builder,builderAdmin,landDeveloper,estateManager,globalEstateManager', 'can:estates-access'])->group(function () {
+            Route::view('landspot/my-estates', 'user.spa', ['rootID' => 'landspot-estates', 'googleMap' => true])
+                ->name('landspot.my-estates');
+            Route::get('landspot/filter-estates', 'EstatesController@filterEstates');
 
         Route::get('landspot/estate/{key}', 'EstatesController@show');
         Route::put('landspot/estate/{estate}/estate-description', 'EstatesController@updateDescription');
@@ -346,6 +346,8 @@ Route::domain(config('app.url'))->group(function () {
         Route::view('kaspa-engine/package-settings', 'user.spa', ['rootID' => 'kaspa-engine'])->name('kaspa.package-settings');
         Route::view('kaspa-engine/site-costs', 'user.spa', ['rootID' => 'kaspa-engine'])->name('kaspa.site-costs');
         Route::view('kaspa-engine/my-estates', 'user.spa', ['rootID' => 'kaspa-engine'])->name('kaspa.my-estates');
+        // site profiles include rules & costs
+        Route::get('kaspa-engine/profiles', 'KaspaEngineController@filterProfiles');
     });
 
     Route::group(['middleware' => ['check.user:landDeveloper,estateManager,globalEstateManager']], function () {

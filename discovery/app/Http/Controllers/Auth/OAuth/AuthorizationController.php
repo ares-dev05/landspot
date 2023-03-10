@@ -7,16 +7,20 @@ use App\Http\Controllers\Auth\UserGuardTrait;
 use App\Models\Company;
 use App\Models\LotmixStateSettings;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
+use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
 use Laravel\Passport\ClientRepository;
 use Psr\Http\Message\ServerRequestInterface;
 use Laravel\Passport\Http\Controllers\AuthorizationController as OauthAuthorizationController;
+use Illuminate\Support\Facades\Validator;
 
 class AuthorizationController extends OauthAuthorizationController
 {
@@ -46,12 +50,12 @@ class AuthorizationController extends OauthAuthorizationController
     /**
      * Authorize a client to access the user's account.
      *
-     * @param \Psr\Http\Message\ServerRequestInterface $psrRequest
-     * @param \Illuminate\Http\Request $request
-     * @param \Laravel\Passport\ClientRepository $clients
-     * @param \Laravel\Passport\TokenRepository $tokens
-     * @return \Illuminate\Http\Response|array
-     * @throws \Illuminate\Validation\ValidationException|\Exception
+     * @param ServerRequestInterface $psrRequest
+     * @param Request $request
+     * @param ClientRepository $clients
+     * @param TokenRepository $tokens
+     * @return Response|array
+     * @throws ValidationException|Exception
      */
     public function postAuthorize(ServerRequestInterface $psrRequest,
                                   Request $request,
@@ -159,9 +163,9 @@ class AuthorizationController extends OauthAuthorizationController
                 // If estates is disabled for the current state, redirect to sitings
                 if ($user->state->getEstatesDisabled($user->company) === LotmixStateSettings::ESTATES_ACCESS_ENABLED) {
                     $location = config('app.url') . auth()->user()->getBaseRoute();
-                }   elseif ($user->state->getSitingAccess($user->company) == 1) {
+                } elseif ($user->state->getSitingAccess($user->company) == 1) {
                     $location = config('app.SITINGS_URL') . route('reference-plan', [], false);
-                }   else {
+                } else {
                     $location = config('app.FOOTPRINTS_URL');
                 }
             }
@@ -170,5 +174,57 @@ class AuthorizationController extends OauthAuthorizationController
         return [
             'REDIRECT_URL' => $location
         ];
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function accessToken(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->prepareResult([], $validator->errors());
+        }
+        $credentials = request(['email', 'password']);
+        if (auth()->attempt($credentials)) {
+            $tokenData = $this->generateToken(USER::TOKEN_SCOPE_PUBLIC);
+            return $this->prepareResult($tokenData);
+        } else {
+            return $this->prepareResult([], ["auth" => "Sorry, wrong email address or password. Please try again"]);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $data
+     * @param $errors
+     * @return JsonResponse
+     */
+    private function prepareResult($data, $errors = []): JsonResponse
+    {
+        return response()->json(compact('data', 'errors'));
+    }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function generateToken(string $type): array
+    {
+        $tokenName = config('app.name');
+        $tokenConfig = config('app.tokens.' . $type);
+
+        $expiresAt = now()->addMinutes($tokenConfig['lifetime']);
+        Passport::personalAccessTokensExpireIn($expiresAt);
+
+        $token = auth()->user()->createToken($tokenName, $tokenConfig['scopes'])->accessToken;
+
+        return compact('token');
     }
 }

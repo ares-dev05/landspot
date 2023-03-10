@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\BuildOptionController;
+use App\Http\Controllers\Auth\OAuth\AuthorizationController;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /*
@@ -33,4 +36,16 @@ Route::middleware('auth:api')->group(function () {
 
 Route::domain(config('app.OAUTH_PROVIDER_URL'))->group(function () {
     Route::middleware('auth:api')->post('/logout', '\App\Http\Controllers\Auth\OAuth\LoginController@logoutFromAPI');
+});
+
+Route::domain(config('app.LOTMIX_URL'))->group(function () {
+    Route::group(['prefix' => 'v1',], function () {
+        Route::post('auth/token', [AuthorizationController::class, 'accessToken']);
+        Route::view('/test-content', 'build-options.index')->name('test-content');
+
+        Route::middleware(['auth:api', sprintf('scopes:%s', User::TOKEN_SCOPE_API_ONLY_ACCESS)])->group(function () {
+            Route::resource('build-options', BuildOptionController::class);
+            Route::get('available-suburbs', [BuildOptionController::class, 'getAvailableSuburbs']);
+        });
+    });
 });

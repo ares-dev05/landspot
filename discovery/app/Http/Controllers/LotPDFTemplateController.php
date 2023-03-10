@@ -27,7 +27,8 @@ class LotPDFTemplateController extends Controller
      * @param $response
      * @return mixed
      */
-    protected function sendResponse(Estate $estate, $response) {
+    protected function sendResponse(Estate $estate, $response)
+    {
         $result = $this->getTemplate($estate)->toArray();
 
         if (!is_object($result['template_data']) && !$result['template_data']) {
@@ -35,7 +36,7 @@ class LotPDFTemplateController extends Controller
         }
 
         $response['template'] = $result;
-        $response['fetch']    = true;
+        $response['fetch'] = true;
 
         return $response;
     }
@@ -98,8 +99,8 @@ class LotPDFTemplateController extends Controller
     {
         $this->authorize('uploadParagraphImage', Estate::class);
 
-        $file                    = $request->file('image');
-        $imageModel              = new ImageWithThumbnails();
+        $file = $request->file('image');
+        $imageModel = new ImageWithThumbnails();
         $imageModel::$imagesSize = ['thumb' => 898]; //120dpi x 190mm
         if ($file) {
             return response()->json($imageModel::storeToTempFolder($file));
@@ -108,7 +109,7 @@ class LotPDFTemplateController extends Controller
 
     /**
      * @param ExportLotsRequest $request
-     * @return \Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\BinaryFileResponse
      * @throws \Exception
      * @throws \Throwable
      */
@@ -116,25 +117,25 @@ class LotPDFTemplateController extends Controller
     {
         $this->authorize('view', $request->estate);
 
-        if($request->stage_id != '') {
+        if ($request->stage_id != '') {
             $stagesIds = explode(',', $request->stage_id);
             if ($stagesIds) {
                 $allStageIds = $request->estate->stage->pluck('id');
-                $stagesIds   = $allStageIds->intersect($stagesIds);
+                $stagesIds = $allStageIds->intersect($stagesIds);
             }
         } else {
             $stagesIds = $request->estate->stage->pluck('id');
         }
 
-        $builderCompanyId     = $request->export_id > 0 ? (int)$request->export_id : null;
+        $builderCompanyId = $request->export_id > 0 ? (int)$request->export_id : null;
         $exportVisibilityType = $request->export_id;
 
         /** @var User $user */
-        $user       = auth()->user();
+        $user = auth()->user();
         $unsoldLots = $request->unsold_lots === 'on';
-        $columns    = $request->estate->listColumnsByOrder();
+        $columns = $request->estate->listColumnsByOrder();
 
-        if($user->company->isBuilder() && !$user->isGlobalAdmin()) {
+        if ($user->company->isBuilder() && !$user->isGlobalAdmin()) {
             $stagesIds = optional($request->estate->stage->filter(function ($stage) {
                 return $stage->published == 1;
             }))->pluck('id');
@@ -151,6 +152,7 @@ class LotPDFTemplateController extends Controller
         );
 
         $template = $this->getTemplate($request->estate);
+
         $view = view('pdf.export-stage-lots',
             compact('stages', 'template','columns')
         );

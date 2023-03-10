@@ -64,6 +64,23 @@ class KaspaEngineController extends Controller
     }
 
     /**
+     * List of region profiles for the current company & state
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public function filterProfiles(Request $request): array
+    {
+        $user = auth()->user();
+        $profiles = $user->company->siteProfile
+            ->where('state_id', '=', $user->state_id)
+            ->toArray();
+
+        return compact('profiles');
+    }
+
+    /**
      * List of formulas
      *
      * @param FormulaValuesRequest $request

@@ -28,6 +28,12 @@ $isEstatesEnabled = $user->state->getEstatesDisabled($user->company) == LotmixSt
 $canManageMyClients = $user->can('manage-my-clients');
 $hasTrainingVideo = $canManageMyClients && $userCompany->isBuilder();
 
+// @TODO: make this a DB setting
+$hasKaspa = $userCompany->isBuilder() && (
+    $user->company->builder_id === 'SimondsDemo' ||
+    $user->company->builder_id === 'MelodyDemo'
+);
+
 ?>
 <script>
     function openTab(e) {
@@ -131,7 +137,7 @@ $hasTrainingVideo = $canManageMyClients && $userCompany->isBuilder();
                        onclick="openTab(event)" title="Management">Management</a>
                 </li>
             @endif
-            @if($isGlobalAdmin)
+            @if($isGlobalAdmin || $hasKaspa)
                 <li class="nav-item">
                     <a href="#"
                        class="tablink"
@@ -490,7 +496,7 @@ $hasTrainingVideo = $canManageMyClients && $userCompany->isBuilder();
                 </a>
             </li>
         @endif
-        @if($isGlobalAdmin)
+        @if($isGlobalAdmin || $hasKaspa)
             <li class="nav-item"
                 data-selected="{{Request::is('kaspa-engine/package-settings*') ? 'active' : ''}}"
                 data-tab-link-id="kaspa-engine-nav">

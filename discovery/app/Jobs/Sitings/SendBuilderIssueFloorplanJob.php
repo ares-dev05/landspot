@@ -34,11 +34,9 @@ class SendBuilderIssueFloorplanJob extends SitingsJob
         $note      = $this->note;
 
         if ($floorplan) {
-            $floorplan
-                ->company
-                ->user()
-                ->byPortalAccess(User::PORTAL_ACCESS_BUILDER)
-                ->chunk(100, function (Collection $users) use ($floorplan, $note) {
+            User::whereHas('group', function (Builder $b) {
+                $b->superAdmins();
+            })->chunk(100, function (Collection $users) use ($floorplan, $note) {
                     foreach ($users as $user) {
                         $this->email(
                             'sitings.emails.builder-issue-floorplan',

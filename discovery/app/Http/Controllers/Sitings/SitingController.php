@@ -7,16 +7,14 @@ use App\Models\Builder;
 use App\Models\File;
 use App\Models\InvitedUser;
 use App\Models\LotmixStateSettings;
-use Illuminate\Validation\ValidationException;
-use App\Models\Sitings\{Siting};
-use Illuminate\Http\Request;
-use Illuminate\Support\{
-    Arr, Str
-};
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
+use App\Models\Sitings\{Floorplan, Siting};
 use iio\libmergepdf\Merger;
 use iio\libmergepdf\Pages;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Request;
+use Illuminate\Support\{Arr, Str};
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 
 class SitingController extends Controller
@@ -35,7 +33,7 @@ class SitingController extends Controller
      * Show the form for creating a new resource.
      *
      * @return array
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -44,7 +42,7 @@ class SitingController extends Controller
 
     /**
      * @return Siting
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     private function __create()
     {
@@ -68,7 +66,7 @@ class SitingController extends Controller
      *
      * @param Siting $siting
      * @return array
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function show(Siting $siting)
@@ -85,7 +83,18 @@ class SitingController extends Controller
 
         $drawerData = $siting->drawerData()->firstOrCreate([]);
 
-        $appends = ['templateImage', 'xmlURL', 'themeURL', 'userActions', 'houseURL', 'userSettings', 'envelopeURL', 'facadeURL'];
+        $appends = [
+            'templateImage',
+            'xmlURL',
+            'themeURL',
+            'userActions',
+            'houseURL',
+            'userSettings',
+            'houseSvg',
+            'envelopeURL',
+            'facadeURL'
+        ];
+
         $sitingColumns = array_merge(['id'], $appends);
 
         $drawerData->append('sitingSession');
@@ -119,7 +128,7 @@ class SitingController extends Controller
     /**
      * @param Siting $siting
      * @return bool|string
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Exception
      */
     function getCompanyXml(Siting $siting)
@@ -131,7 +140,7 @@ class SitingController extends Controller
     /**
      * @param Siting $siting
      * @return bool|string
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Exception
      */
     function getCompanyTheme(Siting $siting)
@@ -144,13 +153,33 @@ class SitingController extends Controller
      * @param Siting $siting
      * @param int $house
      * @return bool|string
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Exception
      */
     function getHouseData(Siting $siting, $house)
     {
         $this->authorize('update', $siting);
         return $siting->getHouseDataXml($house);
+    }
+
+    /**
+     * @param Siting $siting
+     * @param Floorplan $house
+     * @return bool|string
+     * @throws AuthorizationException
+     */
+    function getHouseSVG(Siting $siting, Floorplan $house)
+    {
+        $this->authorize('update', $siting);
+
+        $house->append('svgURL');
+
+        return response()->json([
+            'houseSvg' => $house->svgUrl,
+            'houseId' => $house->getKey(),
+            'houseName' => $house->name,
+            'houseAreas' => $house->area_data
+        ]);
     }
 
     /**
@@ -194,7 +223,7 @@ class SitingController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param Siting $siting
      * @return array
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
      * @throws \Throwable
      */
@@ -225,6 +254,10 @@ class SitingController extends Controller
                 'nullable'
             ],
             'nearmapImage' => [
+                'string',
+                'nullable'
+            ],
+            'siteCostsImage' => [
                 'string',
                 'nullable'
             ],
@@ -357,7 +390,7 @@ class SitingController extends Controller
 
     /**
      * @param Siting $siting
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Exception
      * @throws \Throwable
      */
@@ -380,9 +413,11 @@ class SitingController extends Controller
         $rotation = request()->rotation ?? 0;
         $northRotation = request()->northRotation ?? 0;
 
-        $sitingImage = Arr::get(request(), 'sitingImage', '');
+        // @TODO: refactor this portion; each extra page will be generated by its individual component
+        $sitingImage      = Arr::get(request(), 'sitingImage', '');
         $engineeringImage = Arr::get(request(), 'engineeringImage', '');
-        $nearmapImage = Arr::get(request(), 'nearmapImage', '');
+        $nearmapImage     = Arr::get(request(), 'nearmapImage', '');
+        $siteCostsImage   = Arr::get(request(), 'siteCostsImage', '');
 
         try {
             // Save the SVG render of the siting
@@ -408,6 +443,7 @@ class SitingController extends Controller
                 $path = File::moveTemporaryFileToStorage($tempFileName . '.pdf', Siting::$storageFolder);
             }
 
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Save the HTML render of the engineering overlay, if present
             if ($pdf && $engineeringImage) {
                 $filePath = File::generateOSTempfilename('.html');
@@ -420,6 +456,7 @@ class SitingController extends Controller
                 $engineeringPDF = Siting::printEngineering($siting);
             }
 
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // See if we have a new nearmap upload
             if ($pdf && $nearmapImage) {
                 $filePath = File::generateOSTempfilename('.html');
@@ -429,13 +466,25 @@ class SitingController extends Controller
                 $siting->fill(compact('nearmap'));
                 unlink($filePath);
             }
-
             // if we have a nearmap upload available, use it
             if ($pdf && $siting->nearmap) {
                 $nearmapPDF = Siting::printNearmap($siting);
             }
 
-            if (isset($engineeringPDF) || isset($nearmapPDF)) {
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Site Costs
+            if ($pdf && $siteCostsImage) {
+                $filePath = File::generateOSTempfilename('.html');
+                file_put_contents($filePath, urldecode(base64_decode($siteCostsImage)));
+                File::storeToTempFolderFromPath($filePath, $tempFileName . ".costs.html");
+                $site_costs = File::moveTemporaryFileToStorage($tempFileName . ".costs.html", Siting::$storageFolder);
+                $siting->fill(compact('site_costs'));
+                unlink($filePath);
+
+                $siteCostsPDF = Siting::printSiteCosts($siting);
+            }
+
+            if (isset($engineeringPDF) || isset($nearmapPDF) || isset($siteCostsPDF)) {
                 // Merge the Engineering / Nearmap overlay into the Siting PDF
                 $merger = new Merger;
 
@@ -446,6 +495,9 @@ class SitingController extends Controller
                 }
                 if (isset($nearmapPDF)) {
                     $merger->addFile($nearmapPDF, new Pages('1'));
+                }
+                if (isset($siteCostsPDF)) {
+                    $merger->addFile($siteCostsPDF, new Pages('1'));
                 }
                 $createdPdf = $merger->merge();
 
@@ -501,7 +553,7 @@ class SitingController extends Controller
      *
      * @param Siting $siting
      * @return array
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @throws \Exception
      */
     public function destroy(Siting $siting)
@@ -531,7 +583,7 @@ class SitingController extends Controller
             $drawerData->append('sitingSession');
         }
 
-        $appends = ['templateImage', 'xmlURL', 'themeURL', 'userActions', 'houseURL', 'userSettings'];
+        $appends = ['templateImage', 'xmlURL', 'themeURL', 'userActions', 'houseURL', 'userSettings', 'houseSvg'];
         $sitingColumns = array_merge(['id'], $appends);
 
         $siting->append($appends);

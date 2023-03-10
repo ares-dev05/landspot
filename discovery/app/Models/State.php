@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @method static byAbbrev($state)
  * @method static get(...$args)
+ * @method static byEstateSuburbs(mixed $suburbs)
  */
 class State extends Model
 {
@@ -25,6 +26,11 @@ class State extends Model
      */
     protected $table = 'house_states';
     protected $fillable = ['abbrev', 'name'];
+
+    function estate()
+    {
+        return $this->hasMany(Estate::class, 'state_id');
+    }
 
     function lotmixSettings()
     {
@@ -76,6 +82,12 @@ class State extends Model
         return $b->where('abbrev', strtolower($stateAbbrev));
     }
 
+    function scopeByEstateSuburbs(EloquentBuilder $b, array $suburbs)
+    {
+        return $b->whereHas('estate',  function ($q) use ($suburbs) {
+            $q->whereIn('suburb', $suburbs);
+        });
+    }
 
     /**
      * Get all state by company_id through the house_ranges table
@@ -88,8 +100,8 @@ class State extends Model
         return DB::table('companies as c')
             ->select('hs.*')
             ->distinct()
-            ->join('house_ranges as hr',  'c.id', '=', 'hr.cid')
-            ->join('house_states as hs',  'hr.state_id', '=', 'hs.id')
+            ->join('house_ranges as hr', 'c.id', '=', 'hr.cid')
+            ->join('house_states as hs', 'hr.state_id', '=', 'hs.id')
             ->where('c.id', '=', $companyId)
             ->get();
     }

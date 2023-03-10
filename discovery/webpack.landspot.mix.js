@@ -78,6 +78,7 @@ mix.react('packages/landconnect/blog/resources/assets/js/blog.js', publicInsight
     .react('resources/assets/js/lotmix-sunpather.js', publicJS)
     .react('resources/assets/js/enquire-once/index.js', publicJS + '/enquire-once.js')
     .react('resources/assets/js/app.js', publicJS)
+    .react('resources/assets/js/lotmix/estate-options.js', publicJS)
     .js('resources/assets/js/shim.js', publicJS)
     .js('resources/assets/js/simple-slider.js', publicJS)
     .sass('resources/assets/sass/landspot-login.scss', buildCssPath)
@@ -88,6 +89,7 @@ mix.react('packages/landconnect/blog/resources/assets/js/blog.js', publicInsight
     .sass('resources/assets/sass/lotmix-enquire-once.scss', buildCssPath)
     .sass('resources/assets/sass/lotmix-homepage.scss', buildCssPath)
     .sass('resources/assets/sass/lotmix/public-estate.scss', buildCssPath)
+    .sass('resources/assets/sass/lotmix/estate-options.scss', buildCssPath)
     .sass('resources/assets/sass/lotmix-tos.scss', buildCssPath)
     .sass('resources/assets/sass/pdf-stage-lots.scss', buildCssPath)
     .sass('resources/assets/sass/pdf-viewer.scss', buildCssPath)
@@ -241,7 +243,7 @@ mix.webpackConfig({
 })();
 
 //access to source files from browser on server && dev servers
-if(process.env.APP_ENV !== 'prod' && process.env.APP_ENV !== 'production'){
+if (process.env.APP_ENV !== 'prod' && process.env.APP_ENV !== 'production') {
     mix.webpackConfig({
         devtool: 'inline-source-map'
     });

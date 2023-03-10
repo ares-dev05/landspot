@@ -17,10 +17,10 @@ class DiscoveryController extends Controller
     {
         if (\request()->expectsJson()) {
             $filters = [];
-            $vars    = ['titles', 'houses'];
+            $vars = ['titles', 'houses'];
             if ($request->has('get_filters')) {
                 $filters = $this->getFilters();
-                $vars[]  = 'filters';
+                $vars[] = 'filters';
             }
 //            $this->validate($request, ['order_by' => 'string|nullable|in:title,baths,beds,cars']);
             $clauses = $request->only([
@@ -82,7 +82,7 @@ class DiscoveryController extends Controller
 
         $ranges = auth()->user()->getUserRanges();
 
-        $filters['ranges']       = $ranges->filter(function (Range $item) use ($houseRanges) {
+        $filters['ranges'] = $ranges->filter(function (Range $item) use ($houseRanges) {
             if ($houseRanges->contains($item->id)) {
                 $item->setVisible(['id', 'name']);
                 return true;
@@ -99,7 +99,7 @@ class DiscoveryController extends Controller
             })
             ->values();
 
-        $filters['bathrooms']    = $houses
+        $filters['bathrooms'] = $houses
             ->unique('bathrooms')
             ->sortBy('bathrooms')
             ->pluck('bathrooms')
@@ -114,7 +114,7 @@ class DiscoveryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\House $house
+     * @param \App\Models\House $house
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
@@ -174,6 +174,11 @@ class DiscoveryController extends Controller
         $viewName = 'pdf.floorplans.' . Str::slug($facade->house->range->builderCompany->name);
 
         if (!view()->exists($viewName)) $viewName = 'pdf.floorplans.general';
+
+
+        if ($request->exists('html')) {
+            return view($viewName, compact('facade'));
+        }
 
         $view = view($viewName,
             [

@@ -34,17 +34,18 @@ class SendContractorIssueRejectedFloorplanJob extends SitingsJob
         $note       = $this->note;
 
         if ($floorplan) {
-            User::byPortalAccess(User::PORTAL_ACCESS_CONTRACTOR)
-                ->chunk(100, function (Collection $users) use ($floorplan, $note) {
-                    foreach ($users as $user) {
+            User::whereHas('group', function (Builder $b) {
+                $b->superAdmins();
+            })->chunk(100, function (Collection $users) use ($floorplan, $note) {
+                    foreach ($users as $contractor) {
                         $this->email(
                             'sitings.emails.issue-rejected-floorplan',
                             compact('floorplan', 'note', 'contractor'),
-                            function (Message $msg) use ($user, $floorplan) {
+                            function (Message $msg) use ($contractor, $floorplan) {
                                 static::appendJobsBCCEmail($msg);
                                 $msg->from(config('mail.from.address'), config('mail.from.name'))
                                     ->subject('Floorplan issue has been rejected');
-                                $msg->to($user->email, $user->display_name);
+                                $msg->to($contractor->email, $contractor->display_name);
                             }
                         );
                     }

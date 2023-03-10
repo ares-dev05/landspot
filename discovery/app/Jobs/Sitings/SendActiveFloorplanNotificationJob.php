@@ -3,6 +3,8 @@
 namespace App\Jobs\Sitings;
 
 use App\Models\Sitings\Floorplan;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Message;
 
@@ -33,6 +35,10 @@ class SendActiveFloorplanNotificationJob extends SitingsJob
             $floorplan
                 ->company
                 ->user()
+                ->byPortalAccess(User::PORTAL_ACCESS_CONTRACTOR)
+                ->orWhereHas('group', function (Builder $b) {
+                    $b->superAdmins();
+                })
                 ->chunk(100, function (Collection $users) use ($floorplan) {
                     foreach ($users as $user) {
                         $this->email(

@@ -40,7 +40,7 @@ class SitingsDatabaseSeeder extends Seeder
                     Floorplan::STATUS_ACTIVE,
                     Floorplan::STATUS_ATTENTION,
                     Floorplan::STATUS_AWAITING_APPROVAL,
-                    Floorplan::STATUS_IN_PROGRESS,
+//                    Floorplan::STATUS_IN_PROGRESS,
                 ]),
                 'live_date' => $faker->randomElement([$faker->unixTime, 0]),
             ]);

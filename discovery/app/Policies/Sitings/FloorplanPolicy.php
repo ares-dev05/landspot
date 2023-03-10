@@ -18,21 +18,17 @@ class FloorplanPolicy
 
     function uploadFiles(User $user, Floorplan $f)
     {
-        return ($f->status == Floorplan::STATUS_ATTENTION ||
-                $f->status == Floorplan::STATUS_IN_PROGRESS) &&
-            $user->has_portal_access == User::PORTAL_ACCESS_BUILDER &&
-            $user->state->getSitingAccess($user->company) === LotmixStateSettings::SITING_ACCESS_ENABLED;
+        return ($f->status == Floorplan::STATUS_ATTENTION || $user->isBuilderAdmin())
+            && $user->has_portal_access == User::PORTAL_ACCESS_BUILDER
+            && $user->state->getSitingAccess($user->company) === LotmixStateSettings::SITING_ACCESS_ENABLED;
     }
 
     function update(User $user, Floorplan $f)
     {
-        return in_array($f->status, [
-                Floorplan::STATUS_ATTENTION,
-                Floorplan::STATUS_IN_PROGRESS,
-            ]) && (
-                $user->company_id == $f->company_id ||
-                $user->has_portal_access == User::PORTAL_ACCESS_CONTRACTOR
-            );
+        return (in_array($f->status, [Floorplan::STATUS_ATTENTION, Floorplan::STATUS_ACTIVE]) && (
+                    $user->company_id == $f->company_id ||
+                    $user->has_portal_access == User::PORTAL_ACCESS_CONTRACTOR
+                )) || ($user->isBuilderAdmin() && $user->company_id == $f->company_id);
     }
 
     function acknowledgeNotes(User $user, Floorplan $floorplan)

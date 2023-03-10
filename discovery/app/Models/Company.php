@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Models\Sitings\HasSitingsCompany;
+use App\Models\Sitings\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use App\Models\Sitings\Siting;
+use App\Models\Sitings\Floorplan as SitingsFloorplan;
+use App\Models\Sitings\SiteProfile;
 use Illuminate\Support\Collection;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -51,7 +54,6 @@ use Spatie\Sluggable\SlugOptions;
  * @property FeatureNotification featureNotification
  * @property LotmixStateSettings lotmixStateSettings
  * @property ThemeColor themeColor
- * @property InvitedUser userInvitedUsers
  *
  * @method static Company firstOrCreate(...$args)
  * @method static Company firstOrNew(...$args)
@@ -140,9 +142,7 @@ class Company extends Model implements FileStorageInterface
 
     function scopebyBuilderId(EloquentBuilder $b, $builderId)
     {
-        return $b
-            ->builderCompany()
-            ->where('builder_id', 'like', $builderId);
+        return $b->builderCompany()->where('builder_id', 'like', $builderId);
     }
 
     function scopeDeveloperCompany(EloquentBuilder $b)
@@ -257,6 +257,11 @@ class Company extends Model implements FileStorageInterface
         return $this->hasMany(Range::class, 'cid');
     }
 
+    function siteProfile()
+    {
+        return $this->hasMany(SiteProfile::class);
+    }
+
     function lotPackage()
     {
         return $this->hasMany(LotPackage::class);
@@ -317,6 +322,23 @@ class Company extends Model implements FileStorageInterface
             'id',
             'id',
             'brief_id');
+    }
+
+    function floorplans()
+    {
+        return $this->hasManyThrough(
+            SitingsFloorplan::class,
+            Range::class,
+            'cid',
+            'range_id',
+            null,
+            'id'
+        );
+    }
+
+    public function companyLotTheme()
+    {
+        return $this->hasOne(CompanyLotDrawerTheme::class);
     }
 
     static function getLogoUrl($logoPath)
@@ -463,6 +485,15 @@ class Company extends Model implements FileStorageInterface
     }
 
     /**
+     * @param int $type
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getUsersByPortalAccess($type = User::PORTAL_ACCESS_BUILDER)
+    {
+        return $this->user()->where('has_portal_access', '>=', $type);
+    }
+
+    /**
      * @return Collection
      */
     function getLotmixUserFilters(): Collection
@@ -470,6 +501,22 @@ class Company extends Model implements FileStorageInterface
         $statesList = State::all(['id'])->pluck('id')->toArray();
         return $this->range()
             ->whereIn('state_id', $statesList)
+            ->get(['id'])
+            ->pluck('id');
+    }
+
+    /**
+     * @param $statesList
+     * @return Collection
+     */
+    function getLotmixClientsFilters($statesList): Collection
+    {
+        $stateIds = $statesList
+            ? State::byEstateSuburbs($statesList)->pluck('id')->toArray()
+            : State::all(['id'])->pluck('id')->toArray();
+
+        return $this->range()
+            ->whereIn('state_id', $stateIds)
             ->get(['id'])
             ->pluck('id');
     }

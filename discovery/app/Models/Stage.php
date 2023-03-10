@@ -23,6 +23,7 @@ use Illuminate\Support\Collection;
  * @property LotDrawerTheme drawerTheme
  * @property string name
  * @method Stage findOrFail($id)
+ * @method companyLotTheme()
  */
 class Stage extends Model
 {

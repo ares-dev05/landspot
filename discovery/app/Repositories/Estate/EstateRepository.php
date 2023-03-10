@@ -27,7 +27,7 @@ class EstateRepository extends Facade implements EstateInterface
         $pdoConn = DB::connection()->getPdo();
 
         $estatesQB = DB::table('estates as e')
-            ->select('e.id', 'e.name', 'e.thumb', 'e.small', 'e.path', 'e.geo_coords', 'e.published', 'e.approved', 'e.slug', 'e.logo');
+            ->select('e.id', 'e.name', 'e.thumb', 'e.small', 'e.path', 'e.geo_coords', 'e.published', 'e.approved', 'e.slug', 'e.logo', 'e.suburb');
 
         $v = $filters['estate_name'] ?? '';
         if ($v != '') {

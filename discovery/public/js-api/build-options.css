@@ -1,0 +1,1786 @@
+:root {
+    --lotmix-main-color: #29c97c;
+}
+
+.estate-options {
+    margin: 0 auto;
+    padding-top: 65px
+}
+
+.estate-options .dots-top-left {
+    position: relative
+}
+
+.estate-options .dots-top-left:before {
+    width: 99px;
+    opacity: .2;
+    content: " ";
+    background: url(/images/dots-top-left.svg?87c3ccd7d4bee6d55bbe99406875296f) no-repeat 50%;
+    background-size: contain;
+    position: absolute;
+    left: -40px;
+    top: -24px;
+    height: 68px
+}
+
+.estate-options .dots-top-right {
+    position: relative
+}
+
+.estate-options .dots-top-right:after {
+    width: 99px;
+    opacity: .2;
+    content: " ";
+    background: url(/images/dots-top-right.svg?78f0562f36e589fca88b48872e07fe10) no-repeat 50%;
+    background-size: contain;
+    position: absolute;
+    right: -46px;
+    top: -28px;
+    height: 68px
+}
+
+.estate-options .dots-bottom-left {
+    position: relative
+}
+
+.estate-options .dots-bottom-left:before {
+    width: 99px;
+    opacity: .2;
+    content: " ";
+    background: url(/images/dots-bottom-left.svg?27ef1b09097444929f776272f001a2ff) no-repeat 50%;
+    background-size: contain;
+    position: absolute;
+    left: -45px;
+    bottom: -37px;
+    height: 68px
+}
+
+.estate-options .dots-bottom-right {
+    position: relative
+}
+
+.estate-options .dots-bottom-right:before {
+    width: 99px;
+    opacity: .2;
+    content: " ";
+    background: url(/images/dots-bottom-right.svg?2799d9c9bc1cc9cca3f1bed628a020c6) no-repeat 50%;
+    background-size: contain;
+    position: absolute;
+    right: -8px;
+    bottom: -32px;
+    height: 68px
+}
+
+@media (max-width: 1100px) {
+    .estate-options .dots-bottom-left:after, .estate-options .dots-bottom-left:before, .estate-options .dots-bottom-right:after, .estate-options .dots-bottom-right:before, .estate-options .dots-top-left:after, .estate-options .dots-top-left:before, .estate-options .dots-top-right:after, .estate-options .dots-top-right:before {
+        content: none
+    }
+}
+
+.estate-options .lotmix-button {
+    background: var(--lotmix-main-color);
+    border-radius: 56px;
+    padding: 11px 22px 13px;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 14px;
+    text-align: center;
+    color: #fff;
+    border: 1pt solid transparent;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+    outline: none
+}
+
+.estate-options .lotmix-button:hover {
+    background: #fff;
+    color: var(--lotmix-main-color);
+    border-color: var(--lotmix-main-color)
+}
+
+.estate-options .green-title {
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .green-title, .estate-options .home-h1 {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 45px;
+    margin: 0
+}
+
+.estate-options .home-h1 {
+    font-size: 35px;
+    color: #232456
+}
+
+.estate-options .theme-color {
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .amenity-section .amenity-title {
+    font-size: 21px;
+    line-height: 38px;
+    font-weight: 600;
+    font-style: normal
+}
+
+.estate-options .amenity-section .amenity-marker {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.estate-options .amenity-section .amenity-marker span {
+    font-weight: 700;
+    text-shadow: 1px 1px 1px #fff
+}
+
+.estate-options .amenity-section .add-amenity-form {
+    margin-bottom: 20px
+}
+
+.estate-options .amenity-section .add-amenity-form .amenity-category, .estate-options .amenity-section .add-amenity-form .landspot-input {
+    margin-bottom: 10px
+}
+
+.estate-options .amenity-section .add-amenity-form .amenity-category, .estate-options .amenity-section .add-amenity-form .amenity-category button, .estate-options .amenity-section .add-amenity-form .landspot-input, .estate-options .amenity-section .add-amenity-form .landspot-input button {
+    text-transform: capitalize
+}
+
+.estate-options .amenity-section .add-amenity-form .add-button {
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .amenity-section .add-amenity-form .add-button i {
+    margin-right: 5px
+}
+
+.estate-options .amenity-section .add-amenity-form .add-button:disabled {
+    cursor: not-allowed;
+    color: #949393
+}
+
+.estate-options .amenity-section .add-amenity-form .add-amenity-tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1pt solid #e4e7ea;
+    margin-bottom: 10px
+}
+
+.estate-options .amenity-section .add-amenity-form .add-amenity-tabs .add-amenity-tab {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    color: #323337;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-bottom: 3px solid transparent
+}
+
+.estate-options .amenity-section .add-amenity-form .add-amenity-tabs .add-amenity-tab-active {
+    color: var(--lotmix-main-color);
+    border-bottom: 3px solid var(--lotmix-main-color)
+}
+
+.estate-options .amenity-section .add-amenity-form .add-amenity-tabs .add-amenity-tab:hover:not(.add-amenity-tab-active) {
+    cursor: pointer;
+    color: var(--lotmix-main-color);
+    border-bottom: 3px solid var(--lotmix-main-color);
+    opacity: .7
+}
+
+.estate-options .amenity-section .add-amenity-form .add-amenity-tabs .add-amenity-tab-grow {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.estate-options .amenity-section .add-amenity-form .two-inputs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.estate-options .amenity-section .add-amenity-form .two-inputs > :first-child {
+    margin-right: 5px
+}
+
+.estate-options .amenity-section .add-amenity-form .two-inputs > :last-child {
+    margin-left: 5px
+}
+
+.estate-options .amenity-section .snapshot-wrapper {
+    padding-top: 20px
+}
+
+@media (max-width: 760px) {
+    .estate-options .amenity-section .snapshot-wrapper {
+        padding: 0 45px 20px
+    }
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-top: 15px
+}
+
+@media (max-width: 1000px) {
+    .estate-options .amenity-section .snapshot-wrapper .snapshot-section {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
+}
+
+@media (max-width: 760px) {
+    .estate-options .amenity-section .snapshot-wrapper .snapshot-section {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card {
+    width: 100%;
+    max-width: 290px;
+    height: 84px;
+    -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+    border-radius: 16px;
+    padding: 21px 13px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 18px
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-left-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 15px;
+    white-space: nowrap
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-left-block > span {
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-left-block > .landspot-input {
+    max-width: 8vw;
+    display: inherit;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-left-block > .landspot-input > input {
+    margin-right: 3px;
+    max-width: 70px
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-right-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-right-block > div {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-right-block .snapshot-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 8px
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-right-block .snapshot-description {
+    opacity: .5
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .snapshot-card .snapshot-right-block > .landspot-input {
+    max-width: 100%
+}
+
+.estate-options .amenity-section .snapshot-wrapper .snapshot-section .card-space:not(:last-child) {
+    margin-right: 10px;
+    margin-bottom: 35px
+}
+
+@media (max-width: 760px) {
+    .estate-options .amenity-section .snapshot-wrapper .snapshot-section .card-space:not(:last-child) {
+        margin: 0 0 35px
+    }
+}
+
+.estate-options .amenity-section .amenity-wrapper {
+    margin-top: 54px;
+    margin-bottom: 54px
+}
+
+.estate-options .amenity-section .amenity-map {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 17px
+}
+
+.estate-options .amenity-section .amenity-map .accordion-section {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.estate-options .amenity-section .amenities-accordion > div {
+    padding: 10px 0;
+    border-top: 2pt solid #e4e7ea
+}
+
+.estate-options .amenity-section .amenities-accordion .category {
+    cursor: pointer;
+    padding: 0 12px;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 12px
+}
+
+.estate-options .amenity-section .amenities-accordion .category svg {
+    margin-right: 10px
+}
+
+.estate-options .amenity-section .amenities-accordion .category:hover {
+    opacity: .8;
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .amenity-section .amenities-accordion .category .carpet {
+    margin-left: auto
+}
+
+.estate-options .amenity-section .amenities-accordion .category.active {
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .amenity-section .amenities-accordion .amenity-list {
+    margin: 4px 0 0;
+    counter-reset: item;
+    padding-left: 4.3em
+}
+
+.estate-options .amenity-section .amenities-accordion .amenity-list li {
+    line-height: 26px;
+    display: block;
+    color: #323337;
+    font-size: 12px;
+    opacity: .8;
+    cursor: pointer
+}
+
+.estate-options .amenity-section .amenities-accordion .amenity-list li:before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: 600
+}
+
+.estate-options .amenity-section .amenities-accordion .amenity-list li:hover {
+    color: var(--lotmix-main-color)
+}
+
+@media (max-width: 1000px) {
+    .estate-options .amenity-section .amenity-wrapper {
+        margin-top: 40px
+    }
+
+    .estate-options .amenity-section .amenity-wrapper .amenity-map {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+        padding: 0 8%
+    }
+}
+
+@media (max-width: 1000px) and (max-width: 460px) {
+    .estate-options .amenity-section .amenity-wrapper .amenity-map {
+        padding: 0
+    }
+}
+
+@media (max-width: 1000px) {
+    .estate-options .amenity-section .amenity-wrapper .amenity-map .estate-map-section {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto
+    }
+
+    .estate-options .amenity-section .amenities-accordion {
+        margin-top: 18px
+    }
+
+    .estate-options .amenity-section .amenities-accordion > div {
+        border-top: 1pt solid #e4e7ea
+    }
+
+    .estate-options .amenity-section .amenity-title {
+        text-align: center
+    }
+}
+
+@media (max-width: 460px) {
+    .estate-options .amenity-section {
+        padding-left: 0 !important;
+        padding-right: 0 !important
+    }
+
+    .estate-options .amenity-section .estate-header {
+        margin-left: 5%
+    }
+
+    .estate-options .amenity-section .amenity-wrapper {
+        margin-bottom: 20px
+    }
+}
+
+.estate-options .estate-faq .faq-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 50px 0
+}
+
+.estate-options .estate-faq .faq-section .subtitle {
+    font-size: 21px;
+    line-height: 38px;
+    font-weight: 600
+}
+
+.estate-options .estate-faq .faq-section .faq-questions {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-right: 50px;
+    width: 100%
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area {
+    padding: 15px 0
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .question-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 25px 20px;
+    border-bottom: 2px solid #e4e7ea;
+    margin: 9px 0;
+    height: 77px;
+    min-height: 50px
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .question-content .question-text {
+    font-size: 19px;
+    line-height: 34px;
+    font-weight: 500
+}
+
+@media (max-width: 460px) {
+    .estate-options .estate-faq .faq-section .faq-questions .question-area .question-content .question-text {
+        font-size: 17px
+    }
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .question-content .question-text:hover {
+    text-decoration: underline
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .question-content:hover {
+    cursor: pointer;
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .selected {
+    color: var(--lotmix-main-color);
+    position: relative;
+    border: none !important
+}
+
+.estate-options .estate-faq .faq-section .faq-questions .question-area .selected:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    background-color: var(--lotmix-main-color);
+    opacity: .05
+}
+
+.estate-options .estate-faq .faq-section .faq-answer {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.estate-options .estate-faq .faq-section .answer-textarea {
+    border: 1pt solid #e4e7ea;
+    padding: 18px;
+    border-radius: 4px;
+    width: 100%;
+    height: 85%;
+    margin-bottom: 15px;
+    resize: none
+}
+
+.estate-options .estate-faq .faq-section .answer-content {
+    padding: 25px 0;
+    font-size: 15px;
+    line-height: 27px;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-all
+}
+
+@media (max-width: 1000px) {
+    .estate-options .estate-faq .home-h1 {
+        text-align: center
+    }
+
+    .estate-options .estate-faq .subtitle {
+        display: none
+    }
+
+    .estate-options .estate-faq .faq-section .faq-questions {
+        margin-right: 0
+    }
+
+    .estate-options .estate-faq .faq-section .faq-answer {
+        -webkit-box-flex: 0;
+        -ms-flex: 0;
+        flex: 0
+    }
+
+    .estate-options .estate-faq .faq-section .answer-content {
+        padding: 25px 20px
+    }
+}
+
+@media (max-width: 760px) {
+    .estate-options .estate-faq .home-h1 {
+        font-size: 31px
+    }
+}
+
+@media (max-width: 460px) {
+    .estate-options .estate-faq .faq-section {
+        padding: 0 !important
+    }
+
+    .estate-options .estate-faq .faq-section .answer-content {
+        padding: 10px
+    }
+}
+
+.estate-options .estates-map {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out
+}
+
+.estate-options .estates-map > .map-wrapper {
+    height: 100%
+}
+
+.estate-options .estates-map > .map-location-search-wrapper {
+    z-index: 1;
+    position: fixed;
+    right: 60px;
+    top: 10px;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    direction: ltr;
+    min-width: 38px;
+    border-radius: 3px;
+    background: #fff
+}
+
+.estate-options .estates-map > .map-location-search-wrapper .map-location-search {
+    right: 0;
+    top: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    line-height: 2.5rem;
+    padding: 0 3em 0 0;
+    width: 2.5rem;
+    opacity: 0;
+    z-index: 2;
+    display: block;
+    -webkit-transition: all .175s cubic-bezier(.4, 0, .2, 1);
+    transition: all .175s cubic-bezier(.4, 0, .2, 1);
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+    border-radius: 3px
+}
+
+.estate-options .estates-map > .map-location-search-wrapper .map-location-search:focus {
+    opacity: 1;
+    width: 250px;
+    cursor: text;
+    padding-left: 12px
+}
+
+.estate-options .estates-map > .map-location-search-wrapper:after {
+    content: "\F002";
+    display: inline-block;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font: normal normal normal 10px/1 Font Awesome\ 5 Pro
+}
+
+.estate-options .estate-marker {
+    height: 136px;
+    width: 165px;
+    border-radius: 8px;
+    background: #fff;
+    -webkit-box-shadow: 0 3px 20px 0 hsla(0, 0%, 74%, .4);
+    box-shadow: 0 3px 20px 0 hsla(0, 0%, 74%, .4);
+    color: #323337;
+    cursor: pointer
+}
+
+.estate-options .estate-marker > .image {
+    width: 100%;
+    height: 0;
+    padding-top: 62.5%;
+    background: transparent 50%/cover no-repeat;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px
+}
+
+.estate-options .estate-marker > .title {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.estate-options .estate-marker > .lots {
+    font-size: 10px;
+    text-align: center
+}
+
+.estate-options .estate-marker:after {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #fff transparent transparent;
+    -webkit-transform: translate3d(50%, 100%, 0);
+    transform: translate3d(50%, 100%, 0);
+    right: 50%
+}
+
+.estate-options .map-cluster-icon {
+    -webkit-mask: url(/images/cluster.svg?f0616f6c3e5e92c41679077f819ab2ac) center center/contain no-repeat;
+    mask: url(/images/cluster.svg?f0616f6c3e5e92c41679077f819ab2ac) center center/contain no-repeat;
+    color: #fff !important;
+    background: var(--lotmix-main-color)
+}
+
+.estate-options .floorplans {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: 10px
+}
+
+.estate-options .floorplan {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 350px;
+    flex: 0 0 350px;
+    max-width: 350px;
+    padding: 20px;
+    display: block;
+    position: relative;
+    min-height: 293px
+}
+
+.estate-options .floorplan.catalogue .floorplan-content {
+    padding: 40px 26px;
+    text-align: center
+}
+
+.estate-options .floorplan.catalogue .catalogue-title {
+    font-family: Montserrat, serif;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 31px;
+    color: #232456;
+    margin-bottom: 27px
+}
+
+.estate-options .floorplan.catalogue .catalogue-description {
+    font-family: Montserrat, serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #7e7f94;
+    margin-bottom: 33px
+}
+
+.estate-options .floorplan .company-logo {
+    z-index: 3;
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    color: var(--lotmix-main-color);
+    background-color: #fff;
+    border-radius: 50%;
+    height: 54px;
+    width: 54px;
+    padding: 7px 7px 5px;
+    border: 1px solid #e0e3ef;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 90%
+}
+
+.estate-options .floorplan .floorplan-content {
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e0e3ef;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 11px;
+    -webkit-box-shadow: 9px 9px 0 #f4f7fa;
+    box-shadow: 9px 9px 0 #f4f7fa
+}
+
+.estate-options .floorplan .floorplan-image {
+    width: 100%;
+    height: 0;
+    padding-top: 62.5%;
+    position: relative;
+    background-size: cover;
+    background-image: url(/images/floorplan.png?ea28462ac455e8e20a17230eb0ecbbe6);
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+.estate-options .floorplan .item-options {
+    white-space: nowrap;
+    margin-left: auto;
+    list-style: none;
+    padding: 0;
+    font-size: 11px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.estate-options .floorplan .item-options > li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: .5em
+}
+
+.estate-options .floorplan .item-options > li > i {
+    margin-right: .5em
+}
+
+.estate-options .floorplan .floorplan-description {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 20px;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    color: #23242a
+}
+
+.estate-options .floorplan .floorplan-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px
+}
+
+@media (max-width: 760px) {
+    .estate-options .floorplan {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 320px;
+        flex: 0 0 320px;
+        max-width: 320px
+    }
+}
+
+.estate-options .offer-block-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 65px auto 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 45px;
+    padding-bottom: 60px;
+    border: 1px solid var(--lotmix-main-color);
+    border-radius: 11px;
+    text-align: center
+}
+
+.estate-options .offer-block-container .header {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 45px;
+    color: #232456
+}
+
+.estate-options .offer-block-container .description {
+    font-size: 18px;
+    line-height: 25px;
+    color: #7e7f94
+}
+
+.estate-options .offer-block-container .button-text {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 26px;
+    background-color: var(--lotmix-main-color);
+    border-radius: 56px;
+    color: #fff;
+    outline: none
+}
+
+.estate-options .offer-block-container .button-text:hover {
+    cursor: pointer
+}
+
+@media (max-width: 768px) {
+    .estate-options .offer-block-container {
+        max-width: 322px;
+        margin-bottom: 65px;
+        padding: 52px 21px 60px 15px
+    }
+
+    .estate-options .offer-block-container .header {
+        font-size: 30px;
+        margin-bottom: 24px
+    }
+
+    .estate-options .offer-block-container .description {
+        font-size: 17px
+    }
+
+    .estate-options .offer-block-container .button-text {
+        font-size: 14px
+    }
+}
+
+.estate-options .main-container {
+    padding: 0 15%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.estate-options .main-container button {
+    cursor: pointer;
+    border: 0;
+    background: var(--lotmix-main-color);
+    border-radius: 5px;
+    padding: 10px 15px 11px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff
+}
+
+.estate-options .main-container button:active {
+    background: #19b96c
+}
+
+.estate-options .main-container .text-simple {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4a4a4a
+}
+
+.estate-options .main-container .text-bold {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #323337
+}
+
+.estate-options .main-container .lots-suburubs {
+    text-transform: capitalize;
+}
+
+.estate-options .main-container .text-price {
+    padding-left: 29px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--lotmix-main-color)
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-request .site-plan-request-card .site-plan-text-description, .estate-options .main-container .text-description {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    color: #323337
+}
+
+.estate-options .main-container .text-description {
+    padding-top: 20px
+}
+
+.estate-options .main-container .text-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 45px;
+    color: #232456
+}
+
+.estate-options .main-container .text-big-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 45px;
+    color: #232456;
+    margin-top: 45px
+}
+
+.estate-options .main-container .text-big-title span {
+    text-transform: capitalize;
+}
+
+.estate-options .main-container .estate-map-section {
+    position: relative;
+    height: 700px;
+    margin: 50px 0
+}
+
+.estate-options .main-container .location-conditions-cards {
+    margin-top: 50px;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.estate-options .main-container .location-conditions-cards, .estate-options .main-container .location-conditions-cards .location-conditions-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .location-conditions-cards .location-conditions-card {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, .1);
+    border-radius: 16px;
+    padding: 20px
+}
+
+@media screen and (max-width: 1096px) {
+    .estate-options .main-container .location-conditions-cards .location-conditions-card {
+        margin-bottom: 10px;
+    }
+}
+
+.estate-options .main-container .location-conditions-cards .location-conditions-card .location-conditions-distance {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--lotmix-main-color);
+}
+
+.estate-options .main-container .location-conditions-cards .location-conditions-card .location-conditions-description {
+    margin-left: 15px
+}
+
+.estate-options .main-container .location-conditions-cards .location-conditions-card .location-conditions-description .location-conditions-type-name {
+    padding-bottom: 4px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #232456
+}
+
+.estate-options .main-container .location-conditions-cards .location-conditions-card .location-conditions-description .location-conditions-name {
+    padding-top: 4px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    color: #232456;
+    opacity: .5
+}
+
+.estate-options .main-container .site-plans-view-more {
+    cursor: pointer;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--lotmix-main-color);
+}
+
+.estate-options .main-container .site-plans-view-more:hover {
+    text-decoration: underline
+}
+
+.estate-options .main-container .site-plan-cards {
+    margin-top: 25px
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card {
+    border: 1px solid #e0e3ef;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 11px;
+    padding: 16px 20px 13px;
+    margin-bottom: 10px
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-request {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-height: 350px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-request .site-plan-request-card .site-plan-text-description {
+    padding-top: 10px
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-request .site-plan-request-card button {
+    margin-top: 25px
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-drawing {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-description .site-plan-drawing .site-plan-drawing-image {
+    width: calc(100% + 100px);
+    height: 100%;
+    background-size: cover;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: -100px;
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-area {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4a4a4a
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-cost {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--lotmix-main-color);
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-button {
+    -webkit-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-sign {
+    -webkit-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-sign .site-plan-sign-title {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: center
+}
+
+.estate-options .main-container .site-plan-cards .site-plan-card .site-plan-title .site-plan-sign .site-plan-sign-cost {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: right
+}
+
+.estate-options .main-container .description {
+    margin-top: 26px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4a4a4a
+}
+
+.estate-options .main-container .description .lots-highlight {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--lotmix-main-color);
+}
+
+.estate-options .main-container .house-image {
+    padding-top: 62.5%;
+    background-size: cover;
+    border-radius: 10px;
+    margin-top: 16px;
+    position: relative
+}
+
+.estate-options .main-container .house-image .buttons {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    z-index: 100;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .house-image .buttons .button {
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px 40px 11px;
+    margin-right: 16px;
+    cursor: pointer;
+    border: 0;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #0d0d0d
+}
+
+.estate-options .main-container .house-image .buttons .button:active {
+    background: #d3d3d3
+}
+
+.estate-options .main-container .presentation-card {
+    margin: 40px 0 0 0;
+    padding: 25px 20px;
+    border: 1px solid #e4e7ea;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10px
+}
+
+.estate-options .main-container .presentation-card .signature {
+    position: relative
+}
+
+.estate-options .main-container .presentation-card .signature .signature-text .price {
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.estate-options .main-container .presentation-card .signature .signature-text .price .green-button {
+    background: var(--lotmix-main-color);
+    border-radius: 5px;
+    border: 0;
+    margin-left: 5px;
+    margin-right: 170px;
+    cursor: pointer;
+    padding: 10px 40px 11px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff
+}
+
+.estate-options .main-container .presentation-card .signature .signature-text .price .green-button:active {
+    background: #19b96c
+}
+
+.estate-options .main-container .presentation-card .signature .company-logo {
+    position: absolute;
+    width: 140px;
+    height: auto;
+    padding-top: 110px;
+    right: 20px;
+    bottom: 0;
+    background: transparent 0/contain no-repeat
+}
+
+.estate-options .main-container .presentation-card .options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-top: 28px
+}
+
+.estate-options .main-container .presentation-card .options .option-number {
+    padding: 0 14px 0 7px
+}
+
+.estate-options .main-container .suburb-input {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.estate-options .main-container .suburb-input input {
+    border: 1px solid #e0e3ef;
+    border-radius: 11px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 11px 17px 9px;
+    width: 500px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px
+}
+
+.estate-options .main-container .suburb-input input::-webkit-input-placeholder {
+    color: #bdbecd
+}
+
+.estate-options .main-container .suburb-input input::-moz-placeholder {
+    color: #bdbecd
+}
+
+.estate-options .main-container .suburb-input input::-ms-input-placeholder {
+    color: #bdbecd
+}
+
+.estate-options .main-container .suburb-input input::placeholder {
+    color: #bdbecd
+}
+
+.estate-options .main-container .suburb-input input:focus {
+    outline: none
+}
+
+.estate-options .main-container .suburb-input .suburb-menu .ui-autocomplete {
+    padding: 20px;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    top: 42px;
+    left: 0;
+    background: #fff;
+    -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, .11);
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, .11);
+    width: 500px;
+    border: none;
+}
+
+.estate-options .main-container .suburb-input .suburb-menu .ui-autocomplete .ui-menu-item {
+    color: #323337;
+    line-height: 25px;
+    font-size: 12px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-family: Montserrat, sans-serif;
+    border: none;
+    list-style-type: none;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.estate-options .main-container .suburb-input .suburb-menu .ui-autocomplete .ui-state-focus {
+    background: #fff;
+    line-height: 25px;
+    border: none;
+    margin-bottom: 4px;
+    color: #323337;
+    margin-left: -1px;
+}
+
+.estate-options .main-container .suburb-input .selected-suburbs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-top: 23px
+}
+
+.estate-options .main-container .suburb-input .selected-suburbs .selected-suburb {
+    color: #fff;
+    cursor: pointer;
+    background: var(--lotmix-main-color);
+    padding: 11px;
+    border-radius: 5px;
+    margin-right: 19px;
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.estate-options .main-container .requirements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .requirements .options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-right: 32px
+}
+
+.estate-options .main-container .requirements .options .options-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.estate-options .main-container .requirements input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.estate-options .main-container .requirements label {
+    background: #f6f7f9;
+    cursor: pointer;
+    padding: 11px 16px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    border: 0;
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #323337
+}
+
+.estate-options .main-container .requirements label:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.estate-options .main-container .requirements input[type=radio]:checked + label {
+    background: var(--lotmix-main-color);
+    color: #fff
+}
+
+.estate-options .main-container .requirements .options .option-name {
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3b4356;
+    padding-bottom: 13px
+}
+
+.estate-options .main-container .selected-suburbs ul.ui-autocomplete {
+    z-index: 1;
+    background: #fff;
+    -webkit-box-shadow: 0 0 40px 0 rgb(0 0 0 / 11%);
+    box-shadow: 0 0 40px 0 rgb(0 0 0 / 11%);
+    width: 500px;
+}
+
+.estate-options .landspot-icon {
+    position: relative;
+}
+
+.estate-options .main-container .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.estate-options .main-container .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.estate-options .main-container .pagination span,
+.estate-options .main-container .pagination a {
+    background: #f6f7f9;
+    cursor: pointer;
+    padding: 11px 16px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    border: 0;
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #323337;
+    text-decoration: none;
+}
+
+.estate-options .main-container .pagination span {
+    background-color: var(--lotmix-main-color);
+    color: white;
+}
+
+.estate-options .main-container .pagination span.next,
+.estate-options .main-container .pagination span.prev {
+    display: none;
+}
+
+.estate-options .main-container .pagination span.ellipse {
+    background: transparent;
+    color: #323337;
+}
+
+.estate-options .main-container .pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.estate-options .main-container .pagination-per-page {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    position: relative;
+    font-size: 12px;
+    height: 30px;
+    background: white;
+    margin-right: 8px;
+    margin-left: auto;
+}
+
+.estate-options .main-container .pagination-per-page span {
+    white-space: nowrap;
+    margin-right: 6px;
+}
+
+.estate-options .main-container .pagination-per-page input {
+    background: #F2F3F6;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid transparent;
+    line-height: 20px;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    color: #323337;
+    padding: 4px;
+    width: 40px
+}
+
+.estate-options .main-container .back-nav {
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    color: #323337;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.estate-options .main-container .back-nav:hover {
+    opacity: 0.7;
+}
+
+.estate-options .main-container .back-nav i {
+    font-size: 32px;
+    margin-right: 1em;
+    position: relative;
+    height: 10px;
+    width: 10px;
+}
+
+.estate-options .main-container .back-nav i:before {
+    content: '\2190';
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.estate-options .main-container #leaflet-map {
+    height: 700px;
+}
+

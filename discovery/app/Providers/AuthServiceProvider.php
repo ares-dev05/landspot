@@ -281,6 +281,12 @@ class AuthServiceProvider extends ServiceProvider
 
         LandspotPassport::refreshTokensExpireIn(now()->addDays(30));
 
+        LandspotPassport::tokensCan([
+            User::TOKEN_SCOPE_API_ONLY_ACCESS => 'Api for clients',
+        ]);
+
+        LandspotPassport::personalAccessClientId(config('app.API_PUBLIC_CLIENT_ID'));
+
         Route::get('oauth/authorize', '\App\Http\Controllers\Auth\OAuth\AuthorizationController@getAuthorize')
             ->middleware(['web', 'auth']);
         Route::post('oauth/authorize', '\App\Http\Controllers\Auth\OAuth\AuthorizationController@postAuthorize')
@@ -322,9 +328,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('create-floorplans', function ($user) {
             /** @var User $user */
-            return $user->can('footprints') &&
+            return $user->isGlobalAdmin()
+                || ($user->can('footprints') &&
                 !$user->can('contractor') &&
-                $user->can('state-access');
+                $user->can('state-access'));
         });
 
         Gate::define('sitings-access', function ($user) {

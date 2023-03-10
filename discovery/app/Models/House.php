@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use MathHelper;
+use PaginationHelper;
 
 /**
  * Class House
@@ -366,13 +367,72 @@ class House extends Model
      * @param string[] $columns
      * @param int $page
      * @param null $orderBy
+     * @param int $perPage
      * @return LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
      */
-    public static function getFilteredCollection($filters, $columns = ['*'], $page = 0, $orderBy = null)
+    public static function getFilteredCollection($filters, $columns = ['*'], $page = 0, $orderBy = null, $perPage = 60)
     {
         $collection = HouseRepository::applyFilterAttributesEB($filters, $orderBy);
 
-        return $page ? $collection->paginate(60, $columns) : $collection->get($columns);
+        return $page ? $collection->paginate((int)$perPage, $columns) : $collection->get($columns);
+    }
+
+    /**
+     * @param $filters
+     * @param string[] $columns
+     * @param int $page
+     * @param null $orderBy
+     * @param int $perPage
+     * @return LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
+     */
+    public static function getFilteredCollectionWithLots($filters, $columns = ['*'], $page = 0, $orderBy = null, $perPage = 60)
+    {
+        $collection = HouseRepository::applyFilterAttributesEB($filters, $orderBy);
+
+        $houses = $collection->get();
+
+        $houses = $houses->reduce(function ($carry, $house) {
+            $estates = self::appendLotsToHouse($house);
+            if (!$estates->isEmpty()) {
+                $estates->each(function ($estate) use (&$carry, $house){
+                    $house = clone $house;
+                    $house->estate = $estate;
+                    $house->offsetUnset('estates');
+                    $carry->push($house);
+                });
+            }
+            return $carry;
+        }, collect([]));
+
+        $houses = $houses->sortBy('attributes.price')->values();
+
+        return PaginationHelper::paginate($houses->values(), (int)$perPage);
+    }
+
+    /**
+     * @param House $house
+     * @return Collection
+     */
+    public static function appendLotsToHouse(House &$house): Collection
+    {
+        $house->randomFacadeImage = true;
+        $house->company_logo = $house->company->company_logo;
+
+        $filters['published'] = 1;
+        $filters['lotmix'] = 1;
+        $filters['depth'] = $house->attributes()->first()->depth;
+        $filters['width'] = $house->attributes()->first()->width;
+        $filters['form_house'] = $house->getkey();
+
+        [$estates, $lots] = Estate::getEstatesLotCount($filters);
+
+        $estates = Estate::transformCoordsAndSmallImage($estates);
+
+        return $estates->map(function ($estate) use ($lots) {
+            $estate->lots = $lots->whereIn('id', explode(',', $estate->lot_ids))->values();
+            $estate->estate_snapshots = EstateSnapshot::where('estate_id', $estate->id)->get();
+            return $estate;
+        });
     }
 
     /**

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int distance
  * @property Estate estate
  *
+ * @method static where(...$args)
  */
 class EstateSnapshot extends Model
 {

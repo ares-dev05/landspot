@@ -111,6 +111,7 @@ class FloorplanController extends Controller
                         $this->authorize('contractor');
                         $floorplan->update([
                             'url' => $fileData['name'],
+                            'area_data' => null,
                         ]);
                         break;
 
@@ -184,7 +185,7 @@ class FloorplanController extends Controller
             $floorplan       = $range->floorplans()->create([
                 'company_id' => $company->getKey(),
                 'name'       => Arr::get($floorplanData, 'name'),
-                'live_date'  => $liveDate ? strtotime($liveDate) : 0
+                'live_date'  => $liveDate
             ]);
             $dwgName         = Arr::get($floorplanData, 'file_dwg.fileName');
             $dwgTempFilename = Arr::get($floorplanData, 'file_dwg.name');
@@ -322,6 +323,7 @@ class FloorplanController extends Controller
 
                     return ['errors' => ['Error upon saving floorplan: ' . $e->getMessage()]];
                 }
+
             }
 
             if ($fileNames) {
@@ -329,9 +331,7 @@ class FloorplanController extends Controller
                 $floorplan->insertNote('Update to floorplan uploaded: (' . implode(', ', $fileNames) . ')' . $note, 1);
             }
 
-            if ($floorplan->status == Floorplan::STATUS_AWAITING_APPROVAL) {
-                dispatch(new SendNewFloorplanFilesNotificationJob($floorplan->getKey()));
-            }
+            dispatch(new SendNewFloorplanFilesNotificationJob($floorplan->getKey()));
 
             unset($attributes['file_dwg'], $attributes['update_note']);
         }
@@ -358,6 +358,7 @@ class FloorplanController extends Controller
             );
         }
 
+        //TODO: live_date is incorrect sometimes
         $floorplan->update($attributes);
 
         if ($r->get('single')) {

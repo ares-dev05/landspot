@@ -50,11 +50,11 @@ Route::group([
                     'index' => 'reference-plan',
                 ]);
 
-                Route::resource('/engineering-plan', 'EngineeringPlanController')
-                    ->only(['index', 'store'])
-                    ->names([
-                        'index' => 'engineering-plan',
-                    ]);
+            Route::resource('/engineering-plan', 'EngineeringPlanController')
+                ->only(['index', 'store'])
+                ->names([
+                    'index' => 'engineering-plan',
+                ]);
 
                 Route::resource('/siting', 'SitingController');
                 Route::put('/resite/{siting}', 'SitingController@resiteLot');
@@ -64,6 +64,7 @@ Route::group([
                 Route::get('/siting/house-data/{siting}/{house}', 'SitingController@getHouseData')->name('house-data');
                 Route::get('/siting/envelope-catalogue/{siting}', 'SitingController@getEnvelopeCatalogueXml')->name('envelope-catalogue');
                 Route::get('/siting/facade-catalogue/{siting}', 'SitingController@getFacadeCatalogueXml')->name('facade-catalogue');
+                Route::get('/siting/house-svg/{siting}/{house}', 'SitingController@getHouseSVG')->name('house-svg');
                 Route::get('/get-clients/{siting}', 'SitingController@getAvailableClients');
             });
         });
@@ -87,12 +88,15 @@ Route::group([
                 'parameters' => ['viewer' => 'floorplan']
             ]);
         });
+
+        //TODO: remove after review
+        Route::any('builder-lot', 'DrawerController@getBuilderLot');
     });
 
-        Route::group(['middleware' => ['sitings.check.user:sitingsBuilder']], function () {
-            Route::get('drawer/reference-plan/{referencePlan}', 'ReferencePlanController@show')->name('export-doc');
-            Route::get('drawer/engineering-plan/{engineeringPlan}', 'EngineeringPlanController@show')->name('export-doc-engineering');
-        });
+    Route::group(['middleware' => ['sitings.check.user:sitingsBuilder']], function () {
+        Route::get('drawer/reference-plan/{referencePlan}', 'ReferencePlanController@show')->name('export-doc');
+        Route::get('drawer/engineering-plan/{engineeringPlan}', 'EngineeringPlanController@show')->name('export-doc-engineering');
+    });
 
     Route::group(['middleware' => 'sitings.check.user:sitingsBuilder,contractor'], function () {
         Route::view('/drawer/{siting}/export', 'sitings.app.index')

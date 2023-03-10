@@ -4,6 +4,7 @@ namespace App\Jobs\Sitings;
 
 use App\Models\Sitings\Floorplan;
 use App\Models\Sitings\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Message;
 
@@ -30,9 +31,15 @@ class SendNewFloorplanFilesNotificationJob extends SitingsJob
     {
         /** @var Floorplan $floorplan */
         $floorplan = Floorplan::find($this->floorplanId);
-        $company   = $floorplan->company->name;
+        $company = $floorplan->company->name;
         if ($floorplan) {
-            User::where('has_portal_access', User::PORTAL_ACCESS_CONTRACTOR)
+            $floorplan
+                ->company
+                ->user()
+                ->byPortalAccess(User::PORTAL_ACCESS_CONTRACTOR)
+                ->orWhereHas('group', function (Builder $b) {
+                    $b->superAdmins();
+                })
                 ->chunk(100, function (Collection $users) use ($floorplan, $company) {
                     foreach ($users as $user) {
                         $this->email(

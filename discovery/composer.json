@@ -22,6 +22,7 @@
         "chillerlan/php-qrcode": "^2.0",
         "clicksend/clicksend-php": "^4.0",
         "cviebrock/eloquent-sluggable": "4.8",
+        "darkaonline/l5-swagger": "5.8.*",
         "doctrine/dbal": "^2.6",
         "drewm/mailchimp-api": "^2.5",
         "fideloper/proxy": "~4.0",
@@ -94,9 +95,6 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true,
-        "allow-plugins": {
-            "kylekatarnls/update-helper": true
-        }
+        "optimize-autoloader": true
     }
 }
